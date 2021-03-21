@@ -6,6 +6,8 @@ John Capobianco
 
     show access lists
 
+    show CDP neighbors details
+
     show etherchannel summary
 
     show interfaces status

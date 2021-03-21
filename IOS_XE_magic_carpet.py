@@ -116,6 +116,16 @@ sh_mac_address_table_csv_template = env.get_template('show_mac_address_table_csv
 sh_mac_address_table_md_template = env.get_template('show_mac_address_table_md.j2')
 sh_mac_address_table_html_template = env.get_template('show_mac_address_table_html.j2')
 
+# Show CDP Neighbors
+sh_cdp_neighbors_csv_template = env.get_template('show_cdp_neighbors_csv.j2')
+sh_cdp_neighbors_md_template = env.get_template('show_cdp_neighbors_md.j2')
+sh_cdp_neighbors_html_template = env.get_template('show_cdp_neighbors_html.j2')
+
+# Show CDP Neighbors totals
+sh_cdp_neighbors_totals_csv_template = env.get_template('show_cdp_neighbors_totals_csv.j2')
+sh_cdp_neighbors_totals_md_template = env.get_template('show_cdp_neighbors_totals_md.j2')
+sh_cdp_neighbors_totals_html_template = env.get_template('show_cdp_neighbors_totals_html.j2')
+
 class common_setup(aetest.CommonSetup):
     """Common Setup section"""
     @aetest.subsection
@@ -206,6 +216,12 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            with steps.start('Parsing show cdp neighbors',continue_=True) as step:
+                try:
+                    self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors detail")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             with steps.start('Store data',continue_=True) as step:
 
                 # Show ip int brief
@@ -276,6 +292,8 @@ class Collect_Information(aetest.Testcase):
                     output_from_parsed_etherchannel_summary_csv_template = sh_etherchannel_summary_csv_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
                     output_from_parsed_etherchannel_summary_md_template = sh_etherchannel_summary_md_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
                     output_from_parsed_etherchannel_summary_html_template = sh_etherchannel_summary_html_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
+                
+                # Etherchannel Totals
                     output_from_parsed_etherchannel_summary_totals_csv_template = sh_etherchannel_summary_totals_csv_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
                     output_from_parsed_etherchannel_summary_totals_md_template = sh_etherchannel_summary_totals_md_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
                     output_from_parsed_etherchannel_summary_totals_html_template = sh_etherchannel_summary_totals_html_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
@@ -291,6 +309,17 @@ class Collect_Information(aetest.Testcase):
                     output_from_parsed_mac_address_table_csv_template = sh_mac_address_table_csv_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
                     output_from_parsed_mac_address_table_md_template = sh_mac_address_table_md_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
                     output_from_parsed_mac_address_table_html_template = sh_mac_address_table_html_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
+
+                # Show CDP Neighbors
+                if hasattr(self, 'parsed_show_cdp_neighbors'):
+                    output_from_parsed_cdp_neighbors_csv_template = sh_cdp_neighbors_csv_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
+                    output_from_parsed_cdp_neighbors_md_template = sh_cdp_neighbors_md_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
+                    output_from_parsed_cdp_neighbors_html_template = sh_cdp_neighbors_html_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
+
+                # CDP Neighbor Totals
+                    output_from_parsed_cdp_neighbors_totals_csv_template = sh_cdp_neighbors_totals_csv_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
+                    output_from_parsed_cdp_neighbors_totals_md_template = sh_cdp_neighbors_totals_md_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
+                    output_from_parsed_cdp_neighbors_totals_html_template = sh_cdp_neighbors_totals_html_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
 
                 # ---------------------------------------
                 # Create Files
@@ -499,6 +528,33 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.html" % device.alias, "w") as fh:
                       fh.write(output_from_parsed_interfaces_trunk_html_template)
+
+                # Show CDP Neighbors
+                if hasattr(self, 'parsed_show_cdp_neighbors'):
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_cdp_neighbors, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_cdp_neighbors, yml, allow_unicode=True)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.csv" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_csv_template)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.md" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_md_template)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.html" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_html_template)
+
+                # CDP Neighbors Totals
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.csv" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_totals_csv_template)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_totals_md_template)
+
+                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.html" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_cdp_neighbors_totals_html_template)
 
                 # Show VRF
                 if hasattr(self, 'parsed_show_vrf'):

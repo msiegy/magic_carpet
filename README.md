@@ -170,7 +170,15 @@ Finally - We escape the Cave of Wonders with the network data
 
 ![Step Three](/images/We_Made_It.png)
 
-To View the log in a Web Browser Locally
+```bash
+cd Cave_of_Wonders
+
+ls 
+```
+
+Explore your Wonders!
+
+To View the pyATS log in a Web Browser Locally
 
 ```bash
 pyats logs view

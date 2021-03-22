@@ -50,3 +50,8 @@ Roddie Hasan
     
     Testing on 9200-24P
 
+Artem Kotik
+
+    JUNOS Support 
+
+    First cross-platform implementation

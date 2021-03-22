@@ -126,6 +126,11 @@ sh_cdp_neighbors_totals_csv_template = env.get_template('show_cdp_neighbors_tota
 sh_cdp_neighbors_totals_md_template = env.get_template('show_cdp_neighbors_totals_md.j2')
 sh_cdp_neighbors_totals_html_template = env.get_template('show_cdp_neighbors_totals_html.j2')
 
+# Show ISSU State Details
+sh_issu_state_csv_template = env.get_template('show_issu_state_csv.j2')
+sh_issu_state_md_template = env.get_template('show_issu_state_md.j2')
+sh_issu_state_html_template = env.get_template('show_issu_state_html.j2')
+
 class common_setup(aetest.CommonSetup):
     """Common Setup section"""
     @aetest.subsection
@@ -156,7 +161,7 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            with steps.start('Parsing show ip interfaces status',continue_=True) as step:
+            with steps.start('Parsing show interfaces status',continue_=True) as step:
                 try:
                     self.parsed_show_int_status = device.parse("show interfaces status")
                 except Exception as e:
@@ -221,6 +226,14 @@ class Collect_Information(aetest.Testcase):
                     self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors detail")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # Only VSS Systems support ISSU Such as a 4500; test if device.type == router
+            if device.platform == "cat4500":
+                with steps.start('Parsing show issu state detail',continue_=True) as step:
+                    try:
+                        self.parsed_show_issu_state = device.parse("show issu state detail")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             with steps.start('Store data',continue_=True) as step:
 
@@ -320,6 +333,12 @@ class Collect_Information(aetest.Testcase):
                     output_from_parsed_cdp_neighbors_totals_csv_template = sh_cdp_neighbors_totals_csv_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
                     output_from_parsed_cdp_neighbors_totals_md_template = sh_cdp_neighbors_totals_md_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
                     output_from_parsed_cdp_neighbors_totals_html_template = sh_cdp_neighbors_totals_html_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
+
+                # Show ISSU State Details
+                if hasattr(self, 'parsed_show_cdp_neighbors'):
+                    output_from_parsed_issu_state_csv_template = sh_issu_state_csv_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
+                    output_from_parsed_issu_state_md_template = sh_issu_state_md_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
+                    output_from_parsed_issu_state_html_template = sh_issu_state_html_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
 
                 # ---------------------------------------
                 # Create Files
@@ -555,6 +574,23 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.html" % device.alias, "w") as fh:
                       fh.write(output_from_parsed_cdp_neighbors_totals_html_template)
+
+                # Show ISSU State Details
+                if hasattr(self, 'parsed_show_issu_state'):
+                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_issu_state, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_issu_state, yml, allow_unicode=True)
+
+                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.csv" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_issu_state_csv_template)
+
+                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.md" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_issu_state_md_template)
+
+                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.html" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_issu_state_html_template)
 
                 # Show VRF
                 if hasattr(self, 'parsed_show_vrf'):

@@ -33,7 +33,7 @@ devices:
       alias: '9300'
       type: 'switch'
       os: 'iosxe'
-      platform: cat9300
+      platform: cat9k
       credentials:
         default:
           username: {{ your username }}

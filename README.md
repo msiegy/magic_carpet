@@ -81,10 +81,15 @@ In your project directory, create your virtual environment
 ```console
 python3 -m venv env
 ```
-Activate (use) your new virtual environment:
+Activate (use) your new virtual environment (Linux):
 
 ```console
 source env/bin/activate
+```
+Activate (use) your new virtual environment (Windows):
+
+```console
+.\env\Scripts\activate
 ```
 Download or clone the Magic Carpet repository:
 ```console

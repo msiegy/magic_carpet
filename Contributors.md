@@ -6,6 +6,8 @@ John Capobianco
 
     show access lists
 
+    show cdp neighbors details
+
     show etherchannel summary
 
     show interfaces status
@@ -19,6 +21,10 @@ John Capobianco
     show ip arp vrf {{ vrf }}
 
     show ip interface brief
+
+    show issu state detail
+
+        * 4500X IOS-XE in VSS 
 
     show mac address-table
 
@@ -35,3 +41,10 @@ Sam Johnson
 Jean-Benoit Aubin
 
     Testscript modification
+
+Roddie Hasan
+
+    Python venv / ReadMe documentation
+    
+    Testing on 9200-24P
+

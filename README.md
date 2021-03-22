@@ -109,18 +109,60 @@ When you are finished with your pyATS session, enter the `deactivate` command to
 
 ## Riding the Magic Carpet
 
-Update the `testbed/testbed.yaml` file to reflect your devices.  
+How to Update the `testbed/testbed.yaml` file to reflect your devices:
+
+![Testbed - Routers](/images/testbed_routers.PNG)
+
+    Devices:
+
+        4500: <-- Update to your router hostname
+
+            alias: <-- Update our alias; this can be the hostname or any friendly name you want
+
+            type: <-- This should be "router" for L3 routers with ARP tables and VRFs and such 
+
+            platform: <-- Your Catalyst IOS-XE Platform
+
+            username: <-- Your Cisco device username
+
+            password: <-- Your Enable Secret; It is strongly recommended to follow the "Secret Strings" link to encrypt your secrets
+
+            ip: <-- The management IP address of your router 
+
+        Copy & Paste and make each device unique to scale this up to many routers
+
+![Testbed - Switches](/images/testbed_switches.PNG)
+
+    Devices:
+
+        3850: <-- Update to your switch hostname
+        9300: <-- Update to your switch hostname
+
+            alias: <-- Update our alias; this can be the hostname or any friendly name you want
+
+            type: <-- This should be "switch" for L2 switches without ARP tables or VRFs but features like PoE 
+
+            platform: <-- Your Catalyst IOS-XE Platform
+
+            username: <-- Your Cisco device username
+
+            password: <-- Your Enable Secret; It is strongly recommended to follow the "Secret Strings" link to encrypt your secrets
+
+            ip: <-- The management IP address of your router 
+
+        Copy & Paste and make each device unique to scale this up to many routers    
 
 Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 
 ```console
 pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed.yaml
 ```
+
 First - you will get onto the Magic Carpet 
 
 ![Step One](/images/Hang_On.png)
 
-Next - Genie Magic 
+Next - Genie Magic
 
 ![Step Two](/images/Heading_In.png)
 
@@ -128,14 +170,19 @@ Finally - We escape the Cave of Wonders with the network data
 
 ![Step Three](/images/We_Made_It.png)
 
-To View the log in a Web Browser
+To View the log in a Web Browser Locally
 
 ```bash
 pyats logs view
 ```
 
-![Sample Log](/images/pyATS_Log_Viewer.png)
+To View the log in a Web Browser Remotely
 
+```bash
+pyats logs view --host 0.0.0.0 --port 8080 -v
+```
+
+![Sample Log](/images/pyATS_Log_Viewer.png)
 
 ### Command Index
 
@@ -172,7 +219,7 @@ Cisco IOS-XE:
     show vrf
 #### IOS-XE Tests
 
-Tested on: 
+Tested on:
     
     Cisco Catalyst 4500X-16 03.11.03a.E
 
@@ -182,6 +229,6 @@ Tested on:
 
     Cisco Catalyst 3850-12X48U Gibraltar 16.12.04
 
-#### The World's First Talking Network is Powered by Magic Carpet 
+#### The World's First Talking Network is Powered by Magic Carpet
 
 [![Watch the video](https://j.gifs.com/JyVY5o.gif)](https://www.youtube.com/embed/yyWnvzc0vlA)

@@ -225,17 +225,31 @@ Cisco IOS-XE:
     show version
 
     show vrf
-#### IOS-XE Tests
+
+JunOS:
+
+    show_system_information
+#### Cross Platform Tests
 
 Tested on:
     
-    Cisco Catalyst 4500X-16 03.11.03a.E
+    Cisco:
 
-    Cisco Catalyst 9300-48UXM Gibraltar
+        Cisco Catalyst 4500X-16 03.11.03a.E
 
-    Cisco Catalyst 9200-24P 16.12.03 and 17.03.02a
+        Cisco Catalyst 9300-48UXM Gibraltar
 
-    Cisco Catalyst 3850-12X48U Gibraltar 16.12.04
+        Cisco Catalyst 9200-24P 16.12.03 and 17.03.02a
+
+        Cisco Catalyst 3850-12X48U Gibraltar 16.12.04
+
+        Cisco IOSv
+
+    Juniper:
+
+        JunOS 17, 18, 19
+
+
 
 #### The World's First Talking Network is Powered by Magic Carpet
 

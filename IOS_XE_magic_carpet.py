@@ -131,12 +131,17 @@ sh_issu_state_csv_template = env.get_template('show_issu_state_csv.j2')
 sh_issu_state_md_template = env.get_template('show_issu_state_md.j2')
 sh_issu_state_html_template = env.get_template('show_issu_state_html.j2')
 
+# Show IP OSPF Neighbors Detail
+sh_ip_ospf_neighbor_detail_csv_template = env.get_template('show_ip_ospf_neighbor_detail_csv.j2')
+sh_ip_ospf_neighbor_detail_md_template = env.get_template('show_ip_ospf_neighbor_detail_md.j2')
+sh_ip_ospf_neighbor_detail_html_template = env.get_template('show_ip_ospf_neighbor_detail_html.j2')
+
 class common_setup(aetest.CommonSetup):
     """Common Setup section"""
     @aetest.subsection
     def connect_to_devices(self, testbed):
         """Connect to all the devices"""
-        print(Panel.fit(Text.from_markup("Hang on tight - we are about to go on a [bold blue]Magic[/bold blue] [bold yellow]Carpet[/bold yellow] ride!\n\n[purple].-.\n[.-''-.,\n|  //`~\)\n(<|[/][blue]0[/][purple]|>[/][blue]0[/][purple])\n;\  _/ \\_ _\,\n__\|'._/_  \ '='-,\n/\ \    || )_///_\>>\n(  '._ T |\ | _/),-'\n'.   '._.-' /'/ |\n| '._   _.'`-.._/\n,\ / '-' |/\n[_/\-----j\n_.--.__[_.--'_\__\n/         `--'    '---._\n/ '---.  -'. .'  _.--   '.\n\_      '--.___ _;.-o     /\n'.__ ___/______.__8----'\nc-'----'[/]\n\n",justify="center")))
+        print(Panel.fit(Text.from_markup("Hang on tight - we are about to go on a [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/bold yellow][/blink] ride!\n\n[purple].-.\n[.-''-.,\n|  //`~\)\n(<|[/][blue]0[/][purple]|>[/][blue]0[/][purple])\n;\  _/ \\_ _\,\n__\|'._/_  \ '='-,\n/\ \    || )_///_\>>\n(  '._ T |\ | _/),-'\n'.   '._.-' /'/ |\n| '._   _.'`-.._/\n,\ / '-' |/\n[_/\-----j\n_.--.__[_.--'_\__\n/         `--'    '---._\n/ '---.  -'. .'  _.--   '.\n\_      '--.___ _;.-o     /\n'.__ ___/______.__8----'\nc-'----'[/]\n\n",justify="center")))
         testbed.connect()
 
 # Testcase name : tc_one
@@ -153,85 +158,110 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------
             # Execute parser to show interface status
             # ---------------------------------------
-            print(Panel.fit(Text.from_markup("[blue]_.---.__\n.'        `-.\n/      .--.   |\n\/  / /    |_/\n`\/|/    _(_)\n___  /|_.--'    `.   .\n\  `--' .---.     \ /|\n)   `       \     //|\n| __    __   |   '/||\n|/  \  /  \      / ||\n||  |  |   \     \  |\n\|  |  |   /        |\n__\\@/  |@ | ___ \--'\n(     /' `--'  __)|\n__>   (  .  .--' & \n/   `--|_/--'     &  |\n|                 #. |\n|                 q# |\n\              ,ad#'\n`.________.ad####'\n`#####''''''\n`&#\n&# #&\n'#ba'\n'[/]\n\nThe [bold blue]Magic[/] [bold yellow]Carpet[/] is heading into the Code of Wonders\nGenie Parsing Has Begun",justify="center")))
+            print(Panel.fit(Text.from_markup("[blue]_.---.__\n.'        `-.\n/      .--.   |\n\/  / /    |_/\n`\/|/    _(_)\n___  /|_.--'    `.   .\n\  `--' .---.     \ /|\n)   `       \     //|\n| __    __   |   '/||\n|/  \  /  \      / ||\n||  |  |   \     \  |\n\|  |  |   /        |\n__\\@/  |@ | ___ \--'\n(     /' `--'  __)|\n__>   (  .  .--' & \n/   `--|_/--'     &  |\n|                 #. |\n|                 q# |\n\              ,ad#'\n`.________.ad####'\n`#####''''''\n`&#\n&# #&\n'#ba'\n'[/]\n\nThe [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink] is heading into the [bold cyan]Cave of Wonders[/bold cyan]\n\n[bold blue]Genie[/bold blue] Parsing Has Begun",justify="center")))
 
+            # Show IP Interface Brief
             with steps.start('Parsing show ip interface brief',continue_=True) as step:
                 try:
                     self.parsed_show_ip_int_brief = device.parse("show ip interface brief")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Interfaces Status
             with steps.start('Parsing show interfaces status',continue_=True) as step:
                 try:
                     self.parsed_show_int_status = device.parse("show interfaces status")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Version
             with steps.start('Parsing show version',continue_=True) as step:
                 try:
                     self.parsed_show_version = device.parse("show version")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Inventory
             with steps.start('Parsing show inventory',continue_=True) as step:
                 try:
                     self.parsed_show_inventory = device.parse("show inventory")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show NTP Associations
             with steps.start('Parsing show ntp associations',continue_=True) as step:
                 try:
                     self.parsed_show_ntp_associations = device.parse("show ntp associations")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Access-Lists
             with steps.start('Parsing show access-lists',continue_=True) as step:
                 try:
                     self.parsed_show_access_lists = device.parse("show access-lists")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            with steps.start('Parsing show vrf',continue_=True) as step:
-                try:
-                    self.parsed_show_vrf = device.parse("show vrf")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show VRF - Layer 3 Command only 
+            # Test if device.type == "router"
+            if device.type == "router":            
+                with steps.start('Parsing show vrf',continue_=True) as step:
+                    try:
+                        self.parsed_show_vrf = device.parse("show vrf")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            with steps.start('Parsing show ip arp',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_arp = device.parse("show ip arp")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP ARP - Layer 3 Command only 
+            # Test if device.type == "router"
+            if device.type == "router":            
+                with steps.start('Parsing show ip arp',continue_=True) as step:
+                    try:
+                        self.parsed_show_ip_arp = device.parse("show ip arp")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Etherchannel Summary
             with steps.start('Parsing show etherchannel summary',continue_=True) as step:
                 try:
                     self.parsed_show_etherchannel_summary = device.parse("show etherchannel summary")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Interfaces Trunk
             with steps.start('Parsing show interfaces trunk',continue_=True) as step:
                 try:
                     self.parsed_show_interfaces_trunk = device.parse("show interfaces trunk")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
-
+            
+            # Show MAC Address-Table
             with steps.start('Parsing show mac address-table',continue_=True) as step:
                 try:
                     self.parsed_show_mac_address_table = device.parse("show mac address-table")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show CDP Neighbors            
             with steps.start('Parsing show cdp neighbors',continue_=True) as step:
                 try:
                     self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors detail")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            # Only VSS Systems support ISSU Such as a 4500; test if device.type == router
+            # Only VSS Systems support ISSU Such as a 4500; test if device.platform == 4500
             if device.platform == "cat4500":
                 with steps.start('Parsing show issu state detail',continue_=True) as step:
                     try:
                         self.parsed_show_issu_state = device.parse("show issu state detail")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # Show IP OSF Neighbor Detail - Layer 3 Command only 
+            # Test if device.type == "router"
+            if device.type == "router":
+                with steps.start('Parsing show ip ospf neighbor detail',continue_=True) as step:
+                    try:
+                        self.parsed_show_ip_ospf_neighbor_detail = device.parse("show ip ospf neighbor detail")
                     except Exception as e:
                         step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -339,6 +369,12 @@ class Collect_Information(aetest.Testcase):
                     output_from_parsed_issu_state_csv_template = sh_issu_state_csv_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
                     output_from_parsed_issu_state_md_template = sh_issu_state_md_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
                     output_from_parsed_issu_state_html_template = sh_issu_state_html_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
+
+                # Show IP OSPF Neighbor Detail
+                if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
+                    output_from_parsed_ip_ospf_neighbor_detail_csv_template = sh_ip_ospf_neighbor_detail_csv_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
+                    output_from_parsed_ip_ospf_neighbor_detail_md_template = sh_ip_ospf_neighbor_detail_md_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
+                    output_from_parsed_ip_ospf_neighbor_detail_html_template = sh_ip_ospf_neighbor_detail_html_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
 
                 # ---------------------------------------
                 # Create Files
@@ -592,6 +628,23 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.html" % device.alias, "w") as fh:
                       fh.write(output_from_parsed_issu_state_html_template)
 
+                # Show IP OSPF Neighbor Details
+                if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
+                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_ip_ospf_neighbor_detail, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_ip_ospf_neighbor_detail, yml, allow_unicode=True)
+
+                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.csv" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_csv_template)
+
+                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.md" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_md_template)
+
+                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.html" % device.alias, "w") as fh:
+                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_html_template)
+
                 # Show VRF
                 if hasattr(self, 'parsed_show_vrf'):
                     with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.json" % device.alias, "w") as fid:
@@ -646,4 +699,4 @@ class Collect_Information(aetest.Testcase):
         # shutil.copytree('Wonders', os.path.join(self.parameters['runinfo_dir'], 'Wonders'))
 
         # Goodbye Banner
-        print(Panel.fit(Text.from_markup("You've made it out of the Code of Wonders on your [bold blue]Magic[/] [bold yellow]Carpet[/]!\nWhat treasures did you get?\n\n[bold yellow]_oOoOoOo_[/]\n([bold yellow]oOoOoOoOo[/])\n)`#####`(\n/         \ \n|  NETWORK  |\n|  D A T A  |\n\           /\n`=========`\n\nTo see the results of your Magic Carpet ride type\n pyats logs view\n\nWritten by John Capobianco March 2021",justify="center")))
+        print(Panel.fit(Text.from_markup("You've made it out of the [bold orange]Cave of Wonders[/bold orange] on your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink]!\n[green]What treasures did you get?[/green]\n\n[bold yellow]_[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]_[/]\n([bold yellow][blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink][/])\n)`#####`(\n/         \ \n|  [bold green]NETWORK[/bold green]  |\n|  [bold green]D A T A[/bold green]  |\n\           /\n`=========`\n\n\n\nYour Network Data can be found in the [bold cyan]Cave of Wonders[/bold cyan]\n\nType cd [bold cyan]Cave_of_Wonders[/bold cyan]\n\nTo see the log of your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink] ride \nType [bold red]pyats logs view[/bold red]\n\nWritten by John Capobianco March 2021",justify="center")))

@@ -22,6 +22,8 @@ John Capobianco
 
     show ip interface brief
 
+    show ip ospf neighbor detail
+
     show issu state detail
 
         * 4500X IOS-XE in VSS 

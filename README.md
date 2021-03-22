@@ -86,11 +86,6 @@ Activate (use) your new virtual environment (Linux):
 ```console
 source env/bin/activate
 ```
-Activate (use) your new virtual environment (Windows):
-
-```console
-.\env\Scripts\activate
-```
 Download or clone the Magic Carpet repository:
 ```console
 git clone https://github.com/automateyournetwork/magic_carpet

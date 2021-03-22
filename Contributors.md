@@ -22,6 +22,10 @@ John Capobianco
 
     show ip interface brief
 
+    show issu state detail
+
+        * 4500X IOS-XE in VSS 
+
     show mac address-table
 
     show version

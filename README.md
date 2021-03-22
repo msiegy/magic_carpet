@@ -154,8 +154,16 @@ How to Update the `testbed/testbed.yaml` file to reflect your devices:
 
 Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 
+Cisco IOS-XE:
+
 ```console
 pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed.yaml
+```
+
+JunOS 17 / 18 / 19:
+
+```console
+pyats run job JUNOS_magic_carpet_job.py --testbed-file testbed/testbed_juniper.yaml
 ```
 
 First - you will get onto the Magic Carpet 
@@ -248,8 +256,6 @@ Tested on:
     Juniper:
 
         JunOS 17, 18, 19
-
-
 
 #### The World's First Talking Network is Powered by Magic Carpet
 

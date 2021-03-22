@@ -136,14 +136,51 @@ pyats logs view
 
 ![Sample Log](/images/pyATS_Log_Viewer.png)
 
-### IOS-XE Tests
-Tested on Cisco Catalyst 4500X-16 03.11.03a.E
 
-Tested on Cisco Catalyst 3850-12X48U Gibraltar 16.12.04
+### Command Index
 
-Tested on Cisco Catalyst 9300-48UXM Gibraltar
+Cisco IOS-XE:
 
-Tested on Cisco Catalyst 9200-24P 16.12.03 and 17.03.02a
+    show access lists
+
+    show cdp neighbors details
+
+    show etherchannel summary
+
+    show interfaces status
+    
+    show interfaces trunk
+
+    show inventory
+
+    show ip arp
+
+    show ip arp vrf {{ vrf }}
+
+    show ip interface brief
+
+    show issu state detail
+
+        * 4500X IOS-XE in VSS 
+
+    show mac address-table
+
+    show ntp associations 
+
+    show version
+
+    show vrf
+#### IOS-XE Tests
+
+Tested on: 
+    
+    Cisco Catalyst 4500X-16 03.11.03a.E
+
+    Cisco Catalyst 9300-48UXM Gibraltar
+
+    Cisco Catalyst 9200-24P 16.12.03 and 17.03.02a
+
+    Cisco Catalyst 3850-12X48U Gibraltar 16.12.04
 
 #### The World's First Talking Network is Powered by Magic Carpet 
 

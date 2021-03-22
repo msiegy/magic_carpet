@@ -6,7 +6,7 @@ John Capobianco
 
     show access lists
 
-    show CDP neighbors details
+    show cdp neighbors details
 
     show etherchannel summary
 

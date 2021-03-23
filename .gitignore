@@ -27,3 +27,7 @@ __pycache__/
 
 # VSCode
 .vscode
+
+# Skip virtualenv folders
+.venv/
+venv/

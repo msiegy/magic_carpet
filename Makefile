@@ -24,7 +24,7 @@ yamllint:	## Perform YAML linting using yamllint
 
 bandit:	## Perform python code security checks using bandit
 	@echo "--- Performing bandit code security scanning ---"
-	bandit motherstarter/ -v --exclude ./venv --recursive --format json --verbose -s B101
+	bandit . -v --exclude ./venv --recursive --format json --verbose -s B101
 
 
 

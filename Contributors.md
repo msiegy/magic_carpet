@@ -56,6 +56,8 @@ Artem Kotik
 
     First cross-platform implementation
     
+    Extend .gitignore Python
+    
 Daniel Teycheney
 
     CI testing shell structure

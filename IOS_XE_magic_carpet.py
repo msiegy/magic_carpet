@@ -18,123 +18,29 @@ from rich import print
 from rich.panel import Panel
 from rich.text import Text
 from pyats import aetest
-
-# ----------------
-# Jinja2
-# ----------------
-from jinja2 import Environment, FileSystemLoader
-template_dir = 'templates/cisco/ios_xe'
-env = Environment(loader=FileSystemLoader(template_dir))
-
-# ----------------
-# Import pyATS and the pyATS Library
-# ----------------
 from pyats import topology
 from pyats.log.utils import banner
+from jinja2 import Environment, FileSystemLoader
 
+# ----------------
 # Get logger for script
+# ----------------
+
 log = logging.getLogger(__name__)
 
 # ----------------
-# Template sources
+# Filetypes 
 # ----------------
 
-# ip int brief
-sh_ip_int_brief_csv_template = env.get_template('show_ip_int_brief_csv.j2')
-sh_ip_int_brief_md_template = env.get_template('show_ip_int_brief_md.j2')
-sh_ip_int_brief_html_template = env.get_template('show_ip_int_brief_html.j2')
+filetype_loop = ["csv","md","html"]
 
-# int status
-sh_int_status_csv_template = env.get_template('show_int_status_csv.j2')
-sh_int_status_md_template = env.get_template('show_int_status_md.j2')
-sh_int_status_html_template = env.get_template('show_int_status_html.j2')
+# ----------------
+# Template Directory
+# ----------------
 
-# version
-sh_ver_csv_template = env.get_template('show_version_csv.j2')
-sh_ver_md_template = env.get_template('show_version_md.j2')
-sh_ver_html_template = env.get_template('show_version_html.j2')
+template_dir = 'templates/cisco/ios_xe'
+env = Environment(loader=FileSystemLoader(template_dir))
 
-# inventory
-
-# 4500
-sh_inventory_4500_csv_template = env.get_template('show_inventory_4500_csv.j2')
-sh_inventory_4500_md_template = env.get_template('show_inventory_4500_md.j2')
-sh_inventory_4500_html_template = env.get_template('show_inventory_4500_html.j2')
-
-# 3850
-sh_inventory_3850_csv_template = env.get_template('show_inventory_3850_csv.j2')
-sh_inventory_3850_md_template = env.get_template('show_inventory_3850_md.j2')
-sh_inventory_3850_html_template = env.get_template('show_inventory_3850_html.j2')
-
-# 9300
-sh_inventory_9300_csv_template = env.get_template('show_inventory_9300_csv.j2')
-sh_inventory_9300_md_template = env.get_template('show_inventory_9300_md.j2')
-sh_inventory_9300_html_template = env.get_template('show_inventory_9300_html.j2')
-
-# ip access-lists
-sh_access_lists_csv_template = env.get_template('show_access_lists_csv.j2')
-sh_access_lists_md_template = env.get_template('show_access_lists_md.j2')
-sh_access_lists_html_template = env.get_template('show_access_lists_html.j2')
-
-# show ntp associations
-sh_ntp_associations_csv_template = env.get_template('show_ntp_associations_csv.j2')
-sh_ntp_associations_md_template = env.get_template('show_ntp_associations_md.j2')
-sh_ntp_associations_html_template = env.get_template('show_ntp_associations_html.j2')
-
-# vrf
-sh_vrf_csv_template = env.get_template('show_vrf_csv.j2')
-sh_vrf_md_template = env.get_template('show_vrf_md.j2')
-sh_vrf_html_template = env.get_template('show_vrf_html.j2')
-
-# IP ARP
-sh_ip_arp_csv_template = env.get_template('show_ip_arp_csv.j2')
-sh_ip_arp_md_template = env.get_template('show_ip_arp_md.j2')
-sh_ip_arp_html_template = env.get_template('show_ip_arp_html.j2')
-
-# IP ARP VRF <VRF>
-sh_ip_arp_vrf_csv_template = env.get_template('show_ip_arp_csv.j2')
-sh_ip_arp_vrf_md_template = env.get_template('show_ip_arp_md.j2')
-sh_ip_arp_vrf_html_template = env.get_template('show_ip_arp_html.j2')
-
-# Show EtherChannel Summary
-sh_etherchannel_summary_csv_template = env.get_template('show_etherchannel_summary_csv.j2')
-sh_etherchannel_summary_md_template = env.get_template('show_etherchannel_summary_md.j2')
-sh_etherchannel_summary_html_template = env.get_template('show_etherchannel_summary_html.j2')
-
-# Show EtherChannel Summary Totals
-sh_etherchannel_summary_totals_csv_template = env.get_template('show_etherchannel_summary_totals_csv.j2')
-sh_etherchannel_summary_totals_md_template = env.get_template('show_etherchannel_summary_totals_md.j2')
-sh_etherchannel_summary_totals_html_template = env.get_template('show_etherchannel_summary_totals_html.j2')
-
-# Show Interfaces Trunk
-sh_interfaces_trunk_csv_template = env.get_template('show_interfaces_trunk_csv.j2')
-sh_interfaces_trunk_md_template = env.get_template('show_interfaces_trunk_md.j2')
-sh_interfaces_trunk_html_template = env.get_template('show_interfaces_trunk_html.j2')
-
-# Show MAC Address-Table
-sh_mac_address_table_csv_template = env.get_template('show_mac_address_table_csv.j2')
-sh_mac_address_table_md_template = env.get_template('show_mac_address_table_md.j2')
-sh_mac_address_table_html_template = env.get_template('show_mac_address_table_html.j2')
-
-# Show CDP Neighbors
-sh_cdp_neighbors_csv_template = env.get_template('show_cdp_neighbors_csv.j2')
-sh_cdp_neighbors_md_template = env.get_template('show_cdp_neighbors_md.j2')
-sh_cdp_neighbors_html_template = env.get_template('show_cdp_neighbors_html.j2')
-
-# Show CDP Neighbors totals
-sh_cdp_neighbors_totals_csv_template = env.get_template('show_cdp_neighbors_totals_csv.j2')
-sh_cdp_neighbors_totals_md_template = env.get_template('show_cdp_neighbors_totals_md.j2')
-sh_cdp_neighbors_totals_html_template = env.get_template('show_cdp_neighbors_totals_html.j2')
-
-# Show ISSU State Details
-sh_issu_state_csv_template = env.get_template('show_issu_state_csv.j2')
-sh_issu_state_md_template = env.get_template('show_issu_state_md.j2')
-sh_issu_state_html_template = env.get_template('show_issu_state_html.j2')
-
-# Show IP OSPF Neighbors Detail
-sh_ip_ospf_neighbor_detail_csv_template = env.get_template('show_ip_ospf_neighbor_detail_csv.j2')
-sh_ip_ospf_neighbor_detail_md_template = env.get_template('show_ip_ospf_neighbor_detail_md.j2')
-sh_ip_ospf_neighbor_detail_html_template = env.get_template('show_ip_ospf_neighbor_detail_html.j2')
 
 class common_setup(aetest.CommonSetup):
     """Common Setup section"""
@@ -269,398 +175,262 @@ class Collect_Information(aetest.Testcase):
 
                 # Show ip int brief
                 if hasattr(self, 'parsed_show_ip_int_brief'):
-                    output_from_parsed_ip_int_brief_csv_template = sh_ip_int_brief_csv_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'])
-                    output_from_parsed_ip_int_brief_md_template = sh_ip_int_brief_md_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'])
-                    output_from_parsed_ip_int_brief_html_template = sh_ip_int_brief_html_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'])
+                    sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.json" % device.alias, "w") as fid:
+                        json.dump(self.parsed_show_ip_int_brief, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.parsed_show_ip_int_brief, yml, allow_unicode=True)                 
+        
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ip_int_brief_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)
 
                 # Show int status
                 if hasattr(self, 'parsed_show_int_status'):
-                    output_from_parsed_int_status_csv_template = sh_int_status_csv_template.render(to_parse_interfaces=self.parsed_show_int_status['interfaces'])
-                    output_from_parsed_int_status_md_template = sh_int_status_md_template.render(to_parse_interfaces=self.parsed_show_int_status['interfaces'])
-                    output_from_parsed_int_status_html_template = sh_int_status_html_template.render(to_parse_interfaces=self.parsed_show_int_status['interfaces'])
+                    sh_int_status_template = env.get_template('show_int_status.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_int_status, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_int_status, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_int_status_template.render(to_parse_interfaces=self.parsed_show_int_status['interfaces'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)                
 
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
-                    output_from_parsed_version_csv_template = sh_ver_csv_template.render(to_parse_version=self.parsed_show_version['version'])
-                    output_from_parsed_version_md_template = sh_ver_md_template.render(to_parse_version=self.parsed_show_version['version'])
-                    output_from_parsed_version_html_template = sh_ver_html_template.render(to_parse_version=self.parsed_show_version['version'])
+                    sh_ver_template = env.get_template('show_version.j2')
 
-                # Show inventory
-                if hasattr(self, 'parsed_show_inventory'):
-
-                    # 4500
-                    if device.platform == "cat4500":
-                      output_from_parsed_inventory_4500_csv_template = sh_inventory_4500_csv_template.render(to_parse_inventory=self.parsed_show_inventory['main'])
-                      output_from_parsed_inventory_4500_md_template = sh_inventory_4500_md_template.render(to_parse_inventory=self.parsed_show_inventory['main'])
-                      output_from_parsed_inventory_4500_html_template = sh_inventory_4500_html_template.render(to_parse_inventory=self.parsed_show_inventory['main'])
-
-                    # 3850
-                    elif device.platform == "cat3850":
-                      output_from_parsed_inventory_3850_csv_template = sh_inventory_3850_csv_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-                      output_from_parsed_inventory_3850_md_template = sh_inventory_3850_md_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-                      output_from_parsed_inventory_3850_html_template = sh_inventory_3850_html_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-
-                    # 9300
-                    elif device.platform == "cat9300":
-                      output_from_parsed_inventory_9300_csv_template = sh_inventory_9300_csv_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-                      output_from_parsed_inventory_9300_md_template = sh_inventory_9300_md_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-                      output_from_parsed_inventory_9300_html_template = sh_inventory_9300_html_template.render(to_parse_inventory=self.parsed_show_inventory['slot'])
-
-                # Show access-lists
-                if hasattr(self, 'parsed_show_access_lists'):
-                    output_from_parsed_access_lists_csv_template = sh_access_lists_csv_template.render(to_parse_access_list=self.parsed_show_access_lists)
-                    output_from_parsed_access_lists_md_template = sh_access_lists_md_template.render(to_parse_access_list=self.parsed_show_access_lists)
-                    output_from_parsed_access_lists_html_template = sh_access_lists_html_template.render(to_parse_access_list=self.parsed_show_access_lists)
-
-                # Show ntp associations
-                if hasattr(self, 'parsed_show_ntp_associations'):
-                    output_from_parsed_ntp_associations_csv_template = sh_ntp_associations_csv_template.render(to_parse_ntp_associations=self.parsed_show_ntp_associations)
-                    output_from_parsed_ntp_associations_md_template = sh_ntp_associations_md_template.render(to_parse_ntp_associations=self.parsed_show_ntp_associations)
-                    output_from_parsed_ntp_associations_html_template = sh_ntp_associations_html_template.render(to_parse_ntp_associations=self.parsed_show_ntp_associations)
-
-                # Show vrf
-                if hasattr(self, 'parsed_show_vrf'):
-                    output_from_parsed_vrf_csv_template = sh_vrf_csv_template.render(to_parse_vrf=self.parsed_show_vrf['vrf'])
-                    output_from_parsed_vrf_md_template = sh_vrf_md_template.render(to_parse_vrf=self.parsed_show_vrf['vrf'])
-                    output_from_parsed_vrf_html_template = sh_vrf_html_template.render(to_parse_vrf=self.parsed_show_vrf['vrf'])
-
-                # Show ip arp
-                if hasattr(self, 'parsed_show_ip_arp'):
-                    output_from_parsed_ip_arp_csv_template = sh_ip_arp_csv_template.render(to_parse_ip_arp=self.parsed_show_ip_arp['interfaces'])
-                    output_from_parsed_ip_arp_md_template = sh_ip_arp_md_template.render(to_parse_ip_arp=self.parsed_show_ip_arp['interfaces'])
-                    output_from_parsed_ip_arp_html_template = sh_ip_arp_html_template.render(to_parse_ip_arp=self.parsed_show_ip_arp['interfaces'])
-
-                # Show etherchannel summary
-                if hasattr(self, 'parsed_show_etherchannel_summary'):
-                    output_from_parsed_etherchannel_summary_csv_template = sh_etherchannel_summary_csv_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
-                    output_from_parsed_etherchannel_summary_md_template = sh_etherchannel_summary_md_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
-                    output_from_parsed_etherchannel_summary_html_template = sh_etherchannel_summary_html_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'])
-                
-                # Etherchannel Totals
-                    output_from_parsed_etherchannel_summary_totals_csv_template = sh_etherchannel_summary_totals_csv_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
-                    output_from_parsed_etherchannel_summary_totals_md_template = sh_etherchannel_summary_totals_md_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
-                    output_from_parsed_etherchannel_summary_totals_html_template = sh_etherchannel_summary_totals_html_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary)
-
-                # Show interfaces trunk
-                if hasattr(self, 'parsed_show_interfaces_trunk'):
-                    output_from_parsed_interfaces_trunk_csv_template = sh_interfaces_trunk_csv_template.render(to_parse_interfaces_trunk=self.parsed_show_interfaces_trunk['interface'])
-                    output_from_parsed_interfaces_trunk_md_template = sh_interfaces_trunk_md_template.render(to_parse_interfaces_trunk=self.parsed_show_interfaces_trunk['interface'])
-                    output_from_parsed_interfaces_trunk_html_template = sh_interfaces_trunk_html_template.render(to_parse_interfaces_trunk=self.parsed_show_interfaces_trunk['interface'])
-
-                # Show mac address-table
-                if hasattr(self, 'parsed_show_mac_address_table'):
-                    output_from_parsed_mac_address_table_csv_template = sh_mac_address_table_csv_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
-                    output_from_parsed_mac_address_table_md_template = sh_mac_address_table_md_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
-                    output_from_parsed_mac_address_table_html_template = sh_mac_address_table_html_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'])
-
-                # Show CDP Neighbors
-                if hasattr(self, 'parsed_show_cdp_neighbors'):
-                    output_from_parsed_cdp_neighbors_csv_template = sh_cdp_neighbors_csv_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
-                    output_from_parsed_cdp_neighbors_md_template = sh_cdp_neighbors_md_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
-                    output_from_parsed_cdp_neighbors_html_template = sh_cdp_neighbors_html_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'])
-
-                # CDP Neighbor Totals
-                    output_from_parsed_cdp_neighbors_totals_csv_template = sh_cdp_neighbors_totals_csv_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
-                    output_from_parsed_cdp_neighbors_totals_md_template = sh_cdp_neighbors_totals_md_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
-                    output_from_parsed_cdp_neighbors_totals_html_template = sh_cdp_neighbors_totals_html_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors)
-
-                # Show ISSU State Details
-                if hasattr(self, 'parsed_show_cdp_neighbors'):
-                    output_from_parsed_issu_state_csv_template = sh_issu_state_csv_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
-                    output_from_parsed_issu_state_md_template = sh_issu_state_md_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
-                    output_from_parsed_issu_state_html_template = sh_issu_state_html_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'])
-
-                # Show IP OSPF Neighbor Detail
-                if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
-                    output_from_parsed_ip_ospf_neighbor_detail_csv_template = sh_ip_ospf_neighbor_detail_csv_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
-                    output_from_parsed_ip_ospf_neighbor_detail_md_template = sh_ip_ospf_neighbor_detail_md_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
-                    output_from_parsed_ip_ospf_neighbor_detail_html_template = sh_ip_ospf_neighbor_detail_html_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'])
-
-                # ---------------------------------------
-                # Create Files
-                # ---------------------------------------
-
-                # Show IP Interface Brief
-                if hasattr(self, 'parsed_show_ip_int_brief'):
-                    with open("Cave_of_Wonders/Show_IP_Interface_Brief/%s_show_ip_int_brief.json" % device.alias, "w") as fid:
-                      json.dump(self.parsed_show_ip_int_brief, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Show_IP_Interface_Brief/%s_show_ip_int_brief.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_ip_int_brief, yml, allow_unicode=True)
-
-                    with open("Cave_of_Wonders/Show_IP_Interface_Brief/%s_show_ip_int_brief.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_ip_int_brief_csv_template)
-
-                    with open("Cave_of_Wonders/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_ip_int_brief_md_template)
-
-                    with open("Cave_of_Wonders/Show_IP_Interface_Brief/%s_show_ip_int_brief.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_ip_int_brief_html_template)
-
-                # Show Interfaces Status
-                if hasattr(self, 'parsed_show_int_status'):
-                    with open("Cave_of_Wonders/Show_Interfaces_Status/%s_show_int_status.json" % device.alias, "w") as fid:
-                      json.dump(self.parsed_show_int_status, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Show_Interfaces_Status/%s_show_int_status.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_int_status, yml, allow_unicode=True)
-
-                    with open("Cave_of_Wonders/Show_Interfaces_Status/%s_show_int_status.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_int_status_csv_template)
-
-                    with open("Cave_of_Wonders/Show_Interfaces_Status/%s_show_int_status.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_int_status_md_template)
-
-                    with open("Cave_of_Wonders/Show_Interfaces_Status/%s_show_int_status.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_int_status_html_template)
-
-                # Show Version
-                if hasattr(self, 'parsed_show_version'):
-                    with open("Cave_of_Wonders/Show_Version/%s_show_version.json" % device.alias, "w") as fid:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_version, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_Version/%s_show_version.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_version, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_Version/%s_show_version.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_version_csv_template)
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ver_template.render(to_parse_version=self.parsed_show_version['version'],filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_Version/%s_show_version.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_version_md_template)
-
-                    with open("Cave_of_Wonders/Show_Version/%s_show_version.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_version_html_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)
 
                 # Show Inventory
                 if hasattr(self, 'parsed_show_inventory'):
-                    with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.json" % device.alias, "w") as fid:
-                      json.dump(self.parsed_show_inventory, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_inventory, yml, allow_unicode=True)
-
                     # 4500
-                    if device.platform == "cat4500":
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_4500_csv_template)
-
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_4500_md_template)
-
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_4500_html_template)
+                    sh_inventory_4500_template = env.get_template('show_inventory_4500.j2')
 
                     # 3850
-                    elif device.platform == "cat3850":
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_3850_csv_template)
-
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_3850_md_template)
-
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_3850_html_template)
+                    sh_inventory_3850_template = env.get_template('show_inventory_3850.j2')
 
                     # 9300
-                    elif device.platform == "cat9300":
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.csv" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_9300_csv_template)
+                    sh_inventory_9300_template = env.get_template('show_inventory_9300.j2')
 
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.md" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_9300_md_template)
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_inventory, fid, indent=4, sort_keys=True)
 
-                      with open("Cave_of_Wonders/Show_Inventory/%s_show_inventory.html" % device.alias, "w") as fh:
-                        fh.write(output_from_parsed_inventory_9300_html_template)
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_inventory, yml, allow_unicode=True)
 
-                # Show Access-Lists
+                    for filetype in filetype_loop:
+                        # 4500
+                        if device.platform == "cat4500":
+                            parsed_output_type = sh_inventory_4500_template.render(to_parse_inventory=self.parsed_show_inventory['main'],filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
+
+                        # 3850
+                        elif device.platform == "cat3850":
+                            parsed_output_type = sh_inventory_3850_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
+
+                        # 9300
+                        elif device.platform == "cat9k":
+                            parsed_output_type = sh_inventory_9300_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
+  
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
+
+                # Show access-lists
                 if hasattr(self, 'parsed_show_access_lists'):
-                    with open("Cave_of_Wonders/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
+                    sh_access_lists_template = env.get_template('show_access_lists.j2')                  
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_access_lists, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_Access_Lists/%s_show_access_lists.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_access_lists, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_Access_Lists/%s_show_access_lists.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_access_lists_csv_template)
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_Access_Lists/%s_show_access_lists.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_access_lists_md_template)
-
-                    with open("Cave_of_Wonders/Show_Access_Lists/%s_show_access_lists.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_access_lists_html_template)
-
-                # Show NTP Associations
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)                   
+                    
+                # Show ntp associations
                 if hasattr(self, 'parsed_show_ntp_associations'):
-                    with open("Cave_of_Wonders/Show_NTP_Associations/%s_show_ntp_associations.json" % device.alias, "w") as fid:
+                    sh_ntp_associations_template = env.get_template('show_ntp_associations.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ntp_associations, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_NTP_Associations/%s_show_ntp_associations.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_ntp_associations, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_NTP_Associations/%s_show_ntp_associations.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ntp_associations_csv_template)
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_ntp_associations_template.render(to_parse_ntp_associations=self.parsed_show_ntp_associations,filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_NTP_Associations/%s_show_ntp_associations.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ntp_associations_md_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)                    
 
-                    with open("Cave_of_Wonders/Show_NTP_Associations/%s_show_ntp_associations.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ntp_associations_html_template)
-
-                # Show IP ARP
+                # Show ip arp
                 if hasattr(self, 'parsed_show_ip_arp'):
-                    with open("Cave_of_Wonders/Show_IP_ARP/%s_show_ip_arp.json" % device.alias, "w") as fid:
+                    sh_ip_arp_template = env.get_template('show_ip_arp.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_arp, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_IP_ARP/%s_show_ip_arp.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_ip_arp, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_IP_ARP/%s_show_ip_arp.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_arp_csv_template)
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_ip_arp_template.render(to_parse_ip_arp=self.parsed_show_ip_arp['interfaces'],filetype_loop_jinja2=filetype)
+                      
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)                                        
 
-                    with open("Cave_of_Wonders/Show_IP_ARP/%s_show_ip_arp.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_arp_md_template)
-
-                    with open("Cave_of_Wonders/Show_IP_ARP/%s_show_ip_arp.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_arp_html_template)
-
-                # Show Etherchannel Summary
+                # Show etherchannel summary
                 if hasattr(self, 'parsed_show_etherchannel_summary'):
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary.json" % device.alias, "w") as fid:
+                    sh_etherchannel_summary_template = env.get_template('show_etherchannel_summary.j2')
+                    sh_etherchannel_summary_totals_template = env.get_template('show_etherchannel_summary_totals.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_etherchannel_summary, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_etherchannel_summary, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_csv_template)
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
+                        parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
+                      
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
+            
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_totals)        
 
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_md_template)
-
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_html_template)
-
-                # Etherchannel Totals
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_totals_csv_template)
-
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_totals_md_template)
-
-                    with open("Cave_of_Wonders/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_etherchannel_summary_totals_html_template)
-
-                # Show MAC Address-Table
-                if hasattr(self, 'parsed_show_mac_address_table'):
-                    with open("Cave_of_Wonders/Show_MAC_Address_Table/%s_show_mac_address_table.json" % device.alias, "w") as fid:
-                      json.dump(self.parsed_show_mac_address_table, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Show_MAC_Address_Table/%s_show_mac_address_table.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_mac_address_table, yml, allow_unicode=True)
-
-                    with open("Cave_of_Wonders/Show_MAC_Address_Table/%s_show_mac_address_table.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_mac_address_table_csv_template)
-
-                    with open("Cave_of_Wonders/Show_MAC_Address_Table/%s_show_mac_address_table.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_mac_address_table_md_template)
-
-                    with open("Cave_of_Wonders/Show_MAC_Address_Table/%s_show_mac_address_table.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_mac_address_table_html_template)
-
-                # Show Interfaces Trunk
+                # Show interfaces trunk
                 if hasattr(self, 'parsed_show_interfaces_trunk'):
-                    with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.json" % device.alias, "w") as fid:
+                    sh_interfaces_trunk_template = env.get_template('show_interfaces_trunk.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_interfaces_trunk, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_interfaces_trunk, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_interfaces_trunk_csv_template)
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_interfaces_trunk_template.render(to_parse_interfaces_trunk=self.parsed_show_interfaces_trunk['interface'],filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_interfaces_trunk_md_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type) 
 
-                    with open("Cave_of_Wonders/Show_Interfaces_Trunk/%s_show_interfaces_trunk.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_interfaces_trunk_html_template)
+                # Show mac address-table
+                if hasattr(self, 'parsed_show_mac_address_table'):
+                    sh_mac_address_table_template = env.get_template('show_mac_address_table.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_mac_address_table, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_mac_address_table, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_mac_address_table_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
 
                 # Show CDP Neighbors
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.json" % device.alias, "w") as fid:
+                    sh_cdp_neighbors_template = env.get_template('show_cdp_neighbors.j2')
+                    sh_cdp_neighbors_totals_template = env.get_template('show_cdp_neighbors_totals.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_cdp_neighbors, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_cdp_neighbors, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_csv_template)
+                    for filetype in filetype_loop:                    
+                        parsed_output_type = sh_cdp_neighbors_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'],filetype_loop_jinja2=filetype)
+                        parsed_totals = sh_cdp_neighbors_totals_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors,filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_md_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
 
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_html_template)
-
-                # CDP Neighbors Totals
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_totals_csv_template)
-
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_totals_md_template)
-
-                    with open("Cave_of_Wonders/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_cdp_neighbors_totals_html_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_totals)                                 
 
                 # Show ISSU State Details
-                if hasattr(self, 'parsed_show_issu_state'):
-                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.json" % device.alias, "w") as fid:
+                if hasattr(self, 'parsed_show_cdp_neighbors'):
+                    sh_issu_state_template = env.get_template('show_issu_state.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_issu_state, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_issu_state, yml, allow_unicode=True)
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_issu_state, yml, allow_unicode=True)                    
+                    
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_issu_state_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'],filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_issu_state_csv_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
 
-                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_issu_state_md_template)
-
-                    with open("Cave_of_Wonders/Show_ISSU_State/%s_show_issu_state.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_issu_state_html_template)
-
-                # Show IP OSPF Neighbor Details
+                # Show IP OSPF Neighbor Detail
                 if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
-                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.json" % device.alias, "w") as fid:
+                    sh_ip_ospf_neighbor_detail_template = env.get_template('show_ip_ospf_neighbor_detail.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_ospf_neighbor_detail, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_ip_ospf_neighbor_detail, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_csv_template)
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ip_ospf_neighbor_detail_template.render(to_parse_ip_ospf_neighbor_detail=self.parsed_show_ip_ospf_neighbor_detail['vrf'],filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_md_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
+                   
 
-                    with open("Cave_of_Wonders/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_ip_ospf_neighbor_detail_html_template)
-
-                # Show VRF
+                # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
-                    with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.json" % device.alias, "w") as fid:
+                    sh_vrf_template = env.get_template('show_vrf.j2')
+                    sh_ip_arp_vrf_template = env.get_template('show_ip_arp.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_vrf, fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.yaml" % device.alias, "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.yaml" % device.alias, "w") as yml:
                       yaml.dump(self.parsed_show_vrf, yml, allow_unicode=True)
 
-                    with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.csv" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_vrf_csv_template)
+                    for filetype in filetype_loop:      
+                        parsed_output_type = sh_vrf_template.render(to_parse_vrf=self.parsed_show_vrf['vrf'],filetype_loop_jinja2=filetype)
 
-                    with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.md" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_vrf_md_template)
-
-                    with open("Cave_of_Wonders/Show_VRF/%s_show_vrf.html" % device.alias, "w") as fh:
-                      fh.write(output_from_parsed_vrf_html_template)
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
 
                     # Show IP ARP VRF <VRF> 
                     for vrf in self.parsed_show_vrf['vrf']:
@@ -673,24 +443,17 @@ class Collect_Information(aetest.Testcase):
                         with steps.start('Store data',continue_=True) as step:
 
                             # Show ip arp
-                            output_from_parsed_ip_arp_vrf_csv_template = sh_ip_arp_vrf_csv_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'])
-                            output_from_parsed_ip_arp_vrf_md_template = sh_ip_arp_vrf_md_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'])
-                            output_from_parsed_ip_arp_vrf_html_template = sh_ip_arp_vrf_html_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'])
-
-                            with open("Cave_of_Wonders/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
                               json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
 
-                            with open("Cave_of_Wonders/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
                               yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
 
-                            with open("Cave_of_Wonders/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.csv" % (device.alias,vrf), "w") as fh:
-                              fh.write(output_from_parsed_ip_arp_vrf_csv_template)
+                            for filetype in filetype_loop:
+                                parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf), "w") as fh:
-                              fh.write(output_from_parsed_ip_arp_vrf_md_template)
-
-                            with open("Cave_of_Wonders/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.html" % (device.alias,vrf), "w") as fh:
-                              fh.write(output_from_parsed_ip_arp_vrf_html_template)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                  fh.write(parsed_output_type)
 
         # For loop done - We're done here!
         # Copy all Wonders to runinfo so it is visible in the logviewer

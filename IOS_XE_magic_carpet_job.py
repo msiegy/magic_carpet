@@ -1,7 +1,7 @@
 '''
 To run the job:
 
-$ pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed.yaml
+$ pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed_ios_xe.yaml
 
 '''
 
@@ -16,7 +16,7 @@ def main(runtime):
     if not runtime.testbed:
         # If no testbed is provided, load the default one.
         # Load default location of Testbed
-        testbedfile = os.path.join('testbed/testbed.yaml')
+        testbedfile = os.path.join('testbed/testbed_ios_xe.yaml')
         testbed = load(testbedfile)
     else:
         # Use the one provided

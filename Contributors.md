@@ -55,3 +55,7 @@ Artem Kotik
     JUNOS Support 
 
     First cross-platform implementation
+    
+Daniel Teycheney
+
+    CI testing shell structure

@@ -24,6 +24,10 @@ John Capobianco
 
     show ip ospf neighbor detail
 
+    show ip route
+
+    show ip route vrf {{ vrf }}
+
     show issu state detail
 
         * 4500X IOS-XE in VSS 

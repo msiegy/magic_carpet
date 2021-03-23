@@ -186,6 +186,34 @@ ls
 
 Explore your Wonders!
 
+Here is an example of just one of the Wonders you will find - the show ip route command! 
+
+Here is what a Global Routing Table looks like in JSON:
+
+![JSON_Output](/images/CaveOfWonders_IP_Route_JSON.PNG)
+
+The same routing table, but in YAML:
+
+![YAML_Output](/images/CaveOfWonders_IP_Route_YAML.PNG)
+
+The JSON and YAML are incredible representations of the routing table and can be used for futher pyATS testing or data modeling.
+
+"Business-ready" documentation includes the incredibly powerful and versitile Comma-Separated Values (csv) spreadsheet format.
+
+![CSV_Output](/images/CaveOfWonders_IP_Route_CSV.PNG)
+
+Markdown, the format this README file is written in, can also be used to express the data in a lightweight format that renders nicely in modern browsers.
+
+![MD_Output](/images/CaveOfWonders_IP_Route_MD.PNG)
+
+What about a full-blown HTML Webpage? Magic Carpet also creates at least one of these per command
+
+![HTML_RAW_Output](/images/CaveOfWonders_IP_Route_HTML_Raw.PNG)
+
+Which renders nicely like this in your browser
+
+![HTML_Rendered_Output](/images/CaveOfWonders_IP_Route_HTML_Rendered.PNG)
+
 To View the pyATS log in a Web Browser Locally
 
 ```bash

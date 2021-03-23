@@ -313,7 +313,7 @@ class Collect_Information(aetest.Testcase):
                                 fh.write(parsed_output_type)
 
                         # 9300
-                        elif device.platform == "cat9k":
+                        elif device.platform == "c9300":
                             parsed_output_type = sh_inventory_9300_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
   
                             with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:

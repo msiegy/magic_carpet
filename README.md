@@ -14,7 +14,7 @@ And the pyATS framework
 
 Featuring
 
-![Markmap](/images/MarkMapLogo.png)
+![Markmap](/images/MarkMapLogo.PNG)
 
 Welcome!
 

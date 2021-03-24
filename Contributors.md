@@ -6,6 +6,8 @@ John Capobianco
 
     show access lists
 
+    show authentication sessions
+
     show cdp neighbors details
 
     show etherchannel summary
@@ -39,6 +41,8 @@ John Capobianco
     show vrf
     
     Mind Map Integration
+
+    Jinja2 Collapse (single template)
 
 Sam Johnson
 

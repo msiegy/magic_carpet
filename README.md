@@ -282,6 +282,8 @@ Cisco IOS-XE:
 
     show access lists
 
+    show authentication sessions
+
     show cdp neighbors details
 
     show etherchannel summary
@@ -298,13 +300,19 @@ Cisco IOS-XE:
 
     show ip interface brief
 
+    show ip ospf neighbor detail
+
+    show ip route
+
+    show ip route vrf {{ vrf }}
+
     show issu state detail
 
         * 4500X IOS-XE in VSS 
 
     show mac address-table
 
-    show ntp associations 
+    show ntp associations
 
     show version
 

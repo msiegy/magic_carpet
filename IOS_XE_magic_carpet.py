@@ -14,7 +14,6 @@ import time
 import json
 import shutil
 import logging
-from os import path
 from rich import print
 from rich.panel import Panel
 from rich.text import Text
@@ -251,14 +250,12 @@ class Collect_Information(aetest.Testcase):
                         parsed_totals = sh_cdp_neighbors_totals_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors,filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_output_type)
-
-                        if path.exists(os.path.join('Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/',device.alias,'_show_cdp_neighbors.md')):
-                            os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
+                          fh.write(parsed_output_type)               
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_totals)
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
                     os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show etherchannel summary

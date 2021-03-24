@@ -1,6 +1,7 @@
 # Magic Carpet
 
 ### Simply a better way; a magical way; to collect and transform network state information
+
 ![Magic Carpet](/images/magic_carpet_logo.jpg)
 
 Powered by Genie
@@ -11,7 +12,11 @@ And the pyATS framework
 
 ![pyATS](/images/pyats.png)
 
-Welcome! 
+Featuring
+
+![Markmap](/images/MarkMapLogo.png)
+
+Welcome!
 
 Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!  
 
@@ -25,23 +30,25 @@ A Markdown file (command_output.md)
 
 An HTML page (comand_output.html)
 
+An interactive HTML Mind Map (command_output_mind_map.html)
+
 Instant messages to WebEx, Slack, Discord, and others
 
 Text-to-Speech, in over 200 languages, creating customized MP3 audio files in a human voice
 
 Phone calls to any phone number in the world
 
-Instantly. With the push of a button. 
+Instantly. With the push of a button.
 
 ## Genie and pyATS
 
 The main Genie documentation guide:
 
-https://developer.cisco.com/docs/genie-docs/
+<https://developer.cisco.com/docs/genie-docs/>
 
 The main pyATS documentation guide:
 
-https://developer.cisco.com/docs/pyats/
+<https://developer.cisco.com/docs/pyats/>
 
 The Cisco's Test Automation Solution
 
@@ -49,19 +56,19 @@ The Cisco's Test Automation Solution
 
 The Cisco Test Automation GitHub repository
 
-https://github.com/CiscoTestAutomation
+<https://github.com/CiscoTestAutomation>
 
 Here are the pyATS documentation guides on Testbed files and Device Connectivity:
 
-Testbed and Topology Information: https://pubhub.devnetcloud.com/media/pyats/docs/topology/index.html
+Testbed and Topology Information: <https://pubhub.devnetcloud.com/media/pyats/docs/topology/index.html>
 
-Device Connection: https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/manageconnections.html
+Device Connection: <https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/quickstart/manageconnections.html>
 
-Testbed File Example: https://pubhub.devnetcloud.com/media/pyats/docs/topology/example.html
+Testbed File Example: <https://pubhub.devnetcloud.com/media/pyats/docs/topology/example.html>
 
-Device Connections: https://developer.cisco.com/docs/pyats/#!connection-to-devices
+Device Connections: <https://developer.cisco.com/docs/pyats/#!connection-to-devices>
 
-Secret Strings (how I encrypted the enable secret in my testbed file): https://pubhub.devnetcloud.com/media/pyats/docs/utilities/secret_strings.html
+Secret Strings (how I encrypted the enable secret in my testbed file): <https://pubhub.devnetcloud.com/media/pyats/docs/utilities/secret_strings.html>
 
 ## Getting Started
 
@@ -69,6 +76,7 @@ Secret Strings (how I encrypted the enable secret in my testbed file): https://p
 
 - [pyATS](https://github.com/CiscoTestAutomation)
 - [Rich](https://github.com/willmcgugan/rich)
+- [Mark Map](https://markmap.js.org/)
 
 **Virtual Environment**
 
@@ -81,25 +89,37 @@ In your project directory, create your virtual environment
 ```console
 python3 -m venv env
 ```
+
 Activate (use) your new virtual environment (Linux):
 
 ```console
 source env/bin/activate
 ```
+
 Download or clone the Magic Carpet repository:
+
 ```console
 git clone https://github.com/automateyournetwork/magic_carpet
 ```
-Install pyATS and Rich into your virtual environment:
+
+Install pyATS, Rich, and Markmap into your virtual environment:
 
 ```console
 pip install pyats[full]
 ```
+
 ```console
 pip install rich
 ```
+
+```console
+sudo apt update
+sudo apt install npm
+npm install markmap-lib -g
+```
+
 ---
-If you run into any installation issues with pyATS, please see the installation guide here: https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/install/installpyATS.html
+If you run into any installation issues with pyATS, please see the installation guide here: <https://pubhub.devnetcloud.com/media/pyats-getting-started/docs/install/installpyATS.html>
 
 ---
 
@@ -166,7 +186,7 @@ JunOS 17 / 18 / 19:
 pyats run job JUNOS_magic_carpet_job.py --testbed-file testbed/testbed_juniper.yaml
 ```
 
-First - you will get onto the Magic Carpet 
+First - you will get onto the Magic Carpet
 
 ![Step One](/images/Hang_On.png)
 
@@ -186,7 +206,7 @@ ls
 
 Explore your Wonders!
 
-Here is an example of just one of the Wonders you will find - the show ip route command! 
+Here is an example of just one of the Wonders you will find - the show ip route command!
 
 Here is what a Global Routing Table looks like in JSON:
 
@@ -214,11 +234,39 @@ Which renders nicely like this in your browser
 
 ![HTML_Rendered_Output](/images/CaveOfWonders_IP_Route_HTML_Rendered.PNG)
 
+Another HTML page, an interactive Mind Map, is also created from the Markdown file!
+
+![Mind_Map_Output](/images/CaveOfWonders_IP_Route_Mind_Map.PNG)
+
 To View the pyATS log in a Web Browser Locally
 
 ```bash
 pyats logs view
 ```
+
+To launch a Python Web Server and make the Cave of Wonders available in a browser, where you can view the HTML pages:
+
+Launch local web server available on the same host:
+
+```bash
+cd Cave_of_Wonders
+pushd;  python3 -m http.server --bind 127.0.0.1 8080; popd;
+```
+
+Launch Web Browser and visit
+
+<http://127.0.0.1/:8080>
+
+Launch local web server available to remote hosts:
+
+```bash
+cd Cave_of_Wonders
+pushd;  python3 -m http.server --bind {{ your client IP }} 8080; popd;
+```
+
+Launch Web Browser and visit
+
+http://{{ your client IP }}/:8080
 
 To View the log in a Web Browser Remotely
 
@@ -265,10 +313,11 @@ Cisco IOS-XE:
 JunOS:
 
     show_system_information
+
 #### Cross Platform Tests
 
 Tested on:
-    
+
     Cisco:
 
         Cisco Catalyst 4500X-16 03.11.03a.E

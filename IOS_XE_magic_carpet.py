@@ -205,6 +205,8 @@ class Collect_Information(aetest.Testcase):
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
+                    
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show CDP Neighbors
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
@@ -224,8 +226,12 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
 
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
+
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_totals)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show etherchannel summary
                 if hasattr(self, 'parsed_show_etherchannel_summary'):
@@ -244,9 +250,12 @@ class Collect_Information(aetest.Testcase):
                       
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
-            
+
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_totals)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % (device.alias,device.alias))
 
                 # Show interfaces status
                 if hasattr(self, 'parsed_show_int_status'):
@@ -264,6 +273,8 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type)  
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status_mind_map.html" % (device.alias,device.alias))
+
                 # Show interfaces trunk
                 if hasattr(self, 'parsed_show_interfaces_trunk'):
                     sh_interfaces_trunk_template = env.get_template('show_interfaces_trunk.j2')
@@ -279,6 +290,8 @@ class Collect_Information(aetest.Testcase):
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk_mind_map.html" % (device.alias,device.alias))
 
                 # Show Inventory
                 if hasattr(self, 'parsed_show_inventory'):
@@ -305,6 +318,8 @@ class Collect_Information(aetest.Testcase):
                             with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
                                 fh.write(parsed_output_type)
 
+                            os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+
                         # 3850
                         elif device.platform == "cat3850":
                             parsed_output_type = sh_inventory_3850_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
@@ -312,12 +327,16 @@ class Collect_Information(aetest.Testcase):
                             with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
                                 fh.write(parsed_output_type)
 
+                            os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+
                         # 9300
-                        elif device.platform == "c9300":
+                        elif device.platform == "cat9k":
                             parsed_output_type = sh_inventory_9300_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
   
                             with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
-                                fh.write(parsed_output_type)  
+                                fh.write(parsed_output_type)
+
+                            os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip arp
                 if hasattr(self, 'parsed_show_ip_arp'):
@@ -335,6 +354,8 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
+
                 # Show ip interface brief
                 if hasattr(self, 'parsed_show_ip_int_brief'):
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
@@ -349,7 +370,9 @@ class Collect_Information(aetest.Testcase):
                         parsed_output_type = sh_ip_int_brief_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)            
+                            fh.write(parsed_output_type)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Neighbor Detail
                 if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
@@ -367,10 +390,12 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_detail_mind_map.html" % (device.alias,device.alias))
+
                 # Show IP Route
                 if hasattr(self, 'parsed_show_ip_route'):
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
-                    
+
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_route, fid, indent=4, sort_keys=True)
 
@@ -382,6 +407,8 @@ class Collect_Information(aetest.Testcase):
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
+                    
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
 
                 # Show ISSU State Details
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
@@ -399,6 +426,8 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type) 
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
+
                 # Show mac address-table
                 if hasattr(self, 'parsed_show_mac_address_table'):
                     sh_mac_address_table_template = env.get_template('show_mac_address_table.j2')
@@ -413,7 +442,9 @@ class Collect_Information(aetest.Testcase):
                         parsed_output_type = sh_mac_address_table_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_output_type)                                                 
+                          fh.write(parsed_output_type)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
 
                 # Show ntp associations
                 if hasattr(self, 'parsed_show_ntp_associations'):
@@ -431,6 +462,8 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)                                                                     
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
+
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
                     sh_ver_template = env.get_template('show_version.j2')
@@ -445,7 +478,9 @@ class Collect_Information(aetest.Testcase):
                         parsed_output_type = sh_ver_template.render(to_parse_version=self.parsed_show_version['version'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)            
+                            fh.write(parsed_output_type)
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.html" % (device.alias,device.alias))
 
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
@@ -465,50 +500,57 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
 
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.html" % (device.alias,device.alias))
+
                     # For Each VRF
-                    for vrf in self.parsed_show_vrf['vrf']:
+                    if device.type == "router":
+                        for vrf in self.parsed_show_vrf['vrf']:
                       
-                        # Show IP ARP VRF <VRF> 
-                        with steps.start('Parsing ip arp vrf',continue_=True) as step:
-                            try:
-                                self.parsed_show_ip_arp_vrf = device.parse("show ip arp vrf %s" % vrf)
-                            except Exception as e:
-                                step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                            # Show IP ARP VRF <VRF> 
+                            with steps.start('Parsing ip arp vrf',continue_=True) as step:
+                                try:
+                                    self.parsed_show_ip_arp_vrf = device.parse("show ip arp vrf %s" % vrf)
+                                except Exception as e:
+                                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                        with steps.start('Store data',continue_=True) as step:
+                            with steps.start('Store data',continue_=True) as step:
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                              json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                  json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                              yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                  yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
 
-                            for filetype in filetype_loop:
-                                parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
+                                for filetype in filetype_loop:
+                                    parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                  fh.write(parsed_output_type)
+                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                      fh.write(parsed_output_type)
 
-                        # Show IP ROUTE VRF <VRF> 
-                        with steps.start('Parsing ip route vrf',continue_=True) as step:
-                            try:
-                                self.parsed_show_ip_route_vrf = device.parse("show ip route vrf %s" % vrf)
-                            except Exception as e:
-                                step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.html" % (device.alias,device.alias,device.alias,device.alias))
 
-                        with steps.start('Store data',continue_=True) as step:
+                            # Show IP ROUTE VRF <VRF> 
+                            with steps.start('Parsing ip route vrf',continue_=True) as step:
+                                try:
+                                    self.parsed_show_ip_route_vrf = device.parse("show ip route vrf %s" % vrf)
+                                except Exception as e:
+                                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                              json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
+                            with steps.start('Store data',continue_=True) as step:
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                              yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                  json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
 
-                            for filetype in filetype_loop:
-                                parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                  yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
+                         
+                                for filetype in filetype_loop:
+                                    parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                  fh.write(parsed_output_type)
+                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                      fh.write(parsed_output_type)
+
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.html" % (device.alias,device.alias,device.alias,device.alias))
 
         # For loop done - We're done here!
         # Copy all Wonders to runinfo so it is visible in the logviewer

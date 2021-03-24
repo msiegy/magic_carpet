@@ -63,7 +63,7 @@ class CollectInformation(aetest.Testcase):
 
                 # Show system information
                 if hasattr(self, "parsed_system_information"):
-                    sh_system_information_csv_template = env.get_template("show_system_information_csv.j2")
+                    sh_system_information_csv_template = env.get_template("show_system_information.j2")
 
                 with open(f"Cave_of_Wonders/Juniper/Show_System_Information/{device.alias}_show_system_information.json", "w") as fid:
                     json.dump(self.parsed_system_information, fid, indent=4, sort_keys=True)
@@ -74,8 +74,10 @@ class CollectInformation(aetest.Testcase):
                 for filetype in filetype_loop:
                     parsed_output_type = (sh_system_information_csv_template.render(variable=self.parsed_system_information["system-information"],filetype_loop_jinja2=filetype))
 
-                    with open(f"Cave_of_Wonders/Juniper/Show_System_Information/{device.alias}_show_system_information.csv", "w") as fh:
+                    with open(f"Cave_of_Wonders/Juniper/Show_System_Information/{device.alias}_show_system_information.{filetype}", "w") as fh:
                         fh.write(parsed_output_type)
+
+                os.system("markmap Cave_of_Wonders/Juniper/Show_System_Information/{device.alias}_show_system_information.md --output Cave_of_Wonders/Juniper/Show_System_Information/{device.alias}_show_system_information.html")
 
         # Goodbye Banner
         print(Panel.fit(Text.from_markup("You've made it out of the [bold orange]Cave of Wonders[/bold orange] on your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink]!\n[green]What treasures did you get?[/green]\n\n[bold yellow]_[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]_[/]\n([bold yellow][blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink]O[blink]o[/blink][/])\n)`#####`(\n/         \ \n|  [bold green]NETWORK[/bold green]  |\n|  [bold green]D A T A[/bold green]  |\n\           /\n`=========`\n\n\n\nYour Network Data can be found in the [bold cyan]Cave of Wonders[/bold cyan]\n\nType cd [bold cyan]Cave_of_Wonders[/bold cyan]\n\nTo see the log of your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink] ride \nType [bold red]pyats logs view[/bold red]\n\nWritten by John Capobianco March 2021",justify="center")))

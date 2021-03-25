@@ -77,6 +77,14 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Access-Sessions
+            if device.type == "switch":            
+                with steps.start('Parsing show access-session',continue_=True) as step:
+                    try:
+                        self.parsed_show_access_session = device.parse("show access-session")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show Authentication Sessions
             if device.type == "switch":            
                 with steps.start('Parsing show authentication sessions',continue_=True) as step:
@@ -193,7 +201,7 @@ class Collect_Information(aetest.Testcase):
                         step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             # ---------------------------------------
-            # Create JSON, YAML, CSV, MD, HTML files from the Parsed Data
+            # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data
             # ---------------------------------------         
             
             with steps.start('Store data',continue_=True) as step:
@@ -215,6 +223,24 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type) 
                     
                     os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+
+                # Show access-session
+                if hasattr(self, 'parsed_show_access_session'):
+                    sh_access_sessions_template = env.get_template('show_access_sessions.j2')                  
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_access_session, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_access_session, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_access_sessions_template.render(to_parse_access_session=self.parsed_show_access_session['interfaces'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
 
                 # Show Authentication Sessions
                 if hasattr(self, 'parsed_show_authentication_sessions'):

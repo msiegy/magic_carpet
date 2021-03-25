@@ -6,6 +6,8 @@ John Capobianco
 
     show access lists
 
+    show access session
+
     show authentication sessions
 
     show cdp neighbors details

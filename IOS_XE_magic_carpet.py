@@ -226,7 +226,8 @@ class Collect_Information(aetest.Testcase):
 
                 # Show access-session
                 if hasattr(self, 'parsed_show_access_session'):
-                    sh_access_sessions_template = env.get_template('show_access_sessions.j2')                  
+                    sh_access_sessions_template = env.get_template('show_access_sessions.j2')
+                    sh_access_sessions_totals_template = env.get_template('show_access_sessions_totals.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_access_session, fid, indent=4, sort_keys=True)
@@ -236,15 +237,21 @@ class Collect_Information(aetest.Testcase):
 
                     for filetype in filetype_loop:
                         parsed_output_type = sh_access_sessions_template.render(to_parse_access_session=self.parsed_show_access_session['interfaces'],filetype_loop_jinja2=filetype)
+                        parsed_output_totals_type = sh_access_sessions_totals_template.render(to_parse_access_session=self.parsed_show_access_session,filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
                     
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_totals_type) 
+
                     os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show Authentication Sessions
                 if hasattr(self, 'parsed_show_authentication_sessions'):
-                    sh_authetication_sessions_template = env.get_template('show_authentication_sessions.j2')                  
+                    sh_authetication_sessions_template = env.get_template('show_authentication_sessions.j2')
+                    sh_authetication_sessions_totals_template = env.get_template('show_authentication_sessions_totals.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_authentication_sessions, fid, indent=4, sort_keys=True)
@@ -254,11 +261,16 @@ class Collect_Information(aetest.Testcase):
 
                     for filetype in filetype_loop:
                         parsed_output_type = sh_authetication_sessions_template.render(to_parse_authentication_sessions=self.parsed_show_authentication_sessions['interfaces'],filetype_loop_jinja2=filetype)
+                        parsed_output_totals_type = sh_authetication_sessions_totals_template.render(to_parse_authentication_sessions=self.parsed_show_authentication_sessions,filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
                     
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.html" % (device.alias,device.alias))
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show CDP Neighbors
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
@@ -532,7 +544,7 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type)
 
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
@@ -552,7 +564,7 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
 
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf_mind_map.html" % (device.alias,device.alias))
 
                     # For Each VRF
                     if device.type == "router":
@@ -579,7 +591,7 @@ class Collect_Information(aetest.Testcase):
                                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
                                       fh.write(parsed_output_type)
         
-                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.html" % (device.alias,device.alias,device.alias,device.alias))
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
                             # Show IP ROUTE VRF <VRF> 
                             with steps.start('Parsing ip route vrf',continue_=True) as step:
@@ -602,7 +614,7 @@ class Collect_Information(aetest.Testcase):
                                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
                                       fh.write(parsed_output_type)
 
-                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.html" % (device.alias,device.alias,device.alias,device.alias))
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
         # For loop done - We're done here!
         # Copy all Wonders to runinfo so it is visible in the logviewer

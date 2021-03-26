@@ -14,7 +14,7 @@
     <th>Method</th>
     <th>Session ID</th>
     <th>Status</th>
-  </tr>% for interface in to_parse_access_session %}{% for interface in to_parse_access_session %}{% for client in to_parse_access_session[interface].client %}{% for session in to_parse_access_session[interface].client[client].session %}
+  </tr>{% for interface in to_parse_access_session %}{% for client in to_parse_access_session[interface].client %}{% for session in to_parse_access_session[interface].client[client].session %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ client }}</td>

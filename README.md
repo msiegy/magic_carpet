@@ -186,6 +186,12 @@ JunOS 17 / 18 / 19:
 pyats run job JUNOS_magic_carpet_job.py --testbed-file testbed/testbed_juniper.yaml
 ```
 
+F5 BIG-IP:
+
+```console
+pyton3 F5_magic_carpet.py
+```
+
 First - you will get onto the Magic Carpet
 
 ![Step One](/images/Hang_On.png)
@@ -324,6 +330,10 @@ JunOS:
 
     show_system_information
 
+F5 BIG-IP
+
+    mgmt/tm/ltm/virtual
+
 #### Cross Platform Tests
 
 Tested on:
@@ -343,6 +353,10 @@ Tested on:
     Juniper:
 
         JunOS 17, 18, 19
+
+    F5: 
+
+        i2600 REST API
 
 #### The World's First Talking Network is Powered by Magic Carpet
 

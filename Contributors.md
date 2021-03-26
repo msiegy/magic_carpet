@@ -4,47 +4,56 @@
 
 John Capobianco
 
-    show access lists
-
-    show access session
-
-    show authentication sessions
-
-    show cdp neighbors details
-
-    show etherchannel summary
-
-    show interfaces status
+    Cisco IOS-XE
     
-    show interfaces trunk
+        show access lists
 
-    show inventory
+        show access session
 
-    show ip arp
+        show authentication sessions
 
-    show ip arp vrf {{ vrf }}
+        show cdp neighbors details
 
-    show ip interface brief
+        show etherchannel summary
 
-    show ip ospf neighbor detail
+        show interfaces status
+    
+        show interfaces trunk
 
-    show ip route
+        show inventory
 
-    show ip route vrf {{ vrf }}
+        show ip arp
 
-    show issu state detail
+        show ip arp vrf {{ vrf }}
 
-        * 4500X IOS-XE in VSS 
+        show ip interface brief
 
-    show mac address-table
+        show ip ospf neighbor detail
 
-    show version
+        show ip route
 
-    show vrf
+        show ip route vrf {{ vrf }}
+
+        show issu state detail
+
+            * 4500X IOS-XE in VSS 
+
+        show mac address-table
+
+        show version
+
+        show vrf
+
+    BIG-IP 
+
+        mgmt/tm/ltm/virtual
     
     Mind Map Integration
 
     Jinja2 Collapse (single template)
+
+    Added F5 REST API Support 
+
 
 Sam Johnson
 

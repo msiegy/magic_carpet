@@ -1,8 +1,0 @@
-{
-    "username": "John Capobianco - Automate Your Network",
-    "content": "This {{ data.platform }} is a {{ data.chassis }} running {{ data.os }} version {{ data.version }} using image {{ data.image_id }}. The device has been up for {{ data.uptime | replace(","," ") }} and was last reboot on {{ data.system_restarted_at | replace(","," ") }} because {{ data.last_reload_reason | replace("\"","") | replace(","," ") }}. It has the following interfaces {{ data.number_of_intfs | replace("{","") | replace("}","") | replace(","," ") }}. Of the total {{ data.main_mem }} {{ data.mem_size | replace("{","") | replace("}","") | replace(","," ") }} is being used. The serial number is DUMMY VALUE with a {{ data.license_type }} license",
-    "embeds":[{
-        "title": "Show Version Results for {{ data.hostname }}",
-        "description": "This Show Version information was sent from Python / pyATS"
-    }]
-}

@@ -290,7 +290,11 @@ Cisco IOS-XE:
 
     show access session
 
+    show access session interface {{ interface }} detail
+
     show authentication sessions
+
+    show authentication session interface {{ interface }} detail
 
     show cdp neighbors details
 

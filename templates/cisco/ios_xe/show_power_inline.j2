@@ -1,0 +1,25 @@
+{% if filetype_loop_jinja2 == "csv" %}Interface,Admin State,MAX,Oper State,Power{% for interface in to_parse_power_inline %}
+{{ interface }},{{ to_parse_power_inline[interface].admin_state }},{{ to_parse_power_inline[interface].max }},{{ to_parse_power_inline[interface].oper_state }},{{ to_parse_power_inline[interface].power }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Cisco PoE Facts for {{ inventory_hostname }}
+| Interface | Admin State | MAX | Oper State | Power |
+| --------- | ----------- | --- | ---------- | ----- |{% for interface in to_parse_power_inline %}
+| {{ interface }} | {{ to_parse_power_inline[interface].admin_state }} | {{ to_parse_power_inline[interface].max }} | {{ to_parse_power_inline[interface].oper_state }} | {{ to_parse_power_inline[interface].power }} |{% endfor %}{% else %}
+<html><body>
+<h1>Show Power Inline</h1>
+<table style="width:100%">
+  <tr>
+    <th>Interface</th>
+    <th>Admin State</th>
+    <th>MAX</th>
+    <th>Oper State</th>   
+    <th>Power</th>
+  </tr>{% for interface in to_parse_power_inline %}
+  <tr>
+    <td>{{ interface }}</td>
+    <td>{{ to_parse_power_inline[interface].admin_state }}</td>
+    <td>{{ to_parse_power_inline[interface].max }}</td>
+    <td>{{ to_parse_power_inline[interface].oper_state }}</td>
+    <td>{{ to_parse_power_inline[interface].power }}</td>
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

@@ -326,6 +326,8 @@ Cisco IOS-XE:
 
     show ntp associations
 
+    show power inline
+
     show version
 
     show vrf

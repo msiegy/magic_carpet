@@ -1,0 +1,31 @@
+{% if filetype_loop_jinja2 == "csv" %}Server Address,Reference Clock, Stratum, Poll, Reach, Delay, Offset, Dispersion{% for peer in data.peer %}
+{{ peer }},{{ data['peer'][peer]['local_mode']['client']['refid'] }},{{ data['peer'][peer]['local_mode']['client']['stratum'] }},{{ data['peer'][peer]['local_mode']['client']['poll'] }},{{ data['peer'][peer]['local_mode']['client']['reach'] }},{{ data['peer'][peer]['local_mode']['client']['delay'] }},{{ data['peer'][peer]['local_mode']['client']['offset'] }},{{ data['peer'][peer]['local_mode']['client']['offset'] }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show NTP Associations
+| Server Address | Reference Clock | Stratum | Poll | Reach | Delay | Offset | Dispersion |
+| ------- | --------------- | ------- | ---- | ----- | ----- | ------ | ---------- |{% for peer in data.peer %}
+| {{ peer }} | {{ data['peer'][peer]['local_mode']['client']['refid'] }} | {{ data['peer'][peer]['local_mode']['client']['stratum'] }} | {{ data['peer'][peer]['local_mode']['client']['poll'] }} | {{ data['peer'][peer]['local_mode']['client']['reach'] }} | {{ data['peer'][peer]['local_mode']['client']['delay'] }} | {{ data['peer'][peer]['local_mode']['client']['offset'] }} | {{ data['peer'][peer]['local_mode']['client']['jitter'] }} |{% endfor %}{% else %}
+<html><body>
+<h1>Show NTP Associations</h1>
+<table style="width:100%">
+  <tr>
+    <th>Server Address</th>
+    <th>Reference Clock</th>
+    <th>Stratum</th>
+    <th>Poll</th>   
+    <th>Reach</th>
+    <th>Delay</th>
+    <th>Offset</th>
+    <th>Dispersion</th>    
+  </tr>{% for peer in data.peer %}  
+  <tr>
+    <td>{{ peer }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['refid'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['stratum'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['poll'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['reach'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['delay'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['offset'] }}</td>
+    <td>{{ data['peer'][peer]['local_mode']['client']['jitter'] }}</td>
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

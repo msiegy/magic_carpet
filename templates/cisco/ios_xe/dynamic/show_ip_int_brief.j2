@@ -1,0 +1,27 @@
+{% if filetype_loop_jinja2 == "csv" %}Interface,IP Address,Status,Protocol,Method,Interface is OK{% for interface in data %}
+{{ interface }},{{ data[interface].ip_address }},{{ data[interface].status }},{{ data[interface].protocol }},{{ data[interface].method }},{{ data[interface].interface_is_ok }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show IP Interface Brief
+| Interface | IP Address | Status | Protocol | Method | Interface is OK |
+| --------- | ---------- | ------ | -------- | ------ | --------------- |{% for interface in data %}
+| {{ interface }} | {{ data[interface].ip_address }} | {{ data[interface].status }} | {{ data[interface].protocol }} | {{ data[interface].method }} | {{ data[interface].interface_is_ok }} |{% endfor %}{% else %}
+<html><body>
+<h1>Show IP Interface Brief</h1>
+<table style="width:100%">
+  <tr>
+    <th>Interface</th>
+    <th>IP Address</th>
+    <th>Status</th>
+    <th>Protocol</th>
+    <th>Method</th>   
+    <th>Interface is OK</th>   
+  </tr>{% for interface in data %}  
+  <tr>
+    <td>{{ interface }}</td>
+    <td>{{ data[interface].ip_address }}</td>
+    <td>{{ data[interface].status }}</td>
+    <td>{{ data[interface].protocol }}</td>
+    <td>{{ data[interface].method }}</td>
+    <td>{{ data[interface].interface_is_ok }}</td>
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

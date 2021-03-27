@@ -1,0 +1,21 @@
+{% if filetype_loop_jinja2 == "csv" %}VRF,Protocols,Interfaces{% for vrf in data %}{% for interface in data[vrf].interfaces %}{% for protocol in data[vrf].protocols %} {% if interface != "ipv4" %}
+{{ vrf }},{{ protocol }},{{ interface }}{% endif %}{% endfor %}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show VRF
+| VRF | Protocol | Interfaces |
+| --- | -------- | ---------- |{% for vrf in data %}{% for interface in data[vrf].interfaces %}{% for protocol in data[vrf].protocols %} {% if interface != "ipv4" %}
+| {{ vrf }} | {{ protocol }} | {{ interface }} |{% endif %}{% endfor %}{% endfor %}{% endfor %}{% else %}
+<html><body>
+<h1>Show VRF</h1>
+<table style="width:100%">
+  <tr>
+    <th>VRF</th>
+    <th>Protocols</th>
+    <th>Interfaces</th>
+  </tr>{% for vrf in data %}{% for interface in data[vrf].interfaces %}{% for protocol in data[vrf].protocols %}{% if interface != "ipv4" %}
+  <tr>
+    <td>{{ vrf }}</td>
+    <td>{{ protocol }}</td>
+    <td>{{ interface }}</td>
+  </tr>{% endif %}{% endfor %}{% endfor %}{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

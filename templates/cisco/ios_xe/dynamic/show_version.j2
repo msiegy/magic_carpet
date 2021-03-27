@@ -1,0 +1,43 @@
+{% if filetype_loop_jinja2 == "csv" %}Hostname,Platform,Chassis,Version,Image ID,OS,Uptime,Last Reload,Last Reload Reason,Interfaces,Total Memory,Used Memeory,Serial Number,License Type
+{{ data.hostname }},{{ data.platform }},{{ data.chassis }},{{ data.version }},{{ data.image_id }},{{ data.os }},{{ data.uptime | replace(","," ") }},{{ data.system_restarted_at | replace(","," ") }},{{ data.last_reload_reason | replace(","," ") }},{{ data.number_of_intfs | replace(","," ") | replace("{","") | replace("}","") }},{{ data.main_mem }},{{ data.mem_size | replace(","," ") | replace("{","") | replace("}","") }},{{ data.chassis_sn }},{{ data.license_type }}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show Version
+| Hostname | Platform | Chassis | Version | Image ID | OS | Uptime | Last Reload | Last Reload Reason | Interfaces | Total Memory | Used Memeory | Serial Number | License Type |
+| -------- | -------- | ------- | ------- | -------- | -- | ------ | ----------- | ------------------ | ---------- | ------------ | ------------ | ------------- | ------------ |
+| {{ data.hostname }} | {{ data.platform }} | {{ data.chassis }} | {{ data.version }} | {{ data.image_id }} | {{ data.os }} | {{ data.uptime | replace(","," ") }} | {{ data.system_restarted_at | replace(","," ") }} | {{ data.last_reload_reason | replace(","," ") }} | {{ data.number_of_intfs | replace(","," ") | replace("{","") | replace("}","") }} | {{ data.main_mem }} | {{ data.mem_size | replace(","," ") | replace("{","") | replace("}","") }} | {{ data.chassis_sn }} | {{ data.license_type }} |{% else %}
+<html><body>
+<h1>Show Interfaces Status</h1>
+<table style="width:100%">
+  <tr>
+    <th>Hostname</th>
+    <th>Platform</th>
+    <th>Chassis</th>
+    <th>Version</th>
+    <th>Image ID</th>
+    <th>OS</th>   
+    <th>Uptime</th>
+    <th>Last Reload</th>
+    <th>Last Reload Reason</th>
+    <th>Interfaces</th>
+    <th>Total Memory</th>
+    <th>Used Memory</th>
+    <th>Serial Number</th>
+    <th>License Type</th>
+  </tr>
+  <tr>
+    <td>{{ data.hostname }}</td>
+    <td>{{ data.platform }}</td>
+    <td>{{ data.chassis }}</td>
+    <td>{{ data.version }}</td>
+    <td>{{ data.image_id }}</td>
+    <td>{{ data.os }}</td>   
+    <td>{{ data.uptime }}</td>
+    <td>{{ data.system_restarted_at }}</td>
+    <td>{{ data.last_reload_reason }}</td>
+    <td>{{ data.number_of_intfs | replace("{","") | replace("}","") }}</td>
+    <td>{{ data.main_mem }}</td>
+    <td>{{ data.mem_size | replace("{","") | replace("}","") }}</td>
+    <td>{{ data.chassis_sn }}</td>
+    <td>{{ data.license_type }}</td>
+  </tr>
+</table>
+</body></html>{% endif %}{% endif %}

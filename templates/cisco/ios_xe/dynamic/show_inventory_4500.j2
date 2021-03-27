@@ -1,0 +1,27 @@
+{% if filetype_loop_jinja2 == "csv" %}Name,Part,Description,Serial Number,Virtual ID{% for part in data %}{% for pid in data[part] %}
+{{ data[part][pid].name }},{{ pid }},{{ data[part][pid].descr }},{{ data[part][pid].sn }},{{ data[part][pid].vid | default("N/A") }}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Cisco Inventory Facts
+| Name | Description | PID | Serial Number | Virtual ID |
+| ---- | ----------- | --- | ------------- | ---------- |{% for part in data %}{% for pid in data[part] %}
+| {{ data[part][pid].name }} | {{ pid }} | {{ data[part][pid].descr }} | {{ data[part][pid].sn }} | {{ data[part][pid].vid | default("N/A") }} |{% endfor %}{% endfor %}{% else %}
+<html><body>
+<h1>Show Inventory</h1>
+<table style="width:100%">
+  <tr>
+    <th>Name</th>
+    <th>Part</th>
+    <th>Description</th>
+    <th>Serial Number</th>   
+    <th>Virtual ID</th>
+  </tr>{% for part in data %}{% for pid in data[part] %}
+, ,,
+  <tr>
+    <td>{{ data[part][pid].name }}</td>
+    <td>{{ pid }}</td>
+    <td>{{ data[part][pid].descr }}</td>
+    <td>{{ data[part][pid].sn }}</td>
+    <td>{{ data[part][pid].vid | default("N/A") }}</td>
+    <td></td>
+  </tr>{% endfor %}{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

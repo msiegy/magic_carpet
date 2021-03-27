@@ -1,0 +1,27 @@
+{% if filetype_loop_jinja2 == "csv" %}Slot,Part,Description,PID,Serial Number,Virtual ID{% for slot in data %}{% for part in data[slot] %}{% for part_number in data[slot][part] %}
+{{ slot }},{{ part_number }},{{ data[slot][part][part_number].descr }},{{ data[slot][part][part_number].pid }},{{ data[slot][part][part_number].sn }},{{ data[slot][part][part_number].vid }}{% endfor %}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Cisco Inventory Facts
+| Slot | Part | Description | PID | Serial Number | Virtual ID |
+| ---- | ---- | ----------- | --- | ------------- | ---------- |{% for slot in data %}{% for part in data[slot] %}{% for part_number in data[slot][part] %}
+| {{ slot }} | {{ part_number }} | {{ data[slot][part][part_number].descr }} | {{ data[slot][part][part_number].pid }} | {{ data[slot][part][part_number].sn }} | {{ data[slot][part][part_number].vid }} |{% endfor %}{% endfor %}{% endfor %}{% else %}
+<html><body>
+<h1>Show Inventory</h1>
+<table style="width:100%">
+  <tr>
+    <th>Slot</th>
+    <th>Part</th>
+    <th>Description</th>
+    <th>PID</th>
+    <th>Serial Number</th>   
+    <th>Virtual ID</th>
+  </tr>{% for slot in data %}{% for part in data[slot] %}{% for part_number in data[slot][part] %}
+  <tr>
+    <td>{{ slot }}</td>
+    <td>{{ part_number }}</td>
+    <td>{{ data[slot][part][part_number].descr }}</td>
+    <td>{{ data[slot][part][part_number].pid }}</td>
+    <td>{{ data[slot][part][part_number].sn }}</td>
+    <td>{{ data[slot][part][part_number].vid }}</td>
+  </tr>{% endfor %}{% endfor %}{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

@@ -1,0 +1,29 @@
+{% if filetype_loop_jinja2 == "csv" %}Interface,Neighbor IP Address,MAC Address,Type,Origin,Age,Protocol{% for interface in data['interfaces'] %}{% for neighbor in data['interfaces'][interface].ipv4.neighbors %}
+{{ interface }},{{ neighbor }},{{ data['interfaces'][interface].ipv4.neighbors[neighbor].link_layer_address }},{{ data['interfaces'][interface].ipv4.neighbors[neighbor].type }},{{ data['interfaces'][interface].ipv4.neighbors[neighbor].origin }},{{ data['interfaces'][interface].ipv4.neighbors[neighbor].age }},{{ data['interfaces'][interface].ipv4.neighbors[neighbor].protocol }}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show IP ARP Facts for Global Routing Table
+| Interface | Neighbor IP Address | MAC Address | Type | Origin | Age | Protocol |
+| --------- | ------------------- | ----------- | ---- | ------ | --- | -------- |{% for interface in data['interfaces'] %}{% for neighbor in data['interfaces'][interface].ipv4.neighbors %}
+| {{ interface }} | {{ neighbor }} | {{ data['interfaces'][interface].ipv4.neighbors[neighbor].link_layer_address }} | {{ data['interfaces'][interface].ipv4.neighbors[neighbor].type }} | {{ data['interfaces'][interface].ipv4.neighbors[neighbor].origin }} | {{ data['interfaces'][interface].ipv4.neighbors[neighbor].age }} | {{ data['interfaces'][interface].ipv4.neighbors[neighbor].protocol }} |{% endfor %}{% endfor %}{% else %}
+<html><body>
+<h1>Show IP ARP (Global Routing Table)</h1>
+<table style="width:100%">
+  <tr>
+    <th>Interface</th>
+    <th>Neighbor IP Address</th>
+    <th>MAC Address</th>
+    <th>Type</th>
+    <th>Origin</th>
+    <th>Age</th>
+    <th>Protocol</th>
+  </tr>{% for interface in data['interfaces'] %}{% for neighbor in data['interfaces'][interface].ipv4.neighbors %}
+  <tr>
+    <td>{{ interface }}</td>
+    <td>{{ neighbor }}</td>
+    <td>{{ data['interfaces'][interface].ipv4.neighbors[neighbor].link_layer_address }}</td>
+    <td>{{ data['interfaces'][interface].ipv4.neighbors[neighbor].type }}</td>
+    <td>{{ data['interfaces'][interface].ipv4.neighbors[neighbor].origin }}</td>
+    <td>{{ data['interfaces'][interface].ipv4.neighbors[neighbor].age }}</td>
+    <td>{{ data['interfaces'][interface].ipv4.neighbors[neighbor].protocol }}</td>
+  </tr>{% endfor %}{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

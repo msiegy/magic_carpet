@@ -1,0 +1,29 @@
+{% if filetype_loop_jinja2 == "csv" %}Interface,Encapsulation,Mode,Native Vlan,Status,Allowed on Trunk,STP Forwarding{% for interface in data %}
+{{ interface }},{{ data[interface].encapsulation }},{{ data[interface].mode }},{{ data[interface].native_vlan }},{{ data[interface].status }},{{ data[interface].vlans_allowed_on_trunk | replace(","," ") }},{{ data[interface].vlans_in_stp_forwarding_not_pruned | replace(","," ") }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Interface Trunk Facts
+| Interface | Encapsulation | Mode | Native Vlan | Status | Allowed on Trunk | STP Forwarding |
+| --------- | ------------- | ---- | ----------- | ------ | ---------------- | -------------- |{% for interface in data %}
+| {{ interface }} | {{ data[interface].encapsulation }} | {{ data[interface].mode }} | {{ data[interface].native_vlan }} | {{ data[interface].status }} | {{ data[interface].vlans_allowed_on_trunk | replace(","," ") }} | {{ data[interface].vlans_in_stp_forwarding_not_pruned | replace(","," ") }} |{% endfor %}{% else %}
+<html><body>
+<h1>Show Interfaces Trunk</h1>
+<table style="width:100%">
+  <tr>
+    <th>Interface</th>
+    <th>Encapsulation</th>
+    <th>Mode</th>
+    <th>Native Vlan</th>
+    <th>Status</th>   
+    <th>Allowed on Trunk</th>
+    <th>STP Forwarding</th>
+  </tr>{% for interface in data %}
+  <tr>
+    <td>{{ interface }}</td>
+    <td>{{ data[interface].encapsulation }}</td>
+    <td>{{ data[interface].mode }}</td>
+    <td>{{ data[interface].native_vlan }}</td>
+    <td>{{ data[interface].status }}</td>
+    <td>{{ data[interface].vlans_allowed_on_trunk | replace(","," ") }}</td>
+    <td>>{{ data[interface].vlans_in_stp_forwarding_not_pruned | replace(","," ") }}</td>
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

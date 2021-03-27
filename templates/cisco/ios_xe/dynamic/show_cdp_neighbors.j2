@@ -1,0 +1,36 @@
+{% if filetype_loop_jinja2 == "csv" %}Local Interface,Device ID,Remote Interface,IP Address,Platform,Native VLAN,Hold Time,Duplex,Capaibilities,Software Version{% for neighbor in data %}{% for ip_address in data[neighbor].entry_addresses %}
+{{ data[neighbor].local_interface }},{{ data[neighbor].device_id }},{{ data[neighbor].port_id }},{{ ip_address }},{{ data[neighbor].platform }},{{ data[neighbor].native_vlan }},{{ data[neighbor].hold_time }},{{ data[neighbor].duplex_mode }},{{ data[neighbor].capabilities }},{{ data[neighbor].software_version | replace(","," ") | replace("\n"," ") }}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# CDP Neighbor Details
+| Local Interface | Device ID | Remote Interface | IP Address | Platform | Native VLAN | Hold Time | Duplex | Capaibilities | Software Version |
+| --------------- | --------- | ---------------- | ---------- | -------- | ----------- | --------- | ------ | ------------- | ---------------- |{% for neighbor in data %}{% for ip_address in data[neighbor].entry_addresses %}
+| {{ data[neighbor].local_interface }} | {{ data[neighbor].device_id }} | {{ data[neighbor].port_id }} | {{ ip_address }} | {{ data[neighbor].platform }} | {{ data[neighbor].native_vlan }} | {{ data[neighbor].hold_time }} | {{ data[neighbor].duplex_mode }} | {{ data[neighbor].capabilities }} | {{ data[neighbor].software_version | replace(","," ") | replace("\n"," ") }} |{% endfor %}{% endfor %}{% else %}
+<html><body>
+<h1>Show Etherchannel Summary</h1>
+<table style="width:100%">
+  <tr>
+    <th>Local Interface</th>
+    <th>Device ID</th>
+    <th>Remote Interface</th>
+    <th>IP Address</th>
+    <th>Platform</th>
+    <th>Native VLAN</th>
+    <th>Hold Time</th>
+    <th>Duplex</th>
+    <th>Capaibilities</th>
+    <th>Software Version</th>
+  </tr>{% for neighbor in data %}{% for ip_address in data[neighbor].entry_addresses %}
+  <tr>
+    <td>{{ data[neighbor].local_interface }}</td>
+    <td>{{ data[neighbor].device_id }}</td>
+    <td>{{ data[neighbor].port_id }}</td>
+    <td>{{ ip_address }}</td>
+    <td>{{ data[neighbor].platform }}</td>
+    <td>{{ data[neighbor].native_vlan }}</td>
+    <td>{{ data[neighbor].hold_time }}</td>
+    <td>{{ data[neighbor].dupex_mode }}</td>
+    <td>{{ data[neighbor].capabilities }}</td>
+    <td>{{ data[neighbor].capabilities }}</td>
+    <td>{{ data[neighbor].software_version | replace(","," ") | replace("\n"," ") }}</td>
+  </tr>{% endfor %}{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

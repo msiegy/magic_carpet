@@ -312,6 +312,8 @@ Cisco IOS-XE:
 
     show ip interface brief
 
+    show ip ospf
+
     show ip ospf neighbor detail
 
     show ip route

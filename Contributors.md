@@ -10,7 +10,11 @@ John Capobianco
 
         show access session
 
+        show access session inteface {{ interface }} detail
+
         show authentication sessions
+
+        show authentication session inteface {{ interface }} detail
 
         show cdp neighbors details
 
@@ -82,3 +86,9 @@ Artem Kotik
 Daniel Teycheney
 
     CI testing shell structure
+
+Renato Oliveira
+
+    Converted ASCII Art to Python libary 
+
+    Demonstrated Dynamic Templating

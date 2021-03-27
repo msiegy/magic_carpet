@@ -44,6 +44,8 @@ John Capobianco
 
         show mac address-table
 
+        show power inline
+
         show version
 
         show vrf

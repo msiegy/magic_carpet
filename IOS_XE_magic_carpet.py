@@ -188,6 +188,14 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Power Inline
+            if device.type == "switch":
+                with steps.start('Parsing show power inline',continue_=True) as step:
+                    try:
+                        self.parsed_show_power_inline = device.parse("show power inline")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show Version
             with steps.start('Parsing show version',continue_=True) as step:
                 try:
@@ -688,6 +696,25 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md" % device.alias):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
+
+                # Show power inline
+                if hasattr(self, 'parsed_show_power_inline'):
+                    sh_power_inline_template = env.get_template('show_power_inline.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_power_inline, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_power_inline, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_power_inline_template.render(to_parse_power_inline=self.parsed_show_power_inline['interface'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)                                                                     
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md" % device.alias):
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_mind_map.html" % (device.alias,device.alias))
 
                 # Show version
                 if hasattr(self, 'parsed_show_version'):

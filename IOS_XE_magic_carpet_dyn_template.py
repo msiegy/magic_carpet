@@ -41,7 +41,7 @@ filetype_loop = ["csv", "md", "html"]
 # Template Directory
 # ----------------
 
-template_dir = 'templates/cisco/ios_xe'
+template_dir = 'templates/cisco/ios_xe/dynamic'
 output_dir = 'Cave_of_Wonders/Cisco/IOS_XE'
 env = Environment(loader=FileSystemLoader(template_dir))
 

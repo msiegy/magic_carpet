@@ -76,7 +76,7 @@ Secret Strings (how I encrypted the enable secret in my testbed file): <https://
 
 - [pyATS](https://github.com/CiscoTestAutomation)
 - [Rich](https://github.com/willmcgugan/rich)
-- [Mark Map](https://markmap.js.org/)
+- [markmap (CLI)](https://markmap.js.org/)
 
 **Virtual Environment**
 
@@ -102,7 +102,7 @@ Download or clone the Magic Carpet repository:
 git clone https://github.com/automateyournetwork/magic_carpet
 ```
 
-Install pyATS, Rich, and Markmap into your virtual environment:
+Install pyATS, Rich, and markmap into your environment:
 
 ```console
 pip install pyats[full]
@@ -115,7 +115,7 @@ pip install rich
 ```console
 sudo apt update
 sudo apt install npm
-npm install markmap-lib -g
+sudo npm install markmap-cli -g
 ```
 
 ---
@@ -129,15 +129,15 @@ When you are finished with your pyATS session, enter the `deactivate` command to
 
 ## Riding the Magic Carpet
 
-How to Update the `testbed/testbed.yaml` file to reflect your devices:
+How to update the appropriate `testbed/testbed_*.yaml` file to reflect your device inventory and configuration:
 
 ![Testbed - Routers](/images/testbed_routers.PNG)
 
     Devices:
 
-        4500: <-- Update to your router hostname
+        4500: <-- Update to your router hostname (MUST MATCH HOSTNAME)
 
-            alias: <-- Update our alias; this can be the hostname or any friendly name you want
+            alias: <-- Update your alias; this can be the hostname or any friendly name you want
 
             type: <-- This should be "router" for L3 routers with ARP tables and VRFs and such 
 
@@ -155,10 +155,10 @@ How to Update the `testbed/testbed.yaml` file to reflect your devices:
 
     Devices:
 
-        3850: <-- Update to your switch hostname
-        9300: <-- Update to your switch hostname
+        3850: <-- Update to your switch hostname (MUST MATCH HOSTNAME)
+        9300: <-- Update to your switch hostname (MUST MATCH HOSTNAME)
 
-            alias: <-- Update our alias; this can be the hostname or any friendly name you want
+            alias: <-- Update your alias; this can be the hostname or any friendly name you want
 
             type: <-- This should be "switch" for L2 switches without ARP tables or VRFs but features like PoE 
 
@@ -177,7 +177,7 @@ Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 Cisco IOS-XE:
 
 ```console
-pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed.yaml
+pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed_ios_xe.yaml
 ```
 
 JunOS 17 / 18 / 19:
@@ -189,7 +189,7 @@ pyats run job JUNOS_magic_carpet_job.py --testbed-file testbed/testbed_juniper.y
 F5 BIG-IP:
 
 ```console
-pyton3 F5_magic_carpet.py
+python3 F5_magic_carpet.py
 ```
 
 First - you will get onto the Magic Carpet
@@ -210,9 +210,23 @@ cd Cave_of_Wonders
 ls 
 ```
 
-Explore your Wonders!
+To view the pyATS log in a web browser Locally
 
-Here is an example of just one of the Wonders you will find - the show ip route command!
+```bash
+pyats logs view
+```
+
+To view the pyATTS log in a web browser remotely
+
+```bash
+pyats logs view --host 0.0.0.0 --port 8080 -v
+```
+
+![Sample Log](/images/pyATS_Log_Viewer.png)
+
+## Explore your Wonders!
+
+Here is an example of just one of the Wonders you will find: the `show ip route` command!
 
 Here is what a Global Routing Table looks like in JSON:
 
@@ -222,9 +236,9 @@ The same routing table, but in YAML:
 
 ![YAML_Output](/images/CaveOfWonders_IP_Route_YAML.PNG)
 
-The JSON and YAML are incredible representations of the routing table and can be used for futher pyATS testing or data modeling.
+The JSON and YAML outputs are incredible representations of the routing table and can be used for further pyATS testing or data modeling.
 
-"Business-ready" documentation includes the incredibly powerful and versitile Comma-Separated Values (csv) spreadsheet format.
+"Business-ready" documentation includes the incredibly powerful and versatile Comma-Separated Values (csv) spreadsheet format.
 
 ![CSV_Output](/images/CaveOfWonders_IP_Route_CSV.PNG)
 
@@ -232,57 +246,43 @@ Markdown, the format this README file is written in, can also be used to express
 
 ![MD_Output](/images/CaveOfWonders_IP_Route_MD.PNG)
 
-What about a full-blown HTML Webpage? Magic Carpet also creates at least one of these per command
+What about a full-blown HTML webpage? Magic Carpet also creates at least one of these per command.
 
 ![HTML_RAW_Output](/images/CaveOfWonders_IP_Route_HTML_Raw.PNG)
 
-Which renders nicely like this in your browser
+Which renders nicely like this in your browser:
 
 ![HTML_Rendered_Output](/images/CaveOfWonders_IP_Route_HTML_Rendered.PNG)
 
-Another HTML page, an interactive Mind Map, is also created from the Markdown file!
+Another HTML page, an interactive mindmap, is also created from the Markdown file!
 
 ![Mind_Map_Output](/images/CaveOfWonders_IP_Route_Mind_Map.PNG)
 
-To View the pyATS log in a Web Browser Locally
+To launch a Python web server and make the Cave of Wonders available in a browser, where you can view the HTML pages:
 
-```bash
-pyats logs view
-```
-
-To launch a Python Web Server and make the Cave of Wonders available in a browser, where you can view the HTML pages:
-
-Launch local web server available on the same host:
+Launch a local web server available on the same host:
 
 ```bash
 cd Cave_of_Wonders
-pushd;  python3 -m http.server --bind 127.0.0.1 8080; popd;
+pushd;  python3 -m http.server --bind 127.0.0.1 8888; popd;
 ```
 
-Launch Web Browser and visit
+Launch your web browser and visit
 
-<http://127.0.0.1/:8080>
+<http://127.0.0.1:8888/>
 
-Launch local web server available to remote hosts:
+Launch a local web server available to remote hosts:
 
 ```bash
 cd Cave_of_Wonders
-pushd;  python3 -m http.server --bind {{ your client IP }} 8080; popd;
+pushd;  python3 -m http.server --bind 0.0.0.0 8888; popd;
 ```
 
-Launch Web Browser and visit
+Launch your web browser and visit
 
-http://{{ your client IP }}/:8080
+`http://{{ your server IP }}:8888/`
 
-To View the log in a Web Browser Remotely
-
-```bash
-pyats logs view --host 0.0.0.0 --port 8080 -v
-```
-
-![Sample Log](/images/pyATS_Log_Viewer.png)
-
-### Command Index
+### Supported Command Index
 
 Cisco IOS-XE:
 

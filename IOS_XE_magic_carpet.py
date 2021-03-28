@@ -166,6 +166,15 @@ class Collect_Information(aetest.Testcase):
                     except Exception as e:
                         step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show IP OSPF Interface Layer 3 Command only 
+            # Test if device.type == "router"
+            if device.type == "router":
+                with steps.start('Parsing show ip ospf interface',continue_=True) as step:
+                    try:
+                        self.parsed_show_ip_ospf_interface = device.parse("show ip ospf interface")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show IP OSPF Neighbor Detail - Layer 3 Command only 
             # Test if device.type == "router"
             if device.type == "router":
@@ -639,7 +648,7 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md" % device.alias):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
 
-                # Show IP OSPF Databse
+                # Show IP OSPF Database
                 if hasattr(self, 'parsed_show_ip_ospf_database'):
                     sh_ip_ospf_database_template = env.get_template('show_ip_ospf_database.j2')
                     
@@ -658,6 +667,24 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md" % device.alias):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
 
+                # Show IP OSPF Interface
+                if hasattr(self, 'parsed_show_ip_ospf_interface'):
+                    sh_ip_ospf_interface_template = env.get_template('show_ip_ospf_interface.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_ip_ospf_interface, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_ip_ospf_interface, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ip_ospf_interface_template.render(to_parse_ip_ospf_interface=self.parsed_show_ip_ospf_interface['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md" % device.alias):
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Neighbor Detail
                 if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):

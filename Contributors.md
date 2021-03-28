@@ -78,6 +78,8 @@ Roddie Hasan
     Python venv / ReadMe documentation
     
     Testing on 9200-24P
+    
+    QA & Better ReadMe 
 
 Artem Kotik
 

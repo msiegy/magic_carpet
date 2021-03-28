@@ -1,0 +1,19 @@
+{% if filetype_loop_jinja2 == "csv" %}Total Available,Total Used
+{{ total_avail }},{{ total_used }}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Inline Power Totals
+| Total Available | Total Used |
+| --------------- | ---------- |
+| {{ total_avail }} | {{ total_used }} |{% else %}
+<html><body>
+<h1>Inline Power Totals</h1>
+<table style="width:100%">
+  <tr>
+    <th>Total Available</th>
+    <th>Total Used</th>
+  </tr>
+  <tr>
+    <td>{{ total_avail }}</td>
+    <td>{{ total_used }}</td>
+  </tr>
+</table>
+</body></html>{% endif %}{% endif %}

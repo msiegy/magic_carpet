@@ -36,6 +36,8 @@ John Capobianco
 
         show ip ospf database
 
+        show ip ospf interface
+
         show ip ospf neighbor detail
 
         show ip route

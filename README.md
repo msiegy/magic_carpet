@@ -314,6 +314,8 @@ Cisco IOS-XE:
 
     show ip ospf
 
+    show ip ospf database
+
     show ip ospf neighbor detail
 
     show ip route

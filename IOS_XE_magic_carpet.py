@@ -14,6 +14,7 @@ import time
 import json
 import shutil
 import logging
+import requests
 from rich import print
 from rich.panel import Panel
 from rich.text import Text
@@ -22,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED
+from elasticsearch import Elasticsearch
 
 # ----------------
 # Get logger for script
@@ -106,8 +108,6 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Parsing show etherchannel summary',continue_=True) as step:
                 try:
                     self.parsed_show_etherchannel_summary = device.parse("show etherchannel summary")
-                    if parsed_show_etherchannel_summary['number_of_aggregators'] == "0":
-                        step.failed('There are no Etherchannels\n{e}'.format(e=e))
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -154,6 +154,15 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Parsing show ip ospf',continue_=True) as step:
                     try:
                         self.parsed_show_ip_ospf = device.parse("show ip ospf")
+                    except Exception as e:
+                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # Show IP OSPF Dabase Layer 3 Command only 
+            # Test if device.type == "router"
+            if device.type == "router":
+                with steps.start('Parsing show ip ospf database',continue_=True) as step:
+                    try:
+                        self.parsed_show_ip_ospf_database = device.parse("show ip ospf database")
                     except Exception as e:
                         step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -630,6 +639,26 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md" % device.alias):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
 
+                # Show IP OSPF Databse
+                if hasattr(self, 'parsed_show_ip_ospf_database'):
+                    sh_ip_ospf_database_template = env.get_template('show_ip_ospf_database.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_ip_ospf_database, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_ip_ospf_database, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ip_ospf_database_template.render(to_parse_ip_ospf_database=self.parsed_show_ip_ospf_database['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md" % device.alias):
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
+
+
                 # Show IP OSPF Neighbor Detail
                 if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
                     sh_ip_ospf_neighbor_detail_template = env.get_template('show_ip_ospf_neighbor_detail.j2')
@@ -853,5 +882,5 @@ class Collect_Information(aetest.Testcase):
                                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
                                     os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
-    # Goodbye Banner
-    print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
+        # Goodbye Banner
+        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))

@@ -728,7 +728,8 @@ class Collect_Information(aetest.Testcase):
                 # Show power inline
                 if hasattr(self, 'parsed_show_power_inline'):
                     sh_power_inline_template = env.get_template('show_power_inline.j2')
-                    
+                    sh_power_inline_totals_template = env.get_template('show_power_inline_totals.j2')
+
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_power_inline, fid, indent=4, sort_keys=True)
 
@@ -743,6 +744,22 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md" % device.alias):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_mind_map.html" % (device.alias,device.alias))
+
+                    total_avail_counter = 0
+                    total_used_counter = 0
+
+                    for interface,value in self.parsed_show_power_inline['interface'].items():          
+                        total_avail_counter += value['max']
+                        total_used_counter += value['power']
+
+                    for filetype in filetype_loop:  
+                        parsed_output_type = sh_power_inline_totals_template.render(total_avail=total_avail_counter,total_used=total_used_counter,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)                                                                     
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md" % device.alias):
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
@@ -836,11 +853,5 @@ class Collect_Information(aetest.Testcase):
                                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
                                     os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
-        # For loop done - We're done here!
-        # Copy all Wonders to runinfo so it is visible in the logviewer
-        # Not working - but should work next week - This would allow to 
-        # see all the Wonders in the brower too!
-        # shutil.copytree('Wonders', os.path.join(self.parameters['runinfo_dir'], 'Wonders'))
-
-        # Goodbye Banner
-        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
+    # Goodbye Banner
+    print(Panel.fit(Text.from_markup(FINISHED, justify="center")))

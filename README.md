@@ -129,7 +129,7 @@ When you are finished with your pyATS session, enter the `deactivate` command to
 
 ## Riding the Magic Carpet
 
-How to update the appropriate `testbed/testbed_*.yaml` file to reflect your device inventory and confirmation:
+How to update the appropriate `testbed/testbed_*.yaml` file to reflect your device inventory and configuration:
 
 ![Testbed - Routers](/images/testbed_routers.PNG)
 

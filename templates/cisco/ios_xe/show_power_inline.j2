@@ -1,6 +1,6 @@
 {% if filetype_loop_jinja2 == "csv" %}Interface,Admin State,MAX,Oper State,Power{% for interface in to_parse_power_inline %}
 {{ interface }},{{ to_parse_power_inline[interface].admin_state }},{{ to_parse_power_inline[interface].max }},{{ to_parse_power_inline[interface].oper_state }},{{ to_parse_power_inline[interface].power }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
-# Cisco PoE Facts for {{ inventory_hostname }}
+# Show Power Inline
 | Interface | Admin State | MAX | Oper State | Power |
 | --------- | ----------- | --- | ---------- | ----- |{% for interface in to_parse_power_inline %}
 | {{ interface }} | {{ to_parse_power_inline[interface].admin_state }} | {{ to_parse_power_inline[interface].max }} | {{ to_parse_power_inline[interface].oper_state }} | {{ to_parse_power_inline[interface].power }} |{% endfor %}{% else %}

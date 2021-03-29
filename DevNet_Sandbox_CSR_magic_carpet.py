@@ -537,7 +537,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_mind_map.html" % (device.alias,device.alias))
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % (device.alias,device.alias))
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % (device.alias,device.alias))
 
                 # Show interfaces status
                 if hasattr(self, 'parsed_show_int_status'):
@@ -585,6 +585,9 @@ class Collect_Information(aetest.Testcase):
                     # 3850
                     sh_inventory_3850_template = env.get_template('show_inventory_3850.j2')
 
+                    # CSR100v
+                    sh_inventory_csr100v_template = env.get_template('show_inventory_CSR100v.j2')
+
                     # 9300
                     # The parser for the 9300 has problems with SHOW INVENTORY Commeting this out until there is a fix
                     #sh_inventory_9300_template = env.get_template('show_inventory_9300.j2')
@@ -615,6 +618,17 @@ class Collect_Information(aetest.Testcase):
 
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
                                 os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+
+                        # csr1000v
+                        elif device.platform == "csr1000":
+                            parsed_output_type = sh_inventory_csr100v_template.render(to_parse_inventory_slot=self.parsed_show_inventory['slot'],to_parse_inventory_main=self.parsed_show_inventory['main'],filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
+
+                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+
 
                         # 9300
                         #elif device.platform == "cat9k":

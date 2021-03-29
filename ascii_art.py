@@ -20,11 +20,12 @@ _.--.__[_.--'_\__
 [bold blue]@@~~~~~~~~~~~~~[/bold blue][bold yellow]~~~~~~~~~~~~~~@@[/bold yellow]
 
 '''
-RUNNING = '''[blue]_.---.__
+RUNNING = '''[bright_green]
+  _.---.__
 .'        `-.
 /      .--.   |
 \/  / /    |_/
-`\/|/    _(_)
+`\/|/[/bright_green]    _[bright_cyan](_)[/bright_cyan][blue]
 ___  /|_.--'    `.   .
 \  `--' .---.     \ /|
 )   `       \     //|
@@ -32,19 +33,19 @@ ___  /|_.--'    `.   .
 |/  \  /  \      / ||
 ||  |  |   \     \  |
 \|  |  |   /        |
-__\\@/  |@ | ___ \--'
+__[/blue][bold yellow]@[/bold yellow]/  |[bold yellow]@[/bold yellow][blue] | ___ \--'
 (     /' `--'  __)|
-__>   (  .  .--' & 
-/   `--|_/--'     &  |
-|                 #. |
-|                 q# |
-\              ,ad#'
-`.________.ad####'
+__>   (  .  .--' [/blue][bright_magenta]&[/bright_magenta][blue] 
+/   `--|_/--'     [/blue][bright_magenta]&[/bright_magenta][blue]  |
+|                 [/blue][bright_magenta]#.[/bright_magenta][blue] |
+|                 [/blue][bright_magenta]q#[/bright_magenta][blue] |
+\              [/blue][bright_magenta],ad#'[/bright_magenta][blue]
+`.________.[/blue][bright_magenta]ad####'
 `#####''''''
 `&#
 &# #&
-'#ba'
-'[/]
+'#ba
+''[/bright_magenta]
 
 The [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink] is heading into the [bold cyan]Cave of Wonders[/bold cyan]
 

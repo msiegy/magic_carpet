@@ -523,14 +523,12 @@ class Collect_Information(aetest.Testcase):
 
                     for filetype in filetype_loop: 
                         try:
-                            parsed_show_etherchannel_summary['interfaces']
                             parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
                         except Exception as e:
                             step.failed('There are No EtherChannel Interfaces\n{e}'.format(e=e))                      
                         parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
                       
                         try:
-                            parsed_output_type
                             with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.%s" % (device.alias,filetype), "w") as fh:
                                 fh.write(parsed_output_type)
                         except Exception as e:

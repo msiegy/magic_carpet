@@ -522,7 +522,7 @@ class Collect_Information(aetest.Testcase):
                       yaml.dump(self.parsed_show_etherchannel_summary, yml, allow_unicode=True)
 
                     for filetype in filetype_loop: 
-                        if parsed_show_etherchannel_summary['interfaces'] in locals():                          
+                        if 'interfaces' in parsed_show_etherchannel_summary:                          
                             parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
                         parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
                       

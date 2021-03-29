@@ -318,6 +318,8 @@ Cisco IOS-XE:
 
     show ip ospf interface
 
+    show ip ospf neighbor
+
     show ip ospf neighbor detail
 
     show ip route

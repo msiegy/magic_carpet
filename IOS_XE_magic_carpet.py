@@ -276,7 +276,7 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type) 
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output --no-open --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show access-session
                 if hasattr(self, 'parsed_show_access_session'):
@@ -360,16 +360,16 @@ class Collect_Information(aetest.Testcase):
                     html.close() 
                                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md --output --no-open --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details_mind_map.html" % (device.alias,device.alias))
 
                     fid.close()
                     yml.close()
 
                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md" % device.alias):
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --output --no-open --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
 
                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md" % device.alias):
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output --no-open --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show Authentication Sessions
                 if hasattr(self, 'parsed_show_authentication_sessions'):

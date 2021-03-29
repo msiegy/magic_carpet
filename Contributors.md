@@ -18,6 +18,8 @@ John Capobianco
 
         show cdp neighbors details
 
+        show environment all
+
         show etherchannel summary
 
         show interfaces status
@@ -55,6 +57,8 @@ John Capobianco
         show power inline
 
         show version
+
+        show vlan
 
         show vrf
 

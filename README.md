@@ -304,6 +304,8 @@ Cisco IOS-XE:
 
     show cdp neighbors details
 
+    show environment all
+
     show etherchannel summary
 
     show interfaces status
@@ -343,6 +345,8 @@ Cisco IOS-XE:
     show power inline
 
     show version
+
+    show vlan
 
     show vrf
 

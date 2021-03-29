@@ -276,7 +276,7 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type) 
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show access-session
                 if hasattr(self, 'parsed_show_access_session'):
@@ -360,16 +360,16 @@ class Collect_Information(aetest.Testcase):
                     html.close() 
                                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Session_Interface_Details/%s_show_access_session_interface_details_mind_map.html" % (device.alias,device.alias))
 
                     fid.close()
                     yml.close()
 
                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md" % device.alias):
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_mind_map.html" % (device.alias,device.alias))
 
                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md" % device.alias):
-                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
+                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show Authentication Sessions
                 if hasattr(self, 'parsed_show_authentication_sessions'):
@@ -453,16 +453,16 @@ class Collect_Information(aetest.Testcase):
                     html.close() 
                                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Session_Interface_Details/%s_show_authentication_session_interface_details.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Session_Interface_Details/%s_show_authentication_session_interface_details.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Session_Interface_Details/%s_show_authentication_session_interface_details_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Session_Interface_Details/%s_show_authentication_session_interface_details.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Session_Interface_Details/%s_show_authentication_session_interface_details_mind_map.html" % (device.alias,device.alias))
 
                     fid.close()
                     yml.close()
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_sessions_mind_map.html" % (device.alias,device.alias))
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show CDP Neighbors
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
@@ -486,10 +486,10 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_totals)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show environment all
                 if hasattr(self, 'parsed_show_environment'):
@@ -508,7 +508,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment_mind_map.html" % (device.alias,device.alias))
 
                 # Show etherchannel summary
                 if hasattr(self, 'parsed_show_etherchannel_summary'):
@@ -532,10 +532,10 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_totals)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_mind_map.html" % (device.alias,device.alias))
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.html" % (device.alias,device.alias))
 
                 # Show interfaces status
                 if hasattr(self, 'parsed_show_int_status'):
@@ -554,7 +554,7 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type)  
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status_mind_map.html" % (device.alias,device.alias))
 
                 # Show interfaces trunk
                 if hasattr(self, 'parsed_show_interfaces_trunk'):
@@ -573,7 +573,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk_mind_map.html" % (device.alias,device.alias))
 
                 # Show Inventory
                 if hasattr(self, 'parsed_show_inventory'):
@@ -602,7 +602,7 @@ class Collect_Information(aetest.Testcase):
                                 fh.write(parsed_output_type)
 
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
-                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                         # 3850
                         elif device.platform == "cat3850":
@@ -612,7 +612,7 @@ class Collect_Information(aetest.Testcase):
                                 fh.write(parsed_output_type)
 
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
-                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+                                os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                         # 9300
                         #elif device.platform == "cat9k":
@@ -622,7 +622,7 @@ class Collect_Information(aetest.Testcase):
                                 #fh.write(parsed_output_type)
 
                             #if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
-                                #os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+                                #os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip arp
                 if hasattr(self, 'parsed_show_ip_arp'):
@@ -641,7 +641,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md"):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip interface brief
                 if hasattr(self, 'parsed_show_ip_int_brief'):
@@ -660,7 +660,7 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF
                 if hasattr(self, 'parsed_show_ip_ospf'):
@@ -679,7 +679,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Database
                 if hasattr(self, 'parsed_show_ip_ospf_database'):
@@ -698,7 +698,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Interface
                 if hasattr(self, 'parsed_show_ip_ospf_interface'):
@@ -717,7 +717,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Neighbor
                 if hasattr(self, 'parsed_show_ip_ospf_neighbor'):
@@ -736,7 +736,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_mind_map.html" % (device.alias,device.alias))
 
 
                 # Show IP OSPF Neighbor Detail
@@ -756,7 +756,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP Route
                 if hasattr(self, 'parsed_show_ip_route'):
@@ -775,7 +775,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
 
                 # Show ISSU State Details
                 if hasattr(self, 'parsed_show_issu_state'):
@@ -794,7 +794,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type) 
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
 
                 # Show mac address-table
                 if hasattr(self, 'parsed_show_mac_address_table'):
@@ -813,7 +813,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
 
                 # Show ntp associations
                 if hasattr(self, 'parsed_show_ntp_associations'):
@@ -832,7 +832,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)                                                                     
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
 
                 # Show power inline
                 if hasattr(self, 'parsed_show_power_inline'):
@@ -852,7 +852,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)                                                                     
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_mind_map.html" % (device.alias,device.alias))
 
                     total_avail_counter = 0
                     total_used_counter = 0
@@ -868,7 +868,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)                                                                     
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
@@ -887,7 +887,7 @@ class Collect_Information(aetest.Testcase):
                             fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
@@ -908,7 +908,7 @@ class Collect_Information(aetest.Testcase):
                           fh.write(parsed_output_type)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md" % device.alias):
-                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf_mind_map.html" % (device.alias,device.alias))
+                        os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf_mind_map.html" % (device.alias,device.alias))
 
                     # For Each VRF
                     if device.type == "router":
@@ -936,7 +936,7 @@ class Collect_Information(aetest.Testcase):
                                       fh.write(parsed_output_type)
         
                                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
-                                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+                                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
                             # Show IP ROUTE VRF <VRF> 
                             with steps.start('Parsing ip route vrf',continue_=True) as step:
@@ -960,7 +960,7 @@ class Collect_Information(aetest.Testcase):
                                       fh.write(parsed_output_type)
 
                                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
-                                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+                                    os.system("markmap Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --no-open --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))            

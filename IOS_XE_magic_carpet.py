@@ -244,6 +244,13 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show VLAN
+            with steps.start('Parsing show vlan',continue_=True) as step:
+                try:
+                    self.parsed_show_vlan = device.parse("show vlan")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show VRF - Layer 3 Command only 
             # Test if device.type == "router"
             if device.type == "router":            
@@ -502,7 +509,7 @@ class Collect_Information(aetest.Testcase):
                       yaml.dump(self.parsed_show_environment, yml, allow_unicode=True)
 
                     for filetype in filetype_loop:  
-                        parsed_output_type = sh_environment_template.render(to_parse_environment=self.parsed_show_environment['slot'],filetype_loop_jinja2=filetype)
+                        parsed_output_type = sh_environment_template.render(to_parse_environment=self.parsed_show_environment['switch'],filetype_loop_jinja2=filetype)
                       
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_output_type)
@@ -585,9 +592,6 @@ class Collect_Information(aetest.Testcase):
                     # 3850
                     sh_inventory_3850_template = env.get_template('show_inventory_3850.j2')
 
-                    # CSR100v
-                    sh_inventory_csr100v_template = env.get_template('show_inventory_CSR100v.j2')
-
                     # 9300
                     # The parser for the 9300 has problems with SHOW INVENTORY Commeting this out until there is a fix
                     #sh_inventory_9300_template = env.get_template('show_inventory_9300.j2')
@@ -618,17 +622,6 @@ class Collect_Information(aetest.Testcase):
 
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
-
-                        # csr1000v
-                        elif device.platform == "csr1000":
-                            parsed_output_type = sh_inventory_csr100v_template.render(to_parse_inventory_slot=self.parsed_show_inventory['slot'],to_parse_inventory_main=self.parsed_show_inventory['main'],filetype_loop_jinja2=filetype)
-
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
-                                fh.write(parsed_output_type)
-
-                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
-                                os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
-
 
                         # 9300
                         #elif device.platform == "cat9k":
@@ -904,6 +897,25 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
+
+                # Show vlan
+                if hasattr(self, 'parsed_show_vlan'):
+                    sh_vlan_template = env.get_template('show_vlan.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_vlan, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_vlan, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_vlan_template.render(to_parse_vlan=self.parsed_show_vlan['vlans'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan_mind_map.html" % (device.alias,device.alias))
 
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):

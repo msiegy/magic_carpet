@@ -23,7 +23,6 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED
-from elasticsearch import Elasticsearch
 
 # ----------------
 # Get logger for script

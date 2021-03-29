@@ -4,7 +4,7 @@
             "ipv4": {
                 "neighbors": {
                     "10.10.20.254": {
-                        "age": "183",
+                        "age": "111",
                         "ip": "10.10.20.254",
                         "link_layer_address": "0050.56bf.37c3",
                         "origin": "dynamic",

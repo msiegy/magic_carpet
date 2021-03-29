@@ -1,6 +1,6 @@
 {% if filetype_loop_jinja2 == "csv" %}Interface,Neighbor IP Address,MAC Address,Type,Origin,Age,Protocol{% for interface in to_parse_ip_arp %}{% for neighbor in to_parse_ip_arp[interface].ipv4.neighbors %}
 {{ interface }},{{ neighbor }},{{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].link_layer_address }},{{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].type }},{{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].origin }},{{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].age }},{{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].protocol }}{% endfor %}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
-# Show IP ARP Facts for Global Routing Table
+# Show IP ARP (Global Routing Table)
 | Interface | Neighbor IP Address | MAC Address | Type | Origin | Age | Protocol |
 | --------- | ------------------- | ----------- | ---- | ------ | --- | -------- |{% for interface in to_parse_ip_arp %}{% for neighbor in to_parse_ip_arp[interface].ipv4.neighbors %}
 | {{ interface }} | {{ neighbor }} | {{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].link_layer_address }} | {{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].type }} | {{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].origin }} | {{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].age }} | {{ to_parse_ip_arp[interface].ipv4.neighbors[neighbor].protocol }} |{% endfor %}{% endfor %}{% else %}

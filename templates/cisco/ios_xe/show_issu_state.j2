@@ -1,6 +1,6 @@
 {% if filetype_loop_jinja2 == "csv" %}Slot,State,Operating Mode,RP State{% for slot in to_parse_issu_state %}
 {{ slot }},{{ to_parse_issu_state[slot].issu_state }},{{ to_parse_issu_state[slot].operating_mode }},{{ to_parse_issu_state[slot].rp_state }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
-# ISSU Facts for {{ inventory_hostname }}
+# Show ISSU State Details
 | Slot | State | Operating Mode | RP State |
 | ---- | ----- | -------------- | -------- |{% for slot in to_parse_issu_state %}
 | {{ slot }} | {{ to_parse_issu_state[slot].issu_state }} | {{ to_parse_issu_state[slot].operating_mode }} | {{ to_parse_issu_state[slot].rp_state }} |{% endfor %}{% else %}

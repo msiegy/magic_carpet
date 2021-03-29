@@ -40,7 +40,7 @@ filetype_loop = ["csv","md","html"]
 # Template Directory
 # ----------------
 
-template_dir = 'templates/Cisco/DevNet_Sandbox'
+template_dir = 'templates/cisco/ios_xe'
 env = Environment(loader=FileSystemLoader(template_dir))
 
 # ----------------

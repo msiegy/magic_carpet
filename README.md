@@ -352,7 +352,9 @@ Cisco IOS-XE:
 
 JunOS:
 
-    show_system_information
+    show chassis hardware
+
+    show system information
 
 F5 BIG-IP
 

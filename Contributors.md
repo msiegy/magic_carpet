@@ -95,6 +95,10 @@ Roddie Hasan
 Artem Kotik
 
     JUNOS Support 
+    
+    show chassis hardware
+    
+    show system information
 
     First cross-platform implementation
     

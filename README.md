@@ -288,6 +288,9 @@ Launch your web browser and visit
 
 `http://{{ your server IP }}:8888/`
 
+**Don't have your own lab gear to test with?**
+
+[Test Magic Carpet using the Cisco DevNet Sandbox](docs/01_devnetsb.md)
 ### Supported Command Index
 
 Cisco IOS-XE:
@@ -386,61 +389,6 @@ Tested on:
 
         i2600 REST API
 
-# Test it yourself in the Cisco DevNet Always-On Sandbox
-
-Vist https://devnetsandbox.cisco.com/RM/Topology
-
-Sign-in
-
-Int he top left - search for "CSR"
-
-![DevNet_Search](/images/01_DevNet_Search.PNG)
-
-Select your Sandbox
-
-![DevNet_Select](/images/02_DevNet_Select.PNG)
-
-Follow the VPN Instructions closely 
-
-![DevNet_VPN_Instructions](/images/03_DevNet_VPN_Instructions.PNG)
-
-Download the AnyConnect VPN Client
-
-https://developer.cisco.com/site/sandbox/anyconnect/
-
-The installation guide is available here
-
-https://devnetsandbox.cisco.com/Docs/VPN_Access/AnyConnect_Installation_Guide.pdf
-
-Reserve the Lab in the top right of the browser
-
-![DevNet_Reserve](/images/04_DevNet_Reserve.PNG)
-
-The lab will take approximately 15 - 20 minutes to initialize. When it is ready you will receive an e-mail containing:
-
-The FQDN of the VPN address to connect to 
-
-Your VPN username 
-
-Your VPN password
-
-Establish your VPN connection
-
-![DevNet_VPN_Connected](/images/05_DevNet_VPN_Connected.PNG)
-
-Next confirm the CSR1000v IP Address, Username, and Password in your sandbox
-
-![DevNet_VPN_Host_Info](/images/06_DevNet_Host_Info.PNG)
-
-Matches the details inside testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
-
-![DevNet_Testbed](/images/07_DevNet_Testbed.PNG)
-
-Run Magic Carpet! 
-
-```console
-pyats run job DevNet_Sandbox_CSR_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
-```
 # The World's First Talking Network is Powered by Magic Carpet
 
 [![Watch the video](https://j.gifs.com/JyVY5o.gif)](https://www.youtube.com/embed/yyWnvzc0vlA)

@@ -50,7 +50,7 @@ You can confirm it to be sure.
 
 ![AnyConnect](images/01_devnetsb-06.png)
 
-```console
+```yaml
 devices:
     csr1000v-1:
       alias: 'DevNet_Sandbox_CSR1000v'

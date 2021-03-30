@@ -288,7 +288,7 @@ Launch your web browser and visit
 
 `http://{{ your server IP }}:8888/`
 
-# Don't have your own lab gear to test with?**
+# Don't have your own lab gear to test with?
 
 [Test Magic Carpet using the Cisco DevNet Sandbox](docs/01_devnetsb.md)
 ### Supported Command Index

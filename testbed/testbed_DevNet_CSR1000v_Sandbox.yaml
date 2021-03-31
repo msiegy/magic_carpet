@@ -13,4 +13,7 @@ devices:
           protocol: ssh
           ip: 10.10.20.48
           arguments:
-            connection_timeout: 360       
+            connection_timeout: 360
+Cisco_com:
+    key:
+    client_secret:    

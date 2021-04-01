@@ -116,6 +116,13 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show Interfaces
+            with steps.start('Parsing show interfaces',continue_=True) as step:
+                try:
+                    self.parsed_show_int = device.parse("show interfaces")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show Interfaces Status
             with steps.start('Parsing show interfaces status',continue_=True) as step:
                 try:
@@ -545,6 +552,25 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
+
+                # Show interfaces
+                if hasattr(self, 'parsed_show_int'):
+                    sh_int_template = env.get_template('show_interfaces.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_int, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_int, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_int_template.render(to_parse_interfaces=self.parsed_show_int,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type)  
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int_mind_map.html" % (device.alias,device.alias))
 
                 # Show interfaces status
                 if hasattr(self, 'parsed_show_int_status'):
@@ -991,4 +1017,4 @@ class Collect_Information(aetest.Testcase):
                                     os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
         # Goodbye Banner
-        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))            
+        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))

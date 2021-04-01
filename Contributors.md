@@ -22,6 +22,8 @@ John Capobianco
 
         show etherchannel summary
 
+        show interfaces
+        
         show interfaces status
     
         show interfaces trunk

@@ -311,6 +311,8 @@ Cisco IOS-XE:
 
     show etherchannel summary
 
+    show interfaces
+    
     show interfaces status
     
     show interfaces trunk

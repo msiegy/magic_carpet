@@ -115,3 +115,9 @@ Renato Oliveira
     Converted ASCII Art to Python libary 
 
     Demonstrated Dynamic Templating
+
+Oren Brigg
+
+    CSR sandbox making it quicker and easier to start.
+    
+    "learn_hostname=True". Now you don't have to get the hostnames in the testbed 100% right.

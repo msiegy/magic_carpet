@@ -52,7 +52,7 @@ class common_setup(aetest.CommonSetup):
     def connect_to_devices(self, testbed):
         """Connect to all the devices"""
         print(Panel.fit(Text.from_markup(GREETING, justify="center")))
-        testbed.connect()
+        testbed.connect(learn_hostname=True)
 
 # ----------------
 # Test Case #1

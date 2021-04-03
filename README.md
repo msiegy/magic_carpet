@@ -172,6 +172,15 @@ How to update the appropriate `testbed/testbed_*.yaml` file to reflect your devi
 
         Copy & Paste and make each device unique to scale this up to many routers    
 
+### Pro tip:
+You can create a testded file using an excel file (see `SampleTestbedFile.xlsx`), this is useful if you are not familiar with YAML and/or have a long list of devices where copying and pasting in Excel would be easier.
+1. Edit the relevant fields in the sample file.
+2. Run the following command:
+```
+pyats create testbed file --path SampleTestbedFile.xlsx --output my_testbed.yaml
+```
+3. That's it. You're good to go!
+
 Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 
 Cisco IOS-XE:

@@ -127,7 +127,7 @@ You're now ready to fly!
 
 When you are finished with your pyATS session, enter the `deactivate` command to exit the python virtual environment.
 
-# Riding the Magic Carpet
+## Riding the Magic Carpet
 
 How to update the appropriate `testbed/testbed_*.yaml` file to reflect your device inventory and configuration:
 
@@ -171,16 +171,16 @@ How to update the appropriate `testbed/testbed_*.yaml` file to reflect your devi
             ip: <-- The management IP address of your router 
 
         Copy & Paste and make each device unique to scale this up to many routers    
-
+---
 ### Pro tip:
-You can create a testded file using an excel file (see `SampleTestbedFile.xlsx`), this is useful if you are not familiar with YAML and/or have a long list of devices where copying and pasting in Excel would be easier.
+You can create a testbed file using an Excel spreadsheet (see `testbed/SampleTestbedFile.xlsx`), this is useful if you are not familiar with YAML and/or have a long list of devices where copying and pasting in Excel would be easier.
 1. Edit the relevant fields in the sample file.
 2. Run the following command:
-```
+```console
 pyats create testbed file --path SampleTestbedFile.xlsx --output my_testbed.yaml
 ```
 3. That's it. You're good to go!
-
+---
 Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 
 Cisco IOS-XE:
@@ -189,7 +189,7 @@ Cisco IOS-XE:
 pyats run job IOS_XE_magic_carpet_job.py --testbed-file testbed/testbed_ios_xe.yaml
 ```
 
-Cisco DevNet Sandbox for CSR1000v
+Cisco DevNet Sandbox for CSR1000v (see more [here](docs/01_devnetsb.md))
 
 ```console
 pyats run job DevNet_Sandbox_CSR_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
@@ -231,7 +231,7 @@ To view the pyATS log in a web browser Locally
 pyats logs view
 ```
 
-To view the pyATTS log in a web browser remotely
+To view the pyATS log in a web browser remotely
 
 ```bash
 pyats logs view --host 0.0.0.0 --port 8080 -v
@@ -239,7 +239,7 @@ pyats logs view --host 0.0.0.0 --port 8080 -v
 
 ![Sample Log](/images/pyATS_Log_Viewer.png)
 
-# Explore your Wonders!
+## Explore your Wonders!
 
 Here is an example of just one of the Wonders you will find: the `show ip route` command!
 
@@ -297,10 +297,10 @@ Launch your web browser and visit
 
 `http://{{ your server IP }}:8888/`
 
-# Don't have your own lab gear to test with?
+## Don't have your own lab gear to test with?
 
 [Test Magic Carpet using the Cisco DevNet Sandbox](docs/01_devnetsb.md)
-### Supported Command Index
+## Supported Command Index
 
 Cisco IOS-XE:
 

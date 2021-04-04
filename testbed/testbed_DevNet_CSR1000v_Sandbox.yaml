@@ -11,7 +11,7 @@ devices:
       connections:        
         cli:
           protocol: ssh
-          ip: ios-xe-mgmt.cisco.com
-          port: 8181
+          ip: 10.10.20.48
+          port: 22
           arguments:
             connection_timeout: 360

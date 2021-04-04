@@ -1,4 +1,10 @@
 # ----------------
+# Copyright
+# ----------------
+# Written by John Capobianco, March 2021
+# Copyright (c) 2021 John Capobianco
+
+# ----------------
 # Python
 # ----------------
 import os

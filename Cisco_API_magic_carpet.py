@@ -162,7 +162,7 @@ class Collect_Information(aetest.Testcase):
                           yaml.dump(psirt_json, yml, allow_unicode=True)
 
                         for filetype in filetype_loop:
-                            parsed_output_type = psirt_template.render(to_parse_psirt=psirt_json['json'],filetype_loop_jinja2=filetype)
+                            parsed_output_type = psirt_template.render(to_parse_psirt=psirt_json['advisories'],filetype_loop_jinja2=filetype)
 
                             with open("Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.%s" % (device.alias,filetype), "w") as fh:
                                 fh.write(parsed_output_type)

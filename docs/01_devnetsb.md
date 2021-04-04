@@ -71,8 +71,17 @@ devices:
 
 You're now ready to run Magic Carpet against the DevNet CSR100v!
 
+* To transform 7 common commands run the following pyATS job:
+
 ```console
 pyats run job DevNet_Sandbox_CSR_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
 ```
+
+* To get a Product Security Incident Response Team (PSIRT) Report run the following pyATS job:
+
+```console
+pyats run job DevNet_Sandbox_PSIRT_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
+```
+
 
 [Back to the main project](https://github.com/automateyournetwork/magic_carpet)

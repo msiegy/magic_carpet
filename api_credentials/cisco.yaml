@@ -1,0 +1,10 @@
+APIs:
+  recommended_release:
+    recommended_release_api_username:
+    recommended_release_api_password:
+  serial_2_info:
+    serial_2_info_api_username:
+    serial_2_info_api_password:
+  psirt:
+    psirt_api_username:
+    psirt_api_password:

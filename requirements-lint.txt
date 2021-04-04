@@ -1,5 +1,0 @@
-# Requirements file for linting checks
-bandit
-black
-pylama
-yamllint

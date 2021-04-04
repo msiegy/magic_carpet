@@ -1,0 +1,1559 @@
+advisories:
+- advisoryId: cisco-sa-iox-pt-hWGcPf7g
+  advisoryTitle: Cisco IOx Application Environment Path Traversal Vulnerability
+  bugIDs:
+  - CSCvw64810
+  - CSCvx21776
+  - CSCvx21783
+  cves:
+  - CVE-2021-1385
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g/cvrf/cisco-sa-iox-pt-hWGcPf7g_cvrf.xml
+  cvssBaseScore: '6.5'
+  cwe:
+  - CWE-22
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-30T22:12:35'
+  productNames:
+  - 'Cisco IOS '
+  - 'Cisco IOS XE Software '
+  - 'Cisco CGR1000 Compute Module '
+  - Cisco IOS 15.8(3)M3
+  - Cisco IOS 15.8(3)M2a
+  - Cisco IOS 15.8(3)M4
+  - Cisco IOS 15.8(3)M5
+  - Cisco IOS 15.8(3)M6
+  - Cisco IOS 15.9(3)M
+  - Cisco IOS 15.9(3)M1
+  - Cisco IOS 15.9(3)M2
+  - Cisco IOS 15.9(3)M3
+  - Cisco IOS 15.9(3)M2a
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.5
+  - Cisco IOS XE Software 16.12.1z1
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.2.3
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.3.1x
+  - Cisco IOS XE Software 17.4.1
+  - Cisco IOS XE Software 17.4.1a
+  - Cisco IOS XE Software 17.4.1b
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in the Cisco&nbsp;IOx application hosting environment\
+    \ of multiple Cisco&nbsp;platforms could allow an authenticated, remote attacker\
+    \ to conduct directory traversal attacks and read and write files on the underlying\
+    \ operating system or host system.</p>\r\n<p>This vulnerability occurs because\
+    \ the device does not properly validate URIs in IOx API requests. An attacker\
+    \ could exploit this vulnerability by sending a crafted API request that contains\
+    \ directory traversal character sequences to an affected device. A successful\
+    \ exploit could allow the attacker to read or write arbitrary files on the underlying\
+    \ operating system.</p>\r\n<p>Cisco&nbsp;has released software updates that address\
+    \ this vulnerability. There are no workarounds that address this vulnerability.</p>\r\
+    \n<p>This advisory is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g\"\
+    \ target=\"_blank\" rel=\"noopener\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-pt-hWGcPf7g</a></p>\r\
+    \n"
+- advisoryId: cisco-sa-arp-mtfhBfjE
+  advisoryTitle: Cisco IOS and IOS XE Software ARP Resource Management Exhaustion
+    Denial of Service Vulnerability
+  bugIDs:
+  - CSCvv75175
+  cves:
+  - CVE-2021-1377
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-arp-mtfhBfjE/cvrf/cisco-sa-arp-mtfhBfjE_cvrf.xml
+  cvssBaseScore: '5.8'
+  cwe:
+  - CWE-399
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS '
+  - 'Cisco IOS XE Software '
+  - Cisco IOS 15.2(2)E6
+  - Cisco IOS 15.2(5)E1
+  - Cisco IOS 15.2(3)E5
+  - Cisco IOS 15.2(5a)E1
+  - Cisco IOS 15.2(4)E4
+  - Cisco IOS 15.2(2)E7
+  - Cisco IOS 15.2(5)E2
+  - Cisco IOS 15.2(6)E
+  - Cisco IOS 15.2(5)E2b
+  - Cisco IOS 15.2(4)E5
+  - Cisco IOS 15.2(5)E2c
+  - Cisco IOS 15.2(2)E8
+  - Cisco IOS 15.2(6)E0a
+  - Cisco IOS 15.2(6)E1
+  - Cisco IOS 15.2(2)E7b
+  - Cisco IOS 15.2(4)E5a
+  - Cisco IOS 15.2(6)E0c
+  - Cisco IOS 15.2(4)E6
+  - Cisco IOS 15.2(6)E2
+  - Cisco IOS 15.2(2)E9
+  - Cisco IOS 15.2(6)E1a
+  - Cisco IOS 15.2(4)E7
+  - Cisco IOS 15.2(6)E1s
+  - Cisco IOS 15.2(7)E
+  - Cisco IOS 15.2(2)E10
+  - Cisco IOS 15.2(4)E8
+  - Cisco IOS 15.2(2)E9a
+  - Cisco IOS 15.2(6)E2a
+  - Cisco IOS 15.2(6)E2b
+  - Cisco IOS 15.2(7)E1
+  - Cisco IOS 15.2(7)E0a
+  - Cisco IOS 15.2(7)E0b
+  - Cisco IOS 15.2(7)E0s
+  - Cisco IOS 15.2(6)E3
+  - Cisco IOS 15.2(4)E9
+  - Cisco IOS 15.2(7)E2
+  - Cisco IOS 15.2(7a)E0b
+  - Cisco IOS 15.2(4)E10
+  - Cisco IOS 15.2(7)E3
+  - Cisco IOS 15.2(7)E1a
+  - Cisco IOS 15.2(7b)E0b
+  - Cisco IOS 15.2(7)E2a
+  - Cisco IOS 15.2(4)E10a
+  - Cisco IOS 15.2(7)E2b
+  - Cisco IOS 15.2(5)EX
+  - Cisco IOS 15.5(3)S4
+  - Cisco IOS 15.5(3)S5
+  - Cisco IOS 15.5(3)S6
+  - Cisco IOS 15.5(3)S6a
+  - Cisco IOS 15.5(3)S7
+  - Cisco IOS 15.5(3)S6b
+  - Cisco IOS 15.5(3)S8
+  - Cisco IOS 15.5(3)S9
+  - Cisco IOS 15.5(3)S10
+  - Cisco IOS 15.5(3)S9a
+  - Cisco IOS 15.5(3)S10a
+  - Cisco IOS 15.2(6)EB
+  - Cisco IOS 15.2(4)EA6
+  - Cisco IOS 15.2(4)EA7
+  - Cisco IOS 15.2(4)EA8
+  - Cisco IOS 15.2(4)EA9
+  - Cisco IOS 15.2(4)EA9a
+  - Cisco IOS 15.2(4)EA10
+  - Cisco IOS 15.5(3)M4
+  - Cisco IOS 15.5(3)M4a
+  - Cisco IOS 15.5(3)M5
+  - Cisco IOS 15.5(3)M4b
+  - Cisco IOS 15.5(3)M4c
+  - Cisco IOS 15.5(3)M6
+  - Cisco IOS 15.5(3)M7
+  - Cisco IOS 15.5(3)M6a
+  - Cisco IOS 15.5(3)M8
+  - Cisco IOS 15.5(3)M9
+  - Cisco IOS 15.5(3)M10
+  - Cisco IOS 15.5(3)M11
+  - Cisco IOS 15.6(3)M2
+  - Cisco IOS 15.6(3)M2a
+  - Cisco IOS 15.6(3)M3
+  - Cisco IOS 15.6(3)M3a
+  - Cisco IOS 15.6(3)M4
+  - Cisco IOS 15.6(3)M5
+  - Cisco IOS 15.6(3)M6
+  - Cisco IOS 15.6(3)M7
+  - Cisco IOS 15.6(3)M6a
+  - Cisco IOS 15.6(3)M6b
+  - Cisco IOS 15.6(3)M8
+  - Cisco IOS 15.6(3)M9
+  - Cisco IOS 15.3(3)JPC97
+  - Cisco IOS 15.4(1)SY
+  - Cisco IOS 15.4(1)SY1
+  - Cisco IOS 15.4(1)SY2
+  - Cisco IOS 15.4(1)SY3
+  - Cisco IOS 15.4(1)SY4
+  - Cisco IOS 15.5(1)SY
+  - Cisco IOS 15.5(1)SY1
+  - Cisco IOS 15.5(1)SY2
+  - Cisco IOS 15.5(1)SY3
+  - Cisco IOS 15.5(1)SY4
+  - Cisco IOS 15.5(1)SY5
+  - Cisco IOS 15.5(1)SY6
+  - Cisco IOS 15.7(3)M
+  - Cisco IOS 15.7(3)M1
+  - Cisco IOS 15.7(3)M0a
+  - Cisco IOS 15.7(3)M3
+  - Cisco IOS 15.7(3)M2
+  - Cisco IOS 15.7(3)M4
+  - Cisco IOS 15.7(3)M5
+  - Cisco IOS 15.7(3)M4a
+  - Cisco IOS 15.7(3)M4b
+  - Cisco IOS 15.7(3)M6
+  - Cisco IOS 15.7(3)M7
+  - Cisco IOS 15.8(3)M
+  - Cisco IOS 15.8(3)M1
+  - Cisco IOS 15.8(3)M0a
+  - Cisco IOS 15.8(3)M0b
+  - Cisco IOS 15.8(3)M2
+  - Cisco IOS 15.8(3)M1a
+  - Cisco IOS 15.8(3)M3
+  - Cisco IOS 15.8(3)M2a
+  - Cisco IOS 15.8(3)M4
+  - Cisco IOS 15.8(3)M3a
+  - Cisco IOS 15.8(3)M3b
+  - Cisco IOS 15.8(3)M5
+  - Cisco IOS 12.2(6)I1
+  - Cisco IOS 15.9(3)M
+  - Cisco IOS 15.9(3)M1
+  - Cisco IOS 15.9(3)M0a
+  - Cisco IOS 15.9(3)M2
+  - Cisco IOS 15.9(3)M2a
+  - Cisco IOS 15.1(3)SVR1
+  - Cisco IOS 15.1(3)SVR2
+  - Cisco IOS 15.1(3)SVR3
+  - Cisco IOS 15.1(3)SVS
+  - Cisco IOS 15.1(3)SVS1
+  - Cisco IOS XE Software 3.6.6E
+  - Cisco IOS XE Software 3.6.7E
+  - Cisco IOS XE Software 3.6.8E
+  - Cisco IOS XE Software 3.6.7aE
+  - Cisco IOS XE Software 3.6.7bE
+  - Cisco IOS XE Software 3.6.9E
+  - Cisco IOS XE Software 3.6.10E
+  - Cisco IOS XE Software 3.6.9aE
+  - Cisco IOS XE Software 3.7.5E
+  - Cisco IOS XE Software 3.16.4S
+  - Cisco IOS XE Software 3.16.4aS
+  - Cisco IOS XE Software 3.16.4bS
+  - Cisco IOS XE Software 3.16.4gS
+  - Cisco IOS XE Software 3.16.5S
+  - Cisco IOS XE Software 3.16.4cS
+  - Cisco IOS XE Software 3.16.4dS
+  - Cisco IOS XE Software 3.16.4eS
+  - Cisco IOS XE Software 3.16.6S
+  - Cisco IOS XE Software 3.16.5aS
+  - Cisco IOS XE Software 3.16.5bS
+  - Cisco IOS XE Software 3.16.7S
+  - Cisco IOS XE Software 3.16.6bS
+  - Cisco IOS XE Software 3.16.7aS
+  - Cisco IOS XE Software 3.16.7bS
+  - Cisco IOS XE Software 3.16.8S
+  - Cisco IOS XE Software 3.16.9S
+  - Cisco IOS XE Software 3.16.10S
+  - Cisco IOS XE Software 3.16.10aS
+  - Cisco IOS XE Software 3.8.4E
+  - Cisco IOS XE Software 3.8.5E
+  - Cisco IOS XE Software 3.8.5aE
+  - Cisco IOS XE Software 3.8.6E
+  - Cisco IOS XE Software 3.8.7E
+  - Cisco IOS XE Software 3.8.8E
+  - Cisco IOS XE Software 3.8.9E
+  - Cisco IOS XE Software 3.8.10E
+  - Cisco IOS XE Software 16.3.2
+  - Cisco IOS XE Software 16.3.3
+  - Cisco IOS XE Software 16.3.4
+  - Cisco IOS XE Software 16.3.5
+  - Cisco IOS XE Software 16.3.5b
+  - Cisco IOS XE Software 16.3.6
+  - Cisco IOS XE Software 16.3.7
+  - Cisco IOS XE Software 16.3.8
+  - Cisco IOS XE Software 16.3.9
+  - Cisco IOS XE Software 16.3.10
+  - Cisco IOS XE Software 16.3.11
+  - Cisco IOS XE Software 16.4.1
+  - Cisco IOS XE Software 16.4.2
+  - Cisco IOS XE Software 16.4.3
+  - Cisco IOS XE Software 16.5.1
+  - Cisco IOS XE Software 16.5.1a
+  - Cisco IOS XE Software 16.5.1b
+  - Cisco IOS XE Software 16.5.2
+  - Cisco IOS XE Software 16.5.3
+  - Cisco IOS XE Software 3.9.1E
+  - Cisco IOS XE Software 3.9.2E
+  - Cisco IOS XE Software 3.9.2bE
+  - Cisco IOS XE Software 16.6.1
+  - Cisco IOS XE Software 16.6.2
+  - Cisco IOS XE Software 16.6.3
+  - Cisco IOS XE Software 16.6.4
+  - Cisco IOS XE Software 16.6.5
+  - Cisco IOS XE Software 16.6.4s
+  - Cisco IOS XE Software 16.6.4a
+  - Cisco IOS XE Software 16.6.5a
+  - Cisco IOS XE Software 16.6.6
+  - Cisco IOS XE Software 16.6.5b
+  - Cisco IOS XE Software 16.6.7
+  - Cisco IOS XE Software 16.6.7a
+  - Cisco IOS XE Software 16.6.8
+  - Cisco IOS XE Software 16.7.1
+  - Cisco IOS XE Software 16.7.1a
+  - Cisco IOS XE Software 16.7.1b
+  - Cisco IOS XE Software 16.7.2
+  - Cisco IOS XE Software 16.7.3
+  - Cisco IOS XE Software 16.7.4
+  - Cisco IOS XE Software 16.8.1
+  - Cisco IOS XE Software 16.8.1a
+  - Cisco IOS XE Software 16.8.1b
+  - Cisco IOS XE Software 16.8.1s
+  - Cisco IOS XE Software 16.8.1c
+  - Cisco IOS XE Software 16.8.1d
+  - Cisco IOS XE Software 16.8.2
+  - Cisco IOS XE Software 16.8.1e
+  - Cisco IOS XE Software 16.8.3
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.1a
+  - Cisco IOS XE Software 16.9.1b
+  - Cisco IOS XE Software 16.9.1s
+  - Cisco IOS XE Software 16.9.1c
+  - Cisco IOS XE Software 16.9.1d
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.2a
+  - Cisco IOS XE Software 16.9.2s
+  - Cisco IOS XE Software 16.9.3h
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.9.3s
+  - Cisco IOS XE Software 16.9.3a
+  - Cisco IOS XE Software 16.9.4c
+  - Cisco IOS XE Software 16.9.5
+  - Cisco IOS XE Software 16.9.5f
+  - Cisco IOS XE Software 16.9.6
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 3.10.0E
+  - Cisco IOS XE Software 3.10.1E
+  - Cisco IOS XE Software 3.10.0cE
+  - Cisco IOS XE Software 3.10.2E
+  - Cisco IOS XE Software 3.10.1aE
+  - Cisco IOS XE Software 3.10.1sE
+  - Cisco IOS XE Software 3.10.3E
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 3.11.0E
+  - Cisco IOS XE Software 3.11.1E
+  - Cisco IOS XE Software 3.11.2E
+  - Cisco IOS XE Software 3.11.3E
+  - Cisco IOS XE Software 3.11.1aE
+  - Cisco IOS XE Software 3.11.2aE
+  - Cisco IOS XE Software 3.11.3aE
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-arp-mtfhBfjE
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in Address Resolution Protocol (ARP)&nbsp;management\
+    \ of Cisco&nbsp;IOS Software and Cisco&nbsp;IOS XE Software could allow an unauthenticated,\
+    \ remote attacker to prevent an affected device from resolving ARP entries for\
+    \ legitimate hosts on the connected subnets.</p>\r\n<p class=\"p1\">This vulnerability\
+    \ exists because ARP entries are mismanaged. An attacker could exploit this vulnerability\
+    \ by continuously sending traffic that results in incomplete ARP entries. A successful\
+    \ exploit could allow the attacker to cause ARP requests on the device to be unsuccessful\
+    \ for legitimate hosts, resulting in a denial of service (DoS) condition.</p>\r\
+    \n<p>Cisco&nbsp;has released software updates that address this vulnerability.\
+    \ There are no workarounds that address this vulnerability.</p>\r\n<p>This advisory\
+    \ is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-arp-mtfhBfjE\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-arp-mtfhBfjE</a></p>\r\
+    \n"
+- advisoryId: cisco-sa-xesdwcinj-t68PPW7m
+  advisoryTitle: Cisco IOS XE SD-WAN Software Command Injection Vulnerability
+  bugIDs:
+  - CSCvw64828
+  cves:
+  - CVE-2021-1382
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-xesdwcinj-t68PPW7m/cvrf/cisco-sa-xesdwcinj-t68PPW7m_cvrf.xml
+  cvssBaseScore: '6.0'
+  cwe:
+  - CWE-77
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.3.1x
+  - Cisco IOS XE Software 17.4.1
+  - Cisco IOS XE Software 17.4.1a
+  - Cisco IOS XE Software 17.4.1b
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwcinj-t68PPW7m
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in the CLI of Cisco&nbsp;IOS XE SD-WAN Software\
+    \ could allow an authenticated, local attacker to inject arbitrary commands to\
+    \ be executed with <em>root</em> privileges on the underlying operating system.</p>\r\
+    \n<p>This vulnerability is due to insufficient input validation on certain CLI\
+    \ commands. An attacker could exploit this vulnerability by authenticating to\
+    \ the device and submitting crafted input to the CLI. The attacker must be authenticated\
+    \ as an administrative user to execute the affected commands. A successful exploit\
+    \ could allow the attacker to execute commands with <em>root</em> privileges.</p>\r\
+    \n<p>Cisco&nbsp;has released software updates that address this vulnerability.\
+    \ There are no workarounds that address this vulnerability.</p>\r\n<p>This advisory\
+    \ is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwcinj-t68PPW7m\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwcinj-t68PPW7m</a></p>\r\
+    \n"
+- advisoryId: cisco-sa-sdwan-esc-rSNVvTf9
+  advisoryTitle: Cisco IOS XE SD-WAN Software Console Privilege Escalation Vulnerability
+  bugIDs:
+  - CSCvv43400
+  cves:
+  - CVE-2021-1371
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-sdwan-esc-rSNVvTf9/cvrf/cisco-sa-sdwan-esc-rSNVvTf9_cvrf.xml
+  cvssBaseScore: '6.6'
+  cwe:
+  - CWE-269
+  firstFixed:
+  - 17.3.1w
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - 'Cisco IOS XE SD-WAN Software '
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE SD-WAN Software 16.9.1
+  - Cisco IOS XE SD-WAN Software 16.9.2
+  - Cisco IOS XE SD-WAN Software 16.9.3
+  - Cisco IOS XE SD-WAN Software 16.9.4
+  - Cisco IOS XE SD-WAN Software 16.10.1
+  - Cisco IOS XE SD-WAN Software 16.10.2
+  - Cisco IOS XE SD-WAN Software 16.10.3
+  - Cisco IOS XE SD-WAN Software 16.10.3a
+  - Cisco IOS XE SD-WAN Software 16.10.3b
+  - Cisco IOS XE SD-WAN Software 16.10.4
+  - Cisco IOS XE SD-WAN Software 16.10.5
+  - Cisco IOS XE SD-WAN Software 16.10.6
+  - Cisco IOS XE SD-WAN Software 16.11.1a
+  - Cisco IOS XE SD-WAN Software 16.11.1
+  - Cisco IOS XE SD-WAN Software 16.11.1b
+  - Cisco IOS XE SD-WAN Software 16.11.1d
+  - Cisco IOS XE SD-WAN Software 16.11.1f
+  - Cisco IOS XE SD-WAN Software 16.11.1s
+  - Cisco IOS XE SD-WAN Software 16.12.1b
+  - Cisco IOS XE SD-WAN Software 16.12.1d
+  - Cisco IOS XE SD-WAN Software 16.12.1e
+  - Cisco IOS XE SD-WAN Software 16.12.2r
+  - Cisco IOS XE SD-WAN Software 16.12.1
+  - Cisco IOS XE SD-WAN Software 16.12.1a
+  - Cisco IOS XE SD-WAN Software 16.12.1b1
+  - Cisco IOS XE SD-WAN Software 16.12.1c
+  - Cisco IOS XE SD-WAN Software 16.12.3
+  - Cisco IOS XE SD-WAN Software 16.12.4
+  - Cisco IOS XE SD-WAN Software 16.12.4a
+  - Cisco IOS XE SD-WAN Software 16.12.5
+  - Cisco IOS XE SD-WAN Software 17.2.2a
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-esc-rSNVvTf9
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in the role-based access control of Cisco&nbsp;IOS\
+    \ XE SD-WAN Software could allow an authenticated, local attacker with read-only\
+    \ privileges to obtain administrative privileges by using the console port when\
+    \ the device is in the default SD-WAN configuration.</p>\r\n<p>This vulnerability\
+    \ occurs because the default configuration is applied for console authentication\
+    \ and authorization. An attacker could exploit this vulnerability by connecting\
+    \ to the console port and authenticating as a read-only user. A successful exploit\
+    \ could allow a user with read-only permissions to access administrative privileges.</p>\r\
+    \n<p>Cisco&nbsp;has released software updates that address this vulnerability.\
+    \ There are no workarounds that address this vulnerability.</p>\r\n<p>This advisory\
+    \ is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-esc-rSNVvTf9\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-esc-rSNVvTf9</a></p>\r\
+    \n"
+- advisoryId: cisco-sa-xesdwpinj-V4weeqzU
+  advisoryTitle: Cisco IOS XE SD-WAN Software Parameter Injection Vulnerabilities
+  bugIDs:
+  - CSCvk59304
+  - CSCvw64834
+  cves:
+  - CVE-2021-1383
+  - CVE-2021-1454
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-xesdwpinj-V4weeqzU/cvrf/cisco-sa-xesdwpinj-V4weeqzU_cvrf.xml
+  cvssBaseScore: '6.0'
+  cwe:
+  - CWE-20
+  - CWE-88
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - 'Cisco IOS XE SD-WAN Software '
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.5
+  - Cisco IOS XE Software 16.12.1z1
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 16.12.5b
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.3.1x
+  - Cisco IOS XE Software 17.4.1
+  - Cisco IOS XE Software 17.4.1a
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwpinj-V4weeqzU
+  sir: Medium
+  status: Final
+  summary: '
+
+    <p>Multiple vulnerabilities in the CLI of Cisco&nbsp;IOS XE SD-WAN Software could
+    allow an authenticated, local attacker to access the underlying operating system
+    with <em>root</em> privileges.</p>
+
+    <p>These vulnerabilities are due to insufficient input validation of certain CLI
+    commands. An attacker could exploit these vulnerabilities by authenticating to
+    the device and submitting crafted input to the CLI. The attacker must be authenticated
+    as an administrative user to execute the affected commands. A successful exploit
+    could allow the attacker to access the underlying operating system with <em>root</em>
+    privileges.</p>
+
+    <p>Cisco&nbsp;has released software updates that address these vulnerabilities.
+    There are no workarounds that address these vulnerabilities.</p>
+
+    <p>This advisory is available at the following link:<br><a href="https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwpinj-V4weeqzU"
+    target="_blank">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-xesdwpinj-V4weeqzU</a></p>
+
+    '
+- advisoryId: cisco-sa-sdwan-clipriv-9TO2QGVp
+  advisoryTitle: Cisco IOS XE SD-WAN Software Privilege Escalation Vulnerability
+  bugIDs:
+  - CSCvv65659
+  cves:
+  - CVE-2021-1281
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-sdwan-clipriv-9TO2QGVp/cvrf/cisco-sa-sdwan-clipriv-9TO2QGVp_cvrf.xml
+  cvssBaseScore: '5.1'
+  cwe:
+  - CWE-399
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - 'Cisco IOS XE SD-WAN Software '
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.4.1
+  - Cisco IOS XE Software 17.4.1a
+  - Cisco IOS XE Software 17.4.1b
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-clipriv-9TO2QGVp
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in CLI management in Cisco&nbsp;IOS XE SD-WAN Software\
+    \ could allow an authenticated, local attacker to access the underlying operating\
+    \ system as the <em>root</em> user.</p>\r\n<p>This vulnerability is due to the\
+    \ way the software handles concurrent CLI sessions. An attacker could exploit\
+    \ this vulnerability by authenticating to the device as an administrative user\
+    \ and executing a sequence of commands. A successful exploit could allow the attacker\
+    \ to obtain access to the underlying operating system as the <em>root</em> user.</p>\r\
+    \n<p>Cisco&nbsp;has released software updates that address this vulnerability.\
+    \ There are no workarounds that address this vulnerability.</p>\r\n<p>This advisory\
+    \ is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-clipriv-9TO2QGVp\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-clipriv-9TO2QGVp</a></p>\r\
+    \n"
+- advisoryId: cisco-sa-iosxe-decnet-dos-cuPWDkyL
+  advisoryTitle: Cisco IOS XE Software DECnet Phase IV/OSI Denial of Service Vulnerability
+  bugIDs:
+  - CSCvv51476
+  cves:
+  - CVE-2021-1352
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-iosxe-decnet-dos-cuPWDkyL/cvrf/cisco-sa-iosxe-decnet-dos-cuPWDkyL_cvrf.xml
+  cvssBaseScore: '7.4'
+  cwe:
+  - CWE-823
+  firstFixed:
+  - 17.3.1w
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - Cisco IOS XE Software 16.4.1
+  - Cisco IOS XE Software 16.4.2
+  - Cisco IOS XE Software 16.4.3
+  - Cisco IOS XE Software 16.5.1
+  - Cisco IOS XE Software 16.5.1a
+  - Cisco IOS XE Software 16.5.1b
+  - Cisco IOS XE Software 16.5.2
+  - Cisco IOS XE Software 16.5.3
+  - Cisco IOS XE Software 16.6.1
+  - Cisco IOS XE Software 16.6.2
+  - Cisco IOS XE Software 16.6.3
+  - Cisco IOS XE Software 16.6.4
+  - Cisco IOS XE Software 16.6.5
+  - Cisco IOS XE Software 16.6.4s
+  - Cisco IOS XE Software 16.6.4a
+  - Cisco IOS XE Software 16.6.5a
+  - Cisco IOS XE Software 16.6.6
+  - Cisco IOS XE Software 16.6.5b
+  - Cisco IOS XE Software 16.6.7
+  - Cisco IOS XE Software 16.6.7a
+  - Cisco IOS XE Software 16.6.8
+  - Cisco IOS XE Software 16.7.1
+  - Cisco IOS XE Software 16.7.2
+  - Cisco IOS XE Software 16.7.3
+  - Cisco IOS XE Software 16.8.1
+  - Cisco IOS XE Software 16.8.1a
+  - Cisco IOS XE Software 16.8.1b
+  - Cisco IOS XE Software 16.8.1s
+  - Cisco IOS XE Software 16.8.1c
+  - Cisco IOS XE Software 16.8.2
+  - Cisco IOS XE Software 16.8.3
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.1a
+  - Cisco IOS XE Software 16.9.1b
+  - Cisco IOS XE Software 16.9.1s
+  - Cisco IOS XE Software 16.9.1c
+  - Cisco IOS XE Software 16.9.1d
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.2a
+  - Cisco IOS XE Software 16.9.2s
+  - Cisco IOS XE Software 16.9.3h
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.9.3s
+  - Cisco IOS XE Software 16.9.3a
+  - Cisco IOS XE Software 16.9.4c
+  - Cisco IOS XE Software 16.9.5
+  - Cisco IOS XE Software 16.9.5f
+  - Cisco IOS XE Software 16.9.6
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.2.3
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.1a
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-decnet-dos-cuPWDkyL
+  sir: High
+  status: Final
+  summary: "\r\n<p>A vulnerability in the DECnet Phase IV and DECnet/OSI protocol\
+    \ processing of Cisco&nbsp;IOS XE Software could allow an unauthenticated, adjacent\
+    \ attacker to cause a denial of service (DoS) condition on an affected device.</p>\r\
+    \n<p>The vulnerability is due to insufficient input validation of DECnet traffic\
+    \ that is received by an affected device. An attacker could exploit this vulnerability\
+    \ by sending DECnet traffic to an affected device. A successful exploit could\
+    \ allow the attacker to cause the affected device to reload, resulting in a DoS\
+    \ condition.</p>\r\n<p>Cisco&nbsp;has released software updates that address this\
+    \ vulnerability. There are no workarounds that address this vulnerability.</p>\r\
+    \n<p>This advisory is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-decnet-dos-cuPWDkyL\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-decnet-dos-cuPWDkyL</a></p>\r\
+    \n\r\n<p>This advisory is part of the March 2021 release of the Cisco&nbsp;IOS\
+    \ and IOS XE Software Security Advisory Bundled Publication. For a complete list\
+    \ of the advisories and links to them, see <a href=\"https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74408\"\
+    \ target=\"_blank\" rel=\"noopener\">Cisco&nbsp;Event Response: March 2021 Semiannual\
+    \ Cisco&nbsp;IOS and IOS XE Software Security Advisory Bundled Publication</a>.</p>\r\
+    \n\r\n"
+- advisoryId: cisco-sa-alg-dos-hbBS7SZE
+  advisoryTitle: Cisco IOS XE Software DNS NAT Protocol Application Layer Gateway
+    Denial of Service Vulnerability
+  bugIDs:
+  - CSCvv65113
+  cves:
+  - CVE-2021-1446
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-alg-dos-hbBS7SZE/cvrf/cisco-sa-alg-dos-hbBS7SZE_cvrf.xml
+  cvssBaseScore: '8.6'
+  cwe:
+  - CWE-754
+  firstFixed:
+  - 17.3.1x
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - Cisco IOS XE Software 3.7.0S
+  - Cisco IOS XE Software 3.7.1S
+  - Cisco IOS XE Software 3.7.2S
+  - Cisco IOS XE Software 3.7.3S
+  - Cisco IOS XE Software 3.7.4S
+  - Cisco IOS XE Software 3.7.5S
+  - Cisco IOS XE Software 3.7.6S
+  - Cisco IOS XE Software 3.7.7S
+  - Cisco IOS XE Software 3.7.8S
+  - Cisco IOS XE Software 3.7.4aS
+  - Cisco IOS XE Software 3.7.2tS
+  - Cisco IOS XE Software 3.7.0xbS
+  - Cisco IOS XE Software 3.7.0bS
+  - Cisco IOS XE Software 3.7.0xaS
+  - Cisco IOS XE Software 3.7.1aS
+  - Cisco IOS XE Software 3.8.0S
+  - Cisco IOS XE Software 3.8.1S
+  - Cisco IOS XE Software 3.8.2S
+  - Cisco IOS XE Software 3.9.1S
+  - Cisco IOS XE Software 3.9.0S
+  - Cisco IOS XE Software 3.9.2S
+  - Cisco IOS XE Software 3.9.0xaS
+  - Cisco IOS XE Software 3.9.1aS
+  - Cisco IOS XE Software 3.9.0aS
+  - Cisco IOS XE Software 3.10.0S
+  - Cisco IOS XE Software 3.10.1S
+  - Cisco IOS XE Software 3.10.2S
+  - Cisco IOS XE Software 3.10.3S
+  - Cisco IOS XE Software 3.10.4S
+  - Cisco IOS XE Software 3.10.5S
+  - Cisco IOS XE Software 3.10.6S
+  - Cisco IOS XE Software 3.10.1xcS
+  - Cisco IOS XE Software 3.10.2aS
+  - Cisco IOS XE Software 3.10.2tS
+  - Cisco IOS XE Software 3.10.7S
+  - Cisco IOS XE Software 3.10.1xbS
+  - Cisco IOS XE Software 3.10.8S
+  - Cisco IOS XE Software 3.10.8aS
+  - Cisco IOS XE Software 3.10.9S
+  - Cisco IOS XE Software 3.10.10S
+  - Cisco IOS XE Software 3.11.1S
+  - Cisco IOS XE Software 3.11.2S
+  - Cisco IOS XE Software 3.11.0S
+  - Cisco IOS XE Software 3.11.3S
+  - Cisco IOS XE Software 3.11.4S
+  - Cisco IOS XE Software 3.12.0S
+  - Cisco IOS XE Software 3.12.1S
+  - Cisco IOS XE Software 3.12.2S
+  - Cisco IOS XE Software 3.12.3S
+  - Cisco IOS XE Software 3.12.0aS
+  - Cisco IOS XE Software 3.12.4S
+  - Cisco IOS XE Software 3.13.0S
+  - Cisco IOS XE Software 3.13.1S
+  - Cisco IOS XE Software 3.13.2S
+  - Cisco IOS XE Software 3.13.3S
+  - Cisco IOS XE Software 3.13.4S
+  - Cisco IOS XE Software 3.13.5S
+  - Cisco IOS XE Software 3.13.2aS
+  - Cisco IOS XE Software 3.13.0aS
+  - Cisco IOS XE Software 3.13.5aS
+  - Cisco IOS XE Software 3.13.6S
+  - Cisco IOS XE Software 3.13.7S
+  - Cisco IOS XE Software 3.13.6aS
+  - Cisco IOS XE Software 3.13.6bS
+  - Cisco IOS XE Software 3.13.7aS
+  - Cisco IOS XE Software 3.13.8S
+  - Cisco IOS XE Software 3.13.9S
+  - Cisco IOS XE Software 3.13.10S
+  - Cisco IOS XE Software 3.14.0S
+  - Cisco IOS XE Software 3.14.1S
+  - Cisco IOS XE Software 3.14.2S
+  - Cisco IOS XE Software 3.14.3S
+  - Cisco IOS XE Software 3.14.4S
+  - Cisco IOS XE Software 3.15.0S
+  - Cisco IOS XE Software 3.15.1S
+  - Cisco IOS XE Software 3.15.2S
+  - Cisco IOS XE Software 3.15.1xbS
+  - Cisco IOS XE Software 3.15.1cS
+  - Cisco IOS XE Software 3.15.2xbS
+  - Cisco IOS XE Software 3.15.3S
+  - Cisco IOS XE Software 3.15.4S
+  - Cisco IOS XE Software 3.16.0S
+  - Cisco IOS XE Software 3.16.1S
+  - Cisco IOS XE Software 3.16.0aS
+  - Cisco IOS XE Software 3.16.1aS
+  - Cisco IOS XE Software 3.16.2S
+  - Cisco IOS XE Software 3.16.2aS
+  - Cisco IOS XE Software 3.16.0bS
+  - Cisco IOS XE Software 3.16.0cS
+  - Cisco IOS XE Software 3.16.3S
+  - Cisco IOS XE Software 3.16.2bS
+  - Cisco IOS XE Software 3.16.3aS
+  - Cisco IOS XE Software 3.16.4S
+  - Cisco IOS XE Software 3.16.4aS
+  - Cisco IOS XE Software 3.16.4bS
+  - Cisco IOS XE Software 3.16.4gS
+  - Cisco IOS XE Software 3.16.5S
+  - Cisco IOS XE Software 3.16.4cS
+  - Cisco IOS XE Software 3.16.4dS
+  - Cisco IOS XE Software 3.16.4eS
+  - Cisco IOS XE Software 3.16.6S
+  - Cisco IOS XE Software 3.16.5aS
+  - Cisco IOS XE Software 3.16.5bS
+  - Cisco IOS XE Software 3.16.7S
+  - Cisco IOS XE Software 3.16.6bS
+  - Cisco IOS XE Software 3.16.7aS
+  - Cisco IOS XE Software 3.16.7bS
+  - Cisco IOS XE Software 3.16.8S
+  - Cisco IOS XE Software 3.16.9S
+  - Cisco IOS XE Software 3.16.10S
+  - Cisco IOS XE Software 3.16.10aS
+  - Cisco IOS XE Software 3.17.0S
+  - Cisco IOS XE Software 3.17.1S
+  - Cisco IOS XE Software 3.17.2S
+  - Cisco IOS XE Software 3.17.1aS
+  - Cisco IOS XE Software 3.17.3S
+  - Cisco IOS XE Software 3.17.4S
+  - Cisco IOS XE Software 16.1.1
+  - Cisco IOS XE Software 16.1.2
+  - Cisco IOS XE Software 16.1.3
+  - Cisco IOS XE Software 16.2.1
+  - Cisco IOS XE Software 16.2.2
+  - Cisco IOS XE Software 16.3.1
+  - Cisco IOS XE Software 16.3.2
+  - Cisco IOS XE Software 16.3.3
+  - Cisco IOS XE Software 16.3.1a
+  - Cisco IOS XE Software 16.3.4
+  - Cisco IOS XE Software 16.3.5
+  - Cisco IOS XE Software 16.3.5b
+  - Cisco IOS XE Software 16.3.6
+  - Cisco IOS XE Software 16.3.7
+  - Cisco IOS XE Software 16.3.8
+  - Cisco IOS XE Software 16.3.9
+  - Cisco IOS XE Software 16.3.10
+  - Cisco IOS XE Software 16.3.11
+  - Cisco IOS XE Software 16.4.1
+  - Cisco IOS XE Software 16.4.2
+  - Cisco IOS XE Software 16.4.3
+  - Cisco IOS XE Software 16.5.1
+  - Cisco IOS XE Software 16.5.1a
+  - Cisco IOS XE Software 16.5.1b
+  - Cisco IOS XE Software 16.5.2
+  - Cisco IOS XE Software 16.5.3
+  - Cisco IOS XE Software 3.18.0aS
+  - Cisco IOS XE Software 3.18.0S
+  - Cisco IOS XE Software 3.18.1S
+  - Cisco IOS XE Software 3.18.2S
+  - Cisco IOS XE Software 3.18.3S
+  - Cisco IOS XE Software 3.18.4S
+  - Cisco IOS XE Software 3.18.0SP
+  - Cisco IOS XE Software 3.18.1SP
+  - Cisco IOS XE Software 3.18.1aSP
+  - Cisco IOS XE Software 3.18.1gSP
+  - Cisco IOS XE Software 3.18.1bSP
+  - Cisco IOS XE Software 3.18.1cSP
+  - Cisco IOS XE Software 3.18.2SP
+  - Cisco IOS XE Software 3.18.1hSP
+  - Cisco IOS XE Software 3.18.2aSP
+  - Cisco IOS XE Software 3.18.1iSP
+  - Cisco IOS XE Software 3.18.3SP
+  - Cisco IOS XE Software 3.18.4SP
+  - Cisco IOS XE Software 3.18.3aSP
+  - Cisco IOS XE Software 3.18.3bSP
+  - Cisco IOS XE Software 3.18.5SP
+  - Cisco IOS XE Software 3.18.6SP
+  - Cisco IOS XE Software 3.18.7SP
+  - Cisco IOS XE Software 3.18.8SP
+  - Cisco IOS XE Software 3.18.8aSP
+  - Cisco IOS XE Software 16.6.1
+  - Cisco IOS XE Software 16.6.2
+  - Cisco IOS XE Software 16.6.3
+  - Cisco IOS XE Software 16.6.4
+  - Cisco IOS XE Software 16.6.5
+  - Cisco IOS XE Software 16.6.4s
+  - Cisco IOS XE Software 16.6.4a
+  - Cisco IOS XE Software 16.6.5a
+  - Cisco IOS XE Software 16.6.6
+  - Cisco IOS XE Software 16.6.5b
+  - Cisco IOS XE Software 16.6.7
+  - Cisco IOS XE Software 16.6.7a
+  - Cisco IOS XE Software 16.6.8
+  - Cisco IOS XE Software 16.7.1
+  - Cisco IOS XE Software 16.7.1a
+  - Cisco IOS XE Software 16.7.1b
+  - Cisco IOS XE Software 16.7.2
+  - Cisco IOS XE Software 16.7.3
+  - Cisco IOS XE Software 16.7.4
+  - Cisco IOS XE Software 16.8.1
+  - Cisco IOS XE Software 16.8.1a
+  - Cisco IOS XE Software 16.8.1b
+  - Cisco IOS XE Software 16.8.1s
+  - Cisco IOS XE Software 16.8.1c
+  - Cisco IOS XE Software 16.8.1d
+  - Cisco IOS XE Software 16.8.2
+  - Cisco IOS XE Software 16.8.1e
+  - Cisco IOS XE Software 16.8.3
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.1a
+  - Cisco IOS XE Software 16.9.1b
+  - Cisco IOS XE Software 16.9.1s
+  - Cisco IOS XE Software 16.9.1c
+  - Cisco IOS XE Software 16.9.1d
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.2a
+  - Cisco IOS XE Software 16.9.2s
+  - Cisco IOS XE Software 16.9.3h
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.9.3s
+  - Cisco IOS XE Software 16.9.3a
+  - Cisco IOS XE Software 16.9.4c
+  - Cisco IOS XE Software 16.9.5
+  - Cisco IOS XE Software 16.9.5f
+  - Cisco IOS XE Software 16.9.6
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.1z1
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.2.3
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-alg-dos-hbBS7SZE
+  sir: High
+  status: Final
+  summary: "\r\n<p>A vulnerability in the DNS application layer gateway (ALG) functionality\
+    \ used by Network Address Translation (NAT) in Cisco&nbsp;IOS XE Software could\
+    \ allow an unauthenticated, remote attacker to cause an affected device to reload.</p>\r\
+    \n<p>The vulnerability is due to a logic error that occurs when an affected device\
+    \ inspects certain DNS packets. An attacker could exploit this vulnerability by\
+    \ sending crafted DNS packets through an affected device that is performing NAT\
+    \ for DNS packets. A successful exploit could allow an attacker to cause the device\
+    \ to reload, resulting in a denial of service (DoS) condition on an affected device.</p>\r\
+    \n<p><span class=\"more\">The vulnerability can be exploited only by traffic that\
+    \ is sent through an affected device via IPv4 packets. The vulnerability cannot\
+    \ be exploited via IPv6 traffic.</span></p>\r\n<p>Cisco&nbsp;has released software\
+    \ updates that address this vulnerability. There are no workarounds that address\
+    \ this vulnerability.</p>\r\n<p>This advisory is available at the following link:<br><a\
+    \ href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-alg-dos-hbBS7SZE\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-alg-dos-hbBS7SZE</a></p>\r\
+    \n\r\n<p>This advisory is part of the March 2021 release of the Cisco&nbsp;IOS\
+    \ and IOS XE Software Security Advisory Bundled Publication. For a complete list\
+    \ of the advisories and links to them, see <a href=\"https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74408\"\
+    \ target=\"_blank\" rel=\"noopener\">Cisco&nbsp;Event Response: March 2021 Semiannual\
+    \ Cisco&nbsp;IOS and IOS XE Software Security Advisory Bundled Publication</a>.</p>\r\
+    \n\r\n"
+- advisoryId: cisco-sa-iosxe-cswsh-FKk9AzT5
+  advisoryTitle: Cisco IOS XE Software Web UI Cross-Site WebSocket Hijacking Vulnerability
+  bugIDs:
+  - CSCvu98441
+  cves:
+  - CVE-2021-1403
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-iosxe-cswsh-FKk9AzT5/cvrf/cisco-sa-iosxe-cswsh-FKk9AzT5_cvrf.xml
+  cvssBaseScore: '7.4'
+  cwe:
+  - CWE-345
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - Cisco IOS XE Software 3.15.1xbS
+  - Cisco IOS XE Software 3.15.2xbS
+  - Cisco IOS XE Software 16.3.1
+  - Cisco IOS XE Software 16.3.2
+  - Cisco IOS XE Software 16.3.3
+  - Cisco IOS XE Software 16.3.1a
+  - Cisco IOS XE Software 16.3.4
+  - Cisco IOS XE Software 16.3.5
+  - Cisco IOS XE Software 16.3.5b
+  - Cisco IOS XE Software 16.3.6
+  - Cisco IOS XE Software 16.3.7
+  - Cisco IOS XE Software 16.3.8
+  - Cisco IOS XE Software 16.3.9
+  - Cisco IOS XE Software 16.3.10
+  - Cisco IOS XE Software 16.3.11
+  - Cisco IOS XE Software 16.4.1
+  - Cisco IOS XE Software 16.4.2
+  - Cisco IOS XE Software 16.4.3
+  - Cisco IOS XE Software 16.5.1
+  - Cisco IOS XE Software 16.5.1a
+  - Cisco IOS XE Software 16.5.1b
+  - Cisco IOS XE Software 16.5.2
+  - Cisco IOS XE Software 16.5.3
+  - Cisco IOS XE Software 16.6.1
+  - Cisco IOS XE Software 16.6.2
+  - Cisco IOS XE Software 16.6.3
+  - Cisco IOS XE Software 16.6.4
+  - Cisco IOS XE Software 16.6.5
+  - Cisco IOS XE Software 16.6.4s
+  - Cisco IOS XE Software 16.6.4a
+  - Cisco IOS XE Software 16.6.5a
+  - Cisco IOS XE Software 16.6.6
+  - Cisco IOS XE Software 16.6.5b
+  - Cisco IOS XE Software 16.6.7
+  - Cisco IOS XE Software 16.6.7a
+  - Cisco IOS XE Software 16.6.8
+  - Cisco IOS XE Software 16.7.1
+  - Cisco IOS XE Software 16.7.1a
+  - Cisco IOS XE Software 16.7.1b
+  - Cisco IOS XE Software 16.7.2
+  - Cisco IOS XE Software 16.7.3
+  - Cisco IOS XE Software 16.7.4
+  - Cisco IOS XE Software 16.8.1
+  - Cisco IOS XE Software 16.8.1a
+  - Cisco IOS XE Software 16.8.1b
+  - Cisco IOS XE Software 16.8.1s
+  - Cisco IOS XE Software 16.8.1c
+  - Cisco IOS XE Software 16.8.1d
+  - Cisco IOS XE Software 16.8.2
+  - Cisco IOS XE Software 16.8.1e
+  - Cisco IOS XE Software 16.8.3
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.1a
+  - Cisco IOS XE Software 16.9.1b
+  - Cisco IOS XE Software 16.9.1s
+  - Cisco IOS XE Software 16.9.1c
+  - Cisco IOS XE Software 16.9.1d
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.2a
+  - Cisco IOS XE Software 16.9.2s
+  - Cisco IOS XE Software 16.9.3h
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.9.3s
+  - Cisco IOS XE Software 16.9.3a
+  - Cisco IOS XE Software 16.9.4c
+  - Cisco IOS XE Software 16.9.5
+  - Cisco IOS XE Software 16.9.5f
+  - Cisco IOS XE Software 16.9.6
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.2.3
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.3.1x
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-cswsh-FKk9AzT5
+  sir: High
+  status: Final
+  summary: "\r\n<p>A vulnerability in the web UI feature of Cisco&nbsp;IOS XE Software\
+    \ could allow an unauthenticated, remote attacker to conduct a cross-site WebSocket\
+    \ hijacking (CSWSH) attack and cause a denial of service (DoS) condition on an\
+    \ affected device.</p>\r\n<p>This vulnerability is due to insufficient HTTP protections\
+    \ in the web UI on an affected device. An attacker could exploit this vulnerability\
+    \ by persuading an authenticated user of the web UI to follow a crafted link.\
+    \ A successful exploit could allow the attacker to corrupt memory on the affected\
+    \ device, forcing it to reload and causing a DoS condition.</p>\r\n<p>Cisco&nbsp;has\
+    \ released software updates that address this vulnerability. There are no workarounds\
+    \ that address this vulnerability.</p>\r\n<p>This advisory is available at the\
+    \ following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-cswsh-FKk9AzT5\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iosxe-cswsh-FKk9AzT5</a></p>\r\
+    \n\r\n<p>This advisory is part of the March 2021 release of the Cisco&nbsp;IOS\
+    \ and IOS XE Software Security Advisory Bundled Publication. For a complete list\
+    \ of the advisories and links to them, see <a href=\"https://tools.cisco.com/security/center/viewErp.x?alertId=ERP-74408\"\
+    \ target=\"_blank\" rel=\"noopener\">Cisco&nbsp;Event Response: March 2021 Semiannual\
+    \ Cisco&nbsp;IOS and IOS XE Software Security Advisory Bundled Publication</a>.</p>\r\
+    \n\r\n"
+- advisoryId: cisco-sa-iox-cmdinj-RkSURGHG
+  advisoryTitle: Cisco IOx for IOS XE Software Command Injection Vulnerability
+  bugIDs:
+  - CSCvw64798
+  cves:
+  - CVE-2021-1384
+  cvrfUrl: https://tools.cisco.com/security/center/contentxml/CiscoSecurityAdvisory/cisco-sa-iox-cmdinj-RkSURGHG/cvrf/cisco-sa-iox-cmdinj-RkSURGHG_cvrf.xml
+  cvssBaseScore: '6.5'
+  cwe:
+  - CWE-77
+  firstFixed:
+  - 17.3.3
+  firstPublished: '2021-03-24T16:00:00'
+  iosRelease:
+  - 17.3.1a
+  ipsSignatures:
+  - NA
+  lastUpdated: '2021-03-24T16:00:00'
+  productNames:
+  - 'Cisco IOS XE Software '
+  - Cisco IOS XE Software 16.3.2
+  - Cisco IOS XE Software 16.3.3
+  - Cisco IOS XE Software 16.3.4
+  - Cisco IOS XE Software 16.3.5
+  - Cisco IOS XE Software 16.3.5b
+  - Cisco IOS XE Software 16.3.6
+  - Cisco IOS XE Software 16.3.7
+  - Cisco IOS XE Software 16.3.8
+  - Cisco IOS XE Software 16.3.9
+  - Cisco IOS XE Software 16.3.10
+  - Cisco IOS XE Software 16.3.11
+  - Cisco IOS XE Software 16.4.1
+  - Cisco IOS XE Software 16.4.2
+  - Cisco IOS XE Software 16.4.3
+  - Cisco IOS XE Software 16.5.1
+  - Cisco IOS XE Software 16.5.1a
+  - Cisco IOS XE Software 16.5.1b
+  - Cisco IOS XE Software 16.5.2
+  - Cisco IOS XE Software 16.5.3
+  - Cisco IOS XE Software 16.6.1
+  - Cisco IOS XE Software 16.6.2
+  - Cisco IOS XE Software 16.6.3
+  - Cisco IOS XE Software 16.6.4
+  - Cisco IOS XE Software 16.6.5
+  - Cisco IOS XE Software 16.6.4s
+  - Cisco IOS XE Software 16.6.4a
+  - Cisco IOS XE Software 16.6.5a
+  - Cisco IOS XE Software 16.6.6
+  - Cisco IOS XE Software 16.6.5b
+  - Cisco IOS XE Software 16.6.7
+  - Cisco IOS XE Software 16.6.7a
+  - Cisco IOS XE Software 16.6.8
+  - Cisco IOS XE Software 16.7.1
+  - Cisco IOS XE Software 16.7.1a
+  - Cisco IOS XE Software 16.7.1b
+  - Cisco IOS XE Software 16.7.2
+  - Cisco IOS XE Software 16.7.3
+  - Cisco IOS XE Software 16.7.4
+  - Cisco IOS XE Software 16.8.1
+  - Cisco IOS XE Software 16.8.1a
+  - Cisco IOS XE Software 16.8.1b
+  - Cisco IOS XE Software 16.8.1s
+  - Cisco IOS XE Software 16.8.1c
+  - Cisco IOS XE Software 16.8.1d
+  - Cisco IOS XE Software 16.8.2
+  - Cisco IOS XE Software 16.8.1e
+  - Cisco IOS XE Software 16.8.3
+  - Cisco IOS XE Software 16.9.1
+  - Cisco IOS XE Software 16.9.2
+  - Cisco IOS XE Software 16.9.1a
+  - Cisco IOS XE Software 16.9.1b
+  - Cisco IOS XE Software 16.9.1s
+  - Cisco IOS XE Software 16.9.1c
+  - Cisco IOS XE Software 16.9.1d
+  - Cisco IOS XE Software 16.9.3
+  - Cisco IOS XE Software 16.9.2a
+  - Cisco IOS XE Software 16.9.2s
+  - Cisco IOS XE Software 16.9.3h
+  - Cisco IOS XE Software 16.9.4
+  - Cisco IOS XE Software 16.9.3s
+  - Cisco IOS XE Software 16.9.3a
+  - Cisco IOS XE Software 16.9.4c
+  - Cisco IOS XE Software 16.9.5
+  - Cisco IOS XE Software 16.9.5f
+  - Cisco IOS XE Software 16.9.6
+  - Cisco IOS XE Software 16.10.1
+  - Cisco IOS XE Software 16.10.1a
+  - Cisco IOS XE Software 16.10.1b
+  - Cisco IOS XE Software 16.10.1s
+  - Cisco IOS XE Software 16.10.1c
+  - Cisco IOS XE Software 16.10.1e
+  - Cisco IOS XE Software 16.10.1d
+  - Cisco IOS XE Software 16.10.2
+  - Cisco IOS XE Software 16.10.1f
+  - Cisco IOS XE Software 16.10.1g
+  - Cisco IOS XE Software 16.10.3
+  - Cisco IOS XE Software 16.11.1
+  - Cisco IOS XE Software 16.11.1a
+  - Cisco IOS XE Software 16.11.1b
+  - Cisco IOS XE Software 16.11.2
+  - Cisco IOS XE Software 16.11.1s
+  - Cisco IOS XE Software 16.11.1c
+  - Cisco IOS XE Software 16.12.1
+  - Cisco IOS XE Software 16.12.1s
+  - Cisco IOS XE Software 16.12.1a
+  - Cisco IOS XE Software 16.12.1c
+  - Cisco IOS XE Software 16.12.1w
+  - Cisco IOS XE Software 16.12.2
+  - Cisco IOS XE Software 16.12.1y
+  - Cisco IOS XE Software 16.12.2a
+  - Cisco IOS XE Software 16.12.3
+  - Cisco IOS XE Software 16.12.2s
+  - Cisco IOS XE Software 16.12.1x
+  - Cisco IOS XE Software 16.12.1t
+  - Cisco IOS XE Software 16.12.2t
+  - Cisco IOS XE Software 16.12.4
+  - Cisco IOS XE Software 16.12.3s
+  - Cisco IOS XE Software 16.12.1z
+  - Cisco IOS XE Software 16.12.3a
+  - Cisco IOS XE Software 16.12.4a
+  - Cisco IOS XE Software 16.12.5
+  - Cisco IOS XE Software 16.12.1z1
+  - Cisco IOS XE Software 16.12.1za
+  - Cisco IOS XE Software 17.1.1
+  - Cisco IOS XE Software 17.1.1a
+  - Cisco IOS XE Software 17.1.1s
+  - Cisco IOS XE Software 17.1.2
+  - Cisco IOS XE Software 17.1.1t
+  - Cisco IOS XE Software 17.1.3
+  - Cisco IOS XE Software 17.2.1
+  - Cisco IOS XE Software 17.2.1r
+  - Cisco IOS XE Software 17.2.1a
+  - Cisco IOS XE Software 17.2.1v
+  - Cisco IOS XE Software 17.2.2
+  - Cisco IOS XE Software 17.2.3
+  - Cisco IOS XE Software 17.3.1
+  - Cisco IOS XE Software 17.3.2
+  - Cisco IOS XE Software 17.3.1a
+  - Cisco IOS XE Software 17.3.1w
+  - Cisco IOS XE Software 17.3.2a
+  - Cisco IOS XE Software 17.3.1x
+  - Cisco IOS XE Software 17.4.1
+  - Cisco IOS XE Software 17.4.1a
+  - Cisco IOS XE Software 17.4.1b
+  publicationUrl: https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-cmdinj-RkSURGHG
+  sir: Medium
+  status: Final
+  summary: "\r\n<p>A vulnerability in Cisco&nbsp;IOx application hosting environment\
+    \ of Cisco&nbsp;IOS XE Software could allow an authenticated, remote attacker\
+    \ to inject commands into the underlying operating system as the <em>root</em>\
+    \ user.</p>\r\n<p>This vulnerability is due to incomplete validation of fields\
+    \ in the application packages loaded onto IOx. An attacker could exploit this\
+    \ vulnerability by creating a crafted application .<em>tar</em> file and loading\
+    \ it onto the device. A successful exploit could allow the attacker to perform\
+    \ command injection into the underlying operating system as the <em>root</em>\
+    \ user.</p>\r\n<p>Cisco&nbsp;has released software updates that address this vulnerability.\
+    \ There are no workarounds that address this vulnerability.</p>\r\n<p>This advisory\
+    \ is available at the following link:<br><a href=\"https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-cmdinj-RkSURGHG\"\
+    \ target=\"_blank\">https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-iox-cmdinj-RkSURGHG</a></p>\r\
+    \n"

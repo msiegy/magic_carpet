@@ -172,6 +172,19 @@ How to update the appropriate `testbed/testbed_*.yaml` file to reflect your devi
 
         Copy & Paste and make each device unique to scale this up to many routers    
 ---
+
+## Take the Magic Carpet to the Cloud! 
+
+Magic Carpet now connects to the following Cisco.com APIs: 
+
+* Recommended Software Release (using the real version of software from your devices)
+
+* Serial Number 2 Infomation (using the real serial numbers, for every part, from your devices)
+
+* Product Security Incident Response Team (PSIRT) (using the real version of software from your device)
+
+[Take Magic Carpet to the Cloud](docs/02_cisco_com_api.md)
+
 ### Pro tip:
 You can create a testbed file using an Excel spreadsheet (see `testbed/SampleTestbedFile.xlsx`), this is useful if you are not familiar with YAML and/or have a long list of devices where copying and pasting in Excel would be easier.
 1. Edit the relevant fields in the sample file.

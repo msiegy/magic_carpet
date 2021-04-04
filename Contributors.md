@@ -76,6 +76,14 @@ John Capobianco
 
     Added Cisco DevNet CSR1000v Sandbox Support
 
+    Added Cisco.co API integrations:
+
+        Recommended Software Release (from the real version of software on the device)
+
+        Serial 2 Info (which sends the serial numbers to the API and returns contractual state)
+
+        Product Security Indident Response Team (PSIRT) (which sends your running version and finds out if it is vulnerable)
+
 Sam Johnson
 
     show ntp associations 

@@ -20,6 +20,7 @@ _.--.__[_.--'_\__
 [bold blue]@@~~~~~~~~~~~~~[/bold blue][bold yellow]~~~~~~~~~~~~~~@@[/bold yellow]
 
 '''
+
 RUNNING = '''[bright_green]
   _.---.__
 .'        `-.
@@ -51,6 +52,39 @@ The [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/b
 
 [bold blue]Genie[/bold blue] Parsing Has Begun'''
 
+CLOUD = '''Our monkey friend is heading to the [bold blue]Cloud[/bold blue]
+
+[yellow]                                                 ..ccCCCCCCCc..
+                                          , .ccCCCCCCCCCCCCCCCCC>
+                                       .cCCCCCCCCCCCCCCC. ``CCCCc
+       [bright_red]_[/bright_red][yellow]                            .cCCCCCCCCCCCCCCCCCCCCCc `?CCCc[/yellow]
+     [bright_red]+'  ` -[/bright_red][yellow]                   .ccCCCCCCCCCCCCCCCCCCCCCCCCCCCc  `CCc[/yellow]
+   [bright_red],'      <!ii;[/bright_red][yellow]...   .....c '     ``CCCCL ``CCCCCC`CCCCCCCCCCCc `CCc[/yellow]
+  [bright_red];         `!!!!'[/bright_red][yellow] .cCCCCCC'`  .cCC''         `'CCC  `CCCCCCCCCCC  `C[/yellow]
+ [bright_red],    :i!!!!!!![/bright_red][yellow]  :CCCCCC'  ,cCC'`  .ccCCCCC  C: 'CCC    `CCCCCCCCC  '[/yellow]
+[bright_red].      !!!!!!'[/bright_red][yellow] .CCCCCCC .cCCC'  .cCCCCCCCCCC CCC  CC      `CCCC`CC[/yellow]
+[bright_red]:       `!!![/bright_red][yellow]  cCCCCCC' cCCC'  cCCCCCCCCCCCCC CCCCc C> <>   `CCCC C[/yellow]
+  [bright_red]~ -:ii!!![/bright_red][yellow] :CCCCCCC  CCCC  cCCCC'`'CCCCCCC' CCCCC   :CC    `CCC `[/yellow]
+       [bright_red]!!![/bright_red][yellow] :CCCCCCCC CCC' ,CC'' ..c..'`CCCC  CCCC'   CCC     CCC[/yellow]
+        [bright_red]`[/bright_red][yellow] .CCCCCCCC; CC; ,C'[/yellow] [bold blue].d$$$$$$$N.[/bold blue] `C .CCC :> :CCC     `C'[/yellow]
+          [yellow]CCCCCCCCC':CC ,C [/yellow][bold blue].d$$$$$$$$$$$[/bold blue][yellow]b ` CC' ''  CCCC      '[/yellow]
+         [yellow]CCCCCCC 'C> C [/yellow][bold blue].$$$$$$$$$$$$$$[/bold blue][yellow]L ,C' [/yellow][bold blue].e$$L CC'[/bold blue]
+    [yellow];;CCCCC;;.  CCC>'C [/yellow][bold blue];  $$$$F  `"$$$$$$$[/bold blue][yellow] C'[/yellow][bold blue] d$$$$$L `[/bold blue]
+  [yellow];CCCC...``~CCc CC> C C[/yellow][bold blue] 4$$$"     `$$$$$$[/bold blue][yellow]'[/yellow][bold blue] d$?$$$$$[/bold blue]
+  [yellow]CCCCCCCCCCCc `C CC C>'[/yellow][bold blue] 4$$$      d$$$$$F  /   `$$$$[/bold blue]
+  [yellow]CCCCCCCCCCCCCc  'C  C[/yellow][bold blue] :'$$$b   .e$$$$$F  4     $$$$[/bold blue]
+  [yellow]`CCCCCCCCCCCCCC 'Cc 'L'L[/yellow][bold blue]'$$$$$$$$$$$$" < $b  .d$$$[/bold blue]
+   [yellow]`CCCCCCCCCCCCC ''Cc C: <[/yellow][bold blue] "?$$$$$$F" >~C:`?$$$$$$"[/bold blue]
+     [yellow]`?CCCCCCCCC  ~;CCc Cc -:. """"  : .:~C:.[/yellow][bold blue]`"?$F[/bold blue]
+        [yellow]`CCCCCC   ;CCCC 'CC:'`CCC~ :CC ~  'CC >
+           `'`  ~ CCCCCC. `CCC;;;<CCCCCCCc.'
+                  'CCCC`Cc `CCCCCCCCCCC`'CCCCC
+                    CCC `CC: `CCCCCCCCCCc `'CCCc
+                     `'   C `: `CCCCCCCCCCccc, `
+                           '  '  `'CCCCCCCCCCCCCC'`
+                                    ```~~~~``` [/yellow]
+When they get back from the [bold blue]Cloud[/bold blue] you will have even more [bold yellow]Wonders[/bold yellow]
+'''
 FINISHED = '''You've made it out of the [bold orange]Cave of Wonders[/bold orange] on your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink]!
 
 [green]What treasures did you get?[/green]
@@ -74,7 +108,7 @@ Type cd [bold cyan]Cave_of_Wonders[/bold cyan]
 
 To see the log of your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink] ride 
 
-Type [bold red]pyats logs view[/bold red]
+Type [bold bright_red]pyats logs view[/bold bright_red]
 
 
 Written by John Capobianco March 2021

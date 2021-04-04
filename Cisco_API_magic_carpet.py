@@ -81,7 +81,8 @@ class Collect_Information(aetest.Testcase):
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             # ---------------------------------------
-            # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data
+            # Send Version / Serial Numbers to Cisco APIs 
+            # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed API Data
             # ---------------------------------------         
             
             with steps.start('Store data',continue_=True) as step:
@@ -89,7 +90,8 @@ class Collect_Information(aetest.Testcase):
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
                     recommended_release_template = env.get_template('recommended_release.j2')
-                    
+                    psirt_template = env.get_template('psirt.j2')
+
                     with open("api_credentials/cisco.yaml", 'r') as f:
                         api_credentials = yaml.safe_load(f)
 
@@ -132,7 +134,43 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/APIs/Recommended_Release/%s_recommended_release.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/APIs/Recommended_Release/%s_recommended_release.md --output Cave_of_Wonders/Cisco/APIs/Recommended_Release/%s_recommended_release_mind_map.html" % (device.alias,device.alias))
                     print("Our Monkey Friend is Back from the Cloud")
-                    
+
+                    with open("api_credentials/cisco.yaml", 'r') as f:
+                        api_credentials = yaml.safe_load(f)
+
+                    psirt_api_username = api_credentials['APIs']['psirt']['psirt_api_username']
+                    psirt_api_password = api_credentials['APIs']['psirt']['psirt_api_password']
+
+                    oauth_token_raw = requests.post("https://cloudsso.cisco.com/as/token.oauth2?grant_type=client_credentials&client_id=%s&client_secret=%s" % (psirt_api_username,psirt_api_password))
+                    oauth_token_json = oauth_token_raw.json()
+                    oauth_headers = {"Authorization": "%s %s" % (oauth_token_json['token_type'],oauth_token_json['access_token'])}
+
+                    print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                    for version,value in self.parsed_show_version.items():
+                        with steps.start('Calling API',continue_=True) as step:
+                            try:
+                                psirt_raw = requests.get("https://api.cisco.com/security/advisories/iosxe?version=%s" % value['version'], headers=oauth_headers)
+                            except Exception as e:
+                                step.failed('Could not parse it correctly\n{e}'.format(e=e))                           
+                        
+                        psirt_json = psirt_raw.json()
+
+                        with open("Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.json" % device.alias, "w") as fid:
+                          json.dump(psirt_json, fid, indent=4, sort_keys=True)
+
+                        with open("Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.yaml" % device.alias, "w") as yml:
+                          yaml.dump(psirt_json, yml, allow_unicode=True)
+
+                        for filetype in filetype_loop:
+                            parsed_output_type = psirt_template.render(to_parse_psirt=psirt_json['json'],filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report.md --output Cave_of_Wonders/Cisco/APIs/PSIRT/%s_PSIRT_report_mind_map.html" % (device.alias,device.alias))
+                    print("Our Monkey Friend is Back from the Cloud")
+
                 # Show Inventory
                 if hasattr(self, 'parsed_show_inventory'):
                     serial_2_info_4500_template = env.get_template('serial_2_info.j2')

@@ -1,0 +1,8 @@
+{% if filetype_loop_jinja2 == "csv" %}ID,Title,Bug ID,CVEs,Base Score,Severity,First Fixed,Made Public,Last Updated,Status,Detailed URL,Vulernable{% if to_parse_psirt.errorCode is defined %}
+N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,{{ to_parse_psirt.errorMessage }}{% else %}{% for advisory in to_parse_psirt.advisories %}{% for bugID in advisory.bugIDs %}
+{{ advisory.advisoryId }},{{ advisory.advisoryTitle | regex_replace(','," ") }},{{ bugID }},{{ advisory.cves | regex_replace(','," ") | regex_replace("\['"," ") | regex_replace("'\]"," ") }},{{ advisory.cvssBaseScore }},{{ advisory.sir }},{{ advisory.firstFixed | regex_replace(','," ") | regex_replace("\['"," ") | regex_replace("'\]"," ") }},{{ advisory.firstPublished }},{{ advisory.lastUpdated }},{{ advisory.status }},{{ advisory.publicationUrl }},YES{% endfor %}{% endfor %}{% endif %}
+{% else %}{% if filetype_loop_jinja2 == "md" %}
+MD HERE
+{% else %}
+HTML HERE
+{% endif %}{% endif %}

@@ -310,9 +310,11 @@ Launch your web browser and visit
 
 `http://{{ your server IP }}:8888/`
 
-## Don't have your own lab gear to test with?
+# Don't have your own lab gear to test with?
 
-[Test Magic Carpet using the Cisco DevNet Sandbox](docs/01_devnetsb.md)
+[Test Magic Carpet using the Cisco DevNet IOS-XE Sandbox](docs/01_devnetsb_ios_xe_csr.md)
+
+[Test Magic Carpet using the Cisco DevNet Nexus 9k Sandbox](docs/03_devnetsb_nxos_nexus9k.md)
 ## Supported Command Index
 
 Cisco IOS-XE:

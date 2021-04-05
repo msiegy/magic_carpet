@@ -78,6 +78,13 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
+            # Show BGP Sessions
+            with steps.start('Parsing show bgp sessions',continue_=True) as step:
+                try:
+                    self.parsed_show_bgp_sessions = device.parse("show bgp sessions")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
             # Show Interfaces Status
             with steps.start('Parsing show interface status',continue_=True) as step:
                 try:
@@ -96,6 +103,13 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Parsing show ip interface brief',continue_=True) as step:
                 try:
                     self.parsed_show_ip_int_brief = device.parse("show ip interface brief")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # Show IP OSPF Layer 3 Command only 
+            with steps.start('Parsing show ip ospf',continue_=True) as step:
+                try:
+                    self.parsed_show_ip_ospf = device.parse("show ip ospf")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -180,6 +194,25 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
+                # Show BGP Sessions
+                if hasattr(self, 'parsed_show_bgp_sessions'):
+                    sh_bgp_sessions_template = env.get_template('show_bgp_sessions.j2')                  
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_bgp_sessions, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_bgp_sessions, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_bgp_sessions_template.render(to_parse_bgp=self.parsed_show_bgp_sessions,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions_mind_map.html" % (device.alias,device.alias))
+
                 # Show interface status
                 if hasattr(self, 'parsed_show_int_status'):
                     sh_int_status_template = env.get_template('show_int_status.j2')
@@ -237,6 +270,25 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
+
+                # Show IP OSPF
+                if hasattr(self, 'parsed_show_ip_ospf'):
+                    sh_ip_ospf_template = env.get_template('show_ip_ospf.j2')
+                    
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_ip_ospf, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_ip_ospf, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_ip_ospf_template.render(to_parse_ip_ospf=self.parsed_show_ip_ospf['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip Route
                 if hasattr(self, 'parsed_show_ip_route'):

@@ -8,7 +8,7 @@ You can now run Magic Carpet against a Nexus 9000 in the Cisco DevNet Sandbox.  
 
 ![DevNet Search](images/03_devnetsb-01.png)
 
->Select one of the reserved instances - We recommend using the instance running the latest version of IOS-XE.
+>Select one of the reserved instances - We recommend using the instance running the latest version of NXOS.
 
 ![DevNet Reserve](images/03_devnetsb-02.png)
 
@@ -42,9 +42,9 @@ In about 15 to 20 minutes, you should receive another email from Cisco with the 
 
 ![AnyConnect](images/01_devnetsb-05.png)
 
-Once connected, you will have direct network access to the CSR1000v in DevNet.
+Once connected, you will have direct network access to the Nexus 9000 in DevNet.
 
-The "IOS-XE on CSR" tab in the DevNet console will show you the details you need to connect to the device, however we have already added this information to the `testbed/testbed_DevNet_CSR1000v_Sandbox.yaml` file.
+The "NXOS on Nexus 9k" tab in the DevNet console will show you the details you need to connect to the device, however we have already added this information to the `testbed/testbed_DevNet_Nexus9k_Sandbox.yaml` file.
 
 You can confirm it to be sure.
 

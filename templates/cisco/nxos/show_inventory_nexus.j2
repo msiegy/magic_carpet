@@ -1,0 +1,23 @@
+{% if filetype_loop_jinja2 == "csv" %}Slot,Description,PID,Serial Number{% for part in to_parse_inventory_name %}
+{{ part }},{{ to_parse_inventory_name[part].description }},{{ to_parse_inventory_name[part].pid }},{{ to_parse_inventory_name[part].serial_number }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show Inventory
+| Slot | Description | PID | Serial Number |
+| ---- | ----------- | --- | ------------- |{% for part in to_parse_inventory_name %}
+| {{ part }} | {{ to_parse_inventory_name[part].description }} | {{ to_parse_inventory_name[part].pid }} | {{ to_parse_inventory_name[part].serial_number }} |{% endfor %}{% else %}
+<html><body>
+<h1>Show Inventory</h1>
+<table style="width:100%">
+  <tr>
+    <th>Slot</th>
+    <th>Description</th>
+    <th>PID</th>
+    <th>Serial Number</th>   
+  </tr>{% for part in to_parse_inventory_name %}
+<tr>
+    <td>{{ part }}</td>
+    <td>{{ to_parse_inventory_name[part].description }}</td>
+    <td>{{ to_parse_inventory_name[part].pid }}</td>
+    <td>{{ to_parse_inventory_name[part].serial_number }}</td>
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

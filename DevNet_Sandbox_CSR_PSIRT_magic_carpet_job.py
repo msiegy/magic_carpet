@@ -1,7 +1,7 @@
 '''
 To run the job:
 
-$ pyats run job DevNet_Sandbox_PSIRT_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
+$ pyats run job DevNet_Sandbox_CSR_PSIRT_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
 
 '''
 
@@ -23,7 +23,7 @@ def main(runtime):
         testbed = runtime.testbed
 
     # Find the location of the script in relation to the job file
-    testscript = os.path.join(os.path.dirname(__file__), 'Cisco_API_magic_carpet.py')
+    testscript = os.path.join(os.path.dirname(__file__), 'DevNet_Sandbox_CSR_PSIRT_magic_carpet.py')
 
     # run script
     runtime.tasks.run(testscript=testscript, testbed=testbed)

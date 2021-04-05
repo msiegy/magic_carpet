@@ -8,7 +8,7 @@
             "neighbor": {
                 "172.16.0.2": {
                     "connections_dropped": 0,
-                    "last_flap": "00:44:23",
+                    "last_flap": "02:00:26",
                     "last_read": "never",
                     "last_write": "never",
                     "local_port": 0,

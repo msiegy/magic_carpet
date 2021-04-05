@@ -3,6 +3,7 @@
 # ----------------
 # Written by John Capobianco, March 2021
 # Copyright (c) 2021 John Capobianco
+
 # ----------------
 # Python
 # ----------------
@@ -75,6 +76,13 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Parsing show access-lists',continue_=True) as step:
                 try:
                     self.parsed_show_access_lists = device.parse("show access-lists")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # show bgp process vrf all
+            with steps.start('Parsing show bgp process vrf all',continue_=True) as step:
+                try:
+                    self.parsed_show_bgp_process_vrf_all = device.parse("show bgp process vrf all")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -193,6 +201,25 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+
+                # Show BGP process vrf all
+                if hasattr(self, 'parsed_show_bgp_process_vrf_all'):
+                    sh_bgp_process_vrf_all_template = env.get_template('show_bgp_process_vrf_all.j2')                  
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_bgp_process_vrf_all, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_bgp_process_vrf_all, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_bgp_process_vrf_all_template.render(to_parse_bgp=self.parsed_show_bgp_process_vrf_all,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all_mind_map.html" % (device.alias,device.alias))
 
                 # Show BGP Sessions
                 if hasattr(self, 'parsed_show_bgp_sessions'):

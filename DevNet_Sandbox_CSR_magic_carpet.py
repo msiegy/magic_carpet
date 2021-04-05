@@ -92,14 +92,12 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            # Show IP ARP - Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":            
-                with steps.start('Parsing show ip arp',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_arp = device.parse("show ip arp")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP ARP - Layer 3 Command only     
+            with steps.start('Parsing show ip arp',continue_=True) as step:
+                try:
+                    self.parsed_show_ip_arp = device.parse("show ip arp")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             # Show IP Interface Brief
             with steps.start('Parsing show ip interface brief',continue_=True) as step:
@@ -109,12 +107,11 @@ class Collect_Information(aetest.Testcase):
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             # Show IP Route - Layer 3 Command Only
-            if device.type == "router":
-                with steps.start('Parsing show ip route',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_route = device.parse("show ip route")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            with steps.start('Parsing show ip route',continue_=True) as step:
+                try:
+                    self.parsed_show_ip_route = device.parse("show ip route")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
             # Show Version
             with steps.start('Parsing show version',continue_=True) as step:

@@ -1,0 +1,18 @@
+{% if filetype_loop_jinja2 == "csv" %}Total Entries
+{{ to_parse_ip_arp.entries_total }}
+{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Show IP ARP (VRF) Statistics
+| Total Entries |
+| ------------- |
+| {{ to_parse_ip_arp.entries_total }} |{% else %}
+<html><body>
+<h1>Show IP ARP VRF STATSITICS</h1>
+<table style="width:100%">
+  <tr>
+    <th>Total Entries</th>
+  </tr>
+  <tr>
+    <td>{{ to_parse_ip_arp.entries_total }}</td>
+  </tr>
+</table>
+</body></html>{% endif %}{% endif %}

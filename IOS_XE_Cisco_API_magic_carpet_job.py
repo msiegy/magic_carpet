@@ -1,7 +1,7 @@
 '''
 To run the job:
 
-$ pyats run job Cisco_API_magic_carpet_job.py --testbed-file testbed/testbed_cisco_api.yaml
+$ pyats run job IOS_XE_Cisco_API_magic_carpet_job.py --testbed-file testbed/testbed_cisco_api.yaml
 
 '''
 
@@ -23,7 +23,7 @@ def main(runtime):
         testbed = runtime.testbed
 
     # Find the location of the script in relation to the job file
-    testscript = os.path.join(os.path.dirname(__file__), 'Cisco_API_magic_carpet.py')
+    testscript = os.path.join(os.path.dirname(__file__), 'IOS_XE_Cisco_API_magic_carpet.py')
 
     # run script
     runtime.tasks.run(testscript=testscript, testbed=testbed)

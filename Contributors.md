@@ -4,7 +4,7 @@
 
 John Capobianco
 
-    Cisco IOS-XE
+    Cisco IOS-XE:
     
         show access lists
 
@@ -64,6 +64,38 @@ John Capobianco
 
         show vrf
 
+    Cisco NXOS:
+
+        show access lists
+       
+        show interfaces status
+    
+        show inventory
+
+        show ip arp
+
+        show ip arp vrf {{ vrf }}
+
+        show ip interface brief
+
+        show ip ospf
+
+        show ip route
+
+        show ip route vrf {{ vrf }}
+
+        show mac address-table
+
+        show version
+
+        show vlan
+
+        show vrf
+
+        show vrf all detail
+
+        show vrf all interface
+
     BIG-IP 
 
         mgmt/tm/ltm/virtual
@@ -75,6 +107,8 @@ John Capobianco
     Added F5 REST API Support 
 
     Added Cisco DevNet CSR1000v Sandbox Support
+
+    Added Cisco DevNet Nexus9k Sandbox Support
 
     Added Cisco.co API integrations:
 
@@ -114,10 +148,6 @@ Artem Kotik
     
     Extend .gitignore Python
     
-Daniel Teycheney
-
-    CI testing shell structure
-
 Renato Oliveira
 
     Converted ASCII Art to Python libary 

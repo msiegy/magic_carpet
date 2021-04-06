@@ -1,6 +1,0 @@
-
-# Show Port-Channel Summary
-| Port-Channel | Bundle ID | Layer | Type | Status | Protocol | Member Interface | Flags |
-| ------------ | --------- | ----- | ---- | ------ | -------- | ---------------- | ----- |
-| Port-channel11 | 11 | switched | eth | down | none | Ethernet1/1 | D |
-| Port-channel11 | 11 | switched | eth | down | none | Ethernet1/2 | D |

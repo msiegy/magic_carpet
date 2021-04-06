@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Show IP Route NETJSON Graph</title>
+    <meta charset="utf-8">
+    <link href="/src/netjsongraph.css" rel="stylesheet">
+    <link href="/src/netjsongraph-theme.css" rel="stylesheet">
+    <style>body {overflow: hidden}</style>
+    </head>
+    <body>
+    <script src="/lib/d3.min.js"></script>
+    <script src="/src/netjsongraph.js"></script>
+    <script>
+        d3.netJsonGraph("/Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/{{ device_id }}_show_ip_route_netjson.json", {
+            circleRadius: (node) => {
+                return 10;
+            }
+        });
+    </script>    
+        <script>d3.netJsonGraph("");</script>
+    </body>
+</html>

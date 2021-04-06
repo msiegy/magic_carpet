@@ -165,3 +165,26 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# NETJSON 
+._*
+.DS_*
+.vscode
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules/
+
+# Version lock
+package-lock.json
+yarn.lock
+
+# Folder
+dist
+coverage

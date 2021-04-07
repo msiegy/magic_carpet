@@ -16,6 +16,10 @@ Featuring
 
 ![Markmap](/images/MarkMapLogo.PNG)
 
+And now 
+
+![NETJSON](/images/NETJSON.PNG)
+
 Welcome!
 
 Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!  
@@ -31,6 +35,8 @@ A Markdown file (command_output.md)
 An HTML page (comand_output.html)
 
 An interactive HTML Mind Map (command_output_mind_map.html)
+
+An interactive HTML NETJSON NetGraph (command_output_netjson.html)
 
 Instant messages to WebEx, Slack, Discord, and others
 
@@ -102,7 +108,7 @@ Download or clone the Magic Carpet repository:
 git clone https://github.com/automateyournetwork/magic_carpet
 ```
 
-Install pyATS, Rich, and markmap into your environment:
+Install pyATS, Rich, markmap, and netjsongraph into your environment:
 
 ```console
 pip install pyats[full]
@@ -116,6 +122,7 @@ pip install rich
 sudo apt update
 sudo apt install npm
 sudo npm install markmap-cli -g
+npm install netjsongraph.js --save
 ```
 
 ---
@@ -286,6 +293,10 @@ Another HTML page, an interactive mindmap, is also created from the Markdown fil
 
 ![Mind_Map_Output](/images/CaveOfWonders_IP_Route_Mind_Map.PNG)
 
+Another Interactive HTML page, this time a NETJSON NetGraph, is also crteated 
+
+![NETJSON_NetGraph_Output](/images/CaveOfWonders_IP_Route_netgraph.PNG)
+
 To launch a Python web server and make the Cave of Wonders available in a browser, where you can view the HTML pages:
 
 Launch a local web server available on the same host:
@@ -329,6 +340,8 @@ Cisco IOS-XE:
 
     show authentication session interface {{ interface }} detail
 
+    show cdp neighbors
+    
     show cdp neighbors details
 
     show environment all

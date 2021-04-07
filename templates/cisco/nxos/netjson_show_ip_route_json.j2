@@ -1,0 +1,23 @@
+{
+    "type": "NetworkRoutes",
+    "protocol": "olsrv2",
+    "version": "0.8.2",
+    "revision": "v0.8.2-6-ge2e3acc",
+    "metric": "ff_dat_metric",
+    "router_id": "{{ device_id }}",
+    "routes": [{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set outer_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% if outer_loop.index > 0 %}
+        {
+            "destination": "{{ route }}",
+            "next": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
+            "cost": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].metric }}",
+            "device": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}"{% if outer_loop.last %}
+        }{% else %}
+        },{% endif %}{% else %}
+        {
+            "destination": "{{ route }}",
+            "next": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
+            "cost": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].metric }}",
+            "device": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}"
+        }{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
+    ]
+}

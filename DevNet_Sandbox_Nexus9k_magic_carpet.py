@@ -320,7 +320,7 @@ class Collect_Information(aetest.Testcase):
                 # Show ip Route
                 if hasattr(self, 'parsed_show_ip_route'):
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
-
+                    
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_route, fid, indent=4, sort_keys=True)
 

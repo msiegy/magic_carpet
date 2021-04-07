@@ -16,6 +16,8 @@ John Capobianco
 
         show authentication session inteface {{ interface }} detail
 
+        show cdp neighbors
+        
         show cdp neighbors details
 
         show environment all
@@ -117,6 +119,8 @@ John Capobianco
         Serial 2 Info (which sends the serial numbers to the API and returns contractual state)
 
         Product Security Indident Response Team (PSIRT) (which sends your running version and finds out if it is vulnerable)
+
+    NETJSON NetGraph Integration
 
 Sam Johnson
 

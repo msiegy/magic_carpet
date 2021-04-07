@@ -320,7 +320,9 @@ class Collect_Information(aetest.Testcase):
                 # Show ip Route
                 if hasattr(self, 'parsed_show_ip_route'):
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
-                    
+                    sh_ip_route_netjson_json_template = env.get_template('show_ip_route_netjson_json.j2')
+                    sh_ip_route_netjson_html_template = env.get_template('show_ip_route_netjson_html.j2')
+
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_route, fid, indent=4, sort_keys=True)
 
@@ -335,6 +337,15 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_ip_route_netjson_json_template.render(to_parse_ip_route=self.parsed_show_ip_route['vrf'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_ip_route_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show mac address-table
                 if hasattr(self, 'parsed_show_mac_address_table'):

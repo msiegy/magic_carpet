@@ -95,10 +95,17 @@ class Collect_Information(aetest.Testcase):
                     except Exception as e:
                         step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-            # Show CDP Neighbors            
+            # Show CDP Neighbors
             with steps.start('Parsing show cdp neighbors',continue_=True) as step:
                 try:
-                    self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors detail")
+                    self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors")
+                except Exception as e:
+                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+
+            # Show CDP Neighbors Detail           
+            with steps.start('Parsing show cdp neighbors detail',continue_=True) as step:
+                try:
+                    self.parsed_show_cdp_neighbors_detail = device.parse("show cdp neighbors detail")
                 except Exception as e:
                     step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
@@ -481,7 +488,8 @@ class Collect_Information(aetest.Testcase):
                 # Show CDP Neighbors
                 if hasattr(self, 'parsed_show_cdp_neighbors'):
                     sh_cdp_neighbors_template = env.get_template('show_cdp_neighbors.j2')
-                    sh_cdp_neighbors_totals_template = env.get_template('show_cdp_neighbors_totals.j2')
+                    sh_cdp_neighbors_netjson_json_template = env.get_template('show_cdp_neighbor_netjson_json.j2')
+                    sh_cdp_neighbors_netjson_html_template = env.get_template('show_cdp_neighbor_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_cdp_neighbors, fid, indent=4, sort_keys=True)
@@ -490,20 +498,60 @@ class Collect_Information(aetest.Testcase):
                       yaml.dump(self.parsed_show_cdp_neighbors, yml, allow_unicode=True)
 
                     for filetype in filetype_loop:                    
-                        parsed_output_type = sh_cdp_neighbors_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['index'],filetype_loop_jinja2=filetype)
-                        parsed_totals = sh_cdp_neighbors_totals_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors,filetype_loop_jinja2=filetype)
+                        parsed_output_type = sh_cdp_neighbors_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['cdp'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_output_type)               
-
-                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_totals)
-
+                          fh.write(parsed_output_type)  
+                                       
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
 
-                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_totals_mind_map.html" % (device.alias,device.alias))
+                    parsed_output_netjson_json = sh_cdp_neighbors_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['cdp'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_cdp_neighbors_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Show CDP Neighbors Details
+                if hasattr(self, 'parsed_show_cdp_neighbors_detail'):
+                    sh_cdp_neighbors_detail_template = env.get_template('show_cdp_neighbors_details.j2')
+                    sh_cdp_neighbors_detail_totals_template = env.get_template('show_cdp_neighbors_details_totals.j2')
+                    sh_cdp_neighbors_detail_netjson_json_template = env.get_template('show_cdp_neighbor_details_netjson_json.j2')
+                    sh_cdp_neighbors_detail_netjson_html_template = env.get_template('show_cdp_neighbor_details_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_cdp_neighbors_detail, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_cdp_neighbors_detail, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:                    
+                        parsed_output_type = sh_cdp_neighbors_detail_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors_detail['index'],filetype_loop_jinja2=filetype)
+                        parsed_totals = sh_cdp_neighbors_detail_totals_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors_detail,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_output_type)               
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_totals.%s" % (device.alias,filetype), "w") as fh:
+                          fh.write(parsed_totals)
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_mind_map.html" % (device.alias,device.alias))
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_detail_totals.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_totals_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_cdp_neighbors_detail_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors_detail['index'],filetype_loop_jinja2=filetype,device_ip = device.connections.cli.ip)
+                    parsed_output_netjson_html = sh_cdp_neighbors_detail_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show environment all
                 if hasattr(self, 'parsed_show_environment'):
@@ -618,9 +666,8 @@ class Collect_Information(aetest.Testcase):
                     # 3850
                     sh_inventory_3850_template = env.get_template('show_inventory_3850.j2')
 
-                    # 9300
-                    # The parser for the 9300 has problems with SHOW INVENTORY Commeting this out until there is a fix
-                    #sh_inventory_9300_template = env.get_template('show_inventory_9300.j2')
+                    9300
+                    sh_inventory_9300_template = env.get_template('show_inventory_9300.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_inventory, fid, indent=4, sort_keys=True)
@@ -650,14 +697,14 @@ class Collect_Information(aetest.Testcase):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                         # 9300
-                        #elif device.platform == "cat9k":
-                            #parsed_output_type = sh_inventory_9300_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
+                        elif device.platform == "cat9300":
+                            parsed_output_type = sh_inventory_9300_template.render(to_parse_inventory=self.parsed_show_inventory['slot'],filetype_loop_jinja2=filetype)
   
-                            #with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
-                                #fh.write(parsed_output_type)
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
+                                fh.write(parsed_output_type)
 
-                            #if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
-                                #os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
+                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
+                                os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip arp
                 if hasattr(self, 'parsed_show_ip_arp'):
@@ -796,6 +843,8 @@ class Collect_Information(aetest.Testcase):
                 # Show IP Route
                 if hasattr(self, 'parsed_show_ip_route'):
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
+                    sh_ip_route_netjson_json_template = env.get_template('show_ip_route_netjson_json.j2')
+                    sh_ip_route_netjson_html_template = env.get_template('show_ip_route_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_ip_route, fid, indent=4, sort_keys=True)
@@ -811,6 +860,15 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_ip_route_netjson_json_template.render(to_parse_ip_route=self.parsed_show_ip_route['vrf'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_ip_route_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show ISSU State Details
                 if hasattr(self, 'parsed_show_issu_state'):

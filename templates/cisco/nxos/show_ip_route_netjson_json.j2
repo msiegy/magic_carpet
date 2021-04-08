@@ -1,6 +1,6 @@
 {
     "type": "NetworkGraph",
-    "label": "Show CDP Neighbor NETJSON Netgraph",
+    "label": "Show IP ROUTE",
     "protocol": "OLSR",
     "version": "0.6.6.2",
     "metric": "ETX",
@@ -10,31 +10,23 @@
         },{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}
         {
             "id": "{{ route }}"
-        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
+        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% set vrf_loop = loop %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set route_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set next_hop_loop = loop %}
         {
-            "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"{% if outer_loop.last %}
-        },{% else %}
-        }{% endif %}{% else %}
-        {
-            "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"
-        }{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
+            "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"{% if (vrf_loop.last) and (route_loop.last) and (next_hop_loop.last) %}
+        }{% else %}         
+        },{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
     ],
     "links": [{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}
         {
             "source": "{{ device_alias }}",
             "target": "{{ route }}",
             "cost": 2
-        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
+        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% set vrf_loop = loop %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set route_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set next_hop_loop = loop %}
         {
             "source": "{{ route }}",
             "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
-            "cost": 2{% if outer_loop.last %}
-        },{% else %}
-        }{% endif %}{% else %}
-        {
-            "source": "{{ route }}",
-            "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
-            "cost": 2
-        }{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
+            "cost": 2{% if (vrf_loop.last) and (route_loop.last) and (next_hop_loop.last) %}
+        }{% else %}
+        },{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
     ]
 }

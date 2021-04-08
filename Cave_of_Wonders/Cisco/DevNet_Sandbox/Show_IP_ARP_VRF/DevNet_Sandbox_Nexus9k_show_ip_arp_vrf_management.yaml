@@ -5,7 +5,7 @@ dictitems:
       ipv4:
         neighbors:
           10.10.20.254:
-            age: 00:01:38
+            age: 00:07:46
             ip: 10.10.20.254
             link_layer_address: 0050.56bf.db17
             origin: dynamic

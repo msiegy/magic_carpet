@@ -2,6 +2,6 @@
 # Show IP Route VRF
 | VRF | Address Family | Route | Active | Metric | Route Preference | Source Protocol | Next Hop Number | Next Hop | Outgoing Interface | Updated | Best Unicast Next Hop |
 | --- | -------------- | ----- | ------ | ------ | ---------------- | --------------- | --------------- | -------- | ------------------ | ------- | --------------------- |
-| management | ipv4 | 0.0.0.0/0 | True | 0 | 1 | static | 1 | 10.10.20.254 | N/A | 00:54:18 | True |
-| management | ipv4 | 10.10.20.0/24 | True | 0 | 0 | direct | 1 | 10.10.20.58 | mgmt0 | 00:54:18 | True |
-| management | ipv4 | 10.10.20.58/32 | True | 0 | 0 | local | 1 | 10.10.20.58 | mgmt0 | 00:54:18 | True |
+| management | ipv4 | 0.0.0.0/0 | True | 0 | 1 | static | 1 | 10.10.20.254 | N/A | 03:33:58 | True |
+| management | ipv4 | 10.10.20.0/24 | True | 0 | 0 | direct | 1 | 10.10.20.58 | mgmt0 | 03:33:58 | True |
+| management | ipv4 | 10.10.20.58/32 | True | 0 | 0 | local | 1 | 10.10.20.58 | mgmt0 | 03:33:58 | True |

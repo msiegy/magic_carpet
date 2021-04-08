@@ -223,7 +223,7 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all_mind_map.html" % (device.alias,device.alias))
 
-                    parsed_output_netjson_json = sh_bgp_process_vrf_all_netjson_json_template.render(to_parse_bgp=self.parsed_show_bgp_process_vrf_all,filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_json = sh_bgp_process_vrf_all_netjson_json_template.render(to_parse_bgp=self.parsed_show_bgp_process_vrf_all,device_alias = device.alias)
                     parsed_output_netjson_html = sh_bgp_process_vrf_all_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all_netgraph.json" % device.alias, "w") as fh:
@@ -235,6 +235,8 @@ class Collect_Information(aetest.Testcase):
                 # Show BGP Sessions
                 if hasattr(self, 'parsed_show_bgp_sessions'):
                     sh_bgp_sessions_template = env.get_template('show_bgp_sessions.j2')                  
+                    sh_bgp_sessions_netjson_json_template = env.get_template('show_bgp_sessions_netjson_json.j2')
+                    sh_bgp_sessions_netjson_html_template = env.get_template('show_bgp_sessions_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_bgp_sessions, fid, indent=4, sort_keys=True)
@@ -250,6 +252,15 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_bgp_sessions_netjson_json_template.render(to_parse_bgp=self.parsed_show_bgp_sessions)
+                    parsed_output_netjson_html = sh_bgp_sessions_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show interface status
                 if hasattr(self, 'parsed_show_int_status'):

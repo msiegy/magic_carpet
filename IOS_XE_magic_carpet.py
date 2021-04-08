@@ -506,7 +506,7 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_mind_map.html" % (device.alias,device.alias))
 
-                    parsed_output_netjson_json = sh_cdp_neighbors_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['cdp'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_json = sh_cdp_neighbors_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors['cdp'],device_alias = device.alias)
                     parsed_output_netjson_html = sh_cdp_neighbors_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_netgraph.json" % device.alias, "w") as fh:
@@ -544,7 +544,7 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_detail_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_totals_mind_map.html" % (device.alias,device.alias))
 
-                    parsed_output_netjson_json = sh_cdp_neighbors_detail_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors_detail['index'],filetype_loop_jinja2=filetype,device_ip = device.connections.cli.ip)
+                    parsed_output_netjson_json = sh_cdp_neighbors_detail_netjson_json_template.render(to_parse_cdp_neighbors=self.parsed_show_cdp_neighbors_detail['index'],device_ip = device.connections.cli.ip)
                     parsed_output_netjson_html = sh_cdp_neighbors_detail_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_netgraph.json" % device.alias, "w") as fh:

@@ -1,0 +1,23 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show BGP Sessions",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "172.16.0.1"
+        },
+        
+        {
+            "id": "172.16.0.2"
+        }
+    ],
+    "links": [
+        {
+            "source": "172.16.0.1",
+            "target": "172.16.0.2",
+            "cost": 1
+        }
+    ]
+}

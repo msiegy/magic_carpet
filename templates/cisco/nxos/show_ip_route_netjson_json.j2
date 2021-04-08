@@ -13,8 +13,8 @@
         },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
         {
             "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"{% if outer_loop.last %}
-        }{% else %}
-        },{% endif %}{% else %}
+        },{% else %}
+        }{% endif %}{% else %}
         {
             "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"
         }{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
@@ -29,8 +29,8 @@
             "source": "{{ route }}",
             "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
             "cost": 2{% if outer_loop.last %}
-        }{% else %}
-        },{% endif %}{% else %}
+        },{% else %}
+        }{% endif %}{% else %}
         {
             "source": "{{ route }}",
             "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",

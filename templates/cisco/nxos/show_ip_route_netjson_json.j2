@@ -10,7 +10,7 @@
         },{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}
         {
             "id": "{{ route }}"
-        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set outer_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% if outer_loop.index > 0 %}
+        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
         {
             "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"{% if outer_loop.last %}
         }{% else %}
@@ -24,7 +24,7 @@
             "source": "{{ device_alias }}",
             "target": "{{ route }}",
             "cost": 2
-        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set outer_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% if outer_loop.index > 0 %}
+        },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
         {
             "source": "{{ route }}",
             "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",

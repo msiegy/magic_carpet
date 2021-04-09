@@ -13,9 +13,9 @@ dictitems:
       slots: None
     kernel_uptime:
       days: 0
-      hours: 4
-      minutes: 11
-      seconds: 18
+      hours: 0
+      minutes: 30
+      seconds: 32
     name: Nexus
     os: NX-OS
     reason: Unknown

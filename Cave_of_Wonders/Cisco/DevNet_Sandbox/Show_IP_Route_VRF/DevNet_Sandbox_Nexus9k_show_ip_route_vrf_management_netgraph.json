@@ -1,0 +1,118 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show IP ROUTE VRF management",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "DevNet_Sandbox_Nexus9k"
+        },
+        {
+            "id": "172.16.0.1/32"
+        },
+        {
+            "id": "172.16.1.0/30"
+        },
+        {
+            "id": "172.16.1.1/32"
+        },
+        {
+            "id": "0.0.0.0/0"
+        },
+        {
+            "id": "10.10.20.0/24"
+        },
+        {
+            "id": "10.10.20.58/32"
+        },
+        {
+            "id": "172.16.0.1"         
+        },
+        {
+            "id": "172.16.0.1"         
+        },
+        {
+            "id": "172.16.1.1"         
+        },
+        {
+            "id": "172.16.1.1"         
+        },
+        {
+            "id": "10.10.20.254"         
+        },
+        {
+            "id": "10.10.20.58"         
+        },
+        {
+            "id": "10.10.20.58"
+        }
+    ],
+    "links": [
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "172.16.0.1/32",
+            "cost": 2
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "172.16.1.0/30",
+            "cost": 2
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "172.16.1.1/32",
+            "cost": 2
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "0.0.0.0/0",
+            "cost": 2
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "10.10.20.0/24",
+            "cost": 2
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "10.10.20.58/32",
+            "cost": 2
+        },
+        {
+            "source": "172.16.0.1/32",
+            "target": "172.16.0.1",
+            "cost": 2
+        },
+        {
+            "source": "172.16.0.1/32",
+            "target": "172.16.0.1",
+            "cost": 2
+        },
+        {
+            "source": "172.16.1.0/30",
+            "target": "172.16.1.1",
+            "cost": 2
+        },
+        {
+            "source": "172.16.1.1/32",
+            "target": "172.16.1.1",
+            "cost": 2
+        },
+        {
+            "source": "0.0.0.0/0",
+            "target": "10.10.20.254",
+            "cost": 2
+        },
+        {
+            "source": "10.10.20.0/24",
+            "target": "10.10.20.58",
+            "cost": 2
+        },
+        {
+            "source": "10.10.20.58/32",
+            "target": "10.10.20.58",
+            "cost": 2
+        }
+    ]
+}

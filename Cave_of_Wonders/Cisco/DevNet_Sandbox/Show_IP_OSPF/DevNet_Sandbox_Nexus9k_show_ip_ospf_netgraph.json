@@ -1,0 +1,38 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show IP ROUTE",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "DevNet_Sandbox_Nexus9k"
+        },
+        {
+            "id": "default"
+        },
+        {
+            "id": "172.16.0.1"
+        },
+        {
+            "id": "0.0.0.0"          
+        }
+    ],
+    "links": [
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "default",
+            "cost": 1
+        },
+        {
+            "source": "default",
+            "target": "172.16.0.1",
+            "cost": 2
+        },
+        {
+            "source": "172.16.0.1",
+            "target": "0.0.0.0",
+            "cost": 3          
+        }        
+    ]
+}

@@ -186,6 +186,8 @@ class Collect_Information(aetest.Testcase):
                 # Show access-lists
                 if hasattr(self, 'parsed_show_access_lists'):
                     sh_access_lists_template = env.get_template('show_access_lists.j2')                  
+                    sh_access_lists_netjson_json_template = env.get_template('show_access_lists_netjson_json.j2')
+                    sh_access_lists_netjson_html_template = env.get_template('show_access_lists_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_access_lists, fid, indent=4, sort_keys=True)
@@ -201,6 +203,15 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_access_lists_netjson_json_template.render(to_parse_access_list=self.parsed_show_access_lists,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_access_lists_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show BGP process vrf all
                 if hasattr(self, 'parsed_show_bgp_process_vrf_all'):
@@ -337,7 +348,7 @@ class Collect_Information(aetest.Testcase):
                 if hasattr(self, 'parsed_show_ip_int_brief'):
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
                     sh_ip_int_brief_netjson_json_template = env.get_template('show_ip_int_brief_netjson_json.j2')
-                    sh_ip_int_brief_netjson_html_template = env.get_template('show_ip_int_brief_netjson_html.j2')                    
+                    sh_ip_int_brief_netjson_html_template = env.get_template('show_ip_int_brief_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.json" % device.alias, "w") as fid:
                         json.dump(self.parsed_show_ip_int_brief, fid, indent=4, sort_keys=True)
@@ -426,6 +437,8 @@ class Collect_Information(aetest.Testcase):
                 # Show mac address-table
                 if hasattr(self, 'parsed_show_mac_address_table'):
                     sh_mac_address_table_template = env.get_template('show_mac_address_table.j2')
+                    sh_mac_address_netjson_json_template = env.get_template('show_mac_address_table_netjson_json.j2')
+                    sh_mac_address_netjson_html_template = env.get_template('show_mac_address_table_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_mac_address_table, fid, indent=4, sort_keys=True)
@@ -441,6 +454,15 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_mac_address_netjson_json_template.render(to_parse_mac_address_table=self.parsed_show_mac_address_table['mac_table'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_mac_address_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 # Show port-channel summary
                 if hasattr(self, 'parsed_show_port_channel_summary'):
@@ -475,6 +497,8 @@ class Collect_Information(aetest.Testcase):
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
                     sh_ver_template = env.get_template('show_version.j2')
+                    sh_ver_netjson_json_template = env.get_template('show_version_netjson_json.j2')
+                    sh_ver_netjson_html_template = env.get_template('show_version_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_version, fid, indent=4, sort_keys=True)
@@ -491,14 +515,24 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
+                    parsed_output_netjson_json = sh_ver_netjson_json_template.render(to_parse_version=self.parsed_show_version['platform'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_ver_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
                     sh_vrf_template = env.get_template('show_vrf.j2')
                     sh_vrf_netjson_json_template = env.get_template('show_vrf_netjson_json.j2')
                     sh_vrf_netjson_html_template = env.get_template('show_vrf_netjson_html.j2') 
                     sh_ip_arp_vrf_template = env.get_template('show_ip_arp_vrf.j2')
+                    sh_ip_arp_vrf_netjson_json_template = env.get_template('show_ip_arp_vrf_netjson_json.j2')
+                    sh_ip_arp_vrf_netjson_html_template = env.get_template('show_ip_arp_vrf_netjson_html.j2')
                     sh_ip_arp_vrf_stats_template = env.get_template('show_ip_arp_vrf_statistics.j2')
-                    sh_ip_route_template = env.get_template('show_ip_route_vrf.j2')
                     sh_ip_route_vrf_netjson_json_template = env.get_template('show_ip_route_vrf_netjson_json.j2')
                     sh_ip_route_vrf_netjson_html_template = env.get_template('show_ip_route_vrf_netjson_html.j2')                    
                     
@@ -651,6 +685,15 @@ class Collect_Information(aetest.Testcase):
         
                             if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_statistics_%s.md" % (device.alias,vrf)):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_statistics_%s.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_statistics_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+
+                            parsed_output_netjson_json = sh_ip_arp_vrf_netjson_json_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                            parsed_output_netjson_html = sh_ip_arp_vrf_netjson_html_template.render(device_alias = device.alias,vrf = vrf)
+
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_netgraph.json" % (device.alias,vrf), "w") as fh:
+                                fh.write(parsed_output_netjson_json)               
+
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_netgraph.html" % (device.alias,vrf), "w") as fh:
+                                fh.write(parsed_output_netjson_html)
 
                             # Show IP ROUTE VRF <VRF>
                             with steps.start('Parsing ip route vrf',continue_=True) as step:

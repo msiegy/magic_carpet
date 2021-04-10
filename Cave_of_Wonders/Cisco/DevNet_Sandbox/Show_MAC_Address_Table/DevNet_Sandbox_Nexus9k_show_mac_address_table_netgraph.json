@@ -1,0 +1,38 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show MAC Address-Table",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "DevNet_Sandbox_Nexus9k"
+        },
+        {
+            "id": "-"
+        },
+        {
+            "id": "00bf.dc7e.1b08"
+        },
+        {
+            "id": "Sup-eth1(R)"
+        }
+    ],
+    "links": [
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "-",
+            "cost": 1
+        },
+        {
+            "source": "-",
+            "target": "00bf.dc7e.1b08",
+            "cost": 1
+        },
+        {
+            "source": "00bf.dc7e.1b08",
+            "target": "Sup-eth1(R)",
+            "cost": 1
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-GREETING = '''Hang on tight - we are about to go on a [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/bold yellow][/blink] ride!
+GREETING = '''Hang on tight - we are about to go on a [blink][bold blue]Magic[/bold blue][bold yellow]Carpet[/bold yellow][/blink] ride!
 
 [purple].-.
 [.-''-.,
@@ -19,6 +19,28 @@ _.--.__[_.--'_\__
 '.__ ___/______.__8----''[/purple]
 [bold blue]@@~~~~~~~~~~~~~[/bold blue][bold yellow]~~~~~~~~~~~~~~@@[/bold yellow]
 
+'''
+
+LEARN = '''[red]Make a wish![/red]
+[blink][bold blue]Magic[/bold blue][bold yellow] Carpet[/bold yellow][/blink] is [bright_cyan]learning[/bright_cyan] your heart's desires
+[yellow1]            ..
+            dP/$.
+            $4$$%
+            .ee$$ee.
+                                    .eF3??????$C$r.        .d$$$$$$$$$$$e.
+ .zeez$$$$$be..                    JP3F$5'$5K$?K?Je$.     d$$$FCLze.CC?$$$e
+     """??$$$$$$$$ee..         .e$$$e$CC$???$$CC3e$$$$.  $$$/$$$$$$$$$.$$$$
+            `"?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b $$"$$$$P?CCe$$$$$F
+                 "?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$b$$J?bd$$$$$$$$$F"
+                     "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$d$$F"
+                        "?$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"...
+                            "?$$$$$$$$$$$$$$$$$$$$$$$$$F "$$"$$$$b
+                                "?$$$$$$$$$$$$$$$$$$F"     ?$$$$$F
+                ""????????C"
+               e$$$$$$$$$$$$.
+              .$b CC$????$$F3eF
+            4$bC/%$bdd$b@$Pd??Jbbr
+              ""?$$$$eeee$$$$F?"[/yellow1]
 '''
 
 RUNNING = '''[bright_green]

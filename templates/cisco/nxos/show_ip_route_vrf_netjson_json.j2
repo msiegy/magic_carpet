@@ -12,6 +12,9 @@
             "id": "{{ route }}"
         },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% set vrf_loop = loop %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set route_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set next_hop_loop = loop %}
         {
+            "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}"
+        },
+        {
             "id": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}"{% if (vrf_loop.last) and (route_loop.last) and (next_hop_loop.last) %}
         }{% else %}         
         },{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
@@ -24,9 +27,15 @@
         },{% endfor %}{% endfor %}{% endfor %}{% for vrf in to_parse_ip_route %}{% set vrf_loop = loop %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% set route_loop = loop %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}{% set next_hop_loop = loop %}
         {
             "source": "{{ route }}",
+            "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}",
+            "cost": 2
+        },
+        {
+            "source": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}",
             "target": "{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }}",
-            "cost": 2{% if (vrf_loop.last) and (route_loop.last) and (next_hop_loop.last) %}
-        }{% else %}
+            "cost": 3{% if (vrf_loop.last) and (route_loop.last) and (next_hop_loop.last) %}
+        }
+        {% else %}
         },{% endif %}{% endfor %}{% endfor %}{% endfor %}{% endfor %}
     ]
 }

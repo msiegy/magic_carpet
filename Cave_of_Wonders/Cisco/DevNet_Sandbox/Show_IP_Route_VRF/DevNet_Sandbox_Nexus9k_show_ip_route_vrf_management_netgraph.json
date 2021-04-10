@@ -27,22 +27,43 @@
             "id": "10.10.20.58/32"
         },
         {
-            "id": "172.16.0.1"         
+            "id": "Loopback1"
         },
         {
             "id": "172.16.0.1"         
         },
         {
-            "id": "172.16.1.1"         
+            "id": "Loopback1"
+        },
+        {
+            "id": "172.16.0.1"         
+        },
+        {
+            "id": "Ethernet1/5"
         },
         {
             "id": "172.16.1.1"         
+        },
+        {
+            "id": "Ethernet1/5"
+        },
+        {
+            "id": "172.16.1.1"         
+        },
+        {
+            "id": ""
         },
         {
             "id": "10.10.20.254"         
         },
         {
+            "id": "mgmt0"
+        },
+        {
             "id": "10.10.20.58"         
+        },
+        {
+            "id": "mgmt0"
         },
         {
             "id": "10.10.20.58"
@@ -81,38 +102,74 @@
         },
         {
             "source": "172.16.0.1/32",
-            "target": "172.16.0.1",
+            "target": "Loopback1",
             "cost": 2
+        },
+        {
+            "source": "Loopback1",
+            "target": "172.16.0.1",
+            "cost": 3
         },
         {
             "source": "172.16.0.1/32",
-            "target": "172.16.0.1",
+            "target": "Loopback1",
             "cost": 2
+        },
+        {
+            "source": "Loopback1",
+            "target": "172.16.0.1",
+            "cost": 3
         },
         {
             "source": "172.16.1.0/30",
-            "target": "172.16.1.1",
+            "target": "Ethernet1/5",
             "cost": 2
+        },
+        {
+            "source": "Ethernet1/5",
+            "target": "172.16.1.1",
+            "cost": 3
         },
         {
             "source": "172.16.1.1/32",
-            "target": "172.16.1.1",
+            "target": "Ethernet1/5",
             "cost": 2
+        },
+        {
+            "source": "Ethernet1/5",
+            "target": "172.16.1.1",
+            "cost": 3
         },
         {
             "source": "0.0.0.0/0",
-            "target": "10.10.20.254",
+            "target": "",
             "cost": 2
+        },
+        {
+            "source": "",
+            "target": "10.10.20.254",
+            "cost": 3
         },
         {
             "source": "10.10.20.0/24",
-            "target": "10.10.20.58",
+            "target": "mgmt0",
             "cost": 2
         },
         {
-            "source": "10.10.20.58/32",
+            "source": "mgmt0",
             "target": "10.10.20.58",
+            "cost": 3
+        },
+        {
+            "source": "10.10.20.58/32",
+            "target": "mgmt0",
             "cost": 2
+        },
+        {
+            "source": "mgmt0",
+            "target": "10.10.20.58",
+            "cost": 3
         }
+        
     ]
 }

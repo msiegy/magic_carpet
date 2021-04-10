@@ -1,0 +1,105 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show Version",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "DevNet_Sandbox_Nexus9k"
+        },
+        {
+            "id": "4287040 kB"
+        },
+        {
+            "id": "Nexus9000 C9500v"
+        },
+        {
+            "id": "Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz"
+        },
+        {
+            "id": "sbx-n9kv"
+        },
+        {
+            "id": "7939724 kB"
+        },
+        {
+            "id": "9FJTZNHQ62X"
+        },
+        {
+            "id": "Supervisor Module"
+        },
+        {
+            "id": "None"
+        },
+        {
+            "id": "Unknown"
+        },
+        {
+            "id": "7/20/2020 20:00:00 [07/21/2020 06:30:11]"
+        },
+        {
+            "id": "bootflash:///nxos.9.3.5.bin"
+        },
+        {
+            "id": "9.3(5)"
+        }
+    ],
+    "links": [
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "4287040 kB",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "Nexus9000 C9500v",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "sbx-n9kv",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "7939724 kB",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "9FJTZNHQ62X",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "Supervisor Module",
+            "cost": 1
+        },
+        {
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "None",
+            "cost": 1
+        }, 
+        {
+            "source": "4287040 kB",
+            "target": "7/20/2020 20:00:00 [07/21/2020 06:30:11]",
+            "cost": 1
+        },
+        {
+            "source": "4287040 kB",
+            "target": "bootflash:///nxos.9.3.5.bin",
+            "cost": 1
+        },
+        {
+            "source": "4287040 kB",
+            "target": "9.3(5)",
+            "cost": 1
+        }        
+    ]
+}

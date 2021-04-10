@@ -22,7 +22,7 @@ from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, RUNNING, FINISHED
+from ascii_art import GREETING, LEARN,RUNNING, FINISHED
 
 # ----------------
 # Get logger for script
@@ -67,6 +67,13 @@ class Collect_Information(aetest.Testcase):
         # Loop over devices
         # ---------------------------------------
         for device in testbed:
+        
+        # ---------------------------------------
+        # Learn state
+        # ---------------------------------------
+            print(Panel.fit(Text.from_markup(LEARN, justify="center")))            
+            self.learned_acl = device.learn('acl').info
+
             # ---------------------------------------
             # Execute parser for various show commands
             # ---------------------------------------
@@ -180,8 +187,37 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------
             # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data
             # ---------------------------------------         
-            
+
             with steps.start('Store data',continue_=True) as step:
+
+                # Learned ACL
+                sh_access_lists_template = env.get_template('show_access_lists.j2')
+                sh_access_lists_netjson_json_template = env.get_template('show_access_lists_netjson_json.j2')
+                sh_access_lists_netjson_html_template = env.get_template('show_access_lists_netjson_html.j2')
+
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.json" % device.alias, "w") as fid:
+                    json.dump(self.learned_acl, fid, indent=4, sort_keys=True)
+
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.yaml" % device.alias, "w") as yml:
+                    yaml.dump(self.learned_acl, yml, allow_unicode=True)                
+
+                for filetype in filetype_loop:
+                    parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.%s" % (device.alias,filetype), "w") as fh:
+                        fh.write(parsed_output_type) 
+                    
+                if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md" % device.alias):
+                    os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_mind_map.html" % (device.alias,device.alias))
+
+                parsed_output_netjson_json = sh_access_lists_netjson_json_template.render(to_parse_access_list=self.parsed_show_access_lists,device_alias = device.alias)
+                parsed_output_netjson_html = sh_access_lists_netjson_html_template.render(device_alias = device.alias)
+
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.json" % device.alias, "w") as fh:
+                    fh.write(parsed_output_netjson_json)               
+
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
+                    fh.write(parsed_output_netjson_html)
 
                 # Show access-lists
                 if hasattr(self, 'parsed_show_access_lists'):

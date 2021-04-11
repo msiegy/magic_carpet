@@ -1,0 +1,10 @@
+Interface,ARP Dynamic Learning Local Proxy Enabled,ARP Dynamic Learning Proxy Enable
+mgmt0,False,False
+Ethernet1/5,False,False
+loopback1,False,False
+Vlan105,False,False
+Vlan104,False,False
+Vlan103,False,False
+Vlan102,False,False
+Vlan101,False,False
+Vlan100,False,False

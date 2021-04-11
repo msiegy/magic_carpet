@@ -10,23 +10,23 @@
         },
         {% for vrf in to_parse_bgp.vrf %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
         {
-            "id": "{{ to_parse_bgp.vrf[vrf].router_id }}"{% if outer_loop.last %}
+            "id": "Router ID: {{ to_parse_bgp.vrf[vrf].router_id }}"{% if outer_loop.last %}
         }{% else %}
         },{% endif %}{% else %}
         {
-            "id": "{{ to_parse_bgp.vrf[vrf].router_id }}"
+            "id": "Router ID: {{ to_parse_bgp.vrf[vrf].router_id }}"
         }{% endif %}{% endfor %}
     ],
     "links": [{% for vrf in to_parse_bgp.vrf %}{% set outer_loop = loop %}{% if outer_loop.index > 0 %}
         {
             "source": "{{ device_alias }}",
-            "target": "{{ to_parse_bgp.vrf[vrf].router_id }}",
+            "target": "Router ID: {{ to_parse_bgp.vrf[vrf].router_id }}",
             "cost": 1{% if outer_loop.last %}
         }{% else %}
         },{% endif %}{% else %}
         {
             "source": "{{ device_alias }}",
-            "target": "{{ to_parse_bgp.vrf[vrf].router_id }}",
+            "target": "Router ID: {{ to_parse_bgp.vrf[vrf].router_id }}",
             "cost": 1
         }{% endif %}{% endfor %}
     ]

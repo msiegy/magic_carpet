@@ -1,0 +1,21 @@
+{% if filetype_loop_jinja2 == "csv" %}Interface,ARP Dynamic Learning Local Proxy Enabled,ARP Dynamic Learning Proxy Enable{% for interface in to_parse_arp %}
+{{ interface }},{{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }},{{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }}{% endfor %}{% else %}{% if filetype_loop_jinja2 == "md" %}
+# Learn ARP
+| Interface | ARP Dynamic Learning Local Proxy Enabled | ARP Dynamic Learning Proxy Enable |
+| --------- | ---------------------------------------- | --------------------------------- |{% for interface in to_parse_arp %}
+| {{ interface }} | {{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }} | {{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }} |{% endfor %}{% else %}
+<html><body>
+<h1>Learn ARP</h1>
+<table style="width:100%">
+  <tr>
+    <th>Interface</th>
+    <th>ARP Dynamic Learning Local Proxy Enabled</th>
+    <th>ARP Dynamic Learning Proxy Enable</th>
+  </tr>{% for interface in to_parse_arp %}
+<tr>
+    <td>{{ interface }}</td>
+    <td>{{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }}</td>
+    <td>{{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }}</td>  
+  </tr>{% endfor %}
+</table>
+</body></html>{% endif %}{% endif %}

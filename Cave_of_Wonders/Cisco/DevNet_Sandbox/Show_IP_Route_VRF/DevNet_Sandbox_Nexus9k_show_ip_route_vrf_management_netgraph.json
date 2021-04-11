@@ -9,165 +9,165 @@
             "id": "DevNet_Sandbox_Nexus9k"
         },
         {
-            "id": "172.16.0.1/32"
+            "id": "Route: 172.16.0.1/32"
         },
         {
-            "id": "172.16.1.0/30"
+            "id": "Route: 172.16.1.0/30"
         },
         {
-            "id": "172.16.1.1/32"
+            "id": "Route: 172.16.1.1/32"
         },
         {
-            "id": "0.0.0.0/0"
+            "id": "Route: 0.0.0.0/0"
         },
         {
-            "id": "10.10.20.0/24"
+            "id": "Route: 10.10.20.0/24"
         },
         {
-            "id": "10.10.20.58/32"
+            "id": "Route: 10.10.20.58/32"
         },
         {
-            "id": "Loopback1"
+            "id": "Outgoing Interface: Loopback1"
         },
         {
-            "id": "172.16.0.1"         
+            "id": "Next Hop: 172.16.0.1"         
         },
         {
-            "id": "Loopback1"
+            "id": "Outgoing Interface: Loopback1"
         },
         {
-            "id": "172.16.0.1"         
+            "id": "Next Hop: 172.16.0.1"         
         },
         {
-            "id": "Ethernet1/5"
+            "id": "Outgoing Interface: Ethernet1/5"
         },
         {
-            "id": "172.16.1.1"         
+            "id": "Next Hop: 172.16.1.1"         
         },
         {
-            "id": "Ethernet1/5"
+            "id": "Outgoing Interface: Ethernet1/5"
         },
         {
-            "id": "172.16.1.1"         
+            "id": "Next Hop: 172.16.1.1"         
         },
         {
-            "id": ""
+            "id": "Outgoing Interface: "
         },
         {
-            "id": "10.10.20.254"         
+            "id": "Next Hop: 10.10.20.254"         
         },
         {
-            "id": "mgmt0"
+            "id": "Outgoing Interface: mgmt0"
         },
         {
-            "id": "10.10.20.58"         
+            "id": "Next Hop: 10.10.20.58"         
         },
         {
-            "id": "mgmt0"
+            "id": "Outgoing Interface: mgmt0"
         },
         {
-            "id": "10.10.20.58"
+            "id": "Next Hop: 10.10.20.58"
         }
     ],
     "links": [
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "172.16.0.1/32",
+            "target": "Route: 172.16.0.1/32",
             "cost": 2
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "172.16.1.0/30",
+            "target": "Route: 172.16.1.0/30",
             "cost": 2
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "172.16.1.1/32",
+            "target": "Route: 172.16.1.1/32",
             "cost": 2
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "0.0.0.0/0",
+            "target": "Route: 0.0.0.0/0",
             "cost": 2
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "10.10.20.0/24",
+            "target": "Route: 10.10.20.0/24",
             "cost": 2
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "10.10.20.58/32",
+            "target": "Route: 10.10.20.58/32",
             "cost": 2
         },
         {
-            "source": "172.16.0.1/32",
-            "target": "Loopback1",
+            "source": "Route: 172.16.0.1/32",
+            "target": "Outgoing Interface: Loopback1",
             "cost": 2
         },
         {
-            "source": "Loopback1",
-            "target": "172.16.0.1",
+            "source": "Outgoing Interface: Loopback1",
+            "target": "Next Hop: 172.16.0.1",
             "cost": 3
         },
         {
-            "source": "172.16.0.1/32",
-            "target": "Loopback1",
+            "source": "Route: 172.16.0.1/32",
+            "target": "Outgoing Interface: Loopback1",
             "cost": 2
         },
         {
-            "source": "Loopback1",
-            "target": "172.16.0.1",
+            "source": "Outgoing Interface: Loopback1",
+            "target": "Next Hop: 172.16.0.1",
             "cost": 3
         },
         {
-            "source": "172.16.1.0/30",
-            "target": "Ethernet1/5",
+            "source": "Route: 172.16.1.0/30",
+            "target": "Outgoing Interface: Ethernet1/5",
             "cost": 2
         },
         {
-            "source": "Ethernet1/5",
-            "target": "172.16.1.1",
+            "source": "Outgoing Interface: Ethernet1/5",
+            "target": "Next Hop: 172.16.1.1",
             "cost": 3
         },
         {
-            "source": "172.16.1.1/32",
-            "target": "Ethernet1/5",
+            "source": "Route: 172.16.1.1/32",
+            "target": "Outgoing Interface: Ethernet1/5",
             "cost": 2
         },
         {
-            "source": "Ethernet1/5",
-            "target": "172.16.1.1",
+            "source": "Outgoing Interface: Ethernet1/5",
+            "target": "Next Hop: 172.16.1.1",
             "cost": 3
         },
         {
-            "source": "0.0.0.0/0",
-            "target": "",
+            "source": "Route: 0.0.0.0/0",
+            "target": "Outgoing Interface: ",
             "cost": 2
         },
         {
-            "source": "",
-            "target": "10.10.20.254",
+            "source": "Outgoing Interface: ",
+            "target": "Next Hop: 10.10.20.254",
             "cost": 3
         },
         {
-            "source": "10.10.20.0/24",
-            "target": "mgmt0",
+            "source": "Route: 10.10.20.0/24",
+            "target": "Outgoing Interface: mgmt0",
             "cost": 2
         },
         {
-            "source": "mgmt0",
-            "target": "10.10.20.58",
+            "source": "Outgoing Interface: mgmt0",
+            "target": "Next Hop: 10.10.20.58",
             "cost": 3
         },
         {
-            "source": "10.10.20.58/32",
-            "target": "mgmt0",
+            "source": "Route: 10.10.20.58/32",
+            "target": "Outgoing Interface: mgmt0",
             "cost": 2
         },
         {
-            "source": "mgmt0",
-            "target": "10.10.20.58",
+            "source": "Outgoing Interface: mgmt0",
+            "target": "Next Hop: 10.10.20.58",
             "cost": 3
         }
         

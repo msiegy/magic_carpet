@@ -133,7 +133,7 @@ If you run into any installation issues with pyATS, please see the installation 
 
 You're now ready to fly!
 
-When you are finished with your pyATS session, enter the `deactivate` command to exit the python virtual environment.
+When you are finished with your Magic Carpet session, enter the `deactivate` command to exit the python virtual environment.
 
 ## Riding the Magic Carpet
 

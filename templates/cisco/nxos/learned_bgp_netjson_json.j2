@@ -1,0 +1,40 @@
+{
+    "type": "NetworkGraph",
+    "label": "Show Interface Status",
+    "protocol": "OLSR",
+    "version": "0.6.6.2",
+    "metric": "ETX",
+    "nodes": [
+        { 
+            "id": "{{ device_alias }}"
+        },{% for interface in to_parse_arp %}{% set outer_loop = loop %}
+        {
+            "id": "{{ interface }}"
+        },
+        {
+            "id": "Local Proxy Enable: {{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }}"
+        },
+        {
+            "id": "Proxy Enable: {{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }}"{% if outer_loop.last %}
+        }{% else %}
+        },{% endif %}{% endfor %}
+    ],
+    "links": [{% for interface in to_parse_arp %}{% set outer_loop = loop %}
+        {
+            "source": "{{ device_alias }}",
+            "target": "{{ interface }}",
+            "cost": 1
+        },
+        {
+            "source": "{{ interface }}",
+            "target": "Local Proxy Enable: {{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }}",
+            "cost": 2
+        },
+        {
+            "source": "{{ interface }}",
+            "target": "Proxy Enable: {{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }}",
+            "cost": 2{% if outer_loop.last %}
+        }{% else %}
+        },{% endif %}{% endfor %}
+    ]
+}

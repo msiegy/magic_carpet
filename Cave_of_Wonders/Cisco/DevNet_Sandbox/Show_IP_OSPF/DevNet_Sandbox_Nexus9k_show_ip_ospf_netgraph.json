@@ -1,6 +1,6 @@
 {
     "type": "NetworkGraph",
-    "label": "Show IP ROUTE",
+    "label": "Show IP OSPF",
     "protocol": "OLSR",
     "version": "0.6.6.2",
     "metric": "ETX",
@@ -9,29 +9,29 @@
             "id": "DevNet_Sandbox_Nexus9k"
         },
         {
-            "id": "default"
+            "id": "VRF: default"
         },
         {
-            "id": "172.16.0.1"
+            "id": "Router ID: 172.16.0.1"
         },
         {
-            "id": "0.0.0.0"          
+            "id": "Area: 0.0.0.0"          
         }
     ],
     "links": [
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "default",
+            "target": "VRF: default",
             "cost": 1
         },
         {
-            "source": "default",
-            "target": "172.16.0.1",
+            "source": "VRF: default",
+            "target": "Router ID: 172.16.0.1",
             "cost": 2
         },
         {
-            "source": "172.16.0.1",
-            "target": "0.0.0.0",
+            "source": "Router ID: 172.16.0.1",
+            "target": "Area: 0.0.0.0",
             "cost": 3          
         }        
     ]

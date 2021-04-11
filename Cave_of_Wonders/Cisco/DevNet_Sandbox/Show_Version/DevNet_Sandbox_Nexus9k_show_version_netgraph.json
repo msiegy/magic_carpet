@@ -9,96 +9,96 @@
             "id": "DevNet_Sandbox_Nexus9k"
         },
         {
-            "id": "4287040 kB"
+            "id": "Bootflash: 4287040 kB"
         },
         {
-            "id": "Nexus9000 C9500v"
+            "id": "Chassis: Nexus9000 C9500v"
         },
         {
-            "id": "Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz"
+            "id": "CPU: Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz"
         },
         {
-            "id": "sbx-n9kv"
+            "id": "Device Name: sbx-n9kv"
         },
         {
-            "id": "7939724 kB"
+            "id": "Memory: 7939720 kB"
         },
         {
-            "id": "9FJTZNHQ62X"
+            "id": "Processor ID: 9FJTZNHQ62X"
         },
         {
-            "id": "Supervisor Module"
+            "id": "RP: Supervisor Module"
         },
         {
-            "id": "None"
+            "id": "Slots: None"
         },
         {
-            "id": "Unknown"
+            "id": "Last Reload Reason: Unknown"
         },
         {
-            "id": "7/20/2020 20:00:00 [07/21/2020 06:30:11]"
+            "id": "Compile Time: 7/20/2020 20:00:00 [07/21/2020 06:30:11]"
         },
         {
-            "id": "bootflash:///nxos.9.3.5.bin"
+            "id": "Image: bootflash:///nxos.9.3.5.bin"
         },
         {
-            "id": "9.3(5)"
+            "id": "Version: 9.3(5)"
         }
     ],
     "links": [
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "4287040 kB",
+            "target": "Bootflash: 4287040 kB",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "Nexus9000 C9500v",
+            "target": "Chassis: Nexus9000 C9500v",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz",
+            "target": "CPU: Intel(R) Xeon(R) CPU E5-4669 v4 @ 2.20GHz",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "sbx-n9kv",
+            "target": "Device Name: sbx-n9kv",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "7939724 kB",
+            "target": "Memory: 7939720 kB",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "9FJTZNHQ62X",
+            "target": "Processor ID: 9FJTZNHQ62X",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "Supervisor Module",
+            "target": "RP: Supervisor Module",
             "cost": 1
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "None",
-            "cost": 1
-        }, 
-        {
-            "source": "4287040 kB",
-            "target": "7/20/2020 20:00:00 [07/21/2020 06:30:11]",
+            "target": "Slots: None",
             "cost": 1
         },
         {
-            "source": "4287040 kB",
-            "target": "bootflash:///nxos.9.3.5.bin",
+            "source": "DevNet_Sandbox_Nexus9k",
+            "target": "Image: bootflash:///nxos.9.3.5.bin",
+            "cost": 1
+        },         
+        {
+            "source": "Image: bootflash:///nxos.9.3.5.bin",
+            "target": "Compile Time: 7/20/2020 20:00:00 [07/21/2020 06:30:11]",
             "cost": 1
         },
         {
-            "source": "4287040 kB",
-            "target": "9.3(5)",
+            "source": "Image: bootflash:///nxos.9.3.5.bin",
+            "target": "Version: 9.3(5)",
             "cost": 1
         }        
     ]

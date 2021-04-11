@@ -10,13 +10,13 @@
         },
         
         {
-            "id": "172.16.0.1"
+            "id": "Router ID: 172.16.0.1"
         }
     ],
     "links": [
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "172.16.0.1",
+            "target": "Router ID: 172.16.0.1",
             "cost": 1
         }
     ]

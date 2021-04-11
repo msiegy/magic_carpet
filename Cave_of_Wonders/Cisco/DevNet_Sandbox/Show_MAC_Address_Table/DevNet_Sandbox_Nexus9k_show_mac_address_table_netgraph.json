@@ -9,29 +9,29 @@
             "id": "DevNet_Sandbox_Nexus9k"
         },
         {
-            "id": "-"
+            "id": "VLAN: -"
         },
         {
-            "id": "00bf.dc7e.1b08"
+            "id": "MAC Address: 00bf.40b6.1b08"
         },
         {
-            "id": "Sup-eth1(R)"
+            "id": "Interface: Sup-eth1(R)"
         }
     ],
     "links": [
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "-",
+            "target": "VLAN: -",
             "cost": 1
         },
         {
-            "source": "-",
-            "target": "00bf.dc7e.1b08",
+            "source": "VLAN: -",
+            "target": "MAC Address: 00bf.40b6.1b08",
             "cost": 1
         },
         {
-            "source": "00bf.dc7e.1b08",
-            "target": "Sup-eth1(R)",
+            "source": "MAC Address: 00bf.40b6.1b08",
+            "target": "Interface: Sup-eth1(R)",
             "cost": 1
         }
     ]

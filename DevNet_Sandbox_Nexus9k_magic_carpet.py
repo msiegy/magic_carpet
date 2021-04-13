@@ -68,9 +68,9 @@ class Collect_Information(aetest.Testcase):
         # ---------------------------------------
         for device in testbed:
         
-        # ---------------------------------------
-        # Learn state
-        # ---------------------------------------
+            # ---------------------------------------
+            # Genie learn().info for various functions
+            # ---------------------------------------
             print(Panel.fit(Text.from_markup(LEARN, justify="center")))
 
             # ACLs
@@ -93,6 +93,13 @@ class Collect_Information(aetest.Testcase):
                     self.learned_bgp = device.learn('bgp').info
                 except Exception as e:
                     step.failed('Could not learn BGP\n{e}'.format(e=e))
+
+            # Interface
+            with steps.start('Learning Interface',continue_=True) as step:
+                try:
+                    self.learned_interface = device.learn('interface').info
+                except Exception as e:
+                    step.failed('Could not learn Interface\n{e}'.format(e=e))
 
             # ---------------------------------------
             # Execute parser for various show commands
@@ -209,12 +216,16 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------         
 
             with steps.start('Store data',continue_=True) as step:
+                
+                ###############################
+                # Genie learn().info section
+                ###############################
 
                 # Learned ACL
                 if hasattr(self, 'learned_acl'):
-                    sh_access_lists_template = env.get_template('show_access_lists.j2')
-                    sh_access_lists_netjson_json_template = env.get_template('show_access_lists_netjson_json.j2')
-                    sh_access_lists_netjson_html_template = env.get_template('show_access_lists_netjson_html.j2')
+                    learned_acl_template = env.get_template('learned_acl.j2')
+                    learned_acl_netjson_json_template = env.get_template('learned_acl_netjson_json.j2')
+                    learned_acl_netjson_html_template = env.get_template('learned_acl_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.json" % device.alias, "w") as fid:
                         json.dump(self.learned_acl, fid, indent=4, sort_keys=True)
@@ -223,7 +234,7 @@ class Collect_Information(aetest.Testcase):
                         yaml.dump(self.learned_acl, yml, allow_unicode=True)                
 
                     for filetype in filetype_loop:
-                        parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
+                        parsed_output_type = learned_acl_template.render(to_parse_access_list=self.learned_acl['acls'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
@@ -231,8 +242,8 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_mind_map.html" % (device.alias,device.alias))
 
-                    parsed_output_netjson_json = sh_access_lists_netjson_json_template.render(to_parse_access_list=self.parsed_show_access_lists,device_alias = device.alias)
-                    parsed_output_netjson_html = sh_access_lists_netjson_html_template.render(device_alias = device.alias)
+                    parsed_output_netjson_json = learned_acl_netjson_json_template.render(to_parse_access_list=self.learned_acl['acls'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_acl_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.json" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_json)               
@@ -303,6 +314,58 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp.yaml" % device.alias, "w") as yml:
                         yaml.dump(self.learned_bgp, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_bgp_template.render(to_parse_bgp=self.learned_bgp['instance'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_bgp_netjson_json_template.render(to_parse_bgp=self.learned_bgp['instance'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_bgp_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned Interface
+                if hasattr(self, 'learned_interface'):
+                    learned_interface_template = env.get_template('learned_interface.j2')
+                    learned_interface_netjson_json_template = env.get_template('learned_interface_netjson_json.j2')
+                    learned_interface_netjson_html_template = env.get_template('learned_interface_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_interface, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_interface, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_interface_template.render(to_parse_interface=self.learned_interface,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_interface_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_interface_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                ###############################
+                # Genie Show Command Section
+                ###############################
 
                 # Show access-lists
                 if hasattr(self, 'parsed_show_access_lists'):

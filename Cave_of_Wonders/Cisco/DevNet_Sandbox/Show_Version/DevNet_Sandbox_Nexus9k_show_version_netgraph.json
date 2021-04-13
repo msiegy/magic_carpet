@@ -21,7 +21,7 @@
             "id": "Device Name: sbx-n9kv"
         },
         {
-            "id": "Memory: 7939720 kB"
+            "id": "Memory: 7939724 kB"
         },
         {
             "id": "Processor ID: 9FJTZNHQ62X"
@@ -68,7 +68,7 @@
         },
         {
             "source": "DevNet_Sandbox_Nexus9k",
-            "target": "Memory: 7939720 kB",
+            "target": "Memory: 7939724 kB",
             "cost": 1
         },
         {

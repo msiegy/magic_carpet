@@ -68,6 +68,14 @@ John Capobianco
 
     Cisco NXOS:
 
+        learn('bgp')
+
+        learn('acl')
+
+        learn('arp')
+
+        learn('interface')
+
         show access lists
        
         show interfaces status
@@ -121,6 +129,8 @@ John Capobianco
         Product Security Indident Response Team (PSIRT) (which sends your running version and finds out if it is vulnerable)
 
     NETJSON NetGraph Integration
+
+    SharePoint 2016 Integration
 
 Sam Johnson
 

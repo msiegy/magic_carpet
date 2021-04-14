@@ -322,6 +322,36 @@ Launch your web browser and visit
 
 `http://{{ your server IP }}:8888/`
 
+# Sharepoint 2016 Plug-in
+
+Every artifact can also be uploaded dynamically to a Sharepoint 2016 Document Library !
+
+The CSV files work with the Office extension and present as version controlled Excel-online files!
+
+Add the code from the SharePoint2016_Plugin.py file. The show version command is used in the example. 
+
+Simply add the SHAREPOINT code, updating to reflect the appropriate command:
+
+```python
+#Enter your SharePoint site and target library
+sharePointUrl = 'https://mydomain.com'
+folderUrl = '/DocumentLibrary/Cave_of_Wonders/'
+
+    ##############
+    # SHAREPOINT #
+    ##############
+
+    #Read filename (relative path) from command line
+    sharePointFileName = "Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.csv" % device.alias
+    uploadFileName = "%s_show_version.csv" % device.alias     
+
+   # Execute a request to get the FormDigestValue. This will be used to authenticate our upload request
+    r = requests.post(sharePointUrl + "/_api/contextinfo",auth=HttpNtlmAuth('DOMAIN\\USERNAME','PASSWORD'), headers=headers)
+
+    # Execute the request. If you run into issues, inspect the contents of uploadResult
+    uploadResult = requests.post(requestUrl,auth=HttpNtlmAuth('DOMAIN\\USERNAME','PASSWORD'), headers=headers, data=file.read())
+```
+
 # Don't have your own lab gear to test with?
 
 [Test Magic Carpet using the Cisco DevNet IOS-XE Sandbox](docs/01_devnetsb_ios_xe_csr.md)

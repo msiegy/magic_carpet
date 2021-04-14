@@ -7,7 +7,7 @@
     "nodes": [
         { 
             "id": "{{ device_alias }}"
-        },{% for interface in to_parse_interface %}{% set interface_loop = loop %}{% if (to_parse_interface[interface].ipv4 is defined) and (to_parse_interface[interface].port_channel is defined) %}{% for ip_address in to_parse_interface[interface].ipv4 %}{% set ip_address_loop = loop %}{% if to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% for member in to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% set member_loop = loop %}
+        },{% for interface in to_parse_interface if to_parse_interface[interface].enabled %}{% set interface_loop = loop %}{% if (to_parse_interface[interface].ipv4 is defined) and (to_parse_interface[interface].port_channel is defined) %}{% for ip_address in to_parse_interface[interface].ipv4 %}{% set ip_address_loop = loop %}{% if to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% for member in to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% set member_loop = loop %}
         { 
             "id": "{{ interface }}"
         },{% if to_parse_interface[interface].description is defined %}
@@ -323,7 +323,7 @@
         }{% else %}
         },{% endif %}{% endif %}{% endif %}{% endif %}{% endfor %}
     ],
-    "links": [{% for interface in to_parse_interface %}{% set interface_loop = loop %}{% if (to_parse_interface[interface].ipv4 is defined) and (to_parse_interface[interface].port_channel is defined) %}{% for ip_address in to_parse_interface[interface].ipv4 %}{% set ip_address_loop = loop %}{% if to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% for member in to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% set member_loop = loop %}
+    "links": [{% for interface in to_parse_interface if to_parse_interface[interface].enabled %}{% set interface_loop = loop %}{% if (to_parse_interface[interface].ipv4 is defined) and (to_parse_interface[interface].port_channel is defined) %}{% for ip_address in to_parse_interface[interface].ipv4 %}{% set ip_address_loop = loop %}{% if to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% for member in to_parse_interface[interface].port_channel.port_channel_member_intfs %}{% set member_loop = loop %}
         { 
             "source": "{{ device_alias }}",
             "target": "{{ interface }}",

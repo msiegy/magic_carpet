@@ -338,6 +338,8 @@ class Collect_Information(aetest.Testcase):
                     learned_interface_template = env.get_template('learned_interface.j2')
                     learned_interface_netjson_json_template = env.get_template('learned_interface_netjson_json.j2')
                     learned_interface_netjson_html_template = env.get_template('learned_interface_netjson_html.j2')
+                    learned_interface_enable_netjson_json_template = env.get_template('learned_interface_enabled_netjson_json.j2')
+                    learned_interface_enable_netjson_html_template = env.get_template('learned_interface_enabled_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.json" % device.alias, "w") as fid:
                         json.dump(self.learned_interface, fid, indent=4, sort_keys=True)
@@ -362,6 +364,15 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    parsed_output_netjson_json = learned_interface_enable_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_interface_enable_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)                        
 
                 ###############################
                 # Genie Show Command Section

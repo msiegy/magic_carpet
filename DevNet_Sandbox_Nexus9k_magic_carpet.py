@@ -101,6 +101,13 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not learn Interface\n{e}'.format(e=e))
 
+            # OSPF
+            with steps.start('Learning OSPF',continue_=True) as step:
+                try:
+                    self.learned_ospf = device.learn('ospf').info
+                except Exception as e:
+                    step.failed('Could not learn OSPF\n{e}'.format(e=e))
+
             # ---------------------------------------
             # Execute parser for various show commands
             # ---------------------------------------
@@ -373,6 +380,36 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)                        
+
+                # Learned OSPF
+                if hasattr(self, 'learned_ospf'):
+                    learned_ospf_template = env.get_template('learned_ospf.j2')
+                    learned_ospf_netjson_json_template = env.get_template('learned_ospf_netjson_json.j2')
+                    learned_ospf_netjson_html_template = env.get_template('learned_ospf_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_ospf, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_ospf, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ospf_template.render(to_parse_ospf=self.learned_ospf['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_ospf_netjson_json_template.render(to_parse_ospf=self.learned_ospf['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ospf_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
 
                 ###############################
                 # Genie Show Command Section

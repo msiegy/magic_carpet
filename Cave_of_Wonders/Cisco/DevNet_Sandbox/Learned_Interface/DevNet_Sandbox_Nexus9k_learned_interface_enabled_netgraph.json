@@ -24,7 +24,7 @@
             "id": "Operational Status: up"
         },
         { 
-            "id": "MAC Address: 0050.56bf.813a"
+            "id": "MAC Address: 0050.56bf.deb2"
         },
         { 
             "id": "VRF: management"
@@ -48,13 +48,13 @@
             "id": "Operational Status: up"
         },
         { 
-            "id": "MAC Address: 00bf.813a.1b08"
+            "id": "MAC Address: 00bf.deb2.1b08"
         },
         { 
             "id": "VRF: default"
         },
         { 
-            "id": "Last Change: 02:35:02"
+            "id": "Last Change: 03:51:24"
         },
         { 
             "id": "Port Channel Member: False"
@@ -280,7 +280,7 @@
         },
         {
             "source": "Mgmt0",
-            "target": "MAC Address: 0050.56bf.813a",
+            "target": "MAC Address: 0050.56bf.deb2",
             "cost": 2
         },
         {
@@ -320,7 +320,7 @@
         },
         {
             "source": "Ethernet1/5",
-            "target": "MAC Address: 00bf.813a.1b08",
+            "target": "MAC Address: 00bf.deb2.1b08",
             "cost": 2
         },
         {
@@ -330,7 +330,7 @@
         },
         { 
             "source": "Ethernet1/5",
-            "target": "Last Change: 02:35:02",
+            "target": "Last Change: 03:51:24",
             "cost": 2
         },
         {

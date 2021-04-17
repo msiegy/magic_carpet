@@ -361,6 +361,12 @@ folderUrl = '/DocumentLibrary/Cave_of_Wonders/'
 
 Cisco IOS-XE:
 
+    learn ACL
+    
+    learn ARP
+    
+    learn Interface
+
     show access lists
 
     show access session
@@ -425,7 +431,17 @@ Cisco IOS-XE:
 
 Cisco NXOS:
 
+    learn ACL
+    
+    learn ARP
+    
+    learn interface
+
     show access lists
+    
+    show bgp process VRF all
+    
+    show bgp sessions
        
     show interfaces status
     
@@ -463,7 +479,9 @@ JunOS:
 
 F5 BIG-IP
 
-    mgmt/tm/ltm/virtual
+    /mgmt/tm/ltm/virtual
+    
+    /mgmt/tm/sys/file/ssl-cert
 
 #### Cross Platform Tests
 

@@ -23,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED
+from general_functionalities import DevnetCSRFunctions
 
 # ----------------
 # Get logger for script
@@ -73,53 +74,25 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Access-Lists
-            with steps.start('Parsing show access-lists',continue_=True) as step:
-                try:
-                    self.parsed_show_access_lists = device.parse("show access-lists")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_access_lists = DevnetCSRFunctions.parse_show_command(steps, device, "show access-lists")
 
             # Show Etherchannel Summary
-            with steps.start('Parsing show etherchannel summary',continue_=True) as step:
-                try:
-                    self.parsed_show_etherchannel_summary = device.parse("show etherchannel summary")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
-
+            self.parsed_show_etherchannel_summary = DevnetCSRFunctions.parse_show_command(steps, device, "show etherchannel summary")
+            
             # Show Inventory
-            with steps.start('Parsing show inventory',continue_=True) as step:
-                try:
-                    self.parsed_show_inventory = device.parse("show inventory")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_inventory = DevnetCSRFunctions.parse_show_command(steps, device, "show inventory")
 
-            # Show IP ARP - Layer 3 Command only     
-            with steps.start('Parsing show ip arp',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_arp = device.parse("show ip arp")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP ARP - Layer 3 Command only
+            self.parsed_show_ip_arp = DevnetCSRFunctions.parse_show_command(steps, device, "show ip arp")
 
             # Show IP Interface Brief
-            with steps.start('Parsing show ip interface brief',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_int_brief = device.parse("show ip interface brief")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_ip_int_brief = DevnetCSRFunctions.parse_show_command(steps, device, "show ip interface brief")
 
             # Show IP Route - Layer 3 Command Only
-            with steps.start('Parsing show ip route',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_route = device.parse("show ip route")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_ip_route = DevnetCSRFunctions.parse_show_command(steps, device, "show ip route")
 
             # Show Version
-            with steps.start('Parsing show version',continue_=True) as step:
-                try:
-                    self.parsed_show_version = device.parse("show version")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_version = DevnetCSRFunctions.parse_show_command(steps, device, "show version")
 
             # ---------------------------------------
             # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data

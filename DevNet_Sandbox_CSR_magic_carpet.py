@@ -101,9 +101,8 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Store data',continue_=True) as step:
 
                 # Show access-lists
-                if hasattr(self, 'parsed_show_access_lists'):
+                if self.parsed_show_access_lists is not None:
                     sh_access_lists_template = env.get_template('show_access_lists.j2')                  
-
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
                       json.dump(self.parsed_show_access_lists, fid, indent=4, sort_keys=True)
 
@@ -120,7 +119,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show etherchannel summary
-                if hasattr(self, 'parsed_show_etherchannel_summary'):
+                if self.parsed_show_etherchannel_summary is not None:
                     sh_etherchannel_summary_template = env.get_template('show_etherchannel_summary.j2')
                     sh_etherchannel_summary_totals_template = env.get_template('show_etherchannel_summary_totals.j2')
 
@@ -131,6 +130,11 @@ class Collect_Information(aetest.Testcase):
                       yaml.dump(self.parsed_show_etherchannel_summary, yml, allow_unicode=True)
 
                     for filetype in filetype_loop: 
+                        # parsed_output_type is None just in case the "if parsed_output_type in locals()" loop below fails. 
+                        # In which case, we will an error since we called the variable before variable assignment. 
+                        # Almost like calling something that does not yet exist. 
+                        parsed_output_type = None
+
                         if 'interfaces' in self.parsed_show_etherchannel_summary:                          
                             parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
                         parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
@@ -149,7 +153,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show Inventory
-                if hasattr(self, 'parsed_show_inventory'):
+                if self.parsed_show_inventory is not None:
                     # CSR100v
                     sh_inventory_csr100v_template = env.get_template('show_inventory_CSR100v.j2')
 
@@ -169,7 +173,7 @@ class Collect_Information(aetest.Testcase):
                             os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip arp
-                if hasattr(self, 'parsed_show_ip_arp'):
+                if self.parsed_show_ip_arp is not None:
                     sh_ip_arp_template = env.get_template('show_ip_arp.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.json" % device.alias, "w") as fid:
@@ -188,7 +192,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip interface brief
-                if hasattr(self, 'parsed_show_ip_int_brief'):
+                if self.parsed_show_ip_int_brief is not None:
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.json" % device.alias, "w") as fid:
@@ -207,7 +211,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP Route
-                if hasattr(self, 'parsed_show_ip_route'):
+                if self.parsed_show_ip_route is not None:
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.json" % device.alias, "w") as fid:
@@ -226,7 +230,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
 
                 # Show version
-                if hasattr(self, 'parsed_show_version'):
+                if self.parsed_show_version is not None:
                     sh_ver_template = env.get_template('show_version.j2')
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.json" % device.alias, "w") as fid:

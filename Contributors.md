@@ -174,7 +174,7 @@ Oren Brigg
     
     "learn_hostname=True". Now you don't have to get the hostnames in the testbed 100% right.
 
-Paul Wekesa
+[Paul Wekesa](https://github.com/Paul-weqe)
 
     Improve Python Code Structure.
 

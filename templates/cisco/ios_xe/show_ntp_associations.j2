@@ -4,9 +4,10 @@
 | Server Address | Reference Clock | Stratum | Poll | Reach | Delay | Offset | Dispersion |
 | ------- | --------------- | ------- | ---- | ----- | ----- | ------ | ---------- |{% for peer in to_parse_ntp_associations.peer %}
 | {{ peer }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['refid'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['stratum'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['poll'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['reach'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['delay'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['offset'] }} | {{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['jitter'] }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show NTP Associations</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Server Address</th>
     <th>Reference Clock</th>
@@ -16,7 +17,11 @@
     <th>Delay</th>
     <th>Offset</th>
     <th>Dispersion</th>    
-  </tr>{% for peer in to_parse_ntp_associations.peer %}  
+  </tr>
+  </thead>
+
+  <tbody>
+  {% for peer in to_parse_ntp_associations.peer %}  
   <tr>
     <td>{{ peer }}</td>
     <td>{{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['refid'] }}</td>
@@ -27,5 +32,6 @@
     <td>{{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['offset'] }}</td>
     <td>{{ to_parse_ntp_associations['peer'][peer]['local_mode']['client']['jitter'] }}</td>
   </tr>{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

@@ -1,0 +1,35 @@
+.magic-carpet-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.magic-carpet-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.magic-carpet-table th,
+.magic-carpet-table td {
+    padding: 12px 15px;
+}
+
+.magic-carpet-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.magic-carpet-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.magic-carpet-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}

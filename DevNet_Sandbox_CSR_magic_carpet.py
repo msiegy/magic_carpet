@@ -23,7 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED
-from general_functionalities import DevnetCSRFunctions
+from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------
 # Get logger for script
@@ -69,36 +69,212 @@ class Collect_Information(aetest.Testcase):
         # ---------------------------------------
         for device in testbed:
             # ---------------------------------------
+            # Genie learn().info for various functions
+            # ---------------------------------------
+            print(Panel.fit(Text.from_markup(LEARN, justify="center")))
+
+            # ACLs
+            self.learned_acl = ParseLearnFunction.parse_learn(steps, device, "acl")
+
+            # ARP
+            self.learned_arp = ParseLearnFunction.parse_learn(steps, device, "arp")
+
+            # Interface
+            self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
+
+            # OSPF
+            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")          
+            # ---------------------------------------
             # Execute parser for various show commands
             # ---------------------------------------
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Access-Lists
-            self.parsed_show_access_lists = DevnetCSRFunctions.parse_show_command(steps, device, "show access-lists")
+            self.parsed_show_access_lists = ParseShowCommandFunction.parse_show_command(steps, device, "show access-lists")
 
             # Show Etherchannel Summary
-            self.parsed_show_etherchannel_summary = DevnetCSRFunctions.parse_show_command(steps, device, "show etherchannel summary")
+            self.parsed_show_etherchannel_summary = ParseShowCommandFunction.parse_show_command(steps, device, "show etherchannel summary")
             
             # Show Inventory
-            self.parsed_show_inventory = DevnetCSRFunctions.parse_show_command(steps, device, "show inventory")
+            self.parsed_show_inventory = ParseShowCommandFunction.parse_show_command(steps, device, "show inventory")
 
             # Show IP ARP - Layer 3 Command only
-            self.parsed_show_ip_arp = DevnetCSRFunctions.parse_show_command(steps, device, "show ip arp")
+            self.parsed_show_ip_arp = ParseShowCommandFunction.parse_show_command(steps, device, "show ip arp")
 
             # Show IP Interface Brief
-            self.parsed_show_ip_int_brief = DevnetCSRFunctions.parse_show_command(steps, device, "show ip interface brief")
+            self.parsed_show_ip_int_brief = ParseShowCommandFunction.parse_show_command(steps, device, "show ip interface brief")
 
             # Show IP Route - Layer 3 Command Only
-            self.parsed_show_ip_route = DevnetCSRFunctions.parse_show_command(steps, device, "show ip route")
+            self.parsed_show_ip_route = ParseShowCommandFunction.parse_show_command(steps, device, "show ip route")
 
             # Show Version
-            self.parsed_show_version = DevnetCSRFunctions.parse_show_command(steps, device, "show version")
+            self.parsed_show_version = ParseShowCommandFunction.parse_show_command(steps, device, "show version")
 
             # ---------------------------------------
             # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data
             # ---------------------------------------         
             
             with steps.start('Store data',continue_=True) as step:
+
+                ###############################
+                # Genie learn().info section
+                ###############################
+
+                # Learned ACL
+                if self.learned_acl is not None:
+                    learned_acl_template = env.get_template('learned_acl.j2')
+                    learned_acl_netjson_json_template = env.get_template('learned_acl_netjson_json.j2')
+                    learned_acl_netjson_html_template = env.get_template('learned_acl_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_acl, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_acl, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_acl_template.render(to_parse_access_list=self.learned_acl['acls'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_acl_netjson_json_template.render(to_parse_access_list=self.learned_acl['acls'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_acl_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned ARP
+                if self.learned_arp is not None:
+                    learned_arp_template = env.get_template('learned_arp.j2')
+                    learned_arp_statistics_template = env.get_template('learned_arp_statistics.j2')
+                    learned_arp_netjson_json_template = env.get_template('learned_arp_netjson_json.j2')
+                    learned_arp_netjson_html_template = env.get_template('learned_arp_netjson_html.j2')
+                    learned_arp_statistics_netjson_json_template = env.get_template('learned_arp_statistics_netjson_json.j2')
+                    learned_arp_statistics_netjson_html_template = env.get_template('learned_arp_statistics_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_arp, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_arp, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_arp_template.render(to_parse_arp=self.learned_arp['interfaces'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_arp_statistics_template.render(to_parse_arp=self.learned_arp['statistics'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_mind_map.html" % (device.alias,device.alias))
+
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_arp_netjson_json_template.render(to_parse_arp=self.learned_arp['interfaces'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_arp_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    parsed_output_netjson_json = learned_arp_statistics_netjson_json_template.render(to_parse_arp=self.learned_arp['statistics'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_arp_statistics_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned Interface
+                if self.learned_interface is not None:
+                    learned_interface_template = env.get_template('learned_interface.j2')
+                    learned_interface_netjson_json_template = env.get_template('learned_interface_netjson_json.j2')
+                    learned_interface_netjson_html_template = env.get_template('learned_interface_netjson_html.j2')
+                    learned_interface_enable_netjson_json_template = env.get_template('learned_interface_enabled_netjson_json.j2')
+                    learned_interface_enable_netjson_html_template = env.get_template('learned_interface_enabled_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_interface, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_interface, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_interface_template.render(to_parse_interface=self.learned_interface,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_interface_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_interface_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    parsed_output_netjson_json = learned_interface_enable_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_interface_enable_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned OSPF
+                if self.learned_ospf is not None:
+                    learned_ospf_template = env.get_template('learned_ospf.j2')
+                    learned_ospf_netjson_json_template = env.get_template('learned_ospf_netjson_json.j2')
+                    learned_ospf_netjson_html_template = env.get_template('learned_ospf_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_ospf, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_ospf, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ospf_template.render(to_parse_ospf=self.learned_ospf['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_ospf_netjson_json_template.render(to_parse_ospf=self.learned_ospf['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ospf_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                ###############################
+                # Genie Show Command Section
+                ###############################
 
                 # Show access-lists
                 if self.parsed_show_access_lists is not None:

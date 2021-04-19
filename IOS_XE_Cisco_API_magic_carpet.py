@@ -23,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED, CLOUD
+from general_functionalities import ParseShowCommandFunction
 
 # ----------------
 # Get logger for script
@@ -73,18 +74,10 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Inventory
-            with steps.start('Parsing show inventory',continue_=True) as step:
-                try:
-                    self.parsed_show_inventory = device.parse("show inventory")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_inventory = ParseShowCommandFunction.parse_show_command(steps, device, "show inventory")
 
             # Show Version
-            with steps.start('Parsing show version',continue_=True) as step:
-                try:
-                    self.parsed_show_version = device.parse("show version")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_version = ParseShowCommandFunction.parse_show_command(steps, device, "show version")
 
             # ---------------------------------------
             # Send Version / Serial Numbers to Cisco APIs 

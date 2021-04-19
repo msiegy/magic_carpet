@@ -23,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN,RUNNING, FINISHED
+from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------
 # Get logger for script
@@ -74,39 +75,19 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(LEARN, justify="center")))
 
             # ACLs
-            with steps.start('Learning Access Lists',continue_=True) as step:
-                try:
-                    self.learned_acl = device.learn('acl').info
-                except Exception as e:
-                    step.failed('Could not learn ACL\n{e}'.format(e=e))
+            self.learned_acl = ParseLearnFunction.parse_learn(steps, device, "acl")
 
             # ARP
-            with steps.start('Learning ARP',continue_=True) as step:
-                try:
-                    self.learned_arp = device.learn('arp').info
-                except Exception as e:
-                    step.failed('Could not learn ARP\n{e}'.format(e=e))
+            self.learned_arp = ParseLearnFunction.parse_learn(steps, device, "arp")
 
             # BGP
-            with steps.start('Learning BGP',continue_=True) as step:
-                try:
-                    self.learned_bgp = device.learn('bgp').info
-                except Exception as e:
-                    step.failed('Could not learn BGP\n{e}'.format(e=e))
+            self.learned_bgp = ParseLearnFunction.parse_learn(steps, device, "bgp")
 
             # Interface
-            with steps.start('Learning Interface',continue_=True) as step:
-                try:
-                    self.learned_interface = device.learn('interface').info
-                except Exception as e:
-                    step.failed('Could not learn Interface\n{e}'.format(e=e))
+            self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
 
             # OSPF
-            with steps.start('Learning OSPF',continue_=True) as step:
-                try:
-                    self.learned_ospf = device.learn('ospf').info
-                except Exception as e:
-                    step.failed('Could not learn OSPF\n{e}'.format(e=e))
+            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
 
             # ---------------------------------------
             # Execute parser for various show commands
@@ -114,109 +95,49 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Access-Lists
-            with steps.start('Parsing show access-lists',continue_=True) as step:
-                try:
-                    self.parsed_show_access_lists = device.parse("show access-lists")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_access_lists = ParseShowCommandFunction.parse_show_command(steps, device, "show access-lists")
 
             # show bgp process vrf all
-            with steps.start('Parsing show bgp process vrf all',continue_=True) as step:
-                try:
-                    self.parsed_show_bgp_process_vrf_all = device.parse("show bgp process vrf all")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_bgp_process_vrf_all = ParseShowCommandFunction.parse_show_command(steps, device, "show bgp process vrf all")
 
             # Show BGP Sessions
-            with steps.start('Parsing show bgp sessions',continue_=True) as step:
-                try:
-                    self.parsed_show_bgp_sessions = device.parse("show bgp sessions")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_bgp_sessions = ParseShowCommandFunction.parse_show_command(steps, device, "show bgp sessions")
 
             # Show Interfaces Status
-            with steps.start('Parsing show interface status',continue_=True) as step:
-                try:
-                    self.parsed_show_int_status = device.parse("show interface status")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_int_status = ParseShowCommandFunction.parse_show_command(steps, device, "show interface status")
 
             # Show Inventory
-            with steps.start('Parsing show inventory',continue_=True) as step:
-                try:
-                    self.parsed_show_inventory = device.parse("show inventory")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_inventory = ParseShowCommandFunction.parse_show_command(steps, device, "show inventory")
 
             # Show IP Interface Brief
-            with steps.start('Parsing show ip interface brief',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_int_brief = device.parse("show ip interface brief")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_ip_int_brief = ParseShowCommandFunction.parse_show_command(steps, device, "show ip interface brief")
+            
+            # Show IP OSPF
+            self.parsed_show_ip_ospf = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf")
 
-            # Show IP OSPF Layer 3 Command only 
-            with steps.start('Parsing show ip ospf',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_ospf = device.parse("show ip ospf")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
-
-            # Show IP Route - Layer 3 Command Only
-            with steps.start('Parsing show ip route',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_route = device.parse("show ip route")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP Route
+            self.parsed_show_ip_route = ParseShowCommandFunction.parse_show_command(steps, device, "show ip route")
 
             # Show MAC Address-Table
-            with steps.start('Parsing show mac address-table',continue_=True) as step:
-                try:
-                    self.parsed_show_mac_address_table = device.parse("show mac address-table")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_mac_address_table = ParseShowCommandFunction.parse_show_command(steps, device, "show mac address-table")
 
             # Show Portchannel Summary
-            with steps.start('Parsing show port-channel summary',continue_=True) as step:
-                try:
-                    self.parsed_show_port_channel_summary = device.parse("show port-channel summary")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_port_channel_summary = ParseShowCommandFunction.parse_show_command(steps, device, "show port-channel summary")
 
             # Show Version
-            with steps.start('Parsing show version',continue_=True) as step:
-                try:
-                    self.parsed_show_version = device.parse("show version")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_version = ParseShowCommandFunction.parse_show_command(steps, device, "show version")
 
             # Show VLAN
-            with steps.start('Parsing show vlan',continue_=True) as step:
-                try:
-                    self.parsed_show_vlan = device.parse("show vlan")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_vlan = ParseShowCommandFunction.parse_show_command(steps, device, "show vlan")
 
-            # Show VRF - Layer 3 Command only 
-            with steps.start('Parsing show vrf',continue_=True) as step:
-                try:
-                    self.parsed_show_vrf = device.parse("show vrf")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show VRF
+            self.parsed_show_vrf = ParseShowCommandFunction.parse_show_command(steps, device, "show vrf")
 
-            # show vrf all detail - Layer 3 Command only 
-            with steps.start('Parsing show vrf all detail',continue_=True) as step:
-                try:
-                    self.parsed_show_vrf_all_detail = device.parse("show vrf all detail")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # show VRF all detail
+            self.parsed_show_vrf_all_detail = ParseShowCommandFunction.parse_show_command(steps, device, "show vrf all detail")
 
-            # show vrf all interface - Layer 3 Command only 
-            with steps.start('Parsing show vrf all interface',continue_=True) as step:
-                try:
-                    self.parsed_show_vrf_all_interface = device.parse("show vrf all interface")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # show vrf all interface
+            self.parsed_show_vrf_all_interface = ParseShowCommandFunction.parse_show_command(steps, device, "show vrf all interface")
 
             # ---------------------------------------
             # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data

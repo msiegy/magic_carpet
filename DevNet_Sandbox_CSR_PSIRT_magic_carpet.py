@@ -23,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, RUNNING, FINISHED, CLOUD
+from general_functionalities import ParseShowCommandFunction
 
 # ----------------
 # Get logger for script
@@ -73,11 +74,7 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Version
-            with steps.start('Parsing show version',continue_=True) as step:
-                try:
-                    self.parsed_show_version = device.parse("show version")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_version = ParseShowCommandFunction.parse_show_command(steps, device, "show version")
 
             # ---------------------------------------
             # Send Version / Serial Numbers to Cisco APIs 
@@ -87,7 +84,7 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Store data',continue_=True) as step:
 
                 # Show version
-                if hasattr(self, 'parsed_show_version'):
+                if self.parsed_show_version is not None:
                     psirt_template = env.get_template('psirt.j2')
 
                     with open("api_credentials/cisco.yaml", 'r') as f:

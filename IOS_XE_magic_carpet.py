@@ -23,6 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, FINISHED
+from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------
 # Get logger for script
@@ -73,32 +74,16 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(LEARN, justify="center")))
 
             # ACLs
-            with steps.start('Learning Access Lists',continue_=True) as step:
-                try:
-                    self.learned_acl = device.learn('acl').info
-                except Exception as e:
-                    step.failed('Could not learn ACL\n{e}'.format(e=e))
+            self.learned_acl = ParseLearnFunction.parse_learn(steps, device, "acl")
 
             # ARP
-            with steps.start('Learning ARP',continue_=True) as step:
-                try:
-                    self.learned_arp = device.learn('arp').info
-                except Exception as e:
-                    step.failed('Could not learn ARP\n{e}'.format(e=e))
+            self.learned_arp = ParseLearnFunction.parse_learn(steps, device, "arp")
 
             # Interface
-            with steps.start('Learning Interface',continue_=True) as step:
-                try:
-                    self.learned_interface = device.learn('interface').info
-                except Exception as e:
-                    step.failed('Could not learn Interface\n{e}'.format(e=e))
+            self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
 
             # OSPF
-            with steps.start('Learning OSPF',continue_=True) as step:
-                try:
-                    self.learned_ospf = device.learn('ospf').info
-                except Exception as e:
-                    step.failed('Could not learn OSPF\n{e}'.format(e=e))
+            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
 
             # ---------------------------------------
             # Execute parser for various show commands
@@ -106,207 +91,84 @@ class Collect_Information(aetest.Testcase):
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
             # Show Access-Lists
-            with steps.start('Parsing show access-lists',continue_=True) as step:
-                try:
-                    self.parsed_show_access_lists = device.parse("show access-lists")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_access_lists = ParseShowCommandFunction.parse_show_command(steps, device, "show access-lists")
 
             # Show Access-Sessions
-            if device.type == "switch":            
-                with steps.start('Parsing show access-session',continue_=True) as step:
-                    try:
-                        self.parsed_show_access_session = device.parse("show access-session")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_access_session = ParseShowCommandFunction.parse_show_command(steps, device, "show access-session")
 
             # Show Authentication Sessions
-            if device.type == "switch":            
-                with steps.start('Parsing show authentication sessions',continue_=True) as step:
-                    try:
-                        self.parsed_show_authentication_sessions = device.parse("show authentication sessions")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_authentication_sessions = ParseShowCommandFunction.parse_show_command(steps, device, "show authentication sessions")
 
             # Show CDP Neighbors
-            with steps.start('Parsing show cdp neighbors',continue_=True) as step:
-                try:
-                    self.parsed_show_cdp_neighbors = device.parse("show cdp neighbors")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_cdp_neighbors = ParseShowCommandFunction.parse_show_command(steps, device, "show cdp neighbors")
 
             # Show CDP Neighbors Detail           
-            with steps.start('Parsing show cdp neighbors detail',continue_=True) as step:
-                try:
-                    self.parsed_show_cdp_neighbors_detail = device.parse("show cdp neighbors detail")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_cdp_neighbors_detail = ParseShowCommandFunction.parse_show_command(steps, device, "show cdp neighbors detail")
 
             # Show Enviroment
-            with steps.start('Parsing show environment all',continue_=True) as step:
-                try:
-                    self.parsed_show_environment = device.parse("show environment all")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_environment = ParseShowCommandFunction.parse_show_command(steps, device, "show environment all")
 
             # Show Etherchannel Summary
-            with steps.start('Parsing show etherchannel summary',continue_=True) as step:
-                try:
-                    self.parsed_show_etherchannel_summary = device.parse("show etherchannel summary")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_etherchannel_summary = ParseShowCommandFunction.parse_show_command(steps, device, "show etherchannel summary")
 
             # Show Interfaces
-            with steps.start('Parsing show interfaces',continue_=True) as step:
-                try:
-                    self.parsed_show_int = device.parse("show interfaces")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_int = ParseShowCommandFunction.parse_show_command(steps, device, "show interfaces")
 
             # Show Interfaces Status
-            with steps.start('Parsing show interfaces status',continue_=True) as step:
-                try:
-                    self.parsed_show_int_status = device.parse("show interfaces status")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_int_status = ParseShowCommandFunction.parse_show_command(steps, device, "show interfaces status")
 
             # Show Interfaces Trunk
-            with steps.start('Parsing show interfaces trunk',continue_=True) as step:
-                try:
-                    self.parsed_show_interfaces_trunk = device.parse("show interfaces trunk")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_interfaces_trunk = ParseShowCommandFunction.parse_show_command(steps, device, "show interfaces trunk")
 
             # Show Inventory
-            with steps.start('Parsing show inventory',continue_=True) as step:
-                try:
-                    self.parsed_show_inventory = device.parse("show inventory")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_inventory = ParseShowCommandFunction.parse_show_command(steps, device, "show inventory")
 
-            # Show IP ARP - Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":            
-                with steps.start('Parsing show ip arp',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_arp = device.parse("show ip arp")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP ARP
+            self.parsed_show_ip_arp = ParseShowCommandFunction.parse_show_command(steps, device, "show ip arp")
 
             # Show IP Interface Brief
-            with steps.start('Parsing show ip interface brief',continue_=True) as step:
-                try:
-                    self.parsed_show_ip_int_brief = device.parse("show ip interface brief")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_ip_int_brief = ParseShowCommandFunction.parse_show_command(steps, device, "show ip interface brief")
 
-            # Show IP OSPF Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":
-                with steps.start('Parsing show ip ospf',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_ospf = device.parse("show ip ospf")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP OSPF
+            self.parsed_show_ip_ospf = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf")
 
-            # Show IP OSPF Dabase Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":
-                with steps.start('Parsing show ip ospf database',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_ospf_database = device.parse("show ip ospf database")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP OSPF Dabase
+            self.parsed_show_ip_ospf_database = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf database")
 
-            # Show IP OSPF Interface Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":
-                with steps.start('Parsing show ip ospf interface',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_ospf_interface = device.parse("show ip ospf interface")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP OSPF Interface
+            self.parsed_show_ip_ospf_interface = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf interface")
 
-            # Show IP OSPF Neighbor - Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":
-                with steps.start('Parsing show ip ospf neighbor',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_ospf_neighbor = device.parse("show ip ospf neighbor")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP OSPF Neighbor
+            self.parsed_show_ip_ospf_neighbor = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf neighbor")
 
-            # Show IP OSPF Neighbor Detail - Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":
-                with steps.start('Parsing show ip ospf neighbor detail',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_ospf_neighbor_detail = device.parse("show ip ospf neighbor detail")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP OSPF Neighbor Detail
+            self.parsed_show_ip_ospf_neighbor_detail = ParseShowCommandFunction.parse_show_command(steps, device, "show ip ospf neighbor detail")
 
-            # Show IP Route - Layer 3 Command Only
-            if device.type == "router":
-                with steps.start('Parsing show ip route',continue_=True) as step:
-                    try:
-                        self.parsed_show_ip_route = device.parse("show ip route")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            # Show IP Route
+            self.parsed_show_ip_route = ParseShowCommandFunction.parse_show_command(steps, device, "show ip route")
 
             # Show ISSU State Detail
             ## Only VSS Systems support ISSU Such as a 4500; test if device.platform == 4500
             if device.platform == "cat4500":
-                with steps.start('Parsing show issu state detail',continue_=True) as step:
-                    try:
-                        self.parsed_show_issu_state = device.parse("show issu state detail")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                self.parsed_show_issu_state = ParseShowCommandFunction.parse_show_command(steps, device, "show issu state detail")
 
             # Show MAC Address-Table
-            with steps.start('Parsing show mac address-table',continue_=True) as step:
-                try:
-                    self.parsed_show_mac_address_table = device.parse("show mac address-table")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_mac_address_table = ParseShowCommandFunction.parse_show_command(steps, device, "show mac address-table")
 
             # Show NTP Associations
-            with steps.start('Parsing show ntp associations',continue_=True) as step:
-                try:
-                    self.parsed_show_ntp_associations = device.parse("show ntp associations")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_ntp_associations = ParseShowCommandFunction.parse_show_command(steps, device, "show ntp associations")
 
             # Show Power Inline
-            if device.type == "switch":
-                with steps.start('Parsing show power inline',continue_=True) as step:
-                    try:
-                        self.parsed_show_power_inline = device.parse("show power inline")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_power_inline = ParseShowCommandFunction.parse_show_command(steps, device, "show power inline")
 
             # Show Version
-            with steps.start('Parsing show version',continue_=True) as step:
-                try:
-                    self.parsed_show_version = device.parse("show version")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_version = ParseShowCommandFunction.parse_show_command(steps, device, "show version")
 
             # Show VLAN
-            with steps.start('Parsing show vlan',continue_=True) as step:
-                try:
-                    self.parsed_show_vlan = device.parse("show vlan")
-                except Exception as e:
-                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+            self.parsed_show_vlan = ParseShowCommandFunction.parse_show_command(steps, device, "show vlan")
 
-            # Show VRF - Layer 3 Command only 
-            # Test if device.type == "router"
-            if device.type == "router":            
-                with steps.start('Parsing show vrf',continue_=True) as step:
-                    try:
-                        self.parsed_show_vrf = device.parse("show vrf")
-                    except Exception as e:
-                        step.failed('Could not parse it correctly\n{e}'.format(e=e))
-
+            # Show VRF
+            self.parsed_show_vrf = ParseShowCommandFunction.parse_show_command(steps, device, "show vrf")
             # ---------------------------------------
             # Create JSON, YAML, CSV, MD, HTML, HTML Mind Map files from the Parsed Data
             # ---------------------------------------         
@@ -318,7 +180,7 @@ class Collect_Information(aetest.Testcase):
                 ###############################
 
                 # Learned ACL
-                if hasattr(self, 'learned_acl'):
+                if self.learned_acl is not None:
                     learned_acl_template = env.get_template('learned_acl.j2')
                     learned_acl_netjson_json_template = env.get_template('learned_acl_netjson_json.j2')
                     learned_acl_netjson_html_template = env.get_template('learned_acl_netjson_html.j2')
@@ -348,7 +210,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Learned ARP
-                if hasattr(self, 'learned_arp'):
+                if self.learned_arp is not None:
                     learned_arp_template = env.get_template('learned_arp.j2')
                     learned_arp_statistics_template = env.get_template('learned_arp_statistics.j2')
                     learned_arp_netjson_json_template = env.get_template('learned_arp_netjson_json.j2')
@@ -399,7 +261,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Learned Interface
-                if hasattr(self, 'learned_interface'):
+                if self.learned_interface is not None:
                     learned_interface_template = env.get_template('learned_interface.j2')
                     learned_interface_netjson_json_template = env.get_template('learned_interface_netjson_json.j2')
                     learned_interface_netjson_html_template = env.get_template('learned_interface_netjson_html.j2')
@@ -440,8 +302,10 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Learned OSPF
-                if hasattr(self, 'learned_ospf'):
+                if self.learned_ospf is not None:
                     learned_ospf_template = env.get_template('learned_ospf.j2')
+                    learned_ospf_netjson_json_template = env.get_template('learned_ospf_netjson_json.j2')
+                    learned_ospf_netjson_html_template = env.get_template('learned_ospf_netjson_html.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.json" % device.alias, "w") as fid:
                         json.dump(self.learned_ospf, fid, indent=4, sort_keys=True)
@@ -458,12 +322,21 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
 
+                    parsed_output_netjson_json = learned_ospf_netjson_json_template.render(to_parse_ospf=self.learned_ospf['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ospf_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
                 ###############################
                 # Genie Show Command Section
                 ###############################
 
                 # Show access-lists
-                if hasattr(self, 'parsed_show_access_lists'):
+                if self.parsed_show_access_lists is not None:
                     sh_access_lists_template = env.get_template('show_access_lists.j2')                  
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
@@ -482,7 +355,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show access-session
-                if hasattr(self, 'parsed_show_access_session'):
+                if self.parsed_show_access_session is not None:
                     sh_access_sessions_template = env.get_template('show_access_sessions.j2')
                     sh_access_sessions_totals_template = env.get_template('show_access_sessions_totals.j2')
                     sh_access_sessions_interface_details_template = env.get_template('show_access_sessions_interface_details.j2')
@@ -575,7 +448,7 @@ class Collect_Information(aetest.Testcase):
                     os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show Authentication Sessions
-                if hasattr(self, 'parsed_show_authentication_sessions'):
+                if self.parsed_show_authentication_sessions is not None:
                     sh_authetication_sessions_template = env.get_template('show_authentication_sessions.j2')
                     sh_authetication_sessions_totals_template = env.get_template('show_authentication_sessions_totals.j2')
                     sh_authentication_sessions_interface_details_template = env.get_template('show_authentication_sessions_interface_details.j2')
@@ -668,7 +541,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show CDP Neighbors
-                if hasattr(self, 'parsed_show_cdp_neighbors'):
+                if self.parsed_show_cdp_neighbors is not None:
                     sh_cdp_neighbors_template = env.get_template('show_cdp_neighbors.j2')
                     sh_cdp_neighbors_netjson_json_template = env.get_template('show_cdp_neighbor_netjson_json.j2')
                     sh_cdp_neighbors_netjson_html_template = env.get_template('show_cdp_neighbor_netjson_html.j2')
@@ -698,7 +571,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Show CDP Neighbors Details
-                if hasattr(self, 'parsed_show_cdp_neighbors_detail'):
+                if self.parsed_show_cdp_neighbors_detail is not None:
                     sh_cdp_neighbors_detail_template = env.get_template('show_cdp_neighbors_details.j2')
                     sh_cdp_neighbors_detail_totals_template = env.get_template('show_cdp_neighbors_details_totals.j2')
                     sh_cdp_neighbors_detail_netjson_json_template = env.get_template('show_cdp_neighbor_details_netjson_json.j2')
@@ -736,7 +609,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Show environment all
-                if hasattr(self, 'parsed_show_environment'):
+                if self.parsed_show_environment is not None:
                     sh_environment_template = env.get_template('show_environment_all.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.json" % device.alias, "w") as fid:
@@ -755,7 +628,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment_mind_map.html" % (device.alias,device.alias))
 
                 # Show etherchannel summary
-                if hasattr(self, 'parsed_show_etherchannel_summary'):
+                if self.parsed_show_etherchannel_summary is not None:
                     sh_etherchannel_summary_template = env.get_template('show_etherchannel_summary.j2')
                     sh_etherchannel_summary_totals_template = env.get_template('show_etherchannel_summary_totals.j2')
 
@@ -766,6 +639,7 @@ class Collect_Information(aetest.Testcase):
                       yaml.dump(self.parsed_show_etherchannel_summary, yml, allow_unicode=True)
 
                     for filetype in filetype_loop: 
+                        parsed_output_type = None
                         if 'interfaces' in self.parsed_show_etherchannel_summary:                          
                             parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
                         parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
@@ -784,7 +658,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show interfaces
-                if hasattr(self, 'parsed_show_int'):
+                if self.parsed_show_int is not None:
                     sh_int_template = env.get_template('show_interfaces.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.json" % device.alias, "w") as fid:
@@ -803,7 +677,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int_mind_map.html" % (device.alias,device.alias))
 
                 # Show interfaces status
-                if hasattr(self, 'parsed_show_int_status'):
+                if self.parsed_show_int_status is not None:
                     sh_int_status_template = env.get_template('show_int_status.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.json" % device.alias, "w") as fid:
@@ -822,7 +696,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status_mind_map.html" % (device.alias,device.alias))
 
                 # Show interfaces trunk
-                if hasattr(self, 'parsed_show_interfaces_trunk'):
+                if self.parsed_show_interfaces_trunk is not None:
                     sh_interfaces_trunk_template = env.get_template('show_interfaces_trunk.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.json" % device.alias, "w") as fid:
@@ -841,7 +715,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk_mind_map.html" % (device.alias,device.alias))
 
                 # Show Inventory
-                if hasattr(self, 'parsed_show_inventory'):
+                if self.parsed_show_inventory is not None:
                     # 4500
                     sh_inventory_4500_template = env.get_template('show_inventory_4500.j2')
 
@@ -889,7 +763,7 @@ class Collect_Information(aetest.Testcase):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip arp
-                if hasattr(self, 'parsed_show_ip_arp'):
+                if self.parsed_show_ip_arp is not None:
                     sh_ip_arp_template = env.get_template('show_ip_arp.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.json" % device.alias, "w") as fid:
@@ -908,7 +782,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
 
                 # Show ip interface brief
-                if hasattr(self, 'parsed_show_ip_int_brief'):
+                if self.parsed_show_ip_int_brief is not None:
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.json" % device.alias, "w") as fid:
@@ -927,7 +801,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF
-                if hasattr(self, 'parsed_show_ip_ospf'):
+                if self.parsed_show_ip_ospf is not None:
                     sh_ip_ospf_template = env.get_template('show_ip_ospf.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.json" % device.alias, "w") as fid:
@@ -946,7 +820,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Database
-                if hasattr(self, 'parsed_show_ip_ospf_database'):
+                if self.parsed_show_ip_ospf_database is not None:
                     sh_ip_ospf_database_template = env.get_template('show_ip_ospf_database.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.json" % device.alias, "w") as fid:
@@ -965,7 +839,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Interface
-                if hasattr(self, 'parsed_show_ip_ospf_interface'):
+                if self.parsed_show_ip_ospf_interface is not None:
                     sh_ip_ospf_interface_template = env.get_template('show_ip_ospf_interface.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.json" % device.alias, "w") as fid:
@@ -984,7 +858,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP OSPF Neighbor
-                if hasattr(self, 'parsed_show_ip_ospf_neighbor'):
+                if self.parsed_show_ip_ospf_neighbor is not None:
                     sh_ip_ospf_neighbor_template = env.get_template('show_ip_ospf_neighbor.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.json" % device.alias, "w") as fid:
@@ -1004,7 +878,7 @@ class Collect_Information(aetest.Testcase):
 
 
                 # Show IP OSPF Neighbor Detail
-                if hasattr(self, 'parsed_show_ip_ospf_neighbor_detail'):
+                if self.parsed_show_ip_ospf_neighbor_detail is not None:
                     sh_ip_ospf_neighbor_detail_template = env.get_template('show_ip_ospf_neighbor_detail.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.json" % device.alias, "w") as fid:
@@ -1023,7 +897,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail_mind_map.html" % (device.alias,device.alias))
 
                 # Show IP Route
-                if hasattr(self, 'parsed_show_ip_route'):
+                if self.parsed_show_ip_route is not None:
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
                     sh_ip_route_netjson_json_template = env.get_template('show_ip_route_netjson_json.j2')
                     sh_ip_route_netjson_html_template = env.get_template('show_ip_route_netjson_html.j2')
@@ -1053,7 +927,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                 # Show ISSU State Details
-                if hasattr(self, 'parsed_show_issu_state'):
+                if self.parsed_show_issu_state is not None:
                     sh_issu_state_template = env.get_template('show_issu_state.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.json" % device.alias, "w") as fid:
@@ -1072,7 +946,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
 
                 # Show mac address-table
-                if hasattr(self, 'parsed_show_mac_address_table'):
+                if self.parsed_show_mac_address_table is not None:
                     sh_mac_address_table_template = env.get_template('show_mac_address_table.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.json" % device.alias, "w") as fid:
@@ -1091,7 +965,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
 
                 # Show ntp associations
-                if hasattr(self, 'parsed_show_ntp_associations'):
+                if self.parsed_show_ntp_associations is not None:
                     sh_ntp_associations_template = env.get_template('show_ntp_associations.j2')
                     
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.json" % device.alias, "w") as fid:
@@ -1110,7 +984,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
 
                 # Show power inline
-                if hasattr(self, 'parsed_show_power_inline'):
+                if self.parsed_show_power_inline is not None:
                     sh_power_inline_template = env.get_template('show_power_inline.j2')
                     sh_power_inline_totals_template = env.get_template('show_power_inline_totals.j2')
 
@@ -1146,7 +1020,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals_mind_map.html" % (device.alias,device.alias))
 
                 # Show version
-                if hasattr(self, 'parsed_show_version'):
+                if self.parsed_show_version is not None:
                     sh_ver_template = env.get_template('show_version.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.json" % device.alias, "w") as fid:
@@ -1165,7 +1039,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
                 # Show vlan
-                if hasattr(self, 'parsed_show_vlan'):
+                if self.parsed_show_vlan is not None:
                     sh_vlan_template = env.get_template('show_vlan.j2')
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.json" % device.alias, "w") as fid:
@@ -1184,7 +1058,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan_mind_map.html" % (device.alias,device.alias))
 
                 # Show vrf
-                if hasattr(self, 'parsed_show_vrf'):
+                if self.parsed_show_vrf is not None:
                     sh_vrf_template = env.get_template('show_vrf.j2')
                     sh_ip_arp_vrf_template = env.get_template('show_ip_arp.j2')
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
@@ -1205,55 +1079,54 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf_mind_map.html" % (device.alias,device.alias))
 
                     # For Each VRF
-                    if device.type == "router":
-                        for vrf in self.parsed_show_vrf['vrf']:
+                    for vrf in self.parsed_show_vrf['vrf']:
                       
-                            # Show IP ARP VRF <VRF> 
-                            with steps.start('Parsing ip arp vrf',continue_=True) as step:
-                                try:
-                                    self.parsed_show_ip_arp_vrf = device.parse("show ip arp vrf %s" % vrf)
-                                except Exception as e:
-                                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                        # Show IP ARP VRF <VRF> 
+                        with steps.start('Parsing ip arp vrf',continue_=True) as step:
+                            try:
+                                self.parsed_show_ip_arp_vrf = device.parse("show ip arp vrf %s" % vrf)
+                            except Exception as e:
+                                step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                            with steps.start('Store data',continue_=True) as step:
+                        with steps.start('Store data',continue_=True) as step:
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                                  json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                                  yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
 
-                                for filetype in filetype_loop:
-                                    parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
+                            for filetype in filetype_loop:
+                                parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
 
-                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                      fh.write(parsed_output_type)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                    fh.write(parsed_output_type)
         
-                                if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
-                                    os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
+                                os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
-                            # Show IP ROUTE VRF <VRF> 
-                            with steps.start('Parsing ip route vrf',continue_=True) as step:
-                                try:
-                                    self.parsed_show_ip_route_vrf = device.parse("show ip route vrf %s" % vrf)
-                                except Exception as e:
-                                    step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                        # Show IP ROUTE VRF <VRF> 
+                        with steps.start('Parsing ip route vrf',continue_=True) as step:
+                            try:
+                                self.parsed_show_ip_route_vrf = device.parse("show ip route vrf %s" % vrf)
+                            except Exception as e:
+                                step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                            with steps.start('Store data',continue_=True) as step:
+                        with steps.start('Store data',continue_=True) as step:
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                                  json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                                  yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
+                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
                          
-                                for filetype in filetype_loop:
-                                    parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
+                            for filetype in filetype_loop:
+                                parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
 
-                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                      fh.write(parsed_output_type)
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                    fh.write(parsed_output_type)
 
-                                if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
+                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
                                     os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
         # Goodbye Banner

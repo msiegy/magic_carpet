@@ -93,6 +93,13 @@ class Collect_Information(aetest.Testcase):
                 except Exception as e:
                     step.failed('Could not learn Interface\n{e}'.format(e=e))
 
+            # OSPF
+            with steps.start('Learning OSPF',continue_=True) as step:
+                try:
+                    self.learned_ospf = device.learn('ospf').info
+                except Exception as e:
+                    step.failed('Could not learn OSPF\n{e}'.format(e=e))
+
             # ---------------------------------------
             # Execute parser for various show commands
             # ---------------------------------------
@@ -349,7 +356,6 @@ class Collect_Information(aetest.Testcase):
                     learned_arp_statistics_netjson_json_template = env.get_template('learned_arp_statistics_netjson_json.j2')
                     learned_arp_statistics_netjson_html_template = env.get_template('learned_arp_statistics_netjson_html.j2')
 
-
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_ARP/%s_learned_arp.json" % device.alias, "w") as fid:
                         json.dump(self.learned_arp, fid, indent=4, sort_keys=True)
 
@@ -392,25 +398,6 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
-                # Show access-lists
-                if hasattr(self, 'parsed_show_access_lists'):
-                    sh_access_lists_template = env.get_template('show_access_lists.j2')                  
-
-                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
-                      json.dump(self.parsed_show_access_lists, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.yaml" % device.alias, "w") as yml:
-                      yaml.dump(self.parsed_show_access_lists, yml, allow_unicode=True)
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
-
                 # Learned Interface
                 if hasattr(self, 'learned_interface'):
                     learned_interface_template = env.get_template('learned_interface.j2')
@@ -452,9 +439,47 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                # Learned OSPF
+                if hasattr(self, 'learned_ospf'):
+                    learned_ospf_template = env.get_template('learned_ospf.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_ospf, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_ospf, yml, allow_unicode=True)   
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ospf_template.render(to_parse_ospf=self.learned_ospf['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
+
                 ###############################
                 # Genie Show Command Section
                 ###############################
+
+                # Show access-lists
+                if hasattr(self, 'parsed_show_access_lists'):
+                    sh_access_lists_template = env.get_template('show_access_lists.j2')                  
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.json" % device.alias, "w") as fid:
+                      json.dump(self.parsed_show_access_lists, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.yaml" % device.alias, "w") as yml:
+                      yaml.dump(self.parsed_show_access_lists, yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                 # Show access-session
                 if hasattr(self, 'parsed_show_access_session'):

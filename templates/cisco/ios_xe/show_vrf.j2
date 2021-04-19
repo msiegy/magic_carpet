@@ -14,9 +14,7 @@
     <th>Interfaces</th>
   </tr>
   </thead>
-  
-  <tbody>
-  {% for vrf in to_parse_vrf %}{% for interface in to_parse_vrf[vrf].interfaces %}{% for protocol in to_parse_vrf[vrf].protocols %}{% if interface != "ipv4" %}
+  <tbody>{% for vrf in to_parse_vrf %}{% for interface in to_parse_vrf[vrf].interfaces %}{% for protocol in to_parse_vrf[vrf].protocols %}{% if interface != "ipv4" %}
   <tr>
     <td>{{ vrf }}</td>
     <td>{{ protocol }}</td>

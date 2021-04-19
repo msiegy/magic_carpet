@@ -35,8 +35,7 @@
       <th>Port</th>
     </tr>
   </thead>
-  <tbody>
-  {% for list in to_parse_access_list %}{% if to_parse_access_list[list].aces is defined %}{% for ace in to_parse_access_list[list].aces %}{% if to_parse_access_list[list].aces[ace].matches.l3 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network is defined %}{% for source_network in to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network %}
+  <tbody>{% for list in to_parse_access_list %}{% if to_parse_access_list[list].aces is defined %}{% for ace in to_parse_access_list[list].aces %}{% if to_parse_access_list[list].aces[ace].matches.l3 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network is defined %}{% for source_network in to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network %}
   <tr>
     <td>{{ list }}</td>
     <td>{{ ace }}</td>

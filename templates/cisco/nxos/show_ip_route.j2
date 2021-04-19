@@ -5,9 +5,10 @@ VRF,Address Family,Route,Active,Metric,Route Preference,Source Protocol,Source P
 | VRF | Address Family | Route | Active | Metric | Route Preference | Source Protocol | Source Protocol Code | Next Hop Number | Next Hop | Outgoing Interface | Updated |
 | --- | -------------- | ----- | ------ | ------ | ---------------- | --------------- | -------------------- | --------------- | -------- | ------------------ | ------- |{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}
 | {{ vrf }} | {{ address_family }} | {{ route }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].active }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].metric }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].route_preference }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].source_protocol }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].source_protocol_codes }} | {{ next_hop }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].next_hop }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }} | {{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].updated }} |{% endfor %}{% endfor %}{% endfor %}{% endfor %}{% else %}
-<html><body>
-<h1>Show Interfaces Status</h1>
-<table style="width:100%">
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
+<h1>Show IP Route</h1>
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>VRF</th>
     <th>Address Family</th>
@@ -20,7 +21,9 @@ VRF,Address Family,Route,Active,Metric,Route Preference,Source Protocol,Source P
     <th>Next Hop Number</th>
     <th>Outgoing Interface</th>
     <th>Updated</th>
-  </tr>{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}
+  </tr>
+  </thead>
+  <tbody>{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}
   <tr>
     <td>{{ vrf }}</td>
     <td>{{ address_family }}</td>
@@ -36,5 +39,6 @@ VRF,Address Family,Route,Active,Metric,Route Preference,Source Protocol,Source P
     <td>{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].outgoing_interface }}</td>
     <td>{{ to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list[next_hop].updated }}</td>
   </tr>{% endfor %}{% endfor %}{% endfor %}{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

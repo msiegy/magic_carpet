@@ -4,9 +4,10 @@
 | Interface | Status | Type | VLAN | Port Speed | Duplex |
 | --------- | ------ | ---- | ---- | ---------- | ------ |{% for interface in to_parse_interfaces %}
 | {{ interface }} | {{ to_parse_interfaces[interface].status }} | {{ to_parse_interfaces[interface].type }} | {{ to_parse_interfaces[interface].vlan }} | {{ to_parse_interfaces[interface].port_speed }} | {{ to_parse_interfaces[interface].duplex_code }} |{% endfor %}{% else %}
-<html><body>
-<h1>Show Interface Status</h1>
-<table style="width:100%">
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
+<h1>Show Interfaces Status</h1>
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Interface</th>
     <th>Status</th>
@@ -14,7 +15,9 @@
     <th>VLAN</th>
     <th>Port Speed</th>
     <th>Duplex</th>
-  </tr>{% for interface in to_parse_interfaces %}
+  </tr>
+  </thead>
+  <tbody>{% for interface in to_parse_interfaces %}
 <tr>
     <td>{{ interface }}</td>
     <td>{{ to_parse_interfaces[interface].status }}</td>
@@ -23,5 +26,6 @@
     <td>{{ to_parse_interfaces[interface].port_speed }}</td>
     <td>{{ to_parse_interfaces[interface].duplex_code }}</td>    
   </tr>{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

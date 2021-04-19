@@ -4,9 +4,10 @@
 | Name | Partition | Create Time | Created By | Expiration Date | Issuer | Serial Number | Subject | Subject Alternate Name | Updated By |
 | ---- | --------- | ----------- | ---------- | --------------- | ------ | ------------- | ------- | ---------------------- | ---------- |{% for cert in to_parse_ssl_cert %}
 | {{ cert.name }} | {{ cert.partition }} | {{ cert.createTime }} | {{ cert.createdBy }} | {{ cert.expirationString }} | {{ cert.issuer | replace(","," ") }} | {{ cert.serialNumber | default("No Serial Number") }} | {{ cert.subject | replace(","," ") }} | {{ cert.subjectAlternativeName | default("No SAN") | replace(","," ") }} | {{ cert.updatedBy }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>SSL Certificates</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Name</th>
     <th>Partition</th>
@@ -18,7 +19,9 @@
     <th>Subject</th>
     <th>Subject Alternate Name</th>
     <th>Updated By</th>
-  </tr>{% for cert in to_parse_ssl_cert %}
+  </tr>
+  </thead>
+  <tbody>{% for cert in to_parse_ssl_cert %}
   <tr>
     <td>{{ cert.name }}</td>
     <td>{{ cert.partition }}</td>
@@ -31,5 +34,6 @@
     <td>{{ cert.subjectAlternativeName | default("No SAN") | replace(","," ") }}</td>
     <td>{{ cert.updatedBy }}</td>
   </tr>{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

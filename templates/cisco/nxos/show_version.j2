@@ -4,9 +4,10 @@
 | Device Name | Chassis | Model | CPU | Memory | RP | Bootflash | Processor Board ID | Slots | Kernel Uptime Days | Hours | Minutes | Seconds | System Version | Image File | Compile Time |
 | ----------- | ------- | ----- | --- | ------ | -- | --------- | ------------------ | ----- | ------------------ | ----- | ------- | ------- | -------------- | ---------- | ------------ |
 | {{ to_parse_version.hardware.device_name }} | {{ to_parse_version.hardware.chassis }} | {{ to_parse_version.hardware.model }} | {{ to_parse_version.hardware.cpu }} | {{ to_parse_version.hardware.memory }} | {{ to_parse_version.hardware.rp }} | {{ to_parse_version.hardware.bootflash }} | {{ to_parse_version.hardware.processor_board_id }} | {{ to_parse_version.hardware.slots }} | {{ to_parse_version.kernel_uptime.days }} | {{ to_parse_version.kernel_uptime.hours }} | {{ to_parse_version.kernel_uptime.minutes }} | {{ to_parse_version.kernel_uptime.seconds }} | {{ to_parse_version.software.system_version }} | {{ to_parse_version.software.system_image_file }} | {{ to_parse_version.software.system_compile_time }} |{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Version</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Device Name</th>
     <th>Chassis</th>
@@ -25,6 +26,8 @@
     <th>Image File</th>
     <th>Compile Time</th>
   </tr>
+  </thead>
+  <tbody>  
   <tr>
     <td>{{ to_parse_version.hardware.device_name }}</td>
     <td>{{ to_parse_version.hardware.chassis }}</td>
@@ -43,5 +46,6 @@
     <td>{{ to_parse_version.software.system_image_file }}</td>
     <td>{{ to_parse_version.software.system_compile_time }}</td>
   </tr>
+</tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

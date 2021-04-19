@@ -18,9 +18,10 @@
 | {{ list }} | {{ ace }} | {{ to_parse_access_list[list].aces[ace].actions.forwarding }} | {{ to_parse_access_list[list].aces[ace].actions.logging | default ("No Logging") }},Source Protocol,N/A | N/A,TCP,{{ to_parse_access_list[list].aces[ace].matches.l4.tcp.source_port.operator.operator }} | {{ to_parse_access_list[list].aces[ace].matches.l4.tcp.source_port.operator.port }} |{% else %}{% if to_parse_access_list[list].aces[ace].matches.l4.tcp.destination_port is defined%}  
 | {{ list }} | {{ ace }} | {{ to_parse_access_list[list].aces[ace].actions.forwarding }} | {{ to_parse_access_list[list].aces[ace].actions.logging | default ("No Logging") }},N/A,Destination Protocol,N/A,TCP,{{ to_parse_access_list[list].aces[ace].matches.l4.tcp.destination_port.operator.operator }} | {{ to_parse_access_list[list].aces[ace].matches.l4.tcp.destination_port.operator.port }} |{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endfor %}{% else %}
 | {{ list }} | No ACEs | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |{% endif %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Access-Lists</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Access Control List</th>
     <th>Access Control Entry</th>
@@ -32,7 +33,9 @@
     <th>L4 Protocol</th>
     <th>Operator</th>
     <th>Port</th>
-  </tr>{% for list in to_parse_access_list %}{% if to_parse_access_list[list].aces is defined %}{% for ace in to_parse_access_list[list].aces %}{% if to_parse_access_list[list].aces[ace].matches.l3 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network is defined %}{% for source_network in to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network %}
+  </tr>
+  </thead>
+  <tbody>{% for list in to_parse_access_list %}{% if to_parse_access_list[list].aces is defined %}{% for ace in to_parse_access_list[list].aces %}{% if to_parse_access_list[list].aces[ace].matches.l3 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4 is defined %}{% if to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network is defined %}{% for source_network in to_parse_access_list[list].aces[ace].matches.l3.ipv4.source_network %}
   <tr>
     <td>{{ list }}</td>
     <td>{{ ace }}</td>
@@ -129,5 +132,6 @@
     <td>N/A</td>
     <td>N/A</td>
   </tr>{% endif %}{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

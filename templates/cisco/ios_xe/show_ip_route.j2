@@ -23,9 +23,7 @@ VRF,Address Family,Route,Active,Metric,Route Preference,Source Protocol,Source P
     <th>Updated</th>
   </tr>
   </thead>
-
-  <tbody>
-  {% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}
+  <tbody>{% for vrf in to_parse_ip_route %}{% for address_family in to_parse_ip_route[vrf].address_family %}{% for route in to_parse_ip_route[vrf].address_family[address_family].routes %}{% for next_hop in to_parse_ip_route[vrf].address_family[address_family].routes[route].next_hop.next_hop_list %}
   <tr>
     <td>{{ vrf }}</td>
     <td>{{ address_family }}</td>

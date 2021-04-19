@@ -4,9 +4,10 @@
 | Port-Channel | Bundle ID | Layer | Type | Status | Protocol | Member Interface | Flags |
 | ------------ | --------- | ----- | ---- | ------ | -------- | ---------------- | ----- |{% for interface in to_parse_etherchannel_summary %}{% for member in to_parse_etherchannel_summary[interface].members %}
 | {{ interface }} | {{ to_parse_etherchannel_summary[interface].bundle_id }} | {{ to_parse_etherchannel_summary[interface].layer }} | {{ to_parse_etherchannel_summary[interface].type }} | {{ to_parse_etherchannel_summary[interface].oper_status }} | {{ to_parse_etherchannel_summary[interface].protocol }} | {{ member }} | {{ to_parse_etherchannel_summary[interface].members[member].flags }} |{% endfor %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Port-Channel Summary</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Port-Channel</th>
     <th>Bundle ID</th>
@@ -16,7 +17,9 @@
     <th>Protocol</th>
     <th>Member Interface</th>
     <th>Flags</th>
-  </tr>{% for interface in to_parse_etherchannel_summary %}{% for member in to_parse_etherchannel_summary[interface].members %}  
+  </tr>
+  </thead>
+  <tbody>{% for interface in to_parse_etherchannel_summary %}{% for member in to_parse_etherchannel_summary[interface].members %}  
   <tr>
     <td>{{ interface }}</td>
     <td>{{ to_parse_etherchannel_summary[interface].bundle_id }}</td>
@@ -28,5 +31,6 @@
     <td>{{ to_parse_etherchannel_summary[interface].members[member].flags }}</td>
     <td></td>
   </tr>{% endfor %}{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

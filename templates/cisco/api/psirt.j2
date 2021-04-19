@@ -7,9 +7,10 @@ N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,{{ to_parse_psirt.errorMessage }}{% 
 | -- | ----- | ------ | ---- | ---------- | -------- | ----------- | ----------- | ------------ | ------ | ------------ | ---------- |{% if to_parse_psirt.errorCode is defined %}
 | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | {{ to_parse_psirt.errorMessage }} |{% else %}{% for advisory in to_parse_psirt %}{% for bugID in advisory.bugIDs %}
 | {{ advisory.advisoryId }} | {{ advisory.advisoryTitle | replace(','," ") }} | {{ bugID }} | {{ advisory.cves | replace(','," ") | replace("['"," ") | replace("']"," ") }} | {{ advisory.cvssBaseScore }} | {{ advisory.sir }} | {{ advisory.firstFixed | replace(','," ") | replace("['"," ") | replace("']"," ") }} | {{ advisory.firstPublished }} | {{ advisory.lastUpdated }} | {{ advisory.status }} | {{ advisory.publicationUrl }} | YES |{% endfor %}{% endfor %}{% endif %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>PSIRT Report</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>ID</th>
     <th>Title</th>
@@ -23,7 +24,9 @@ N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,{{ to_parse_psirt.errorMessage }}{% 
     <th>Status</th>
     <th>Detailed URL</th>
     <th>Vulernable</th>
-  </tr>{% for advisory in to_parse_psirt %}{% for bugID in advisory.bugIDs %}
+  </tr>
+  </thead>
+  <tbody>{% for advisory in to_parse_psirt %}{% for bugID in advisory.bugIDs %}
   <tr>
     <td>{{ advisory.advisoryId }}</td>
     <td>{{ advisory.advisoryTitle | replace(','," ") }}</td>
@@ -38,5 +41,6 @@ N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,{{ to_parse_psirt.errorMessage }}{% 
     <td>{{ advisory.publicationUrl }}</td>
     <td>YES</td>
   </tr>{% endfor %}{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

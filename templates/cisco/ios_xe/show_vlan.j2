@@ -17,9 +17,7 @@
     <th>MTU</th>
   </tr>
   </thead>
-
-  <tbody>
-  {% for vlan in to_parse_vlan %}{% for interface in to_parse_vlan[vlan].interfaces %}
+  <tbody>{% for vlan in to_parse_vlan %}{% for interface in to_parse_vlan[vlan].interfaces %}
   <tr>
     <td>{{ vlan }}</td>
     <td>{{ interface }}</td>

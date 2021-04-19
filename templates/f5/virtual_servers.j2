@@ -4,9 +4,10 @@
 | Name | Description | Source IP | Destination IP | Subnet Mask | Protocol | Enabled | Partition | Connection Limit | Pool | SNAT | Address Translation | VLANS |
 | ---- | ----------- | --------- | -------------- | ----------- | -------- | ------- | --------- | ---------------- | ---- | ---- | ------------------- | ----- |{% for vs in to_parse_vs %}
 | {{ vs.name }} | {{ vs.description | default("No Description") }} | {{ vs.source }} | {{ vs.destination }} | {{ vs.mask }} | {{ vs.ipProtocol }} | {{ vs.enabled | default("N/A") }} | {{ vs.partition }} | {{ vs.connectionLimit }} | {{ vs.pool | default("N/A") }} | {{ vs.sourceAddressTranslation.pool | default("N/A") }} | {{ vs.translateAddress }} | {{ vs.vlans | join (',') | default("N/A") }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Virtual Servers</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Name</th>
     <th>Description</th>
@@ -21,7 +22,9 @@
     <th>SNAT</th>
     <th>Address Translation</th>
     <th>VLANS</th>
-  </tr>{% for vs in to_parse_vs %}
+  </tr>
+  </thead>
+  <tbody>{% for vs in to_parse_vs %}
   <tr>
     <td>{{ vs.name }}</td>
     <td>{{ vs.description | default("No Description") }}</td>
@@ -38,5 +41,6 @@
     <td>{{ vs.translateAddress }}</td>
     <td>{{ vs.vlans | join (',') | default("N/A") }}</td>
   </tr>{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

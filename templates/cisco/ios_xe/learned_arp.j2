@@ -19,9 +19,7 @@
     <th>ARP Dynamic Learning Proxy Enable</th>
   </tr>
   </thead>
-  
-  <tbody>
-  {% for interface in to_parse_arp %}{% if to_parse_arp[interface].ipv4 is defined %}{% for neighbor in to_parse_arp[interface].ipv4.neighbors %}
+  <tbody>{% for interface in to_parse_arp %}{% if to_parse_arp[interface].ipv4 is defined %}{% for neighbor in to_parse_arp[interface].ipv4.neighbors %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ neighbor }}</td>
@@ -35,7 +33,7 @@
     <td>N/A</td>
     <td>{{ to_parse_arp[interface].arp_dynamic_learning.local_proxy_enable }}</td>
     <td>{{ to_parse_arp[interface].arp_dynamic_learning.proxy_enable }}</td>
-</tr>{% endif %}{% endfor %} 
+  </tr>{% endif %}{% endfor %} 
   </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

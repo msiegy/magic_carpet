@@ -16,9 +16,7 @@
     <th>VLAN</th>   
   </tr>
   </thead>
-
-  <tbody>
-  {% for interface in to_parse_interfaces %}  
+  <tbody>{% for interface in to_parse_interfaces %}  
   <tr>
     <td>{{ interface }}</td>
     <td>{{ to_parse_interfaces[interface].name | default("Not Named") }}</td>

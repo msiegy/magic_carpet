@@ -4,20 +4,24 @@
 | Slot | Description | PID | Serial Number |
 | ---- | ----------- | --- | ------------- |{% for part in to_parse_inventory_name %}
 | {{ part }} | {{ to_parse_inventory_name[part].description }} | {{ to_parse_inventory_name[part].pid }} | {{ to_parse_inventory_name[part].serial_number }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Inventory</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Slot</th>
     <th>Description</th>
     <th>PID</th>
     <th>Serial Number</th>   
-  </tr>{% for part in to_parse_inventory_name %}
+  </tr>
+  </thead>
+  <tbody>{% for part in to_parse_inventory_name %}
 <tr>
     <td>{{ part }}</td>
     <td>{{ to_parse_inventory_name[part].description }}</td>
     <td>{{ to_parse_inventory_name[part].pid }}</td>
     <td>{{ to_parse_inventory_name[part].serial_number }}</td>
   </tr>{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

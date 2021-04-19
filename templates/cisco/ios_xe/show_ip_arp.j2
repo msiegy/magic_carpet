@@ -18,9 +18,7 @@
     <th>Protocol</th>
   </tr>
   </thead>
-
-  <tbody>
-  {% for interface in to_parse_ip_arp %}{% for neighbor in to_parse_ip_arp[interface].ipv4.neighbors %}
+  <tbody>{% for interface in to_parse_ip_arp %}{% for neighbor in to_parse_ip_arp[interface].ipv4.neighbors %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ neighbor }}</td>

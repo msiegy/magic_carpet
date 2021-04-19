@@ -4,14 +4,18 @@
 | Local Interface | 
 | --------------- |
 | {{ to_parse_cdp_neighbors.total_entries_displayed }} |{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Total CDP Neighbors</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Total CDP Neighbors</th>
   </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>{{ to_parse_cdp_neighbors.total_entries_displayed }}</td>
   </tr>
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

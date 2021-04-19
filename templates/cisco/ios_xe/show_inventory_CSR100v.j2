@@ -8,17 +8,21 @@
 | ---- | ---- | ----------- | --- | ------------- | ---------- |{% for chassis in to_parse_inventory_main.chassis %}{% for part in to_parse_inventory_main[chassis] %}
 | {{ main }} | {{ chassis }} | {{ to_parse_inventory_main[chassis].descr }} | {{ to_parse_inventory_main[chassis].pid }} | {{ to_parse_inventory_main[chassis].sn }} | {{ to_parse_inventory_main[chassis].vid }} |{% endfor %}{% endfor %}{% for slot in to_parse_inventory_slot %}{% for part in to_parse_inventory_slot[slot] %}{% for part_number in to_parse_inventory_slot[slot][part] %}
 | {{ slot }} | {{ part_number }} | {{ to_parse_inventory_slot[slot][part][part_number].descr }} | {{ to_parse_inventory_slot[slot][part][part_number].pid }} | {{ to_parse_inventory_slot[slot][part][part_number].sn }} | {{ to_parse_inventory_slot[slot][part][part_number].vid }} |{% endfor %}{% endfor %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Inventory</h1>
-<table style="width:100%">
-  <tr>
-    <th>Slot</th>
-    <th>Part</th>
-    <th>Description</th>
-    <th>PID</th>
-    <th>Serial Number</th>   
-    <th>Virtual ID</th>
-  </tr>{% for chassis in to_parse_inventory_main.chassis %}{% for part in to_parse_inventory_main[chassis] %}
+<table class="magic-carpet-table">
+  <thead>
+    <tr>
+      <th>Slot</th>
+      <th>Part</th>
+      <th>Description</th>
+      <th>PID</th>
+      <th>Serial Number</th>   
+      <th>Virtual ID</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for chassis in to_parse_inventory_main.chassis %}{% for part in to_parse_inventory_main[chassis] %}
 <tr>
     <td>{{ main }}</td>
     <td>{{ chassis }}</td>
@@ -35,5 +39,6 @@
     <td>{{ to_parse_inventory_slot[slot][part][part_number].sn }}</td>
     <td>{{ to_parse_inventory_slot[slot][part][part_number].vid }}</td>
   </tr>{% endfor %}{% endfor %}{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

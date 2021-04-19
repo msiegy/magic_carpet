@@ -4,16 +4,21 @@
 | Total Available | Total Used |
 | --------------- | ---------- |
 | {{ total_avail }} | {{ total_used }} |{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Inline Power Totals</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Total Available</th>
     <th>Total Used</th>
   </tr>
+  </thead>
+
+  <tbody>
   <tr>
     <td>{{ total_avail }}</td>
     <td>{{ total_used }}</td>
   </tr>
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

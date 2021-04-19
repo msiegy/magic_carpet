@@ -4,20 +4,26 @@
 | Slot | State | Operating Mode | RP State |
 | ---- | ----- | -------------- | -------- |{% for slot in to_parse_issu_state %}
 | {{ slot }} | {{ to_parse_issu_state[slot].issu_state }} | {{ to_parse_issu_state[slot].operating_mode }} | {{ to_parse_issu_state[slot].rp_state }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show ISSU State</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Slot</th>
     <th>State</th>
     <th>Operating Mode</th>
     <th>RP State</th>
-  </tr>{% for slot in to_parse_issu_state %}
+  </tr>
+  </thead>
+
+  <tbody>
+  {% for slot in to_parse_issu_state %}
   <tr>
     <td>{{ slot }}</td>
     <td>{{ to_parse_issu_state[slot].issu_state }}</td>
     <td>{{ to_parse_issu_state[slot].operating_mode }}</td>
     <td>{{ to_parse_issu_state[slot].rp_state }}</td>
   </tr>{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

@@ -4,9 +4,10 @@
 | VLAN | Interface | Name | State | Shutdown | MTU |
 | ---- | --------- | ---- | ----- | -------- | --- |{% for vlan in to_parse_vlan %}{% for interface in to_parse_vlan[vlan].interfaces %}
 | {{ vlan }} | {{ interface }} | {{ to_parse_vlan[vlan].name }} | {{ to_parse_vlan[vlan].state }} | {{ to_parse_vlan[vlan].shutdown }} | {{ to_parse_vlan[vlan].mtu }} |{% endfor %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show VLAN</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>VLAN</th>
     <th>Interface</th>
@@ -14,7 +15,11 @@
     <th>State</th>
     <th>Shutdown</th>
     <th>MTU</th>
-  </tr>{% for vlan in to_parse_vlan %}{% for interface in to_parse_vlan[vlan].interfaces %}
+  </tr>
+  </thead>
+
+  <tbody>
+  {% for vlan in to_parse_vlan %}{% for interface in to_parse_vlan[vlan].interfaces %}
   <tr>
     <td>{{ vlan }}</td>
     <td>{{ interface }}</td>
@@ -23,5 +28,6 @@
     <td>{{ to_parse_vlan[vlan].shutdown }}</td>
     <td>{{ to_parse_vlan[vlan].mtu }}</td>
   </tr>{% endfor %}{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

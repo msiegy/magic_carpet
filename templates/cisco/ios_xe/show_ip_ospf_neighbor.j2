@@ -4,9 +4,10 @@
 | Interface | Neighbor | Address | Dead Time | Priority | State |
 | --------- | -------- | ------- | --------- | ---------| ----- |{% for interface in to_parse_ip_ospf_neighbor %}{% for neighbor in to_parse_ip_ospf_neighbor[interface].neighbors %}
 | {{ interface }} | {{ neighbor }} | {{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].address }} | {{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].dead_time }} | {{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].priority }} | {{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].state }} |{% endfor %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show IP OSPF Neighbor</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Interface</th>
     <th>Neighbor</th>
@@ -14,7 +15,11 @@
     <th>Dead Time</th>
     <th>Priority</th>
     <th>State</th>
-  </tr>{% for interface in to_parse_ip_ospf_neighbor %}{% for neighbor in to_parse_ip_ospf_neighbor[interface].neighbors %}
+  </tr>
+  </thead>
+
+  <tbody>
+  {% for interface in to_parse_ip_ospf_neighbor %}{% for neighbor in to_parse_ip_ospf_neighbor[interface].neighbors %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ neighbor }}</td>
@@ -23,5 +28,6 @@
     <td>{{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].priority }}</td>
     <td>{{ to_parse_ip_ospf_neighbor[interface].neighbors[neighbor].state }}</td>
   </tr>{% endfor %}{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

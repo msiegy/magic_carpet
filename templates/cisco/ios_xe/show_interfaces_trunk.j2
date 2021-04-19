@@ -4,9 +4,10 @@
 | Interface | Encapsulation | Mode | Native Vlan | Status | Allowed on Trunk | STP Forwarding |
 | --------- | ------------- | ---- | ----------- | ------ | ---------------- | -------------- |{% for interface in to_parse_interfaces_trunk %}
 | {{ interface }} | {{ to_parse_interfaces_trunk[interface].encapsulation }} | {{ to_parse_interfaces_trunk[interface].mode }} | {{ to_parse_interfaces_trunk[interface].native_vlan }} | {{ to_parse_interfaces_trunk[interface].status }} | {{ to_parse_interfaces_trunk[interface].vlans_allowed_on_trunk | replace(","," ") }} | {{ to_parse_interfaces_trunk[interface].vlans_in_stp_forwarding_not_pruned | replace(","," ") }} |{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show Interfaces Trunk</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Interface</th>
     <th>Encapsulation</th>
@@ -15,7 +16,10 @@
     <th>Status</th>   
     <th>Allowed on Trunk</th>
     <th>STP Forwarding</th>
-  </tr>{% for interface in to_parse_interfaces_trunk %}
+  </tr>
+  </thead>
+  <tbody>
+  {% for interface in to_parse_interfaces_trunk %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ to_parse_interfaces_trunk[interface].encapsulation }}</td>
@@ -25,5 +29,6 @@
     <td>{{ to_parse_interfaces_trunk[interface].vlans_allowed_on_trunk | replace(","," ") }}</td>
     <td>>{{ to_parse_interfaces_trunk[interface].vlans_in_stp_forwarding_not_pruned | replace(","," ") }}</td>
   </tr>{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

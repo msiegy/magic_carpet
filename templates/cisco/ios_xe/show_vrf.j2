@@ -4,18 +4,24 @@
 | VRF | Protocol | Interfaces |
 | --- | -------- | ---------- |{% for vrf in to_parse_vrf %}{% for interface in to_parse_vrf[vrf].interfaces %}{% for protocol in to_parse_vrf[vrf].protocols %} {% if interface != "ipv4" %}
 | {{ vrf }} | {{ protocol }} | {{ interface }} |{% endif %}{% endfor %}{% endfor %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Show VRF</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>VRF</th>
     <th>Protocols</th>
     <th>Interfaces</th>
-  </tr>{% for vrf in to_parse_vrf %}{% for interface in to_parse_vrf[vrf].interfaces %}{% for protocol in to_parse_vrf[vrf].protocols %}{% if interface != "ipv4" %}
+  </tr>
+  </thead>
+  
+  <tbody>
+  {% for vrf in to_parse_vrf %}{% for interface in to_parse_vrf[vrf].interfaces %}{% for protocol in to_parse_vrf[vrf].protocols %}{% if interface != "ipv4" %}
   <tr>
     <td>{{ vrf }}</td>
     <td>{{ protocol }}</td>
     <td>{{ interface }}</td>
   </tr>{% endif %}{% endfor %}{% endfor %}{% endfor %}
+  </tbody>
 </table>
 </body></html>{% endif %}{% endif %}

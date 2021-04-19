@@ -4,7 +4,7 @@
 | Total Entries | Input Drops | Input Reply Packets | Input Request Packets | Input Total | Incomplete Total | Output Drops | Output Gratuitous Packets | Output Reply Packets | Output Request Packets | Output Total |
 | ------------- | ----------- | ------------------- | --------------------- | ----------- | ---------------- | ------------ | ------------------------- | -------------------- | ---------------------- | ------------ |
 | {{ to_parse_arp.entries_total }} | {{ to_parse_arp.in_drops }} | {{ to_parse_arp.in_replies_pkts }} | {{ to_parse_arp.in_requests_pkts }} | {{ to_parse_arp.in_total | default("N/A") }} | {{ to_parse_arp.incomplete_total }} | {{ to_parse_arp.out_drops | default("N/A") }} | {{ to_parse_arp.out_gratuitous_pkts | default("N/A") }} | {{ to_parse_arp.out_replies_pkts }} | {{ to_parse_arp.out_requests_pkts }} | {{ to_parse_arp.out_total| default("N/A") }} |{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Learned ARP Statistics</h1>
 <table style="width:100%">
   <tr>

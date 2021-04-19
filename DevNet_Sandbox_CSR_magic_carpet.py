@@ -22,7 +22,7 @@ from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, RUNNING, FINISHED
+from ascii_art import GREETING, LEARN, RUNNING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------

@@ -367,6 +367,8 @@ Cisco IOS-XE:
     
     learn ARP
     
+    learn Dot1X
+    
     learn Interface
 
     show access lists
@@ -437,7 +439,9 @@ Cisco NXOS:
     
     learn ARP
     
-    learn interface
+    learn BGP
+    
+    learn Interface
 
     show access lists
     

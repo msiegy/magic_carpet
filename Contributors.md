@@ -6,6 +6,16 @@ John Capobianco
 
     Cisco IOS-XE:
     
+        learn('acl')
+
+        learn('arp')
+        
+        learn('bgp')
+        
+        learn('dot1x')
+
+        learn('interface')    
+    
         show access lists
 
         show access session
@@ -68,11 +78,11 @@ John Capobianco
 
     Cisco NXOS:
 
-        learn('bgp')
-
         learn('acl')
 
         learn('arp')
+
+        learn('bgp')
 
         learn('interface')
 

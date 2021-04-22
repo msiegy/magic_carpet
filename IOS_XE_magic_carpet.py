@@ -79,6 +79,9 @@ class Collect_Information(aetest.Testcase):
             # ARP
             self.learned_arp = ParseLearnFunction.parse_learn(steps, device, "arp")
 
+            # Dot1X
+            self.learned_dot1x = ParseLearnFunction.parse_learn(steps, device, "dot1x")            
+
             # Interface
             self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
 
@@ -258,6 +261,57 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned Dot1X
+                if self.learned_dot1x is not None:
+                    learned_dot1x_template = env.get_template('learned_dot1x.j2')
+                    learned_dot1x_netjson_json_template = env.get_template('learned_dot1x_netjson_json.j2')
+                    learned_dot1x_netjson_html_template = env.get_template('learned_dot1x_netjson_html.j2')
+                    learned_dot1x_sessions_template = env.get_template('learned_dot1x_sessions.j2')
+                    learned_dot1x_sessions_netjson_json_template = env.get_template('learned_dot1x_sessions_netjson_json.j2')
+                    learned_dot1x_sessions_netjson_html_template = env.get_template('learned_dot1x_sessions_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_dot1x, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_dot1x, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_dot1x_template.render(to_parse_dot1x=self.learned_dot1x,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_dot1x_netjson_json_template.render(to_parse_dot1x=self.learned_dot1x,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_dot1x_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_dot1x_sessions_template.render(to_parse_dot1x=self.learned_dot1x,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_dot1x_sessions_netjson_json_template.render(to_parse_dot1x=self.learned_dot1x,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_dot1x_sessions_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 # Learned Interface

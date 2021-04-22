@@ -2,6 +2,8 @@
 
 ### Simply a better way; a magical way; to collect and transform network state information
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/automateyournetwork/magic_carpet)
+
 ![Magic Carpet](/images/magic_carpet_logo.jpg)
 
 Powered by Genie

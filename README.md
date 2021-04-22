@@ -370,6 +370,8 @@ Cisco IOS-XE:
     learn Dot1X
     
     learn Interface
+    
+    learn VLAN
 
     show access lists
 
@@ -442,6 +444,8 @@ Cisco NXOS:
     learn BGP
     
     learn Interface
+    
+    learn VLAN
 
     show access lists
     

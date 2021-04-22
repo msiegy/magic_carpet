@@ -15,6 +15,8 @@ John Capobianco
         learn('dot1x')
 
         learn('interface')    
+        
+        learn('vlan')
     
         show access lists
 
@@ -85,6 +87,8 @@ John Capobianco
         learn('bgp')
 
         learn('interface')
+        
+        learn('vlan')
 
         show access lists
        

@@ -86,7 +86,11 @@ class Collect_Information(aetest.Testcase):
             self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
 
             # OSPF
-            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")          
+            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
+
+            # VLAN
+            self.learned_vlan = ParseLearnFunction.parse_learn(steps, device, "vlan")
+
             # ---------------------------------------
             # Execute parser for various show commands
             # ---------------------------------------
@@ -324,6 +328,36 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned VLAN
+                if self.learned_vlan is not None:
+                    learned_vlan_template = env.get_template('learned_vlan.j2')
+                    learned_vlan_netjson_json_template = env.get_template('learned_vlan_netjson_json.j2')
+                    learned_vlan_netjson_html_template = env.get_template('learned_vlan_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_vlan, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_vlan, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_vlan_template.render(to_parse_vlan=self.learned_vlan['vlans'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_vlan_netjson_json_template.render(to_parse_vlan=self.learned_vlan['vlans'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_vlan_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 ###############################

@@ -88,6 +88,9 @@ class Collect_Information(aetest.Testcase):
             # OSPF
             self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
 
+            # STP
+            self.learned_stp = ParseLearnFunction.parse_learn(steps, device, "stp")
+
             # VLAN
             self.learned_vlan = ParseLearnFunction.parse_learn(steps, device, "vlan")
 
@@ -328,6 +331,57 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned STP
+                if self.learned_stp is not None:
+                    learned_stp_template = env.get_template('learned_stp.j2')
+                    learned_stp_netjson_json_template = env.get_template('learned_stp_netjson_json.j2')
+                    learned_stp_netjson_html_template = env.get_template('learned_stp_netjson_html.j2')
+                    learned_stp_rpvst_template = env.get_template('learned_stp_rpvst.j2')
+                    learned_stp_rpvst_netjson_json_template = env.get_template('learned_stp_rpvst_netjson_json.j2')
+                    learned_stp_rpvst_netjson_html_template = env.get_template('learned_stp_rpvst_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_stp, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_stp, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_stp_template.render(to_parse_stp=self.learned_stp['global'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_stp_netjson_json_template.render(to_parse_stp=self.learned_stp['global'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_stp_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_stp_rpvst_template.render(to_parse_stp=self.learned_stp['rapid_pvst'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_stp_rpvst_netjson_json_template.render(to_parse_stp=self.learned_stp['rapid_pvst'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_stp_rpvst_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_STP/%s_learned_stp_rpvst_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 # Learned VLAN

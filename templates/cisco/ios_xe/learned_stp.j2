@@ -6,9 +6,10 @@
 | ----------- | ---------- | --------------------------- | ---------------------------- | ---------- |
 | {{ to_parse_stp.bpdu_filter }} | {{ to_parse_stp.bpdu_guard }} | {{ to_parse_stp.bpduguard_timeout_recovery }} | {{ to_parse_stp.etherchannel_misconfig_guard }} | {{ to_parse_stp.loop_guard }} |
 {% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Learn STP Global</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>BPDU Filter</th>
     <th>BPDU Guard</th>
@@ -16,6 +17,8 @@
     <th>EtherChannel Misconfig Guard</th>
     <th>Loop Guard</th>
   </tr>
+  </thead>
+  <tbody>  
   <tr>
     <td>{{ to_parse_stp.bpdu_filter }}</td>
     <td>{{ to_parse_stp.bpdu_guard }}</td>
@@ -23,5 +26,6 @@
     <td>{{ to_parse_stp.etherchannel_misconfig_guard }}</td>
     <td>{{ to_parse_stp.loop_guard }}</td>
   </tr>
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

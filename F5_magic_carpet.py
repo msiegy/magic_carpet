@@ -21,7 +21,7 @@ from rich.text import Text
 from pyats import aetest
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, RUNNING, FINISHED, CLOUD
+from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 
 # ----------------
 # Get logger for script
@@ -101,15 +101,12 @@ class Collect_Information(aetest.Testcase):
                     step.failed('There was a problem with the API\n{e}'.format(e=e))
 
             # ---------------------------------------
-            # Test Case #2 - Write the files
-            # ---------------------------------------
-
-            # ---------------------------------------
             # Generate CSV / MD / HTML / Mind Maps
             # ---------------------------------------
 
             with steps.start('Store data',continue_=True) as step:
-
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
+                
                 # VS
                 if hasattr(self, 'raw_vs'):
                     self.vs_json = self.raw_vs.json()

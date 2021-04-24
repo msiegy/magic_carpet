@@ -22,7 +22,7 @@ from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, LEARN, RUNNING, FINISHED
+from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------
@@ -84,6 +84,9 @@ class Collect_Information(aetest.Testcase):
 
             # Interface
             self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
+
+            # LLDP
+            self.learned_lldp = ParseLearnFunction.parse_learn(steps, device, "lldp")
 
             # OSPF
             self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
@@ -183,7 +186,8 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------         
             
             with steps.start('Store data',continue_=True) as step:
-
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
+                
                 ###############################
                 # Genie learn().info section
                 ###############################
@@ -359,6 +363,57 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned LLDP
+                if self.learned_lldp is not None:
+                    learned_lldp_template = env.get_template('learned_lldp.j2')
+                    learned_lldp_netjson_json_template = env.get_template('learned_lldp_netjson_json.j2')
+                    learned_lldp_netjson_html_template = env.get_template('learned_lldp_netjson_html.j2')
+                    learned_lldp_interfaces_template = env.get_template('learned_lldp_interfaces.j2')
+                    learned_lldp_interfaces_netjson_json_template = env.get_template('learned_lldp_interfaces_netjson_json.j2')
+                    learned_lldp_interfaces_netjson_html_template = env.get_template('learned_lldp_interfaces_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_lldp, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_lldp, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_lldp_template.render(to_parse_lldp=self.learned_lldp,filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_lldp_netjson_json_template.render(to_parse_lldp=self.learned_lldp,device_alias = device.alias)
+                    parsed_output_netjson_html = learned_lldp_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_lldp_interfaces_template.render(to_parse_lldp=self.learned_lldp['interfaces'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_lldp_interfaces_netjson_json_template.render(to_parse_lldp=self.learned_lldp['interfaces'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_lldp_interfaces_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 # Learned OSPF

@@ -6,15 +6,18 @@
 | |{% for vlan in to_parse_vlan %}{% if to_parse_vlan[vlan].interfaces is defined %}{% for interface in to_parse_vlan[vlan].interfaces %}
 | {{ vlan }} | {{ to_parse_vlan[vlan].name }} | {{ to_parse_vlan[vlan].state }} | {{ to_parse_vlan[vlan].shutdown }} | {{ interface }} |{% endfor %}{% else %}
 | {{ vlan }} | {{ to_parse_vlan[vlan].name }} | {{ to_parse_vlan[vlan].state }} | {{ to_parse_vlan[vlan].shutdown }} | N/A |{% endif %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Learn VLAN</h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
   <th>VLAN</th>
   <th>Name</th>
   <th>State</th>
   <th>ShutdownInterface</th>
-  </tr>{% for vlan in to_parse_vlan %}{% if to_parse_vlan[vlan].interfaces is defined %}{% for interface in to_parse_vlan[vlan].interfaces %}
+  </tr>
+  </thead>
+  <tbody>{% for vlan in to_parse_vlan %}{% if to_parse_vlan[vlan].interfaces is defined %}{% for interface in to_parse_vlan[vlan].interfaces %}
   <tr>
     <td>{{ vlan }}</td>
     <td>{{ to_parse_vlan[vlan].name }}</td>
@@ -29,5 +32,6 @@
     <td>{{ to_parse_vlan[vlan].shutdown }}</td>
     <td>N/A</td>
   </tr>{% endif %}{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

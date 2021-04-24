@@ -6,9 +6,10 @@
 | --------- | ------ | ---------- | --- | ------ | ------- | --------- | ------------- | ---------- | ------------ | ----------- | ---------- | -------- | --------- | ----------- | -------- | -------- | ----------- | ------------- | -------- | ------------ | -------------- | ------------------ | --------- |  {% for interface in to_parse_dot1x.interfaces %}{% if to_parse_dot1x.interfaces[interface].clients is defined %}{% for client in to_parse_dot1x.interfaces[interface].clients %}{% for session in to_parse_dot1x.interfaces[interface].clients[client].session %}
 | {{ interface }} | {{ client }} | {{ to_parse_dot1x.interfaces[interface].clients[client].eap_method }} | {{ to_parse_dot1x.interfaces[interface].clients[client].pae }} | {{ to_parse_dot1x.interfaces[interface].clients[client].status }} | {{ session }} | {{ to_parse_dot1x.interfaces[interface].clients[client].session[session].auth_bend_sm_state }} | {{ to_parse_dot1x.interfaces[interface].clients[client].session[session].auth_sm_state }} | {{ to_parse_dot1x.interfaces[interface].max_reauth_req }} | {{ to_parse_dot1x.interfaces[interface].max_req }} | {{ to_parse_dot1x.interfaces[interface].statistics.lastrxsrcmac }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxinvalid }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxlenerr }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxlogoff }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxresp }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxstart }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxtotal }} | {{ to_parse_dot1x.interfaces[interface].statistics.txreq }} | {{ to_parse_dot1x.interfaces[interface].statistics.txreqid }} | {{ to_parse_dot1x.interfaces[interface].statistics.txtotal }} | {{ to_parse_dot1x.interfaces[interface].timeout.quiet_period }} | {{ to_parse_dot1x.interfaces[interface].timeout.server_timeout }} | {{ to_parse_dot1x.interfaces[interface].timeout.supp_timeout }} | {{ to_parse_dot1x.interfaces[interface].timeout.tx_period }} |{% endfor %}{% endfor %}{% else %}
 | {{ interface }} | No Client | N/A | N/A | N/A | No Sessions | N/A | N/A | {{ to_parse_dot1x.interfaces[interface].max_reauth_req }} | {{ to_parse_dot1x.interfaces[interface].max_req }} | {{ to_parse_dot1x.interfaces[interface].statistics.lastrxsrcmac }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxinvalid }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxlenerr }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxlogoff }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxresp }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxstart }} | {{ to_parse_dot1x.interfaces[interface].statistics.rxtotal }} | {{ to_parse_dot1x.interfaces[interface].statistics.txreq }} | {{ to_parse_dot1x.interfaces[interface].statistics.txreqid }} | {{ to_parse_dot1x.interfaces[interface].statistics.txtotal }} | {{ to_parse_dot1x.interfaces[interface].timeout.quiet_period }} | {{ to_parse_dot1x.interfaces[interface].timeout.server_timeout }} | {{ to_parse_dot1x.interfaces[interface].timeout.supp_timeout }} | {{ to_parse_dot1x.interfaces[interface].timeout.tx_period }} |{% endif %}{% endfor %}{% else %}
-<html><body>
+<html><head><link rel="stylesheet" href="../../../styles.css"></head><body>
 <h1>Learn Dot1x/h1>
-<table style="width:100%">
+<table class="magic-carpet-table">
+  <thead>
   <tr>
     <th>Interface</th>
     <th>Client</th>
@@ -34,7 +35,9 @@
     <th>Server Timeout</th>
     <th>Supplicant Timeout</th>
     <th>TX Period</th>  
-  </tr>{% for interface in to_parse_dot1x.interfaces %}{% if to_parse_dot1x.interfaces[interface].clients is defined %}{% for client in to_parse_dot1x.interfaces[interface].clients %}{% for session in to_parse_dot1x.interfaces[interface].clients[client].session %}
+  </tr>
+  </thead>
+  <tbody>{% for interface in to_parse_dot1x.interfaces %}{% if to_parse_dot1x.interfaces[interface].clients is defined %}{% for client in to_parse_dot1x.interfaces[interface].clients %}{% for session in to_parse_dot1x.interfaces[interface].clients[client].session %}
   <tr>
     <td>{{ interface }}</td>
     <td>{{ client }}</td>
@@ -85,5 +88,6 @@
     <td>{{ to_parse_dot1x.interfaces[interface].timeout.supp_timeout }}</td>
     <td>{{ to_parse_dot1x.interfaces[interface].timeout.tx_period }}</td>    
   </tr>{% endif %}{% endfor %}
+  </tbody>  
 </table>
 </body></html>{% endif %}{% endif %}

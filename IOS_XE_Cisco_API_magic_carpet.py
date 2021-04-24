@@ -22,7 +22,7 @@ from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, RUNNING, FINISHED, CLOUD
+from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction
 
 # ----------------
@@ -85,7 +85,8 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------         
             
             with steps.start('Store data',continue_=True) as step:
-
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
+                
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
                     recommended_release_template = env.get_template('recommended_release.j2')

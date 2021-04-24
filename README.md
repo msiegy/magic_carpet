@@ -232,13 +232,25 @@ First - you will get onto the Magic Carpet
 
 ![Step One](/images/Hang_On.png)
 
+Then - we LEARN everything we can about the device
+
+![Step Two](/images/Learning.PNG)
+
 Next - Genie Magic
 
-![Step Two](/images/Heading_In.png)
+![Step Three](/images/Heading_In.png)
+
+We head into the cloud !
+
+![Step Four](/images/CloudMonkey.PNG)
+
+All of the CLI and API JSON is magically transformed
+
+![Step Five](/images/Savefiles.PNG)
 
 Finally - We escape the Cave of Wonders with the network data
 
-![Step Three](/images/We_Made_It.png)
+![Step Six](/images/We_Made_It.png)
 
 ```bash
 cd Cave_of_Wonders
@@ -365,7 +377,15 @@ Cisco IOS-XE:
     
     learn ARP
     
+    learn Dot1X
+    
     learn Interface
+
+    learn LLDP
+
+    learn OSPF
+
+    learn STP
 
     show access lists
 
@@ -435,7 +455,15 @@ Cisco NXOS:
     
     learn ARP
     
-    learn interface
+    learn Dot1X
+    
+    learn Interface
+
+    learn LLDP
+
+    learn OSPF
+
+    learn STP
 
     show access lists
     

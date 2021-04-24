@@ -248,7 +248,7 @@ We head into the cloud !
 
 All of the CLI and API JSON is magically transformed
 
-![Step Five](/images/Savefiles.PNG)
+![Step Five](/images/SaveFiles.PNG)
 
 Finally - We escape the Cave of Wonders with the network data
 

@@ -22,7 +22,7 @@ from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, LEARN,RUNNING, FINISHED
+from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
 
 # ----------------
@@ -144,6 +144,7 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------         
 
             with steps.start('Store data',continue_=True) as step:
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
                 
                 ###############################
                 # Genie learn().info section

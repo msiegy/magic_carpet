@@ -74,6 +74,24 @@ The [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/b
 
 [bold blue]Genie[/bold blue] Parsing Has Begun'''
 
+WRITING = ''' [blink][bold blue]Magic[/bold blue] [bold yellow]Carpet[/bold yellow][/blink] is saving the captured [bright_magenta]Wonders[/bright_magenta]!
+[bright_green]__________________   __________________
+.-/|                  \ /                  |\-.
+||||                   |                   ||||
+||||                   |        [/bright_green][bright_red]CSV[/bright_red][bright_green]        ||||
+||||    [/bright_green]--=CLI=--[bright_green]      |        [/bright_green][bright_red]JSON[/bright_red][bright_green]       ||||
+||||                   |       [/bright_green][bright_red]YAML[/bright_red][bright_green]        ||||
+||||                   |        [/bright_green][bright_red]MD[/bright_red][bright_green]         ||||
+||||                   |     [/bright_green][bright_blue]--==*==--[/bright_blue][bright_green]     ||||
+||||                   |      [/bright_green][bright_red]Mind Map[/bright_red][bright_green]     ||||
+||||                   |       [/bright_green][bright_red]HTML[/bright_red][bright_green]        ||||
+||||                   |    [/bright_green][bright_red]Network Graphs[/bright_red][bright_green] ||||
+||||                   |                   ||||
+||||__________________ | __________________||||
+||/===================\|/===================\||
+`--------------------[/bright_green][bright_blue]~___~[/bright_blue][bright_green]-------------------''[/bright_green]
+'''
+
 CLOUD = '''Our monkey friend is heading to the [bold blue]Cloud[/bold blue]
 
 [yellow]                                                 ..ccCCCCCCCc..

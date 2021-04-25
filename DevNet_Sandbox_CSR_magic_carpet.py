@@ -24,6 +24,7 @@ from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
+from tinydb import TinyDB, Query
 
 # ----------------
 # Get logger for script
@@ -43,6 +44,13 @@ filetype_loop = ["csv","md","html"]
 
 template_dir = 'templates/cisco/ios_xe'
 env = Environment(loader=FileSystemLoader(template_dir))
+
+# ----------------
+# Create Database
+# ----------------
+
+db = TinyDB('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Jafar_DB.json')
+db.truncate()
 
 # ----------------
 # AE Test Setup
@@ -68,6 +76,12 @@ class Collect_Information(aetest.Testcase):
         # Loop over devices
         # ---------------------------------------
         for device in testbed:
+
+            # ----------------
+            # Create a table in the database
+            # ----------------
+            table = db.table(device.alias)
+
             # ---------------------------------------
             # Genie learn().info for various functions
             # ---------------------------------------
@@ -85,20 +99,8 @@ class Collect_Information(aetest.Testcase):
             # Interface
             self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
 
-            # LLDP
-            self.learned_lldp = ParseLearnFunction.parse_learn(steps, device, "lldp")
-
-            # NTP
-            self.learned_ntp = ParseLearnFunction.parse_learn(steps, device, "ntp")
-
-            # OSPF
-            self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
-
             # Routing
             self.learned_routing = ParseLearnFunction.parse_learn(steps, device, "routing")
-
-            # VLAN
-            self.learned_vlan = ParseLearnFunction.parse_learn(steps, device, "vlan")
 
             # ---------------------------------------
             # Execute parser for various show commands
@@ -167,6 +169,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store ACLs in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.learned_acl)
+
                 # Learned ARP
                 if self.learned_arp is not None:
                     learned_arp_template = env.get_template('learned_arp.j2')
@@ -217,6 +225,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store ARP in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.learned_arp)
 
                 # Learned Dot1X
                 if self.learned_dot1x is not None:
@@ -269,6 +283,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store dot1X in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.learned_dot1x)
+
                 # Learned Interface
                 if self.learned_interface is not None:
                     learned_interface_template = env.get_template('learned_interface.j2')
@@ -310,158 +330,11 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
-                # Learned LLDP
-                if self.learned_lldp is not None:
-                    learned_lldp_template = env.get_template('learned_lldp.j2')
-                    learned_lldp_netjson_json_template = env.get_template('learned_lldp_netjson_json.j2')
-                    learned_lldp_netjson_html_template = env.get_template('learned_lldp_netjson_html.j2')
-                    learned_lldp_interfaces_template = env.get_template('learned_lldp_interfaces.j2')
-                    learned_lldp_interfaces_netjson_json_template = env.get_template('learned_lldp_interfaces_netjson_json.j2')
-                    learned_lldp_interfaces_netjson_html_template = env.get_template('learned_lldp_interfaces_netjson_html.j2')
+                    # ----------------
+                    # Store Interface in Device Table in Databse
+                    # ----------------
 
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp.json" % device.alias, "w") as fid:
-                        json.dump(self.learned_lldp, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp.yaml" % device.alias, "w") as yml:
-                        yaml.dump(self.learned_lldp, yml, allow_unicode=True)                
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_lldp_template.render(to_parse_lldp=self.learned_lldp,filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_lldp_netjson_json_template.render(to_parse_lldp=self.learned_lldp,device_alias = device.alias)
-                    parsed_output_netjson_html = learned_lldp_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_lldp_interfaces_template.render(to_parse_lldp=self.learned_lldp['interfaces'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_lldp_interfaces_netjson_json_template.render(to_parse_lldp=self.learned_lldp['interfaces'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_lldp_interfaces_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
-
-                # Learned NTP
-                if self.learned_ntp is not None:
-                    learned_ntp_template = env.get_template('learned_ntp.j2')
-                    learned_ntp_netjson_json_template = env.get_template('learned_ntp_netjson_json.j2')
-                    learned_ntp_netjson_html_template = env.get_template('learned_ntp_netjson_html.j2')
-                    learned_ntp_associations_template = env.get_template('learned_ntp_associations.j2')
-                    learned_ntp_associations_netjson_json_template = env.get_template('learned_ntp_associations_netjson_json.j2')
-                    learned_ntp_associations_netjson_html_template = env.get_template('learned_ntp_associations_netjson_html.j2')
-                    learned_ntp_unicast_template = env.get_template('learned_ntp_unicast.j2')
-                    learned_ntp_unicast_netjson_json_template = env.get_template('learned_ntp_unicast_netjson_json.j2')
-                    learned_ntp_unicast_netjson_html_template = env.get_template('learned_ntp_unicast_netjson_html.j2')
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp.json" % device.alias, "w") as fid:
-                        json.dump(self.learned_ntp, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp.yaml" % device.alias, "w") as yml:
-                        yaml.dump(self.learned_ntp, yml, allow_unicode=True)                
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_ntp_template.render(to_parse_ntp=self.learned_ntp['clock_state'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_ntp_netjson_json_template.render(to_parse_ntp=self.learned_ntp['clock_state'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_ntp_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_ntp_associations_template.render(to_parse_ntp=self.learned_ntp['vrf'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_ntp_associations_netjson_json_template.render(to_parse_ntp=self.learned_ntp['vrf'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_ntp_associations_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_associations_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_ntp_unicast_template.render(to_parse_ntp=self.learned_ntp['vrf'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_ntp_unicast_netjson_json_template.render(to_parse_ntp=self.learned_ntp['vrf'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_ntp_unicast_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_NTP/%s_learned_ntp_unicast_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
-
-                # Learned OSPF
-                if self.learned_ospf is not None:
-                    learned_ospf_template = env.get_template('learned_ospf.j2')
-                    learned_ospf_netjson_json_template = env.get_template('learned_ospf_netjson_json.j2')
-                    learned_ospf_netjson_html_template = env.get_template('learned_ospf_netjson_html.j2')
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.json" % device.alias, "w") as fid:
-                        json.dump(self.learned_ospf, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.yaml" % device.alias, "w") as yml:
-                        yaml.dump(self.learned_ospf, yml, allow_unicode=True)   
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_ospf_template.render(to_parse_ospf=self.learned_ospf['vrf'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_ospf_netjson_json_template.render(to_parse_ospf=self.learned_ospf['vrf'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_ospf_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
+                    table.insert(self.learned_interface)
 
                 # Learned Routing
                 if self.learned_routing is not None:
@@ -493,35 +366,11 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
-                # Learned VLAN
-                if self.learned_vlan is not None:
-                    learned_vlan_template = env.get_template('learned_vlan.j2')
-                    learned_vlan_netjson_json_template = env.get_template('learned_vlan_netjson_json.j2')
-                    learned_vlan_netjson_html_template = env.get_template('learned_vlan_netjson_html.j2')
+                    # ----------------
+                    # Store Routing in Device Table in Databse
+                    # ----------------
 
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.json" % device.alias, "w") as fid:
-                        json.dump(self.learned_vlan, fid, indent=4, sort_keys=True)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.yaml" % device.alias, "w") as yml:
-                        yaml.dump(self.learned_vlan, yml, allow_unicode=True)                
-
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_vlan_template.render(to_parse_vlan=self.learned_vlan['vlans'],filetype_loop_jinja2=filetype)
-
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                    
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_mind_map.html" % (device.alias,device.alias))
-
-                    parsed_output_netjson_json = learned_vlan_netjson_json_template.render(to_parse_vlan=self.learned_vlan['vlans'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_vlan_netjson_html_template.render(device_alias = device.alias)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.html" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_html)
+                    table.insert(self.learned_routing)
 
                 ###############################
                 # Genie Show Command Section
@@ -544,6 +393,12 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store ACLs in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_access_lists)
 
                 # Show etherchannel summary
                 if self.parsed_show_etherchannel_summary is not None:
@@ -579,6 +434,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store EtherChannel in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_etherchannel_summary)
+
                 # Show Inventory
                 if self.parsed_show_inventory is not None:
                     # CSR100v
@@ -599,6 +460,12 @@ class Collect_Information(aetest.Testcase):
                         if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md" % device.alias):
                             os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Inventory in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_inventory)
+
                 # Show ip arp
                 if self.parsed_show_ip_arp is not None:
                     sh_ip_arp_template = env.get_template('show_ip_arp.j2')
@@ -617,6 +484,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP ARP in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_arp)
 
                 # Show ip interface brief
                 if self.parsed_show_ip_int_brief is not None:
@@ -637,6 +510,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store IP Int Brief in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_int_brief)
+
                 # Show IP Route
                 if self.parsed_show_ip_route is not None:
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
@@ -655,6 +534,12 @@ class Collect_Information(aetest.Testcase):
                                         
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP Route Brief in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_route)
 
                 # Show version
                 if self.parsed_show_version is not None:
@@ -675,5 +560,18 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Version in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_version)
+
+        db.close()
         # Goodbye Banner
-        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))            
+        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
+
+        with open('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Jafar_DB.json') as f:
+            data = json.load(f)
+ 
+        print("JSON file with 2 tables\n")
+        print(json.dumps(data, indent = 4, sort_keys=True))        

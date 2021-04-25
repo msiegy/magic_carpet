@@ -18,10 +18,10 @@ dictitems:
                 pkts_out: *id001
           ip: !!python/object/new:genie.ops.base.maker.CmdDict
             dictitems:
-              chars_in: 127705
-              chars_out: 364103
-              pkts_in: 1847
-              pkts_out: 2985
+              chars_in: 453046
+              chars_out: 1264950
+              pkts_in: 6545
+              pkts_out: 10162
             state:
               leaf_dict:
                 chars_in: *id001
@@ -51,20 +51,20 @@ dictitems:
           in_errors: 0
           in_mac_pause_frames: 0
           in_multicast_pkts: 0
-          in_octets: 123855
-          in_pkts: 1800
+          in_octets: 452784
+          in_pkts: 6544
           last_clear: never
           out_errors: 0
           out_mac_pause_frames: 0
-          out_octets: 348825
-          out_pkts: 2868
+          out_octets: 1257368
+          out_pkts: 10113
           rate: !!python/object/new:genie.ops.base.maker.CmdDict
             dictitems:
-              in_rate: 1000
-              in_rate_pkts: 1
+              in_rate: 4000
+              in_rate_pkts: 4
               load_interval: 300
-              out_rate: 1000
-              out_rate_pkts: 1
+              out_rate: 4000
+              out_rate_pkts: 4
             state:
               leaf_dict:
                 in_rate: &id002 !!python/name:genie.libs.parser.iosxe.show_interface.ShowInterfaces ''

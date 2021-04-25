@@ -1,7 +1,7 @@
 {
     "version": {
         "chassis": "CSR1000V",
-        "chassis_sn": "98LQ4WK2KXT",
+        "chassis_sn": "9EBZIOSUMTO",
         "compiled_by": "mcpre",
         "compiled_date": "Wed 12-Aug-20 00:16",
         "curr_config_register": "0x2102",
@@ -34,8 +34,8 @@
         "rom": "IOS-XE ROMMON",
         "rtr_type": "CSR1000V",
         "system_image": "bootflash:packages.conf",
-        "uptime": "17 hours, 43 minutes",
-        "uptime_this_cp": "17 hours, 44 minutes",
+        "uptime": "36 minutes",
+        "uptime_this_cp": "38 minutes",
         "version": "17.3.1a",
         "version_short": "17.3",
         "xe_version": "17.03.01a"

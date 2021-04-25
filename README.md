@@ -378,18 +378,22 @@ Cisco IOS-XE:
     learn ACL
     
     learn ARP
+
+    learn BGP
     
     learn Dot1X
     
     learn Interface
     
-    learn VLAN
-
     learn LLDP
+
+    learn NTP
 
     learn OSPF
 
     learn STP
+
+    learn VLAN
 
     show access lists
 
@@ -458,21 +462,21 @@ Cisco NXOS:
     learn ACL
     
     learn ARP
-    
+
     learn BGP
     
     learn Dot1X
     
     learn Interface
-
+    
     learn LLDP
+
+    learn NTP
 
     learn OSPF
 
-    learn STP   
-    
-    learn Interface
-    
+    learn STP
+
     learn VLAN
 
     show access lists

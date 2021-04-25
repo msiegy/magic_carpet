@@ -34,8 +34,8 @@
         "rom": "IOS-XE ROMMON",
         "rtr_type": "CSR1000V",
         "system_image": "bootflash:packages.conf",
-        "uptime": "36 minutes",
-        "uptime_this_cp": "38 minutes",
+        "uptime": "1 hour, 6 minutes",
+        "uptime_this_cp": "1 hour, 8 minutes",
         "version": "17.3.1a",
         "version_short": "17.3",
         "xe_version": "17.03.01a"

@@ -24,7 +24,13 @@ And now
 
 Welcome!
 
-Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!  
+Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!
+
+Magic Carpet First "Learns" the following features and protocols about the device:
+
+![Learn List](/images/Learned_List.PNG)
+
+Then Magic Carpet runs multiple "show" commands and creates the following:
 
 A Nice JSON file (command_output.json)
 
@@ -391,6 +397,8 @@ Cisco IOS-XE:
 
     learn OSPF
 
+    learn Routes
+
     learn STP
 
     learn VLAN
@@ -474,6 +482,8 @@ Cisco NXOS:
     learn NTP
 
     learn OSPF
+
+    learn Routes
 
     learn STP
 

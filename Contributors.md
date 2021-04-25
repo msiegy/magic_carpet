@@ -22,6 +22,8 @@ John Capobianco
 
         learn('ospf')
 
+        learn('routes')
+
         learn('stp')
         
         learn('vlan')

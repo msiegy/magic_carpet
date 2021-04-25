@@ -94,6 +94,9 @@ class Collect_Information(aetest.Testcase):
             # OSPF
             self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
 
+            # Routing
+            self.learned_routing = ParseLearnFunction.parse_learn(steps, device, "routing")
+
             # STP
             self.learned_stp = ParseLearnFunction.parse_learn(steps, device, "stp")
 
@@ -519,6 +522,36 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned Routing
+                if self.learned_routing is not None:
+                    learned_routing_template = env.get_template('learned_routing.j2')
+                    learned_routing_netjson_json_template = env.get_template('learned_routing_netjson_json.j2')
+                    learned_routing_netjson_html_template = env.get_template('learned_routing_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_routing, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_routing, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_routing_template.render(to_parse_routing=self.learned_routing['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_routing_netjson_json_template.render(to_parse_routing=self.learned_routing['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_routing_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 # Learned STP

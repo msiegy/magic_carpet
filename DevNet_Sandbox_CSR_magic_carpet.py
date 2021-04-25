@@ -88,6 +88,9 @@ class Collect_Information(aetest.Testcase):
             # LLDP
             self.learned_lldp = ParseLearnFunction.parse_learn(steps, device, "lldp")
 
+            # NTP
+            self.learned_ntp = ParseLearnFunction.parse_learn(steps, device, "ntp")
+
             # OSPF
             self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
 
@@ -356,6 +359,78 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_json)               
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                # Learned NTP
+                if self.learned_ntp is not None:
+                    learned_ntp_template = env.get_template('learned_ntp.j2')
+                    learned_ntp_netjson_json_template = env.get_template('learned_ntp_netjson_json.j2')
+                    learned_ntp_netjson_html_template = env.get_template('learned_ntp_netjson_html.j2')
+                    learned_ntp_associations_template = env.get_template('learned_ntp_associations.j2')
+                    learned_ntp_associations_netjson_json_template = env.get_template('learned_ntp_associations_netjson_json.j2')
+                    learned_ntp_associations_netjson_html_template = env.get_template('learned_ntp_associations_netjson_html.j2')
+                    learned_ntp_unicast_template = env.get_template('learned_ntp_unicast.j2')
+                    learned_ntp_unicast_netjson_json_template = env.get_template('learned_ntp_unicast_netjson_json.j2')
+                    learned_ntp_unicast_netjson_html_template = env.get_template('learned_ntp_unicast_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_ntp, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_ntp, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ntp_template.render(to_parse_ntp=self.learned_ntp['clock_state'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_ntp_netjson_json_template.render(to_parse_ntp=self.learned_ntp['clock_state'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ntp_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ntp_associations_template.render(to_parse_ntp=self.learned_ntp['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_ntp_associations_netjson_json_template.render(to_parse_ntp=self.learned_ntp['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ntp_associations_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_associations_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_ntp_unicast_template.render(to_parse_ntp=self.learned_ntp['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast.md --output Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_ntp_unicast_netjson_json_template.render(to_parse_ntp=self.learned_ntp['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_ntp_unicast_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
                 # Learned OSPF

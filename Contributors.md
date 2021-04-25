@@ -15,6 +15,14 @@ John Capobianco
         learn('dot1x')
 
         learn('interface')    
+
+        learn('lldp')
+
+        learn('ntp')
+
+        learn('ospf')
+
+        learn('stp')
         
         learn('vlan')
     

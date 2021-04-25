@@ -49,7 +49,7 @@ env = Environment(loader=FileSystemLoader(template_dir))
 # Create Database
 # ----------------
 
-db = TinyDB('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Jafar_DB.json')
+db = TinyDB('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/CSR1000v_Jafar_DB.json')
 db.truncate()
 
 # ----------------
@@ -570,7 +570,7 @@ class Collect_Information(aetest.Testcase):
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
 
-        with open('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Jafar_DB.json') as f:
+        with open('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/CSR1000v_Jafar_DB.json') as f:
             data = json.load(f)
  
         print("JSON file with 2 tables\n")

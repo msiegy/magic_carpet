@@ -24,7 +24,7 @@
             "id": "Operational Status: up"
         },
         { 
-            "id": "MAC Address: 0050.56bf.deb2"
+            "id": "MAC Address: 0050.56bf.2744"
         },
         { 
             "id": "VRF: management"
@@ -48,13 +48,13 @@
             "id": "Operational Status: up"
         },
         { 
-            "id": "MAC Address: 00bf.deb2.1b08"
+            "id": "MAC Address: 00bf.2744.1b08"
         },
         { 
             "id": "VRF: default"
         },
         { 
-            "id": "Last Change: 03:51:24"
+            "id": "Last Change: 00:51:12"
         },
         { 
             "id": "Port Channel Member: False"
@@ -256,7 +256,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Mgmt0",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Mgmt0",
@@ -268,7 +268,7 @@
             "target": "IP Address: 10.10.20.58/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Mgmt0",
             "target": "Enabled: True",
             "cost": 2
@@ -278,17 +278,17 @@
             "target": "Operational Status: up",
             "cost": 2
         },
-        {
+        { 
             "source": "Mgmt0",
-            "target": "MAC Address: 0050.56bf.deb2",
+            "target": "MAC Address: 0050.56bf.2744",
             "cost": 2
         },
-        {
+        { 
             "source": "Mgmt0",
             "target": "VRF: management",
             "cost": 2
         },
-        {
+        { 
             "source": "Mgmt0",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -296,7 +296,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Ethernet1/5",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Ethernet1/5",
@@ -308,7 +308,7 @@
             "target": "IP Address: 172.16.1.1/30",
             "cost": 2
         },
-        {
+        { 
             "source": "Ethernet1/5",
             "target": "Enabled: True",
             "cost": 2
@@ -318,22 +318,22 @@
             "target": "Operational Status: up",
             "cost": 2
         },
-        {
+        { 
             "source": "Ethernet1/5",
-            "target": "MAC Address: 00bf.deb2.1b08",
+            "target": "MAC Address: 00bf.2744.1b08",
             "cost": 2
         },
-        {
+        { 
             "source": "Ethernet1/5",
             "target": "VRF: default",
             "cost": 2
         },
         { 
             "source": "Ethernet1/5",
-            "target": "Last Change: 03:51:24",
+            "target": "Last Change: 00:51:12",
             "cost": 2
         },
-        {
+        { 
             "source": "Ethernet1/5",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -341,14 +341,14 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Loopback1",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Loopback1",
             "target": "IP Address: 172.16.0.1/32",
             "cost": 2
         },
-        {
+        { 
             "source": "Loopback1",
             "target": "Enabled: True",
             "cost": 2
@@ -358,12 +358,12 @@
             "target": "Operational Status: up",
             "cost": 2
         },
-        {
+        { 
             "source": "Loopback1",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Loopback1",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -371,7 +371,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan105",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan105",
@@ -383,7 +383,7 @@
             "target": "IP Address: 172.16.105.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan105",
             "target": "Enabled: True",
             "cost": 2
@@ -393,12 +393,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan105",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan105",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -406,7 +406,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan104",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan104",
@@ -418,7 +418,7 @@
             "target": "IP Address: 172.16.104.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan104",
             "target": "Enabled: True",
             "cost": 2
@@ -428,12 +428,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan104",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan104",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -441,7 +441,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan103",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan103",
@@ -453,7 +453,7 @@
             "target": "IP Address: 172.16.103.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan103",
             "target": "Enabled: True",
             "cost": 2
@@ -463,12 +463,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan103",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan103",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -476,7 +476,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan102",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan102",
@@ -488,7 +488,7 @@
             "target": "IP Address: 172.16.102.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan102",
             "target": "Enabled: True",
             "cost": 2
@@ -498,12 +498,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan102",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan102",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -511,7 +511,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan101",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan101",
@@ -523,7 +523,7 @@
             "target": "IP Address: 172.16.101.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan101",
             "target": "Enabled: True",
             "cost": 2
@@ -533,12 +533,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan101",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan101",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -546,7 +546,7 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Vlan100",
-            "cost": 1
+            "cost": 2
         },
         { 
             "source": "Vlan100",
@@ -558,7 +558,7 @@
             "target": "IP Address: 172.16.100.1/24",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan100",
             "target": "Enabled: True",
             "cost": 2
@@ -568,12 +568,12 @@
             "target": "Operational Status: down",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan100",
             "target": "VRF: default",
             "cost": 2
         },
-        {
+        { 
             "source": "Vlan100",
             "target": "Port Channel Member: False",
             "cost": 2
@@ -581,9 +581,9 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Port-channel11",
-            "cost": 1
+            "cost": 2            
         },
-        {
+        { 
             "source": "Port-channel11",
             "target": "Enabled: True",
             "cost": 2
@@ -598,7 +598,7 @@
             "target": "Switchport Mode: trunk",
             "cost": 2
         },
-        {
+        { 
             "source": "Port-channel11",
             "target": "Access VLAN: 1",
             "cost": 2
@@ -612,8 +612,8 @@
             "source": "Port-channel11",
             "target": "Native VLAN: 1",
             "cost": 2
-        },      
-        {
+        },  
+        { 
             "source": "Port-channel11",
             "target": "Port Channel Member: Ethernet1/1",
             "cost": 2
@@ -621,9 +621,9 @@
         { 
             "source": "DevNet_Sandbox_Nexus9k",
             "target": "Port-channel11",
-            "cost": 1
+            "cost": 2            
         },
-        {
+        { 
             "source": "Port-channel11",
             "target": "Enabled: True",
             "cost": 2
@@ -638,7 +638,7 @@
             "target": "Switchport Mode: trunk",
             "cost": 2
         },
-        {
+        { 
             "source": "Port-channel11",
             "target": "Access VLAN: 1",
             "cost": 2
@@ -652,8 +652,8 @@
             "source": "Port-channel11",
             "target": "Native VLAN: 1",
             "cost": 2
-        },      
-        {
+        },  
+        { 
             "source": "Port-channel11",
             "target": "Port Channel Member: Ethernet1/2",
             "cost": 2

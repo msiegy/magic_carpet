@@ -24,6 +24,7 @@ from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
+from tinydb import TinyDB, Query
 
 # ----------------
 # Get logger for script
@@ -43,6 +44,13 @@ filetype_loop = ["csv","md","html"]
 
 template_dir = 'templates/cisco/nxos'
 env = Environment(loader=FileSystemLoader(template_dir))
+
+# ----------------
+# Create Database
+# ----------------
+
+db = TinyDB('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Nexus9K_Jafar_DB.json')
+db.purge()
 
 # ----------------
 # AE Test Setup
@@ -68,7 +76,12 @@ class Collect_Information(aetest.Testcase):
         # Loop over devices
         # ---------------------------------------
         for device in testbed:
-        
+
+            # ----------------
+            # Create a table in the database
+            # ----------------
+            table = db.table(device.alias)
+
             # ---------------------------------------
             # Genie learn().info for various functions
             # ---------------------------------------
@@ -88,6 +101,12 @@ class Collect_Information(aetest.Testcase):
 
             # OSPF
             self.learned_ospf = ParseLearnFunction.parse_learn(steps, device, "ospf")
+
+            # Routing
+            self.learned_routing = ParseLearnFunction.parse_learn(steps, device, "routing")
+
+            # VLAN
+            self.learned_vlan = ParseLearnFunction.parse_learn(steps, device, "vlan")
 
             # ---------------------------------------
             # Execute parser for various show commands
@@ -180,6 +199,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store ACLs in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_acl)
+
                 # Learned ARP
                 if hasattr(self, 'learned_arp'):
                     learned_arp_template = env.get_template('learned_arp.j2')
@@ -232,6 +257,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store ARP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_arp)
+
                 # Learned BGP
                 if hasattr(self, 'learned_bgp'):
                     learned_bgp_template = env.get_template('learned_bgp.j2')
@@ -261,6 +292,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_BGP/%s_learned_bgp_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store BGP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_bgp)
 
                 # Learned Interface
                 if hasattr(self, 'learned_interface'):
@@ -303,6 +340,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)                        
 
+                    # ----------------
+                    # Store Interface in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_interface)
+
                 # Learned OSPF
                 if hasattr(self, 'learned_ospf'):
                     learned_ospf_template = env.get_template('learned_ospf.j2')
@@ -315,23 +358,83 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.yaml" % device.alias, "w") as yml:
                         yaml.dump(self.learned_ospf, yml, allow_unicode=True)   
 
-                    for filetype in filetype_loop:
-                        parsed_output_type = learned_ospf_template.render(to_parse_ospf=self.learned_ospf['vrf'],filetype_loop_jinja2=filetype)
+                    # ----------------
+                    # Store OSPF in Device Table in Database
+                    # ----------------
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.%s" % (device.alias,filetype), "w") as fh:
+                    table.insert(self.learned_ospf)
+
+                # Learned Routing
+                if self.learned_routing is not None:
+                    learned_routing_template = env.get_template('learned_routing.j2')
+                    learned_routing_netjson_json_template = env.get_template('learned_routing_netjson_json.j2')
+                    learned_routing_netjson_html_template = env.get_template('learned_routing_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_routing, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_routing, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_routing_template.render(to_parse_routing=self.learned_routing['vrf'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
                     
-                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_mind_map.html" % (device.alias,device.alias))
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_mind_map.html" % (device.alias,device.alias))
 
-                    parsed_output_netjson_json = learned_ospf_netjson_json_template.render(to_parse_ospf=self.learned_ospf['vrf'],device_alias = device.alias)
-                    parsed_output_netjson_html = learned_ospf_netjson_html_template.render(device_alias = device.alias)
+                    parsed_output_netjson_json = learned_routing_netjson_json_template.render(to_parse_routing=self.learned_routing['vrf'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_routing_netjson_html_template.render(device_alias = device.alias)
 
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.json" % device.alias, "w") as fh:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_netgraph.json" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_json)               
 
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store Routing in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_routing)
+
+                # Learned VLAN
+                if self.learned_vlan is not None:
+                    learned_vlan_template = env.get_template('learned_vlan.j2')
+                    learned_vlan_netjson_json_template = env.get_template('learned_vlan_netjson_json.j2')
+                    learned_vlan_netjson_html_template = env.get_template('learned_vlan_netjson_html.j2')
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.json" % device.alias, "w") as fid:
+                        json.dump(self.learned_vlan, fid, indent=4, sort_keys=True)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.yaml" % device.alias, "w") as yml:
+                        yaml.dump(self.learned_vlan, yml, allow_unicode=True)                
+
+                    for filetype in filetype_loop:
+                        parsed_output_type = learned_vlan_template.render(to_parse_vlan=self.learned_vlan['vlans'],filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.%s" % (device.alias,filetype), "w") as fh:
+                            fh.write(parsed_output_type) 
+                    
+                    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md" % device.alias):
+                        os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = learned_vlan_netjson_json_template.render(to_parse_vlan=self.learned_vlan['vlans'],device_alias = device.alias)
+                    parsed_output_netjson_html = learned_vlan_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)               
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_VLAN/%s_learned_vlan_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store VLAN in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_vlan)
 
                 ###############################
                 # Genie Show Command Section
@@ -367,6 +470,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store ACLs in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_access_lists)
+
                 # Show BGP process vrf all
                 if hasattr(self, 'parsed_show_bgp_process_vrf_all'):
                     sh_bgp_process_vrf_all_template = env.get_template('show_bgp_process_vrf_all.j2')                  
@@ -397,6 +506,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Process_VRF_All/%s_show_bgp_process_vrf_all_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store BGP Process VRF All in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_bgp_process_vrf_all)
+
                 # Show BGP Sessions
                 if hasattr(self, 'parsed_show_bgp_sessions'):
                     sh_bgp_sessions_template = env.get_template('show_bgp_sessions.j2')                  
@@ -426,6 +541,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_BGP_Sessions/%s_show_bgp_sessions_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store BGP Sessions in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_bgp_sessions)
 
                 # Show interface status
                 if hasattr(self, 'parsed_show_int_status'):
@@ -498,6 +619,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store Inventory in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_inventory)
+
                 # Show ip interface brief
                 if hasattr(self, 'parsed_show_ip_int_brief'):
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
@@ -527,6 +654,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store IP Int Brief in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_int_brief)
 
                 # Show IP OSPF
                 if hasattr(self, 'parsed_show_ip_ospf'):
@@ -558,6 +691,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_OSPF/%s_show_ip_ospf_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store IP OSPF in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf)
+
                 # Show ip Route
                 if hasattr(self, 'parsed_show_ip_route'):
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
@@ -587,6 +726,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store IP Route Brief in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_route)
 
                 # Show mac address-table
                 if hasattr(self, 'parsed_show_mac_address_table'):
@@ -618,6 +763,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_MAC_Address_Table/%s_show_mac_address_table_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store MAC Table in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_mac_address_table)
+
                 # Show port-channel summary
                 if hasattr(self, 'parsed_show_port_channel_summary'):
                     sh_portchannel_summary_template = env.get_template('show_portchannel_summary.j2')
@@ -648,6 +799,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Port_Channel_Summary/%s_show_port_channel_summary_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store Port-Channel in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_port_channel_summary)
+
                 # Show version
                 if hasattr(self, 'parsed_show_version'):
                     sh_ver_template = env.get_template('show_version.j2')
@@ -677,6 +834,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store Version in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_version)
 
                 # Show vrf
                 if hasattr(self, 'parsed_show_vrf'):
@@ -714,6 +877,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_VRF/%s_show_vrf_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store VRF in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_vrf)
+
                 # Show vrf all detail
                 if hasattr(self, 'parsed_show_vrf_all_detail'):
                     sh_vrf_all_detail_template = env.get_template('show_vrf_all_detail.j2')
@@ -743,6 +912,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_VRF_All_Detail/%s_show_vrf_all_detail_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store VRF Detail in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_vrf_all_detail)
 
                 # Show vrf all interface
                 if hasattr(self, 'parsed_show_vrf_all_interface'):
@@ -774,6 +949,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_VRF_All_Interface/%s_show_vrf_all_interface_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store VRF Interface in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_vrf_all_interface)
+
                 # Show vlan
                 if hasattr(self, 'parsed_show_vlan'):
                     sh_vlan_template = env.get_template('show_vlan.j2')
@@ -803,6 +984,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_VLAN/%s_show_vlan_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store VLAN Interface in Device Table in Databse
+                    # ----------------
+
+                    table.insert(self.parsed_show_vlan)
 
                     # For Each VRF
                     for vrf in self.parsed_show_vrf['vrfs']:
@@ -849,6 +1036,12 @@ class Collect_Information(aetest.Testcase):
                             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_netgraph.html" % (device.alias,vrf), "w") as fh:
                                 fh.write(parsed_output_netjson_html)
 
+                            # ----------------
+                            # Store IP ARP VRF Interface in Device Table in Databse
+                            # ----------------
+
+                            table.insert(self.parsed_show_ip_arp_vrf)
+
                             # Show IP ROUTE VRF <VRF>
                             with steps.start('Parsing ip route vrf',continue_=True) as step:
                                 try:
@@ -882,5 +1075,16 @@ class Collect_Information(aetest.Testcase):
                                 with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_netgraph.html" % (device.alias,vrf), "w") as fh:
                                     fh.write(parsed_output_netjson_html)
 
+                            # ----------------
+                            # Store IP Route VRF Interface in Device Table in Databse
+                            # ----------------
+
+                            table.insert(self.parsed_show_ip_route_vrf)
+        db.close()
         # Goodbye Banner
-        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))            
+        print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
+        with open('Cave_of_Wonders/Cisco/DevNet_Sandbox/Jafar/Nexus9K_Jafar_DB.json') as f:
+            data = json.load(f)
+ 
+        print("JSON file with 2 tables\n")
+        print(json.dumps(data, indent = 4, sort_keys=True))                 

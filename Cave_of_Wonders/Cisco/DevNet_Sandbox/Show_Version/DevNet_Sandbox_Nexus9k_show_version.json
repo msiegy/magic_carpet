@@ -13,9 +13,9 @@
         },
         "kernel_uptime": {
             "days": 0,
-            "hours": 3,
-            "minutes": 55,
-            "seconds": 9
+            "hours": 0,
+            "minutes": 54,
+            "seconds": 23
         },
         "name": "Nexus",
         "os": "NX-OS",

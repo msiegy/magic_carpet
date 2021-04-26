@@ -22,6 +22,10 @@ And now
 
 ![NETJSON](/images/NETJSON.PNG)
 
+Also 
+
+![TinyDB](/images/TinyDB_logo.png)
+
 Welcome!
 
 Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!
@@ -45,6 +49,8 @@ An HTML page (comand_output.html)
 An interactive HTML Mind Map (command_output_mind_map.html)
 
 An interactive HTML NETJSON NetGraph (command_output_netjson.html)
+
+A TinyDB 
 
 Instant messages to WebEx, Slack, Discord, and others
 
@@ -117,7 +123,7 @@ Download or clone the Magic Carpet repository:
 git clone https://github.com/automateyournetwork/magic_carpet
 ```
 
-Install pyATS, Rich, markmap, and netjsongraph into your environment:
+Install pyATS, Rich, markmap, netjsongraph, and TinyDB into your environment:
 
 ```console
 pip install pyats[full]
@@ -126,6 +132,11 @@ pip install pyats[full]
 ```console
 pip install rich
 ```
+
+```console
+pip install tinydb
+```
+
 
 ```console
 sudo apt update

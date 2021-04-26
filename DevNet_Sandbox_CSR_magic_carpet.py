@@ -170,7 +170,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                     # ----------------
-                    # Store ACLs in Device Table in Databse
+                    # Store ACLs in Device Table in Database
                     # ----------------
 
                     table.insert(self.learned_acl)
@@ -227,7 +227,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                     # ----------------
-                    # Store ARP in Device Table in Databse
+                    # Store ARP in Device Table in Database
                     # ----------------
 
                     table.insert(self.learned_arp)
@@ -284,7 +284,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                     # ----------------
-                    # Store dot1X in Device Table in Databse
+                    # Store dot1X in Device Table in Database
                     # ----------------
 
                     table.insert(self.learned_dot1x)
@@ -331,7 +331,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                     # ----------------
-                    # Store Interface in Device Table in Databse
+                    # Store Interface in Device Table in Database
                     # ----------------
 
                     table.insert(self.learned_interface)
@@ -367,7 +367,7 @@ class Collect_Information(aetest.Testcase):
                         fh.write(parsed_output_netjson_html)
 
                     # ----------------
-                    # Store Routing in Device Table in Databse
+                    # Store Routing in Device Table in Database
                     # ----------------
 
                     table.insert(self.learned_routing)
@@ -395,7 +395,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store ACLs in Device Table in Databse
+                    # Store ACLs in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_access_lists)
@@ -435,7 +435,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store EtherChannel in Device Table in Databse
+                    # Store EtherChannel in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_etherchannel_summary)
@@ -461,7 +461,7 @@ class Collect_Information(aetest.Testcase):
                             os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store Inventory in Device Table in Databse
+                    # Store Inventory in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_inventory)
@@ -486,7 +486,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store IP ARP in Device Table in Databse
+                    # Store IP ARP in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_ip_arp)
@@ -511,7 +511,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store IP Int Brief in Device Table in Databse
+                    # Store IP Int Brief in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_ip_int_brief)
@@ -536,7 +536,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store IP Route Brief in Device Table in Databse
+                    # Store IP Route Brief in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_ip_route)
@@ -561,7 +561,7 @@ class Collect_Information(aetest.Testcase):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
                     # ----------------
-                    # Store Version in Device Table in Databse
+                    # Store Version in Device Table in Database
                     # ----------------
 
                     table.insert(self.parsed_show_version)

@@ -24,6 +24,7 @@ from pyats.log.utils import banner
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
+from tinydb import TinyDB, Query
 
 # ----------------
 # Get logger for script
@@ -43,6 +44,13 @@ filetype_loop = ["csv","md","html"]
 
 template_dir = 'templates/cisco/ios_xe'
 env = Environment(loader=FileSystemLoader(template_dir))
+
+# ----------------
+# Create Database
+# ----------------
+
+db = TinyDB('Cave_of_Wonders/Cisco/IOS_XE/Jafar/Jafar_DB.json')
+db.truncate()
 
 # ----------------
 # AE Test Setup
@@ -68,6 +76,11 @@ class Collect_Information(aetest.Testcase):
         # Loop over devices
         # ---------------------------------------
         for device in testbed:
+            # ----------------
+            # Create a table in the database
+            # ----------------
+            table = db.table(device.alias)
+
             # ---------------------------------------
             # Genie learn().info for various functions
             # ---------------------------------------
@@ -80,7 +93,7 @@ class Collect_Information(aetest.Testcase):
             self.learned_arp = ParseLearnFunction.parse_learn(steps, device, "arp")
 
             # Dot1X
-            self.learned_dot1x = ParseLearnFunction.parse_learn(steps, device, "dot1x")            
+            self.learned_dot1x = ParseLearnFunction.parse_learn(steps, device, "dot1x")
 
             # Interface
             self.learned_interface = ParseLearnFunction.parse_learn(steps, device, "interface")
@@ -193,7 +206,6 @@ class Collect_Information(aetest.Testcase):
             
             with steps.start('Store data',continue_=True) as step:
                 print(Panel.fit(Text.from_markup(WRITING, justify="center")))
-                
                 ###############################
                 # Genie learn().info section
                 ###############################
@@ -227,6 +239,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store ACLs in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_acl)
 
                 # Learned ARP
                 if self.learned_arp is not None:
@@ -279,6 +297,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store ARP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_arp)
+
                 # Learned Dot1X
                 if self.learned_dot1x is not None:
                     learned_dot1x_template = env.get_template('learned_dot1x.j2')
@@ -330,6 +354,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store dot1X in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_dot1x)
+
                 # Learned Interface
                 if self.learned_interface is not None:
                     learned_interface_template = env.get_template('learned_interface.j2')
@@ -370,6 +400,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store Interface in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_interface)
 
                 # Learned LLDP
                 if self.learned_lldp is not None:
@@ -421,6 +457,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_LLDP/%s_learned_lldp_interfaces_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store LLDP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_lldp)
 
                 # Learned NTP
                 if self.learned_ntp is not None:
@@ -494,6 +536,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_NTP/%s_learned_ntp_unicast_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store NTP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_ntp)
+
                 # Learned OSPF
                 if self.learned_ospf is not None:
                     learned_ospf_template = env.get_template('learned_ospf.j2')
@@ -524,6 +572,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_OSPF/%s_learned_ospf_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store OSPF in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_ospf)
+
                 # Learned Routing
                 if self.learned_routing is not None:
                     learned_routing_template = env.get_template('learned_routing.j2')
@@ -553,6 +607,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_Routing/%s_learned_routing_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store Routing in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_routing)
 
                 # Learned STP
                 if self.learned_stp is not None:
@@ -605,6 +665,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_STP/%s_learned_stp_rpvst_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store STP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_stp)
+
                 # Learned VLAN
                 if self.learned_vlan is not None:
                     learned_vlan_template = env.get_template('learned_vlan.j2')
@@ -635,6 +701,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Learned_VLAN/%s_learned_vlan_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store VLAN in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.learned_vlan)
+
                 ###############################
                 # Genie Show Command Section
                 ###############################
@@ -657,6 +729,12 @@ class Collect_Information(aetest.Testcase):
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store ACLs in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_access_lists)
 
                 # Show access-session
                 if self.parsed_show_access_session is not None:
@@ -710,6 +788,12 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_totals_type) 
 
+                    # ----------------
+                    # Store Access Session in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_access_session)
+
                     # Show access-session interface <int> details
                     for interface in self.parsed_show_access_session['interfaces']:
                         with steps.start('Parsing show access-session interface details',continue_=True) as step:
@@ -750,6 +834,12 @@ class Collect_Information(aetest.Testcase):
 
                 if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md" % device.alias):
                     os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Access_Sessions/%s_show_access_session_totals_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store Access Session Interface Details in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_access_session_interface_details)
 
                 # Show Authentication Sessions
                 if self.parsed_show_authentication_sessions is not None:
@@ -803,6 +893,12 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
 
+                    # ----------------
+                    # Store Authentication Session in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_authentication_sessions)
+
                     # Show authentication session interface <int> details
                     for interface in self.parsed_show_authentication_sessions['interfaces']:
                         with steps.start('Parsing show authentication session interface details',continue_=True) as step:
@@ -844,6 +940,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Authentication_Sessions/%s_show_authentication_session_totals_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Authentication Session Interface Details in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_authentication_session_interface_details)
+
                 # Show CDP Neighbors
                 if self.parsed_show_cdp_neighbors is not None:
                     sh_cdp_neighbors_template = env.get_template('show_cdp_neighbors.j2')
@@ -873,6 +975,12 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors/%s_show_cdp_neighbors_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+
+                    # ----------------
+                    # Store CDP Neighbors in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_cdp_neighbors)
 
                 # Show CDP Neighbors Details
                 if self.parsed_show_cdp_neighbors_detail is not None:
@@ -912,6 +1020,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_CDP_Neighbors_Details/%s_show_cdp_neighbors_detail_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store CDP Neighbors Details in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_cdp_neighbors_detail)
+
                 # Show environment all
                 if self.parsed_show_environment is not None:
                     sh_environment_template = env.get_template('show_environment_all.j2')
@@ -930,6 +1044,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Environment/%s_show_environment_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store Environment in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_environment)
 
                 # Show etherchannel summary
                 if self.parsed_show_etherchannel_summary is not None:
@@ -961,6 +1081,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store EtherChannel in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_etherchannel_summary)
+
                 # Show interfaces
                 if self.parsed_show_int is not None:
                     sh_int_template = env.get_template('show_interfaces.j2')
@@ -979,6 +1105,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces/%s_show_int_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store Interfaces in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_int)
 
                 # Show interfaces status
                 if self.parsed_show_int_status is not None:
@@ -999,6 +1131,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Status/%s_show_int_status_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Interface Status in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_int_status)
+
                 # Show interfaces trunk
                 if self.parsed_show_interfaces_trunk is not None:
                     sh_interfaces_trunk_template = env.get_template('show_interfaces_trunk.j2')
@@ -1017,6 +1155,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Interfaces_Trunk/%s_show_interfaces_trunk_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store Interface Status in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_interfaces_trunk)
 
                 # Show Inventory
                 if self.parsed_show_inventory is not None:
@@ -1066,6 +1210,12 @@ class Collect_Information(aetest.Testcase):
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md" % device.alias):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Inventory in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_inventory)
+
                 # Show ip arp
                 if self.parsed_show_ip_arp is not None:
                     sh_ip_arp_template = env.get_template('show_ip_arp.j2')
@@ -1084,6 +1234,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP ARP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_arp)
 
                 # Show ip interface brief
                 if self.parsed_show_ip_int_brief is not None:
@@ -1104,6 +1260,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store IP Int Brief in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_int_brief)
+
                 # Show IP OSPF
                 if self.parsed_show_ip_ospf is not None:
                     sh_ip_ospf_template = env.get_template('show_ip_ospf.j2')
@@ -1122,6 +1284,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF/%s_show_ip_ospf_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP OSPF in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf)
 
                 # Show IP OSPF Database
                 if self.parsed_show_ip_ospf_database is not None:
@@ -1142,6 +1310,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Database/%s_show_ip_ospf_database_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store IP OSPF Database in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf_database)
+
                 # Show IP OSPF Interface
                 if self.parsed_show_ip_ospf_interface is not None:
                     sh_ip_ospf_interface_template = env.get_template('show_ip_ospf_interface.j2')
@@ -1160,6 +1334,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Interface/%s_show_ip_ospf_interface_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP OSPF Interface in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf_interface)
 
                 # Show IP OSPF Neighbor
                 if self.parsed_show_ip_ospf_neighbor is not None:
@@ -1180,6 +1360,11 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor/%s_show_ip_ospf_neighbor_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store IP OSPF Neighbor in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf_neighbor)
 
                 # Show IP OSPF Neighbor Detail
                 if self.parsed_show_ip_ospf_neighbor_detail is not None:
@@ -1199,6 +1384,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_OSPF_Neighbor_Detail/%s_show_ip_ospf_neighbor_detail_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store IP OSPF Neighbor Detail in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_ospf_neighbor_detail)
 
                 # Show IP Route
                 if self.parsed_show_ip_route is not None:
@@ -1230,6 +1421,12 @@ class Collect_Information(aetest.Testcase):
                     with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route/%s_show_ip_route_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
 
+                    # ----------------
+                    # Store IP Route Brief in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ip_route)
+
                 # Show ISSU State Details
                 if self.parsed_show_issu_state is not None:
                     sh_issu_state_template = env.get_template('show_issu_state.j2')
@@ -1248,6 +1445,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store ISSU State Details in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_issu_state)
 
                 # Show mac address-table
                 if self.parsed_show_mac_address_table is not None:
@@ -1268,6 +1471,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_MAC_Address_Table/%s_show_mac_address_table_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store MAC Address Table in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_mac_address_table)
+
                 # Show ntp associations
                 if self.parsed_show_ntp_associations is not None:
                     sh_ntp_associations_template = env.get_template('show_ntp_associations.j2')
@@ -1286,6 +1495,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_NTP_Associations/%s_show_ntp_associations_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store NTP in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_ntp_associations)
 
                 # Show power inline
                 if self.parsed_show_power_inline is not None:
@@ -1323,6 +1538,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Power_Inline/%s_show_power_inline_totals_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Power Inline in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_power_inline)
+
                 # Show version
                 if self.parsed_show_version is not None:
                     sh_ver_template = env.get_template('show_version.j2')
@@ -1342,6 +1563,12 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))
 
+                    # ----------------
+                    # Store Version in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_version)
+
                 # Show vlan
                 if self.parsed_show_vlan is not None:
                     sh_vlan_template = env.get_template('show_vlan.j2')
@@ -1360,6 +1587,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VLAN/%s_show_vlan_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store VLAN in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_vlan)
 
                 # Show vrf
                 if self.parsed_show_vrf is not None:
@@ -1381,6 +1614,12 @@ class Collect_Information(aetest.Testcase):
 
                     if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_VRF/%s_show_vrf_mind_map.html" % (device.alias,device.alias))
+
+                    # ----------------
+                    # Store VRF in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.parsed_show_vrf)
 
                     # For Each VRF
                     for vrf in self.parsed_show_vrf['vrf']:
@@ -1409,6 +1648,12 @@ class Collect_Information(aetest.Testcase):
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
                                 os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
+                            # ----------------
+                            # Store IP ARP VRF in Device Table in Database
+                            # ----------------
+
+                            table.insert(self.parsed_show_ip_arp_vrf)
+
                         # Show IP ROUTE VRF <VRF> 
                         with steps.start('Parsing ip route vrf',continue_=True) as step:
                             try:
@@ -1433,5 +1678,17 @@ class Collect_Information(aetest.Testcase):
                             if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
                                     os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
+                            # ----------------
+                            # Store IP Route VRF in Device Table in Database
+                            # ----------------
+
+                            table.insert(self.parsed_show_ip_route_vrf)
+
+        db.close()
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))
+
+        with open('Cave_of_Wonders/Cisco/IOS_XE/Jafar/Jafar_DB.json') as f:
+            data = json.load(f)
+ 
+        print(json.dumps(data, indent = 4, sort_keys=True))

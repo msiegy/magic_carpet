@@ -611,11 +611,6 @@ class Collect_Information(aetest.Testcase):
             yaml.dump(content, yml_file, allow_unicode=True)
             yml_file.close()
     
-    """
-    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.%s" % (device.alias,filetype), "w") as fh:
-        fh.write(parsed_output_type) 
-        fh.close()
-    """
     def save_to_specified_file_type(self, device, directory, file_name, content, file_type):
         file_path = "Cave_of_Wonders/Cisco/DevNet_Sandbox/{}/{}_{}.{}".format(directory, device.alias, file_name, file_type)
         with open(file_path, "w") as opened_file:

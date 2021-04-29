@@ -149,17 +149,12 @@ class Collect_Information(aetest.Testcase):
                     file_names = "learned_acl" 
 
                     self.save_to_json_file(device, directory_names, file_names, self.learned_acl)
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.yaml" % device.alias, "w") as yml:
-                        yaml.dump(self.learned_acl, yml, allow_unicode=True)
-                        yml.close()           
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_acl)
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_acl_template.render(to_parse_access_list=self.learned_acl['acls'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_mind_map.html" % (device.alias,device.alias))
@@ -168,8 +163,8 @@ class Collect_Information(aetest.Testcase):
                     parsed_output_netjson_html = learned_acl_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)
-                        fh.close()        
+                        fh.write(parsed_output_netjson_json)               
+                        fh.close()
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ACL/%s_learned_acl_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
@@ -189,24 +184,23 @@ class Collect_Information(aetest.Testcase):
                     learned_arp_netjson_html_template = env.get_template('learned_arp_netjson_html.j2')
                     learned_arp_statistics_netjson_json_template = env.get_template('learned_arp_statistics_netjson_json.j2')
                     learned_arp_statistics_netjson_html_template = env.get_template('learned_arp_statistics_netjson_html.j2')
+                    directory_names = "Learned_ARP"
+                    file_names = "learned_arp" 
 
-                    directory = "Learned_ARP"
-                    filename = "learned_arp"
-
-                    self.save_to_json_file(device, directory, filename, self.learned_arp)
-                    self.save_to_yaml_file(device, directory, filename, self.learned_arp)
+                    self.save_to_json_file(device, directory_names, file_names, self.learned_arp)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_arp)  
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_arp_template.render(to_parse_arp=self.learned_arp['interfaces'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_arp_statistics_template.render(to_parse_arp=self.learned_arp['statistics'],filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics.%s" % (device.alias,filetype), "w") as fh:
                             fh.write(parsed_output_type) 
+                            fh.close()
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_mind_map.html" % (device.alias,device.alias))
@@ -214,24 +208,27 @@ class Collect_Information(aetest.Testcase):
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_mind_map.html" % (device.alias,device.alias))
 
-                    # interface netjson
                     parsed_output_netjson_json = learned_arp_netjson_json_template.render(to_parse_arp=self.learned_arp['interfaces'],device_alias = device.alias)
                     parsed_output_netjson_html = learned_arp_netjson_html_template.render(device_alias = device.alias)
+
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_netgraph.json" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_json)               
+                        fh.close()
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+                        fh.close()
 
-                    # interface statistics netjson
                     parsed_output_netjson_json = learned_arp_statistics_netjson_json_template.render(to_parse_arp=self.learned_arp['statistics'],device_alias = device.alias)
                     parsed_output_netjson_html = learned_arp_statistics_netjson_html_template.render(device_alias = device.alias)
+
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
+                        fh.write(parsed_output_netjson_json)
+                        fh.close()
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_ARP/%s_learned_arp_statistics_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
-
+                        fh.close()
 
                     # ----------------
                     # Store ARP in Device Table in Database
@@ -247,18 +244,16 @@ class Collect_Information(aetest.Testcase):
                     learned_dot1x_sessions_template = env.get_template('learned_dot1x_sessions.j2')
                     learned_dot1x_sessions_netjson_json_template = env.get_template('learned_dot1x_sessions_netjson_json.j2')
                     learned_dot1x_sessions_netjson_html_template = env.get_template('learned_dot1x_sessions_netjson_html.j2')
-                    directory = "Learned_Dot1X"
-                    filename = "learned_dot1x"
-                    
-                    self.save_to_json_file(device, directory, filename, self.learned_dot1x)
-                    self.save_to_yaml_file(device, directory, filename, self.learned_dot1x)
+                    directory_names = "Learned_Dot1X"
+                    file_names = "learned_dot1x" 
+
+                    self.save_to_json_file(device, directory_names, file_names, self.learned_dot1x)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_dot1x)              
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_dot1x_template.render(to_parse_dot1x=self.learned_dot1x,filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_mind_map.html" % (device.alias,device.alias))
@@ -267,8 +262,8 @@ class Collect_Information(aetest.Testcase):
                     parsed_output_netjson_html = learned_dot1x_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json) 
-                        fh.close()              
+                        fh.write(parsed_output_netjson_json)
+                        fh.close()             
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
@@ -278,7 +273,7 @@ class Collect_Information(aetest.Testcase):
                         parsed_output_type = learned_dot1x_sessions_template.render(to_parse_dot1x=self.learned_dot1x,filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_sessions.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
+                            fh.write(parsed_output_type)
                             fh.close()
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_sessions.md" % device.alias):
@@ -288,7 +283,7 @@ class Collect_Information(aetest.Testcase):
                     parsed_output_netjson_html = learned_dot1x_sessions_netjson_html_template.render(device_alias = device.alias)
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
+                        fh.write(parsed_output_netjson_json)
                         fh.close()
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Dot1X/%s_learned_dot1x_sessions_netgraph.html" % device.alias, "w") as fh:
@@ -308,41 +303,48 @@ class Collect_Information(aetest.Testcase):
                     learned_interface_netjson_html_template = env.get_template('learned_interface_netjson_html.j2')
                     learned_interface_enable_netjson_json_template = env.get_template('learned_interface_enabled_netjson_json.j2')
                     learned_interface_enable_netjson_html_template = env.get_template('learned_interface_enabled_netjson_html.j2')
-                    learned_interface_directory = "Learned_Interface"
-                    learned_interface_file_name = "learned_interface"
+                    directory_names = "Learned_Interface"
+                    file_names = "learned_interface" 
 
-                    self.save_to_json_file(device, learned_interface_directory, learned_interface_file_name, self.learned_interface)
-                    self.save_to_yaml_file(device, learned_interface_directory, learned_interface_file_name, self.learned_interface)
+                    self.save_to_json_file(device, directory_names, file_names, self.learned_interface)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_interface)
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_interface_template.render(to_parse_interface=self.learned_interface,filetype_loop_jinja2=filetype)
 
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)     
-
+                            fh.write(parsed_output_type)
+                            fh.close()
+                    
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_mind_map.html" % (device.alias,device.alias))
 
-                    # now lets deal with netgraph
                     parsed_output_netjson_json = learned_interface_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
                     parsed_output_netjson_html = learned_interface_netjson_html_template.render(device_alias = device.alias)
+
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
+                        fh.write(parsed_output_netjson_json)
+                        fh.close()               
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+                        fh.close()
 
                     parsed_output_netjson_json = learned_interface_enable_netjson_json_template.render(to_parse_interface=self.learned_interface,device_alias = device.alias)
                     parsed_output_netjson_html = learned_interface_enable_netjson_html_template.render(device_alias = device.alias)
+
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.json" % device.alias, "w") as fh:
-                        fh.write(parsed_output_netjson_json)               
+                        fh.write(parsed_output_netjson_json)
+                        fh.close()               
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Interface/%s_learned_interface_enabled_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
+                        fh.close()
 
                     # ----------------
                     # Store Interface in Device Table in Database
                     # ----------------
+
                     table.insert(self.learned_interface)
 
                 # Learned Routing
@@ -350,19 +352,16 @@ class Collect_Information(aetest.Testcase):
                     learned_routing_template = env.get_template('learned_routing.j2')
                     learned_routing_netjson_json_template = env.get_template('learned_routing_netjson_json.j2')
                     learned_routing_netjson_html_template = env.get_template('learned_routing_netjson_html.j2')
+                    directory_names = "Learned_Routing"
+                    file_names = "learned_routing" 
 
-                    directory = "Learned_Routing"
-                    filename = "learned_routing"
-
-                    self.save_to_json_file(device, directory, filename, self.learned_routing)
-                    self.save_to_yaml_file(device, directory, filename, self.learned_routing)
+                    self.save_to_json_file(device, directory_names, file_names, self.learned_acl)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_acl)                
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_routing_template.render(to_parse_routing=self.learned_routing['vrf'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_mind_map.html" % (device.alias,device.alias))
@@ -372,7 +371,7 @@ class Collect_Information(aetest.Testcase):
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_netgraph.json" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_json)
-                        fh.close()
+                        fh.close()             
 
                     with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Learned_Routing/%s_learned_routing_netgraph.html" % device.alias, "w") as fh:
                         fh.write(parsed_output_netjson_html)
@@ -390,19 +389,17 @@ class Collect_Information(aetest.Testcase):
 
                 # Show access-lists
                 if self.parsed_show_access_lists is not None:
-                    sh_access_lists_template = env.get_template('show_access_lists.j2')    
-                    show_access_lists_directory = "Show_Access_Lists"
-                    show_access_lists_filename = "show_access_lists"
+                    sh_access_lists_template = env.get_template('show_access_lists.j2')                  
+                    directory_names = "Show_Access_Lists"
+                    file_names = "show_access_lists"
 
-                    self.save_to_json_file(device, show_access_lists_directory, show_access_lists_filename, self.parsed_show_access_lists)
-                    self.save_to_yaml_file(device, show_access_lists_directory, show_access_lists_filename, self.parsed_show_access_lists)
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_access_lists)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_access_lists)
 
                     for filetype in filetype_loop:
                         parsed_output_type = sh_access_lists_template.render(to_parse_access_list=self.parsed_show_access_lists,filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type) 
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
                     
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Access_Lists/%s_show_access_lists_mind_map.html" % (device.alias,device.alias))
@@ -417,27 +414,20 @@ class Collect_Information(aetest.Testcase):
                 if self.parsed_show_etherchannel_summary is not None:
                     sh_etherchannel_summary_template = env.get_template('show_etherchannel_summary.j2')
                     sh_etherchannel_summary_totals_template = env.get_template('show_etherchannel_summary_totals.j2')
+                    directory_names = "Show_Etherchannel_Summary"
+                    file_names = "show_etherchannel_summary"
 
-                    sh_etherchannel_summary_directory = "Show_Etherchannel_Summary"
-                    sh_etherchannel_summary_filename = "show_etherchannel_summary"
-
-                    self.save_to_json_file(device, sh_etherchannel_summary_directory, sh_etherchannel_summary_filename, self.parsed_show_etherchannel_summary)
-                    self.save_to_yaml_file(device, sh_etherchannel_summary_directory, sh_etherchannel_summary_filename, self.parsed_show_etherchannel_summary)
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_etherchannel_summary)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_etherchannel_summary)
 
                     for filetype in filetype_loop: 
-                        # parsed_output_type is None just in case the "if parsed_output_type in locals()" loop below fails. 
-                        # In which case, we will an error since we called the variable before variable assignment. 
-                        # Almost like calling something that does not yet exist. 
                         parsed_output_type = None
-
                         if 'interfaces' in self.parsed_show_etherchannel_summary:                          
                             parsed_output_type = sh_etherchannel_summary_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary['interfaces'],filetype_loop_jinja2=filetype)
                         parsed_totals = sh_etherchannel_summary_totals_template.render(to_parse_etherchannel_summary=self.parsed_show_etherchannel_summary,filetype_loop_jinja2=filetype)
                       
                         if parsed_output_type in locals():                                                    
-                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary.%s" % (device.alias,filetype), "w") as fh:
-                                fh.write(parsed_output_type)
-                                fh.close()
+                            self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Etherchannel_Summary/%s_show_etherchannel_summary_totals.%s" % (device.alias,filetype), "w") as fh:
                           fh.write(parsed_totals)
@@ -460,18 +450,16 @@ class Collect_Information(aetest.Testcase):
                     # CSR100v
                     sh_inventory_csr100v_template = env.get_template('show_inventory_CSR100v.j2')
                     
-                    directory = "Show_Inventory"
-                    filename = "show_inventory" 
+                    directory_names = "Show_Inventory"
+                    file_names = "show_inventory" 
 
-                    self.save_to_json_file(device, directory, filename, self.parsed_show_inventory)
-                    self.save_to_yaml_file(device, directory, filename, self.parsed_show_inventory)
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_inventory)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_inventory)
 
                     for filetype in filetype_loop:
                         parsed_output_type = sh_inventory_csr100v_template.render(to_parse_inventory_slot=self.parsed_show_inventory['slot'],to_parse_inventory_main=self.parsed_show_inventory['main'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                         if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md" % device.alias):
                             os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Inventory/%s_show_inventory_mind_map.html" % (device.alias,device.alias))
@@ -485,18 +473,16 @@ class Collect_Information(aetest.Testcase):
                 # Show ip arp
                 if self.parsed_show_ip_arp is not None:
                     sh_ip_arp_template = env.get_template('show_ip_arp.j2')
-                    directory = "Show_IP_ARP"
-                    filename = "show_ip_arp"
+                    directory_names = "Show_IP_ARP"
+                    file_names = "show_ip_arp"                    
 
-                    self.save_to_json_file(device, directory, filename, self.parsed_show_ip_arp)
-                    self.save_to_yaml_file(device, directory, filename, self.parsed_show_ip_arp)
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_ip_arp)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_ip_arp)
 
                     for filetype in filetype_loop:  
                         parsed_output_type = sh_ip_arp_template.render(to_parse_ip_arp=self.parsed_show_ip_arp['interfaces'],filetype_loop_jinja2=filetype)
                       
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_output_type)
-                          fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_ARP/%s_show_ip_arp_mind_map.html" % (device.alias,device.alias))
@@ -510,18 +496,16 @@ class Collect_Information(aetest.Testcase):
                 # Show ip interface brief
                 if self.parsed_show_ip_int_brief is not None:
                     sh_ip_int_brief_template = env.get_template('show_ip_int_brief.j2')
-                    directory = "Show_IP_Interface_Brief"
-                    filename = "show_ip_int_brief"
-                    
-                    self.save_to_json_file(device, directory, filename, self.parsed_show_ip_int_brief)
-                    self.save_to_yaml_file(device, directory, filename, self.parsed_show_ip_int_brief)
+                    directory_names = "Show_IP_Interface_Brief"
+                    file_names = "show_ip_int_brief"                    
 
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_access_lists)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_access_lists)               
+        
                     for filetype in filetype_loop:
                         parsed_output_type = sh_ip_int_brief_template.render(to_parse_interfaces=self.parsed_show_ip_int_brief['interface'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Interface_Brief/%s_show_ip_int_brief_mind_map.html" % (device.alias,device.alias))
@@ -535,21 +519,32 @@ class Collect_Information(aetest.Testcase):
                 # Show IP Route
                 if self.parsed_show_ip_route is not None:
                     sh_ip_route_template = env.get_template('show_ip_route.j2')
-                    directory = "Show_IP_Route"
-                    filename = "show_ip_route"
+                    sh_ip_route_netjson_json_template = env.get_template('show_ip_route_netjson_json.j2')
+                    sh_ip_route_netjson_html_template = env.get_template('show_ip_route_netjson_html.j2')
+                    directory_names = "Show_IP_Route"
+                    file_names = "show_ip_route"                    
 
-                    self.save_to_json_file(device, directory, filename, self.parsed_show_ip_route)
-                    self.save_to_yaml_file(device, directory, filename, self.parsed_show_ip_route)
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_ip_route)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_ip_route)
 
                     for filetype in filetype_loop:
                         parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route['vrf'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.%s" % (device.alias,filetype), "w") as fh:
-                          fh.write(parsed_output_type)
-                          fh.close()
-                                        
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
+                    
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_mind_map.html" % (device.alias,device.alias))
+
+                    parsed_output_netjson_json = sh_ip_route_netjson_json_template.render(to_parse_ip_route=self.parsed_show_ip_route['vrf'],filetype_loop_jinja2=filetype,device_alias = device.alias)
+                    parsed_output_netjson_html = sh_ip_route_netjson_html_template.render(device_alias = device.alias)
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_netgraph.json" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_json)
+                        fh.close()              
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_IP_Route/%s_show_ip_route_netgraph.html" % device.alias, "w") as fh:
+                        fh.write(parsed_output_netjson_html)
+                        fh.close()
 
                     # ----------------
                     # Store IP Route Brief in Device Table in Database
@@ -560,18 +555,16 @@ class Collect_Information(aetest.Testcase):
                 # Show version
                 if self.parsed_show_version is not None:
                     sh_ver_template = env.get_template('show_version.j2')
-                    directory = "Show_Version"
-                    filename = "show_version"
+                    directory_names = "Show_Version"
+                    file_names = "show_version"                    
 
-                    self.save_to_json_file(device, directory, filename, self.parsed_show_version)
-                    self.save_to_yaml_file(device, directory, filename, self.parsed_show_version)
-                    
+                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_version)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_version)
+
                     for filetype in filetype_loop:
                         parsed_output_type = sh_ver_template.render(to_parse_version=self.parsed_show_version['version'],filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.%s" % (device.alias,filetype), "w") as fh:
-                            fh.write(parsed_output_type)
-                            fh.close()
+                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
                     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md" % device.alias):
                         os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/Show_Version/%s_show_version_mind_map.html" % (device.alias,device.alias))

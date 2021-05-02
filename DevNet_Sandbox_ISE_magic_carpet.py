@@ -464,7 +464,7 @@ class Collect_Information(aetest.Testcase):
                 os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups_mind_map.html")
 
             fid.close()
-            ymlclose()
+            yml.close()
 
             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.html", "a") as html:
                 html.write("</table></body></html>")

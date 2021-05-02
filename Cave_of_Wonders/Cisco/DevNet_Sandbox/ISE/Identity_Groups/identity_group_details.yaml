@@ -1042,3 +1042,759 @@ IdentityGroup:
     type: application/json
   name: SAMPGUserGroup194
   parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 222
+  id: b9184d30-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9184d30-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup222
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 220
+  id: b909f550-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b909f550-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup220
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 257
+  id: ba082b70-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba082b70-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup257
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 268
+  id: ba582030-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba582030-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup268
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 227
+  id: b9391ba0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9391ba0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup227
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 207
+  id: b8a40790-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8a40790-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup207
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 253
+  id: b9ee88f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9ee88f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup253
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 254
+  id: b9f4a370-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9f4a370-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup254
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 209
+  id: b8b2d4a0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8b2d4a0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup209
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 259
+  id: ba146070-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba146070-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup259
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 20
+  id: b86bb980-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b86bb980-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup20
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 202
+  id: b87f4180-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b87f4180-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup202
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 183
+  id: b7f0e430-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b7f0e430-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup183
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 269
+  id: ba5efe00-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba5efe00-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup269
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 189
+  id: b815d150-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b815d150-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup189
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 218
+  id: b8f3ae30-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8f3ae30-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup218
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 265
+  id: ba44e650-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba44e650-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup265
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 258
+  id: ba0e45f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba0e45f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup258
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 23
+  id: b94c5580-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b94c5580-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup23
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 214
+  id: b8d9bd90-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8d9bd90-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup214
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 205
+  id: b895fdd0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b895fdd0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup205
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 263
+  id: ba38d860-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba38d860-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup263
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 241
+  id: b99bfc20-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b99bfc20-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup241
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 193
+  id: b83678b0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b83678b0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup193
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 237
+  id: b97d2980-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b97d2980-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup237
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 197
+  id: b8510590-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8510590-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup197
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 266
+  id: ba4b00d0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba4b00d0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup266
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 206
+  id: b89d77e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b89d77e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup206
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 195
+  id: b842d4c0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b842d4c0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup195
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 228
+  id: b93f8440-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b93f8440-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup228
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 186
+  id: b8041e10-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8041e10-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup186
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 251
+  id: b9e190a0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9e190a0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup251
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 244
+  id: b9aee7e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9aee7e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup244
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 240
+  id: b9959380-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9959380-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup240
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 248
+  id: b9c7ee20-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9c7ee20-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup248
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 2
+  id: b86577f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b86577f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup2
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 230
+  id: b95221e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b95221e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup230
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 243
+  id: b9a85830-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9a85830-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup243
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 210
+  id: b8c0b750-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8c0b750-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup210
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 212
+  id: b8cdd6b0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8cdd6b0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup212
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 235
+  id: b970a660-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b970a660-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup235
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 190
+  id: b8216a10-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8216a10-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup190
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 249
+  id: b9cf6830-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9cf6830-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup249
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 260
+  id: ba2417e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba2417e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup260
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 196
+  id: b84b3930-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b84b3930-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup196
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 234
+  id: b96a3dc0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b96a3dc0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup234
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 181
+  id: b7e32890-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b7e32890-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup181
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 262
+  id: ba32e4f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba32e4f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup262
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 252
+  id: b9e75d00-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9e75d00-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup252
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 187
+  id: b80a3890-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b80a3890-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup187
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 216
+  id: b8e75220-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8e75220-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup216
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 192
+  id: b82eb080-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b82eb080-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup192
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 199
+  id: b85f0f50-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b85f0f50-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup199
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 226
+  id: b9328bf0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9328bf0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup226
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 204
+  id: b88fbc40-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b88fbc40-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup204
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 198
+  id: b8587fa0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8587fa0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup198
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 188
+  id: b8102c00-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8102c00-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup188
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 233
+  id: b9644a50-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9644a50-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup233
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 182
+  id: b7eac9b0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b7eac9b0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup182
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 219
+  id: b8fa64f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8fa64f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup219
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 217
+  id: b8ed6ca0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8ed6ca0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup217
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 247
+  id: b9c1d3a0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9c1d3a0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup247
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 236
+  id: b97699d0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b97699d0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup236
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 221
+  id: b910d320-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b910d320-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup221
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 255
+  id: b9fabdf0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9fabdf0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup255
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 256
+  id: ba01e9e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba01e9e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup256
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 26
+  id: ba1a7af0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba1a7af0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup26
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 264
+  id: ba3ea4c0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba3ea4c0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup264
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 203
+  id: b88534f0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b88534f0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup203
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 224
+  id: b92593a0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b92593a0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup224
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 229
+  id: b9459ec0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9459ec0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup229
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 25
+  id: b9d5d0d0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9d5d0d0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup25
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 200
+  id: b8724930-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8724930-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup200
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 242
+  id: b9a216a0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9a216a0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup242
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 267
+  id: ba50f440-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba50f440-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup267
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 238
+  id: b982f5e0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b982f5e0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup238
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 21
+  id: b8ba9cd0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8ba9cd0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup21
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 191
+  id: b827aba0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b827aba0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup191
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 231
+  id: b9583c60-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b9583c60-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup231
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 261
+  id: ba2b1cc0-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/ba2b1cc0-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup261
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 180
+  id: b7dac420-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b7dac420-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup180
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 213
+  id: b8d3ca20-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8d3ca20-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup213
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 215
+  id: b8e04d40-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b8e04d40-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup215
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups
+IdentityGroup:
+  description: Imported Scale User Group 225
+  id: b92c7170-75da-11eb-976b-427fae7e634f
+  link:
+    href: https://10.10.20.70:9060/ers/config/identitygroup/b92c7170-75da-11eb-976b-427fae7e634f
+    rel: self
+    type: application/json
+  name: SAMPGUserGroup225
+  parent: NAC Group:NAC:IdentityGroups:User Identity Groups

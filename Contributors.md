@@ -134,6 +134,8 @@ John Capobianco
 
         External RESTful Service (ERS) APIs
 
+            Administrators
+            
             Authorization Profiles
 
             downloadable/dynamic Access Control Lists (dACLs)

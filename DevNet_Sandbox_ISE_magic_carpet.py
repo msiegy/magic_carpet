@@ -36,7 +36,7 @@ filetype_loop = ["csv","md","html"]
 # Template Directory
 # ----------------
 
-template_dir = 'templates/cisco/ise'
+template_dir = 'templates/Cisco/DevNet_Sandbox/ISE'
 env = Environment(loader=FileSystemLoader(template_dir))
 
 # ----------------
@@ -892,6 +892,148 @@ class Collect_Information(aetest.Testcase):
             if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.md"):
                 os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details_mind_map.html")
                 
+            fid.close()
+            yml.close()
+
+            # Get Administrator Page Count
+            with steps.start('Requesting Administrators API Page Count',continue_=True) as step:
+                try:
+                    self.raw_page_count = requests.get("https://%s:9060/ers/config/adminuser?size=100" % device_ip, auth=(api_username, api_password), headers=json_headers, verify=False,)
+                    print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                except Exception as e:
+                    step.failed('There was a problem with the API\n{e}'.format(e=e))
+            
+            pagecount = (self.raw_page_count.json()['SearchResult']['total'])
+
+            # Define Templates 
+            administrators_template = env.get_template('administrators.j2')
+            administrator_details_template = env.get_template('administrator_details.j2')
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.csv",'a') as csv:
+                csv.seek(0, 0)
+                csv.write("Name,Description,ISE ID")
+                csv.close()  
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.md",'a') as md:
+                md.seek(0, 0)
+                md.write("# Administrators")
+                md.write("\n")
+                md.write("| Name | Description | ISE ID |")
+                md.write("\n")
+                md.write("| ---- | ----------- | ------ |")
+                md.close()
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.html",'a') as html:
+                html.seek(0, 0)
+                html.write("<html><body><h1>Administrators</h1><table style=\"width:100%\">")
+                html.write("\n")
+                html.write("<tr><th>Name</th><th>Description</th><th>ISE ID</th></tr>")
+                html.close() 
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.csv",'a') as csv:
+                csv.seek(0, 0)
+                csv.write("Name,Description,Enabled,Admin Group,Change Password,External User,Inactive Account Never Disable,Include System Alarms in Emails,ISE ID")
+                csv.close()  
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.md",'a') as md:
+                md.seek(0, 0)
+                md.write("# Administrator Details")
+                md.write("\n")
+                md.write("| Name | Description | Enabled | Admin Group | Change Password | External User | Inactive Account Never Disable | Include System Alarms in Emails | ISE ID |")
+                md.write("\n")
+                md.write("| ---- | ----------- | ------ |")
+                md.close()
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.html",'a') as html:
+                html.seek(0, 0)
+                html.write("<html><body><h1>Administrator Details</h1><table style=\"width:100%\">")
+                html.write("\n")
+                html.write("<tr><th>Name</th><th>Description</th><th>Enabled</th><th>Admin Group</th><th>Change Password</th><th>External User</th><th>Inactive Account Never Disable</th><th>Include System Alarms in Emails</th><th>ISE ID</th></tr>")
+                html.close() 
+
+            # Get Parent Administrator
+            for page in range(1,math.ceil(pagecount/100+1)):
+                with steps.start('Requesting Master List of Administrator Information',continue_=True) as step:
+                    try:
+                        self.raw_administrators = requests.get("https://%s:9060/ers/config/adminuser?size=100&page=%i" % (device_ip,page), auth=(api_username, api_password), headers=json_headers, verify=False,)
+                        print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                    except Exception as e:
+                        step.failed('There was a problem with the API\n{e}'.format(e=e))
+
+                # ---------------------------------------
+                # Generate CSV / MD / HTML / Mind Maps
+                # ---------------------------------------
+
+                # Parent Administrator
+                with steps.start('Store data',continue_=True) as step:
+                    print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.json", "a") as fid:
+                        json.dump(self.raw_administrators.json(), fid, indent=4, sort_keys=True)
+                        fid.write('\n')
+                                
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.yaml", "a") as yml:
+                        yaml.dump(self.raw_administrators.json(), yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_administrators = administrators_template.render(to_parse_administrators=self.raw_administrators.json(),filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.%s" % filetype, "a") as fh:
+                            fh.write(parsed_administrators)
+                            fh.close()
+
+                    # ----------------
+                    # Store Administrators in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.raw_administrators.json())
+
+                # Get Child Administrator Details
+
+                for device in self.raw_administrators.json()['SearchResult']['resources']:
+                    with steps.start('Requesting Individual Administrator Information',continue_=True) as step:
+                        try:
+                            self.raw_administrator_details = requests.get(device['link']['href'], auth=(api_username, api_password), headers=json_headers, verify=False,)
+                            print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                        except Exception as e:
+                            step.failed('There was a problem with the API\n{e}'.format(e=e))
+                
+                    with steps.start('Store data',continue_=True) as step:
+                        print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.json", "a") as fid:
+                            json.dump(self.raw_administrator_details.json(), fid, indent=4, sort_keys=True)
+                            fid.write('\n')
+                                
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.yaml", "a") as yml:
+                            yaml.dump(self.raw_administrator_details.json(), yml, allow_unicode=True)
+                    
+                        for filetype in filetype_loop:
+                            parsed_administrator_details = administrator_details_template.render(to_parse_administrator_details=self.raw_administrator_details.json(),filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype, "a") as fh:
+                                fh.write(parsed_administrator_details)
+                                fh.close()
+
+                        # ----------------
+                        # Store Admin Details Table in Database
+                        # ----------------
+
+                        table.insert(self.raw_administrator_details.json())
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                            
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators_mind_map.html")
+
+            fid.close()
+            yml.close()
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                                
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details_mind_map.html")
+
             fid.close()
             yml.close()
 

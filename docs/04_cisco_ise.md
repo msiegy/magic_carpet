@@ -19,6 +19,7 @@ ISE RBAC requires ERS permissions be set
 ![Enable ERS](images/04_step06.png)
 
 MnT Permissions
+
 ![Enable ERS](images/04_step07.png)
 
 ## Update your testbed

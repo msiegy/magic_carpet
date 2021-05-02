@@ -43,14 +43,14 @@ env = Environment(loader=FileSystemLoader(template_dir))
 # Create Database
 # ----------------
 
-db = TinyDB('Cave_of_Wonders/Cisco/ISE/Jafar/Jafar_DB.json')
+db = TinyDB('Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Jafar/Jafar_DB.json')
 db.purge()
 
 # ----------------
 # Load Credentials 
 # ----------------
 
-with open("testbed/testbed_ISE.yaml") as stream:
+with open("testbed/testbed_DevNet_ISE.yaml") as stream:
     testbed = yaml.safe_load(stream)
 
 # ---------------------------------------
@@ -66,115 +66,115 @@ json_headers = { "Content-Type": "application/json", "Accept": "application/json
 xml_headers = { "Content-Type": "application/xml", "Accept": "application/xml"}
 
 # File Cleanup
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.yaml")
-
-for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.%s" % filetype)
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.json")
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.%s" % filetype)
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.yaml")
-
-for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.%s" % filetype)
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.json")
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.%s" % filetype)
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.yaml")
-
-for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype)
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.json")
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.%s" % filetype)
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.yaml")
-
-for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.%s" % filetype)
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.json")
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.%s" % filetype)
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.yaml")
-
-for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype)
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.json")
-
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype)
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.json"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.json")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.json")
 
-if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.yaml"):
-    os.remove("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.yaml")
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.yaml")
 
 for filetype in filetype_loop:
-    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.%s" % filetype):
-        os.remove("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.%s" % filetype)
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype)
 
 # AE Test Setup
 # ----------------
@@ -212,11 +212,11 @@ class Collect_Information(aetest.Testcase):
             network_devices_template = env.get_template('network_devices.j2')
             network_device_details_template = env.get_template('network_device_details.j2')
 
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Device,Description,ISE ID")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Network Devices")
                 md.write("\n")
@@ -224,18 +224,18 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ------ | ----------- | ------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Network Devices</h1><table style=\"width:100%\">")
                 html.write("\n")
                 html.write("<tr><th>Device</th><th>Description</th><th>ISE ID</th></tr>")
                 html.close() 
 
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Device Name,Device IP,Description,Profile Name,Network Protocol,Shared Secret,SNMP Link Trap,MAC Trap,Polling Interval,RO Community,Version")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Network Device Details")
                 md.write("\n")
@@ -243,7 +243,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ----------- | --------- | ----------- | ------------ | ---------------- | ------------- | -------------- | -------- | ---------------- | ------------ | ------- |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Network Device Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -267,17 +267,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.json", "a") as fid:
                         json.dump(self.raw_network_devices.json(), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.yaml", "a") as yml:
                         yaml.dump(self.raw_network_devices.json(), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_network_devices = network_devices_template.render(to_parse_network_devices=self.raw_network_devices.json(),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.%s" % filetype, "a") as fh:
                             fh.write(parsed_network_devices)
                             fh.close()
 
@@ -300,17 +300,17 @@ class Collect_Information(aetest.Testcase):
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.json", "a") as fid:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.json", "a") as fid:
                             json.dump(self.raw_network_device_details.json(), fid, indent=4, sort_keys=True)
                             fid.write('\n')
                                 
-                        with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.yaml", "a") as yml:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.yaml", "a") as yml:
                             yaml.dump(self.raw_network_device_details.json(), yml, allow_unicode=True)
                     
                         for filetype in filetype_loop:
                             parsed_network_device_details = network_device_details_template.render(to_parse_network_device_details=self.raw_network_device_details.json(),filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.%s" % filetype, "a") as fh:
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.%s" % filetype, "a") as fh:
                                 fh.write(parsed_network_device_details)
                                 fh.close()
 
@@ -320,22 +320,22 @@ class Collect_Information(aetest.Testcase):
 
                         table.insert(self.raw_network_device_details.json())
 
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                             
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices.md --output Cave_of_Wonders/Cisco/ISE/Network_Devices/network_devices_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_devices_mind_map.html")
 
             fid.close()
             yml.close()
 
-            with open("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                 
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details.md --output Cave_of_Wonders/Cisco/ISE/Network_Devices/network_device_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details_mind_map.html")
             fid.close()
             yml.close()
 
@@ -353,11 +353,11 @@ class Collect_Information(aetest.Testcase):
             identity_groups_template = env.get_template('identity_groups.j2')
             identity_group_details_template = env.get_template('identity_group_details.j2')
 
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Name,Description,ISE ID")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Identity Groups")
                 md.write("\n")
@@ -365,18 +365,18 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ---- | ----------- | ------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Identity Groups</h1><table style=\"width:100%\">")
                 html.write("\n")
                 html.write("<tr><th>Name</th><th>Description</th><th>ISE ID</th></tr>")
                 html.close() 
 
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Name,Description,ISE ID,Parent Group")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Network Identity Group Details")
                 md.write("\n")
@@ -384,7 +384,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ---- | ----------- | ------ | ------------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Network Identity Group Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -404,17 +404,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.json", "a") as fid:
                         json.dump(self.raw_identity_groups.json(), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.yaml", "a") as yml:
                         yaml.dump(self.raw_identity_groups.json(), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_identity_groups = identity_groups_template.render(to_parse_identity_groups=self.raw_identity_groups.json(),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.%s" % filetype, "a") as fh:
                             fh.write(parsed_identity_groups)
                             fh.close()
 
@@ -436,17 +436,17 @@ class Collect_Information(aetest.Testcase):
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.json", "a") as fid:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.json", "a") as fid:
                             json.dump(self.raw_network_identity_group_details.json(), fid, indent=4, sort_keys=True)
                             fid.write('\n')
                                 
-                        with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.yaml", "a") as yml:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.yaml", "a") as yml:
                             yaml.dump(self.raw_network_identity_group_details.json(), yml, allow_unicode=True)
                     
                         for filetype in filetype_loop:
                             parsed_identity_group_details = identity_group_details_template.render(to_parse_identity_group_details=self.raw_network_identity_group_details.json(),filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.%s" % filetype, "a") as fh:
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.%s" % filetype, "a") as fh:
                                 fh.write(parsed_identity_group_details)
                                 fh.close()
 
@@ -456,22 +456,22 @@ class Collect_Information(aetest.Testcase):
 
                         table.insert(self.raw_network_identity_group_details.json())
 
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                             
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups.md --output Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_groups_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_groups_mind_map.html")
 
             fid.close()
             ymlclose()
 
-            with open("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                 
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details.md --output Cave_of_Wonders/Cisco/ISE/Identity_Groups/identity_group_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Identity_Groups/identity_group_details_mind_map.html")
 
             fid.close()
             yml.close()
@@ -490,11 +490,11 @@ class Collect_Information(aetest.Testcase):
             endpoint_groups_template = env.get_template('endpoint_groups.j2')
             endpoint_group_details_template = env.get_template('endpoint_group_details.j2')
 
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Device,Description,ISE ID")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Endpoint Groups")
                 md.write("\n")
@@ -502,18 +502,18 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ------ | ----------- | ------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Endpoint Groups</h1><table style=\"width:100%\">")
                 html.write("\n")
                 html.write("<tr><th>Device</th><th>Description</th><th>ISE ID</th></tr>")
                 html.close() 
 
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Name,Description,ISE ID,System Defined")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Network Endpoint Group Details")
                 md.write("\n")
@@ -521,7 +521,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ---- | ----------- | ------ | -------------- |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Network Endpoint Group Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -545,17 +545,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.json", "a") as fid:
                         json.dump(self.raw_endpoint_groups.json(), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.yaml", "a") as yml:
                         yaml.dump(self.raw_endpoint_groups.json(), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_endpoint_groups = endpoint_groups_template.render(to_parse_endpoint_groups=self.raw_endpoint_groups.json(),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.%s" % filetype, "a") as fh:
                             fh.write(parsed_endpoint_groups)
                             fh.close()
 
@@ -577,17 +577,17 @@ class Collect_Information(aetest.Testcase):
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.json", "a") as fid:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.json", "a") as fid:
                             json.dump(self.raw_endpoint_group_details.json(), fid, indent=4, sort_keys=True)
                             fid.write('\n')
                                 
-                        with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.yaml", "a") as yml:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.yaml", "a") as yml:
                             yaml.dump(self.raw_endpoint_group_details.json(), yml, allow_unicode=True)
                     
                         for filetype in filetype_loop:
                             parsed_endpoint_group_details = endpoint_group_details_template.render(to_parse_endpoint_group_details=self.raw_endpoint_group_details.json(),filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype, "a") as fh:
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.%s" % filetype, "a") as fh:
                                 fh.write(parsed_endpoint_group_details)
                                 fh.close()
 
@@ -597,22 +597,22 @@ class Collect_Information(aetest.Testcase):
 
                         table.insert(self.raw_endpoint_group_details.json())
 
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                             
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups.md --output Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_groups_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_groups_mind_map.html")
 
             fid.close()
             yml.close()
 
-            with open("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                 
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details.md --output Cave_of_Wonders/Cisco/ISE/Endpoint_Groups/endpoint_group_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoint_Groups/endpoint_group_details_mind_map.html")
             fid.close()
             yml.close()
 
@@ -630,11 +630,11 @@ class Collect_Information(aetest.Testcase):
             dACLs_template = env.get_template('dACLs.j2')
             dACL_details_template = env.get_template('dACL_details.j2')
 
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Device,Description,ISE ID")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# dACLs")
                 md.write("\n")
@@ -642,18 +642,18 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ------ | ----------- | ------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>dACLs</h1><table style=\"width:100%\">")
                 html.write("\n")
                 html.write("<tr><th>Device</th><th>Description</th><th>ISE ID</th></tr>")
                 html.close() 
 
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("dACL,Description,Type,Rules")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# dACL Details")
                 md.write("\n")
@@ -661,7 +661,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ---- | ----------- | ---- | ----- |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>dACL Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -685,17 +685,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.json", "a") as fid:
                         json.dump(self.raw_dACLs.json(), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.yaml", "a") as yml:
                         yaml.dump(self.raw_dACLs.json(), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_dACLs = dACLs_template.render(to_parse_dACLs=self.raw_dACLs.json(),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.%s" % filetype, "a") as fh:
                             fh.write(parsed_dACLs)
                             fh.close()
 
@@ -717,17 +717,17 @@ class Collect_Information(aetest.Testcase):
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                        with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.json", "a") as fid:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.json", "a") as fid:
                             json.dump(self.raw_dACL_details.json(), fid, indent=4, sort_keys=True)
                             fid.write('\n')
                                 
-                        with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.yaml", "a") as yml:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.yaml", "a") as yml:
                             yaml.dump(self.raw_dACL_details.json(), yml, allow_unicode=True)
                     
                         for filetype in filetype_loop:
                             parsed_dACL_details = dACL_details_template.render(to_parse_dACL_details=self.raw_dACL_details.json(),filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.%s" % filetype, "a") as fh:
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.%s" % filetype, "a") as fh:
                                 fh.write(parsed_dACL_details)
                                 fh.close()
 
@@ -737,20 +737,20 @@ class Collect_Information(aetest.Testcase):
 
                         table.insert(self.raw_dACL_details.json())
 
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                             
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/dACLs/dACLs.md --output Cave_of_Wonders/Cisco/ISE/dACLs/dACLs_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACLs_mind_map.html")
             fid.close()
             yml.close()
-            with open("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                 
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details.md --output Cave_of_Wonders/Cisco/ISE/dACLs/dACL_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/dACLs/dACL_details_mind_map.html")
             fid.close()
             yml.close()
 
@@ -768,11 +768,11 @@ class Collect_Information(aetest.Testcase):
             authorization_profiles_template = env.get_template('authorization_profiles.j2')
             authorization_profile_details_template = env.get_template('authorization_profile_details.j2')
                     
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Device,Description,ISE ID")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Authorization Profiles")
                 md.write("\n")
@@ -780,18 +780,18 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ------ | ----------- | ------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Authorization Profiles</h1><table style=\"width:100%\">")
                 html.write("\n")
                 html.write("<tr><th>Device</th><th>Description</th><th>ISE ID</th></tr>")
                 html.close() 
 
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Profile,Description,Access Type,Authorization Profile Type,Profile Name,VLAN Name,Voice Domain Permission,Web Authentication")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Authorization Profile Details")
                 md.write("\n")
@@ -799,7 +799,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| ------- | ----------- | ----------- | -------------------------- | ------------ | --------- | ----------------------- | ------------------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Authorization Profile Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -823,17 +823,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.json", "a") as fid:
                         json.dump(self.raw_authorization_profiles.json(), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.yaml", "a") as yml:
                         yaml.dump(self.raw_authorization_profiles.json(), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_authorization_profiles = authorization_profiles_template.render(to_parse_authorization_profiles=self.raw_authorization_profiles.json(),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.%s" % filetype, "a") as fh:
                             fh.write(parsed_authorization_profiles)
                             fh.close()
 
@@ -855,17 +855,17 @@ class Collect_Information(aetest.Testcase):
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.json", "a") as fid:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.json", "a") as fid:
                             json.dump(self.raw_authorization_profile_details.json(), fid, indent=4, sort_keys=True)
                             fid.write('\n')
                                 
-                        with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.yaml", "a") as yml:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.yaml", "a") as yml:
                             yaml.dump(self.raw_authorization_profile_details.json(), yml, allow_unicode=True)
                     
                         for filetype in filetype_loop:
                             parsed_authorization_profile_details = authorization_profile_details_template.render(to_parse_authorization_profile_details=self.raw_authorization_profile_details.json(),filetype_loop_jinja2=filetype)
 
-                            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype, "a") as fh:
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.%s" % filetype, "a") as fh:
                                 fh.write(parsed_authorization_profile_details)
                                 fh.close()
 
@@ -875,22 +875,22 @@ class Collect_Information(aetest.Testcase):
 
                         table.insert(self.raw_authorization_profile_details.json())
 
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                             
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles.md --output Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profiles_mind_maps.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profiles_mind_maps.html")
 
             fid.close()
             yml.close()
 
-            with open("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                 
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details.md --output Cave_of_Wonders/Cisco/ISE/Authorization_Profiles/authorization_profile_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Authorization_Profiles/authorization_profile_details_mind_map.html")
                 
             fid.close()
             yml.close()
@@ -908,18 +908,18 @@ class Collect_Information(aetest.Testcase):
                 if self.raw_active_session_totals is not None:
                     active_session_totals_template = env.get_template('active_session_totals.j2')
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.json", "w") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.json", "w") as fid:
                         json.dump(xmltodict.parse(self.raw_active_session_totals.content), fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.yaml", "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.yaml", "w") as yml:
                         yaml.dump(xmltodict.parse(self.raw_active_session_totals.content), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_active_session_totals = active_session_totals_template.render(to_parse_active_session_totals=xmltodict.parse(self.raw_active_session_totals.content),filetype_loop_jinja2=filetype)
-                        with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.%s" % filetype, "w") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.%s" % filetype, "w") as fh:
                             fh.write(parsed_active_session_totals) 
                 
-                    os.system("markmap Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals_mind_map.html")
+                    os.system("markmap Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals_mind_map.html")
 
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
@@ -939,18 +939,18 @@ class Collect_Information(aetest.Testcase):
                 if self.raw_active_session_details is not None:
                     active_session_details_template = env.get_template('active_session_details.j2')
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.json", "w") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.json", "w") as fid:
                         json.dump(xmltodict.parse(self.raw_active_session_details.content), fid, indent=4, sort_keys=True)
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.yaml", "w") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.yaml", "w") as yml:
                         yaml.dump(xmltodict.parse(self.raw_active_session_details.content), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_active_session_details = active_session_details_template.render(to_parse_active_session_details=xmltodict.parse(self.raw_active_session_details.content),filetype_loop_jinja2=filetype)
-                        with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.%s" % filetype, "w") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.%s" % filetype, "w") as fh:
                             fh.write(parsed_active_session_details) 
                 
-                    os.system("markmap Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
+                    os.system("markmap Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
 
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
@@ -963,11 +963,11 @@ class Collect_Information(aetest.Testcase):
             # Get Parent Network Devices
             active_list = xmltodict.parse(self.raw_active_session_details.content)
 
-            with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.csv",'a') as csv:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.csv",'a') as csv:
                 csv.seek(0, 0)
                 csv.write("Timestamp,Authentication ID,Authentication Method,Authentication Protocol,User Name,IP Address,MAC Address,Switch Name,Switch IP,Switch Port,ISE Server,Audit Session ID,Policy,Execution Steps,Input Packets,Output Packets,Device Type,Identity Group,Location,Posture Status,Selected Profile,Service Type,VLAN,Message Code")
                 csv.close()  
-            with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.md",'a') as md:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# MAC Session Details")
                 md.write("\n")
@@ -975,7 +975,7 @@ class Collect_Information(aetest.Testcase):
                 md.write("\n")
                 md.write("| --------  | ----------------- | --------------------- | ----------------------- | --------- | ---------- | ----------- | ----------- | --------- | ----------- | ---------- | ---------------- | ------ | --------------- | ------------- | -------------- | ----------- | -------------- | -------- | -------------- | ---------------- | ------------ | ---- | ------------ |")
                 md.close()
-            with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.html",'a') as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>MAC Session Details</h1><table style=\"width:100%\">")
                 html.write("\n")
@@ -998,17 +998,17 @@ class Collect_Information(aetest.Testcase):
                 with steps.start('Store data',continue_=True) as step:
                     print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.json", "a") as fid:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.json", "a") as fid:
                         json.dump(xmltodict.parse(self.raw_mac_session_details.content), fid, indent=4, sort_keys=True)
                         fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.yaml", "a") as yml:
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.yaml", "a") as yml:
                         yaml.dump(xmltodict.parse(self.raw_mac_session_details.content), yml, allow_unicode=True)
 
                     for filetype in filetype_loop:
                         parsed_MAC_session_details = MAC_session_details_template.render(to_parse_MAC_session_details=xmltodict.parse(self.raw_mac_session_details.content),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.%s" % filetype, "a") as fh:
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype, "a") as fh:
                             fh.write(parsed_MAC_session_details)
                             fh.close()
 
@@ -1018,12 +1018,12 @@ class Collect_Information(aetest.Testcase):
 
                     table.insert(xmltodict.parse(self.raw_mac_session_details.content))
 
-            with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.html", "a") as html:
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.html", "a") as html:
                 html.write("</table></body></html>")
                 html.close() 
                                     
-            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details.md --output Cave_of_Wonders/Cisco/ISE/Active_Sessions/MAC_session_details_mind_map.html")
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details_mind_map.html")
 
 
             fid.close()

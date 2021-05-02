@@ -2,18 +2,47 @@
 
 ## Enable ERS
 
-![Enable ERS](images/05_step01.png)
+![Enable ERS](images/04_step01.png)
 
-![Enable ERS](images/05_step02.png)
+![Enable ERS](images/04_step02.png)
 
-![Enable ERS](images/05_step03.png)
+ISE RBAC requires ERS permissions be set
 
-![Enable ERS](images/05_step04.png)
+![Enable ERS](images/04_step03.png)
+
+![Enable ERS](images/04_step04.png)
+
+## Enable MnT
+
+![Enable ERS](images/04_step05.png)
+
+![Enable ERS](images/04_step06.png)
+
+MnT Permissions
+![Enable ERS](images/04_step07.png)
+
+## Update your testbed
+
+```yaml
+
+devices:
+    ISE:
+      alias: 'ISE'
+      type: 'ISE'
+      os: 'ISE'
+      platform: ISE
+      credentials:
+        default:
+          username: {{ your ISE API username }}
+          password: {{ your ISE API password }}
+      connections:
+          ip: "{{ your ISE IP }}"
+```
 
 ### Run Magic Carpet on ISE 
 
 ```console
-pyats run job DevNet_Sandbox_ISE_magic_carpet_job.py
+pyats run job ISE_magic_carpet_job.py
 ```
 
 First - you will get onto the Magic Carpet
@@ -37,7 +66,7 @@ Finally - We escape the Cave of Wonders with the network data
 ![Step Six](/images/We_Made_It.png)
 
 ```bash
-cd Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE
+cd Cave_of_Wonders
 
 ls 
 ```

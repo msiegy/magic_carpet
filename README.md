@@ -1,6 +1,6 @@
 # Magic Carpet
 
-### Simply a better way; a magical way; to collect and transform network state information
+## Simply a better way; a magical way; to collect and transform network state information
 
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/automateyournetwork/magic_carpet)
 
@@ -18,11 +18,11 @@ Featuring
 
 ![Markmap](/images/MarkMapLogo.PNG)
 
-And now 
+And now
 
 ![NETJSON](/images/NETJSON.PNG)
 
-Also 
+Also
 
 ![TinyDB](/images/TinyDB_logo.png)
 
@@ -50,7 +50,7 @@ An interactive HTML Mind Map (command_output_mind_map.html)
 
 An interactive HTML NETJSON NetGraph (command_output_netjson.html)
 
-A TinyDB 
+A TinyDB
 
 Instant messages to WebEx, Slack, Discord, and others
 
@@ -123,7 +123,7 @@ Download or clone the Magic Carpet repository:
 git clone https://github.com/automateyournetwork/magic_carpet
 ```
 
-Install pyATS, Rich, markmap, netjsongraph, and TinyDB into your environment:
+Install pyATS, Rich, markmap, netjsongraph, xmltodict and TinyDB into your environment:
 
 ```console
 pip install pyats[full]
@@ -134,9 +134,12 @@ pip install rich
 ```
 
 ```console
-pip install tinydb
+pip install xmltodict
 ```
 
+```console
+pip install tinydb
+```
 
 ```console
 sudo apt update
@@ -200,9 +203,9 @@ How to update the appropriate `testbed/testbed_*.yaml` file to reflect your devi
         Copy & Paste and make each device unique to scale this up to many routers    
 ---
 
-## Take the Magic Carpet to the Cloud! 
+## Take the Magic Carpet to the Cloud
 
-Magic Carpet now connects to the following Cisco.com APIs: 
+Magic Carpet now connects to the following Cisco.com APIs:
 
 * Recommended Software Release (using the real version of software from your devices)
 
@@ -212,14 +215,26 @@ Magic Carpet now connects to the following Cisco.com APIs:
 
 [Take Magic Carpet to the Cloud](docs/02_cisco_com_api.md)
 
+## Magic Carpet on ISE
+
+Magic Carpet now supports the Cisco Identity Services Engine (ISE) External RESTful Service (ERS) and Monitoring and Troubleshooting (MnT) APIs ! 
+
+[Magic Carpet on ISE](doc/04_cisco_ise.md)
+
 ### Pro tip:
+
 You can create a testbed file using an Excel spreadsheet (see `testbed/SampleTestbedFile.xlsx`), this is useful if you are not familiar with YAML and/or have a long list of devices where copying and pasting in Excel would be easier.
+
 1. Edit the relevant fields in the sample file.
+
 2. Run the following command:
+
 ```console
 pyats create testbed file --path SampleTestbedFile.xlsx --output my_testbed.yaml
 ```
+
 3. That's it. You're good to go!
+
 ---
 Ensure SSH connectivity at from your host's CLI, and run the pyATS job:
 
@@ -233,6 +248,12 @@ Cisco DevNet Sandbox for CSR1000v (see more [here](docs/01_devnetsb.md))
 
 ```console
 pyats run job DevNet_Sandbox_CSR_magic_carpet_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
+```
+
+Cisco ISE:
+
+```console
+pyats run job pyats run job ISE_magic_carpet_job.py
 ```
 
 JunOS 17 / 18 / 19:
@@ -325,7 +346,7 @@ Another HTML page, an interactive mindmap, is also created from the Markdown fil
 
 ![Mind_Map_Output](/images/CaveOfWonders_IP_Route_Mind_Map.PNG)
 
-Another Interactive HTML page, this time a NETJSON NetGraph, is also crteated 
+Another Interactive HTML page, this time a NETJSON NetGraph, is also crteated
 
 ![NETJSON_NetGraph_Output](/images/CaveOfWonders_IP_Route_netgraph.PNG)
 
@@ -359,7 +380,7 @@ Every artifact can also be uploaded dynamically to a Sharepoint 2016 Document Li
 
 The CSV files work with the Office extension and present as version controlled Excel-online files!
 
-Add the code from the SharePoint2016_Plugin.py file. The show version command is used in the example. 
+Add the code from the SharePoint2016_Plugin.py file. The show version command is used in the example.
 
 Simply add the SHAREPOINT code, updating to reflect the appropriate command:
 
@@ -534,6 +555,28 @@ Cisco NXOS:
 
     show vrf all interface
 
+Cisco Identity Services Engine (ISE)
+
+    External RESTful Service (ERS) APIs 
+
+        Authorization Profiles  
+
+        downloadable/dynamic Access Control Lists (dACLs)   
+
+        Endpoint Groups 
+
+        Identity Groups 
+
+        Network Devices     
+
+    Monitoring and Troubleshooting (MnT) APIs   
+
+        Total Active Sessions   
+
+        Active Sessions 
+
+        MAC Session Details
+
 JunOS:
 
     show chassis hardware
@@ -563,6 +606,8 @@ Tested on:
         Cisco CSR1000v
 
         Cisco IOSv
+
+        Cisco vISE 2.7
 
     Juniper:
 

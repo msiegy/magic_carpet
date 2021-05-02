@@ -233,21 +233,21 @@ class Collect_Information(aetest.Testcase):
 
             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.csv",'a') as csv:
                 csv.seek(0, 0)
-                csv.write("Device Name,Device IP,Description,Profile Name,Network Protocol,Shared Secret,SNMP Link Trap,MAC Trap,Polling Interval,RO Community,Version")
+                csv.write("Device Name,Device IP,Subnet Mask,Description,Profile Name,Network Protocol,Shared Secret,SNMP Link Trap,MAC Trap,Polling Interval,RO Community,Version")
                 csv.close()  
             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.md",'a') as md:
                 md.seek(0, 0)
                 md.write("# Network Device Details")
                 md.write("\n")
-                md.write("| Device Name | Device IP | Description | Profile Name | Network Protocol | Shared Secret | SNMP Link Trap | MAC Trap | Polling Interval | RO Community | Version |")
+                md.write("| Device Name | Device IP | Subnet Mask | Description | Profile Name | Network Protocol | Shared Secret | SNMP Link Trap | MAC Trap | Polling Interval | RO Community | Version |")
                 md.write("\n")
-                md.write("| ----------- | --------- | ----------- | ------------ | ---------------- | ------------- | -------------- | -------- | ---------------- | ------------ | ------- |")
+                md.write("| ----------- | --------- | ----------- | ----------- | ------------ | ---------------- | ------------- | -------------- | -------- | ---------------- | ------------ | ------- |")
                 md.close()
             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Network_Devices/network_device_details.html",'a') as html:
                 html.seek(0, 0)
                 html.write("<html><body><h1>Network Device Details</h1><table style=\"width:100%\">")
                 html.write("\n")
-                html.write("<tr><th>Device Name</th><th>Device IP</th><th>Description</th><th>Profile Name</th><th>Network Protocol</th><th>Shared Secret</th><th>SNMP Link Trap</th><th>MAC Trap</th><th>Polling Interval</th><th>RO Community</th><th>Version</th></tr>")                     
+                html.write("<tr><th>Device Name</th><th>Device IP</th><th>Subnet Mask</th><th>Description</th><th>Profile Name</th><th>Network Protocol</th><th>Shared Secret</th><th>SNMP Link Trap</th><th>MAC Trap</th><th>Polling Interval</th><th>RO Community</th><th>Version</th></tr>")                     
                 html.close() 
 
             # Get Parent Network Devices
@@ -917,14 +917,15 @@ class Collect_Information(aetest.Testcase):
                     for filetype in filetype_loop:
                         parsed_active_session_totals = active_session_totals_template.render(to_parse_active_session_totals=xmltodict.parse(self.raw_active_session_totals.content),filetype_loop_jinja2=filetype)
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.%s" % filetype, "w") as fh:
-                            fh.write(parsed_active_session_totals) 
-                
-                    os.system("markmap Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals_mind_map.html")
+                            fh.write(parsed_active_session_totals)                   
 
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
                     # ----------------
                     table.insert(xmltodict.parse(self.raw_active_session_totals.content))
+            
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals_mind_map.html")
 
             # Get Active Session Details
             with steps.start('Requesting Active Session Details Count',continue_=True) as step:
@@ -948,14 +949,15 @@ class Collect_Information(aetest.Testcase):
                     for filetype in filetype_loop:
                         parsed_active_session_details = active_session_details_template.render(to_parse_active_session_details=xmltodict.parse(self.raw_active_session_details.content),filetype_loop_jinja2=filetype)
                         with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.%s" % filetype, "w") as fh:
-                            fh.write(parsed_active_session_details) 
-                
-                    os.system("markmap Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
+                            fh.write(parsed_active_session_details)                 
 
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
                     # ----------------
                     table.insert(xmltodict.parse(self.raw_active_session_details.content))
+
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
 
             # Define Templates 
             MAC_session_details_template = env.get_template('mac_session_details.j2')
@@ -982,52 +984,48 @@ class Collect_Information(aetest.Testcase):
                 html.write("<tr><th>Timestamp</th><th>Authentication ID</th><th>Authentication Method</th><th>Authentication Protocol</th><th>User Name</th><th>IP Address</th><th>MAC Address</th><th>Switch Name</th><th>Switch IP</th><th>Switch Port</th><th>ISE Server</th><th>Audit Session ID</th><th>Policy</th><th>Execution Steps</th><th>Input Packets</th><th>Output Packets</th><th>Device Type</th><th>Identity Group</th><th>Location</th><th>Posture Status</th><th>Selected Profile</th><th>Service Type</th><th>VLAN</th><th>Message Code</th></tr>")
                 html.close() 
 
-            for active_session in active_list['activeList']['activeSession']:
-                with steps.start('Requesting MAC Session Information',continue_=True) as step:
-                    try:
-                        self.raw_mac_session_details = requests.get("https://%s/admin/API/mnt/Session/MACAddress/%s" % (device_ip,active_session['calling_station_id']), auth=(api_username, api_password), headers=xml_headers, verify=False,)
-                        print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
-                    except Exception as e:
-                        step.failed('There was a problem with the API\n{e}'.format(e=e))
+            if active_list['activeList']['activeSession']:
+                for active_session in active_list['activeList']['activeSession']:
+                    with steps.start('Requesting MAC Session Information',continue_=True) as step:
+                        try:
+                            self.raw_mac_session_details = requests.get("https://%s/admin/API/mnt/Session/MACAddress/%s" % (device_ip,active_session['calling_station_id']), auth=(api_username, api_password), headers=xml_headers, verify=False,)
+                            print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                        except Exception as e:
+                            step.failed('There was a problem with the API\n{e}'.format(e=e))
 
-                # ---------------------------------------
-                # Generate CSV / MD / HTML / Mind Maps
-                # ---------------------------------------
+                    # Parent Network Device
+                    with steps.start('Store data',continue_=True) as step:
+                        print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 
-                # Parent Network Device
-                with steps.start('Store data',continue_=True) as step:
-                    print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
-
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.json", "a") as fid:
-                        json.dump(xmltodict.parse(self.raw_mac_session_details.content), fid, indent=4, sort_keys=True)
-                        fid.write('\n')
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.json", "a") as fid:
+                            json.dump(xmltodict.parse(self.raw_mac_session_details.content), fid, indent=4, sort_keys=True)
+                            fid.write('\n')
                                 
-                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.yaml", "a") as yml:
-                        yaml.dump(xmltodict.parse(self.raw_mac_session_details.content), yml, allow_unicode=True)
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.yaml", "a") as yml:
+                            yaml.dump(xmltodict.parse(self.raw_mac_session_details.content), yml, allow_unicode=True)
 
-                    for filetype in filetype_loop:
-                        parsed_MAC_session_details = MAC_session_details_template.render(to_parse_MAC_session_details=xmltodict.parse(self.raw_mac_session_details.content),filetype_loop_jinja2=filetype)
+                        for filetype in filetype_loop:
+                            parsed_MAC_session_details = MAC_session_details_template.render(to_parse_MAC_session_details=xmltodict.parse(self.raw_mac_session_details.content),filetype_loop_jinja2=filetype)
 
-                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype, "a") as fh:
-                            fh.write(parsed_MAC_session_details)
-                            fh.close()
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype, "a") as fh:
+                                fh.write(parsed_MAC_session_details)
+                                fh.close()
 
-                    # ----------------
-                    # Store Devices in Device Table in Database
-                    # ----------------
+                        # ----------------
+                        # Store Devices in Device Table in Database
+                        # ----------------
 
-                    table.insert(xmltodict.parse(self.raw_mac_session_details.content))
+                        table.insert(xmltodict.parse(self.raw_mac_session_details.content))
 
-            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.html", "a") as html:
-                html.write("</table></body></html>")
-                html.close() 
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.html", "a") as html:
+                    html.write("</table></body></html>")
+                    html.close() 
                                     
-            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md"):
-                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details_mind_map.html")
+                if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md"):
+                    os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details_mind_map.html")
 
-
-            fid.close()
-            yml.close()
+                fid.close()
+                yml.close()
 
         # ---------------------------------------
         # You Made It 

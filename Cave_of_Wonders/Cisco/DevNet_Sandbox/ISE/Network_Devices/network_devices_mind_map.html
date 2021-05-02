@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/style.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.6.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.6"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/index.umd.min.js"></script><script>(r => {
+          setTimeout(r);
+        })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"Network Devices","c":[{"t":"thead","d":3,"p":{"lines":[1,2]},"v":"","c":[{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Device"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Description"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"ISE ID"}]},{"t":"tbody","d":3,"p":{"lines":[3,6]},"v":"","c":[{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"ISE_EST_Local_Host"},{"t":"td","d":5,"p":{},"v":""},{"t":"td","d":5,"p":{},"v":"8fbcf650-c710-11e8-86bf-005056bb442b"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Simulator"},{"t":"td","d":5,"p":{},"v":"Radius Simulator VM"},{"t":"td","d":5,"p":{},"v":"9ac12b10-7b46-11eb-976b-427fae7e634f"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"rave-sw"},{"t":"td","d":5,"p":{},"v":"Network Switch"},{"t":"td","d":5,"p":{},"v":"92877fd0-d85a-11e8-9f06-c695051da9cd"}]}]}]})</script>
+</body>
+</html>

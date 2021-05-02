@@ -1,0 +1,171 @@
+EndPointGroup:
+  description: 'Identity Group for Profile: Sony-Device'
+  id: 38a73670-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/38a73670-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Sony-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Cisco-Meraki-Device'
+  id: 1e2700a0-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/1e2700a0-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Cisco-Meraki-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: IOTExample'
+  id: 97183780-14df-11e9-a8fe-365742c5d97c
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/97183780-14df-11e9-a8fe-365742c5d97c
+    rel: self
+    type: application/json
+  name: IOTExample
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Apple-iDevice'
+  id: 0a4a50f0-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/0a4a50f0-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Apple-iDevice
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: BlackBerry'
+  id: 0cc7ad00-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/0cc7ad00-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: BlackBerry
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Android'
+  id: ffa36b00-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/ffa36b00-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Android
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Axis-Device'
+  id: 0c4eac70-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/0c4eac70-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Axis-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Juniper-Device'
+  id: 2b07d100-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/2b07d100-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Juniper-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Epson-Device'
+  id: 22c6c780-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/22c6c780-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Epson-Device
+  systemDefined: true
+EndPointGroup:
+  description: Profiled Identity Group
+  id: aa10ae00-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/aa10ae00-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Profiled
+  systemDefined: true
+EndPointGroup:
+  description: Blocked List Identity Group
+  id: aa000c30-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/aa000c30-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Blocked List
+  systemDefined: true
+EndPointGroup:
+  description: Guest Endpoints Identity Group
+  id: aa178bd0-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/aa178bd0-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: GuestEndpoints
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Synology-Device'
+  id: 3a1b38d0-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/3a1b38d0-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Synology-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Vizio-Device'
+  id: 3b113190-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/3b113190-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Vizio-Device
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Trendnet-Device'
+  id: 3a88eec0-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/3a88eec0-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Trendnet-Device
+  systemDefined: true
+EndPointGroup:
+  description: Asset Registered Endpoints Identity Group
+  id: aa13bb40-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/aa13bb40-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: RegisteredDevices
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Cisco-IP-Phone'
+  id: 14f5cac0-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/14f5cac0-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Cisco-IP-Phone
+  systemDefined: true
+EndPointGroup:
+  description: Unknown Identity Group
+  id: aa0e8b20-8bff-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/aa0e8b20-8bff-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Unknown
+  systemDefined: true
+EndPointGroup:
+  description: 'Identity Group for Profile: Workstation'
+  id: 3b76f840-8c00-11e6-996c-525400b48521
+  link:
+    href: https://10.10.20.70:9060/ers/config/endpointgroup/3b76f840-8c00-11e6-996c-525400b48521
+    rel: self
+    type: application/json
+  name: Workstation
+  systemDefined: true

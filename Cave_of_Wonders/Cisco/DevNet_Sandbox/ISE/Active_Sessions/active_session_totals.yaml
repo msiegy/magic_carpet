@@ -1,0 +1,5 @@
+!!python/object/apply:collections.OrderedDict
+- - - sessionCount
+    - !!python/object/apply:collections.OrderedDict
+      - - - count
+          - '0'

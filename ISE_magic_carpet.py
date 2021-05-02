@@ -919,12 +919,13 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.%s" % filetype, "w") as fh:
                             fh.write(parsed_active_session_totals) 
                 
-                    os.system("markmap Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals_mind_map.html")
-
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
                     # ----------------
                     table.insert(xmltodict.parse(self.raw_active_session_totals.content))
+
+            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_totals_mind_map.html")
 
             # Get Active Session Details
             with steps.start('Requesting Active Session Details Count',continue_=True) as step:
@@ -950,12 +951,13 @@ class Collect_Information(aetest.Testcase):
                         with open("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.%s" % filetype, "w") as fh:
                             fh.write(parsed_active_session_details) 
                 
-                    os.system("markmap Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
-
                     # ----------------
                     # Store Active Total Sessions in Device Table in Database
                     # ----------------
                     table.insert(xmltodict.parse(self.raw_active_session_details.content))
+
+            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_totals.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Active_Sessions/active_session_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/active_session_details_totals_mind_map.html")
 
             # Define Templates 
             MAC_session_details_template = env.get_template('mac_session_details.j2')

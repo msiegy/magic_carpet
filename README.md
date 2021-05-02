@@ -561,7 +561,9 @@ Cisco Identity Services Engine (ISE)
 
     External RESTful Service (ERS) APIs 
 
-        Authorization Profiles  
+        Administrators
+
+        Authorization Profiles
 
         downloadable/dynamic Access Control Lists (dACLs)   
 

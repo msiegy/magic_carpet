@@ -192,6 +192,16 @@ for filetype in filetype_loop:
     if os.path.exists("Cave_of_Wonders/Cisco/ISE/Administrators/administrators.%s" % filetype):
         os.remove("Cave_of_Wonders/Cisco/ISE/Administrators/administrators.%s" % filetype)
 
+if os.path.exists("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/ISE/Administrators/administrator_details.%s" % filetype)  
+
 # AE Test Setup
 # ----------------
 class common_setup(aetest.CommonSetup):

@@ -1,0 +1,30 @@
+SearchResult:
+  resources:
+  - description: Default Admin User
+    id: e6c4268a-887a-4e43-9073-05b5469ded6d
+    link:
+      href: https://10.10.20.70:9060/ers/config/adminuser/e6c4268a-887a-4e43-9073-05b5469ded6d
+      rel: self
+      type: application/json
+    name: admin
+  total: 1
+SearchResult:
+  resources:
+  - description: Default Admin User
+    id: e6c4268a-887a-4e43-9073-05b5469ded6d
+    link:
+      href: https://10.10.20.70:9060/ers/config/adminuser/e6c4268a-887a-4e43-9073-05b5469ded6d
+      rel: self
+      type: application/json
+    name: admin
+  total: 1
+SearchResult:
+  resources:
+  - description: Default Admin User
+    id: e6c4268a-887a-4e43-9073-05b5469ded6d
+    link:
+      href: https://10.10.20.70:9060/ers/config/adminuser/e6c4268a-887a-4e43-9073-05b5469ded6d
+      rel: self
+      type: application/json
+    name: admin
+  total: 1

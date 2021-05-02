@@ -409,6 +409,8 @@ folderUrl = '/DocumentLibrary/Cave_of_Wonders/'
 [Test Magic Carpet using the Cisco DevNet IOS-XE Sandbox](docs/01_devnetsb_ios_xe_csr.md)
 
 [Test Magic Carpet using the Cisco DevNet Nexus 9k Sandbox](docs/03_devnetsb_nxos_nexus9k.md)
+
+[Test Magic Carpet using the Cisco DevNet Identity Services Engine 3.0 + pxGrid Sandbox](docs/05_devnetsb_ise.md)
 ## Supported Command Index
 
 Cisco IOS-XE:

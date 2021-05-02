@@ -130,6 +130,28 @@ John Capobianco
 
         show vrf all interface
 
+    Cisco Identity Services Engine (ISE)
+
+        External RESTful Service (ERS) APIs
+
+            Authorization Profiles
+
+            downloadable/dynamic Access Control Lists (dACLs)
+
+            Endpoint Groups
+
+            Identity Groups
+
+            Network Devices 
+
+        Monitoring and Troubleshooting (MnT) APIs
+
+            Total Active Sessions
+
+            Active Sessions
+
+            MAC Session Details
+    
     BIG-IP 
 
         mgmt/tm/ltm/virtual

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/style.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.6.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.6"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/index.umd.min.js"></script><script>(r => {
+          setTimeout(r);
+        })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"dACLs","c":[{"t":"thead","d":3,"p":{"lines":[1,2]},"v":"","c":[{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Device"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Description"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"ISE ID"}]},{"t":"tbody","d":3,"p":{"lines":[3,9]},"v":"","c":[{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"DENY_ALL_IPV4_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Deny all ipv4 traffic"},{"t":"td","d":5,"p":{},"v":"eb6e3500-6eac-11ea-812e-0242d0ede26e"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"DENY_ALL_IPV6_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Deny all ipv6 traffic"},{"t":"td","d":5,"p":{},"v":"eb437b80-6eac-11ea-812e-0242d0ede26e"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"DENY_ALL_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Deny all traffic"},{"t":"td","d":5,"p":{},"v":"9825aa40-8c01-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"PERMIT_ALL_IPV4_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Allow all ipv4 Traffic"},{"t":"td","d":5,"p":{},"v":"eb6b00b0-6eac-11ea-812e-0242d0ede26e"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"PERMIT_ALL_IPV6_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Allow all ipv6 Traffic"},{"t":"td","d":5,"p":{},"v":"eb3c0170-6eac-11ea-812e-0242d0ede26e"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"PERMIT_ALL_TRAFFIC"},{"t":"td","d":5,"p":{},"v":"Allow all Traffic"},{"t":"td","d":5,"p":{},"v":"982498d0-8c01-11e6-996c-525400b48521"}]}]}]})</script>
+</body>
+</html>

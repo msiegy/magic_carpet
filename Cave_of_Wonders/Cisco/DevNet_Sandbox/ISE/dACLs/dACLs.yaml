@@ -1,0 +1,45 @@
+SearchResult:
+  resources:
+  - description: Deny all ipv4 traffic
+    id: eb6e3500-6eac-11ea-812e-0242d0ede26e
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/eb6e3500-6eac-11ea-812e-0242d0ede26e
+      rel: self
+      type: application/json
+    name: DENY_ALL_IPV4_TRAFFIC
+  - description: Deny all ipv6 traffic
+    id: eb437b80-6eac-11ea-812e-0242d0ede26e
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/eb437b80-6eac-11ea-812e-0242d0ede26e
+      rel: self
+      type: application/json
+    name: DENY_ALL_IPV6_TRAFFIC
+  - description: Deny all traffic
+    id: 9825aa40-8c01-11e6-996c-525400b48521
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/9825aa40-8c01-11e6-996c-525400b48521
+      rel: self
+      type: application/json
+    name: DENY_ALL_TRAFFIC
+  - description: Allow all ipv4 Traffic
+    id: eb6b00b0-6eac-11ea-812e-0242d0ede26e
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/eb6b00b0-6eac-11ea-812e-0242d0ede26e
+      rel: self
+      type: application/json
+    name: PERMIT_ALL_IPV4_TRAFFIC
+  - description: Allow all ipv6 Traffic
+    id: eb3c0170-6eac-11ea-812e-0242d0ede26e
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/eb3c0170-6eac-11ea-812e-0242d0ede26e
+      rel: self
+      type: application/json
+    name: PERMIT_ALL_IPV6_TRAFFIC
+  - description: Allow all Traffic
+    id: 982498d0-8c01-11e6-996c-525400b48521
+    link:
+      href: https://10.10.20.70:9060/ers/config/downloadableacl/982498d0-8c01-11e6-996c-525400b48521
+      rel: self
+      type: application/json
+    name: PERMIT_ALL_TRAFFIC
+  total: 6

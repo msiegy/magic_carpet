@@ -1,0 +1,3 @@
+# MAC Session Details
+| Timestamp | Authentication ID | Authentication Method | Authentication Protocol | User Name | IP Address | MAC Address | Switch Name | Switch IP | Switch Port | ISE Server | Audit Session ID | Policy | Execution Steps | Input Packets | Output Packets | Device Type | Identity Group | Location | Posture Status | Selected Profile | Service Type | VLAN | Message Code |
+| --------  | ----------------- | --------------------- | ----------------------- | --------- | ---------- | ----------- | ----------- | --------- | ----------- | ---------- | ---------------- | ------ | --------------- | ------------- | -------------- | ----------- | -------------- | -------- | -------------- | ---------------- | ------------ | ---- | ------------ |

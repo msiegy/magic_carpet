@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Markmap</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#mindmap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/style.min.css">
+</head>
+<body>
+<svg id="mindmap"></svg>
+<script src="https://cdn.jsdelivr.net/npm/d3@6.6.0"></script><script src="https://cdn.jsdelivr.net/npm/markmap-view@0.2.6"></script><script src="https://cdn.jsdelivr.net/npm/markmap-toolbar@0.1.6/dist/index.umd.min.js"></script><script>(r => {
+          setTimeout(r);
+        })(() => {
+  const {
+    markmap,
+    mm
+  } = window;
+  const toolbar = new markmap.Toolbar();
+  toolbar.attach(mm);
+  const el = toolbar.render();
+  el.setAttribute('style', 'position:absolute;bottom:20px;right:20px');
+  document.body.append(el);
+})</script><script>((getMarkmap, getOptions, data) => {
+        const {
+          Markmap
+        } = getMarkmap();
+        window.mm = Markmap.create('svg#mindmap', getOptions == null ? void 0 : getOptions(), data);
+      })(() => window.markmap,null,{"t":"heading","d":1,"p":{"lines":[0,1]},"v":"Endpoint Groups","c":[{"t":"thead","d":3,"p":{"lines":[1,2]},"v":"","c":[{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Device"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"Description"},{"t":"th","d":5,"p":{"lines":[1,2]},"v":"ISE ID"}]},{"t":"tbody","d":3,"p":{"lines":[3,22]},"v":"","c":[{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Sony-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Sony-Device"},{"t":"td","d":5,"p":{},"v":"38a73670-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Cisco-Meraki-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Cisco-Meraki-Device"},{"t":"td","d":5,"p":{},"v":"1e2700a0-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"IOTExample"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: IOTExample"},{"t":"td","d":5,"p":{},"v":"97183780-14df-11e9-a8fe-365742c5d97c"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Apple-iDevice"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Apple-iDevice"},{"t":"td","d":5,"p":{},"v":"0a4a50f0-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"BlackBerry"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: BlackBerry"},{"t":"td","d":5,"p":{},"v":"0cc7ad00-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Android"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Android"},{"t":"td","d":5,"p":{},"v":"ffa36b00-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Axis-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Axis-Device"},{"t":"td","d":5,"p":{},"v":"0c4eac70-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Juniper-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Juniper-Device"},{"t":"td","d":5,"p":{},"v":"2b07d100-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Epson-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Epson-Device"},{"t":"td","d":5,"p":{},"v":"22c6c780-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Profiled"},{"t":"td","d":5,"p":{},"v":"Profiled Identity Group"},{"t":"td","d":5,"p":{},"v":"aa10ae00-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Blocked List"},{"t":"td","d":5,"p":{},"v":"Blocked List Identity Group"},{"t":"td","d":5,"p":{},"v":"aa000c30-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"GuestEndpoints"},{"t":"td","d":5,"p":{},"v":"Guest Endpoints Identity Group"},{"t":"td","d":5,"p":{},"v":"aa178bd0-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Synology-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Synology-Device"},{"t":"td","d":5,"p":{},"v":"3a1b38d0-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Vizio-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Vizio-Device"},{"t":"td","d":5,"p":{},"v":"3b113190-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Trendnet-Device"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Trendnet-Device"},{"t":"td","d":5,"p":{},"v":"3a88eec0-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"RegisteredDevices"},{"t":"td","d":5,"p":{},"v":"Asset Registered Endpoints Identity Group"},{"t":"td","d":5,"p":{},"v":"aa13bb40-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Cisco-IP-Phone"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Cisco-IP-Phone"},{"t":"td","d":5,"p":{},"v":"14f5cac0-8c00-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Unknown"},{"t":"td","d":5,"p":{},"v":"Unknown Identity Group"},{"t":"td","d":5,"p":{},"v":"aa0e8b20-8bff-11e6-996c-525400b48521"}]},{"t":"tr","d":4,"p":{},"v":"","c":[{"t":"td","d":5,"p":{},"v":"Workstation"},{"t":"td","d":5,"p":{},"v":"Identity Group for Profile: Workstation"},{"t":"td","d":5,"p":{},"v":"3b76f840-8c00-11e6-996c-525400b48521"}]}]}]})</script>
+</body>
+</html>

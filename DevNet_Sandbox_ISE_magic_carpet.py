@@ -36,7 +36,7 @@ filetype_loop = ["csv","md","html"]
 # Template Directory
 # ----------------
 
-template_dir = 'templates/Cisco/DevNet_Sandbox/ISE'
+template_dir = 'templates/cisco/ise'
 env = Environment(loader=FileSystemLoader(template_dir))
 
 # ----------------
@@ -175,6 +175,26 @@ if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_
 for filetype in filetype_loop:
     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype):
         os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrators.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype)        
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype)  
 
 # AE Test Setup
 # ----------------
@@ -1104,7 +1124,7 @@ class Collect_Information(aetest.Testcase):
             # Define Templates 
             MAC_session_details_template = env.get_template('mac_session_details.j2')
                  
-            # Get Parent Network Devices
+            # Get Active Session Details
             active_list = xmltodict.parse(self.raw_active_session_details.content)
 
             with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Active_Sessions/MAC_session_details.csv",'a') as csv:
@@ -1126,7 +1146,7 @@ class Collect_Information(aetest.Testcase):
                 html.write("<tr><th>Timestamp</th><th>Authentication ID</th><th>Authentication Method</th><th>Authentication Protocol</th><th>User Name</th><th>IP Address</th><th>MAC Address</th><th>Switch Name</th><th>Switch IP</th><th>Switch Port</th><th>ISE Server</th><th>Audit Session ID</th><th>Policy</th><th>Execution Steps</th><th>Input Packets</th><th>Output Packets</th><th>Device Type</th><th>Identity Group</th><th>Location</th><th>Posture Status</th><th>Selected Profile</th><th>Service Type</th><th>VLAN</th><th>Message Code</th></tr>")
                 html.close() 
 
-            if active_list['activeList']['activeSession']:
+            if hasattr(active_list, 'activeSession'):
                 for active_session in active_list['activeList']['activeSession']:
                     with steps.start('Requesting MAC Session Information',continue_=True) as step:
                         try:
@@ -1135,7 +1155,7 @@ class Collect_Information(aetest.Testcase):
                         except Exception as e:
                             step.failed('There was a problem with the API\n{e}'.format(e=e))
 
-                    # Parent Network Device
+                    # MAC Details
                     with steps.start('Store data',continue_=True) as step:
                         print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
 

@@ -49,8 +49,8 @@ env = Environment(loader=FileSystemLoader(template_dir))
 # Create Database
 # ----------------
 
-db = TinyDB('Cave_of_Wonders/Cisco/ISE/Jafar/Jafar_DB.json')
-db.purge()
+db = TinyDB('Cave_of_Wonders/Cisco/IOS_XE/Jafar/Jafar_DB.json')
+db.truncate()
 
 # ----------------
 # Load Credentials 

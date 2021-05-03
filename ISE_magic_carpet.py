@@ -932,6 +932,85 @@ class Collect_Information(aetest.Testcase):
             fid.close()
             yml.close()
 
+            # Get Endpoint Page Count
+            with steps.start('Requesting Endpoint API Page Count',continue_=True) as step:
+                try:
+                    self.raw_page_count = requests.get("https://%s:9060/ers/config/endpoint?size=100" % device_ip, auth=(api_username, api_password), headers=json_headers, verify=False,)
+                    print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                except Exception as e:
+                    step.failed('There was a problem with the API\n{e}'.format(e=e))
+            
+            pagecount = (self.raw_page_count.json()['SearchResult']['total'])
+
+            # Define Templates 
+            endpoints_template = env.get_template('endpoints.j2')
+
+            with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.csv",'a') as csv:
+                csv.seek(0, 0)
+                csv.write("Name,ISE ID")
+                csv.close()  
+            with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.md",'a') as md:
+                md.seek(0, 0)
+                md.write("# Endpoints")
+                md.write("\n")
+                md.write("| Name | ISE ID |")
+                md.write("\n")
+                md.write("| ---- | ------ |")
+                md.close()
+            with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.html",'a') as html:
+                html.seek(0, 0)
+                html.write("<html><body><h1>Endpoints</h1><table style=\"width:100%\">")
+                html.write("\n")
+                html.write("<tr><th>Name</th><th>ISE ID</th></tr>")
+                html.close() 
+
+            # Get Parent Network Devices
+            for page in range(1,math.ceil(pagecount/100+1)):
+                with steps.start('Requesting Master List of Endpoints Information',continue_=True) as step:
+                    try:
+                        self.raw_endpoints = requests.get("https://%s:9060/ers/config/endpoint?size=100&page=%i" % (device_ip,page), auth=(api_username, api_password), headers=json_headers, verify=False,)
+                        print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                    except Exception as e:
+                        step.failed('There was a problem with the API\n{e}'.format(e=e))
+
+                # ---------------------------------------
+                # Generate CSV / MD / HTML / Mind Maps
+                # ---------------------------------------
+
+                # Parent Network Device
+                with steps.start('Store data',continue_=True) as step:
+                    print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+
+                    with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.json", "a") as fid:
+                        json.dump(self.raw_endpoints.json(), fid, indent=4, sort_keys=True)
+                        fid.write('\n')
+                                
+                    with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.yaml", "a") as yml:
+                        yaml.dump(self.raw_endpoints.json(), yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_endpoints = endpoints_template.render(to_parse_endpoints=self.raw_endpoints.json(),filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.%s" % filetype, "a") as fh:
+                            fh.write(parsed_endpoints)
+                            fh.close()
+
+                    # ----------------
+                    # Store Devices in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.raw_endpoints.json())
+
+            with open("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                            
+            if os.path.exists("Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints.md --output Cave_of_Wonders/Cisco/ISE/Endpoints/endpoints_mind_map.html")
+
+            fid.close()
+            yml.close()
+
             # Get Active Session Totals
             with steps.start('Requesting Active Session Totals Count',continue_=True) as step:
                 try:

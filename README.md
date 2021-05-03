@@ -563,6 +563,8 @@ Cisco Identity Services Engine (ISE)
 
         Administrators
 
+        Allowed Protocols
+
         Authorization Profiles
 
         downloadable/dynamic Access Control Lists (dACLs)   

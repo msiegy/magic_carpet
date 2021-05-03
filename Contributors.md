@@ -135,6 +135,8 @@ John Capobianco
         External RESTful Service (ERS) APIs
 
             Administrators
+
+            Allowed Protocols
             
             Authorization Profiles
 

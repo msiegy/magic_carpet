@@ -196,6 +196,26 @@ for filetype in filetype_loop:
     if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype):
         os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.%s" % filetype)  
 
+if os.path.exists("Cave_of_Wonders/Cisco/ISE/Allowed_Protocols/allowed_protocols.json"):
+    os.remove("Cave_of_Wonders/Cisco/ISE/Allowed_Protocols/allowed_protocols.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.%s" % filetype)
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.json"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.json")
+
+if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.yaml"):
+    os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.yaml")
+
+for filetype in filetype_loop:
+    if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.%s" % filetype):
+        os.remove("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.%s" % filetype)
+
 # AE Test Setup
 # ----------------
 class common_setup(aetest.CommonSetup):
@@ -1054,6 +1074,86 @@ class Collect_Information(aetest.Testcase):
             if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.md"):
                 os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Administrators/administrator_details_mind_map.html")
 
+            fid.close()
+            yml.close()
+
+            # Get Parent Allowed Protocols
+            with steps.start('Requesting Master List of Allowed Protocols Information',continue_=True) as step:
+                try:
+                    self.raw_allowed_protocols = requests.get("https://%s:9060/ers/config/allowedprotocols" % device_ip, auth=(api_username, api_password), headers=json_headers, verify=False,)
+                    print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                except Exception as e:
+                    step.failed('There was a problem with the API\n{e}'.format(e=e))
+
+            # ---------------------------------------
+            # Generate CSV / MD / HTML / Mind Maps
+            # ---------------------------------------
+
+            with steps.start('Store data',continue_=True) as step:
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.json", "a") as fid:
+                    json.dump(self.raw_allowed_protocols.json(), fid, indent=4, sort_keys=True)
+                    fid.write('\n')
+                            
+                with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.yaml", "a") as yml:
+                    yaml.dump(self.raw_allowed_protocols.json(), yml, allow_unicode=True)
+
+                for filetype in filetype_loop:
+                    parsed_allowed_protocols = allowed_protocols_template.render(to_parse_allowed_protocols=self.raw_allowed_protocols.json(),filetype_loop_jinja2=filetype)
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.%s" % filetype, "a") as fh:
+                        fh.write(parsed_allowed_protocols)
+                        fh.close()
+
+                # ----------------
+                # Store allowed_protocols in Device Table in Database
+                # ----------------
+                table.insert(self.raw_allowed_protocols.json())
+
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocols_mind_map.html")
+
+            fid.close()
+            yml.close()
+
+            # Get Child Allowed Protocols
+            for device in self.raw_allowed_protocols.json()['SearchResult']['resources']:
+                with steps.start('Requesting Individual Allowed Protocols Information',continue_=True) as step:
+                    try:
+                        self.raw_allowed_protocol_details = requests.get(device['link']['href'], auth=(api_username, api_password), headers=json_headers, verify=False,)
+                        print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                    except Exception as e:
+                        step.failed('There was a problem with the API\n{e}'.format(e=e))
+            
+                with steps.start('Store data',continue_=True) as step:
+                    print(Panel.fit(Text.from_markup(WRITING, justify="center"))) 
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.json", "a") as fid:
+                        json.dump(self.raw_allowed_protocol_details.json(), fid, indent=4, sort_keys=True)
+                        fid.write('\n')
+                            
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.yaml", "a") as yml:
+                        yaml.dump(self.raw_allowed_protocol_details.json(), yml, allow_unicode=True)
+                
+                    for filetype in filetype_loop:
+                        parsed_allowed_protocol_details = allowed_protocol_details_template.render(to_parse_allowed_protocol_details=self.raw_allowed_protocol_details.json(),filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.%s" % filetype, "a") as fh:
+                            fh.write(parsed_allowed_protocol_details)
+                            fh.close()
+
+                    # ----------------
+                    # Store Devices in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.raw_allowed_protocol_details.json())
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                                
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Allowed_Protocols/allowed_protocol_details_mind_map.html")
+                
             fid.close()
             yml.close()
 

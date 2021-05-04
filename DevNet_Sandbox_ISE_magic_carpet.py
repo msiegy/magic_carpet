@@ -1006,6 +1006,148 @@ class Collect_Information(aetest.Testcase):
             fid.close()
             yml.close()
 
+            # Get Endpoint Page Count
+            with steps.start('Requesting Endpoint API Page Count',continue_=True) as step:
+                try:
+                    self.raw_page_count = requests.get("https://%s:9060/ers/config/endpoint?size=100" % device_ip, auth=(api_username, api_password), headers=json_headers, verify=False,)
+                    print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                except Exception as e:
+                    step.failed('There was a problem with the API\n{e}'.format(e=e))
+            
+            pagecount = (self.raw_page_count.json()['SearchResult']['total'])
+
+            # Define Templates 
+            endpoints_template = env.get_template('endpoints.j2')
+            endpoint_details_template = env.get_template('endpoint_details.j2')
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.csv",'a') as csv:
+                csv.seek(0, 0)
+                csv.write("Name,ISE ID")
+                csv.close()  
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.md",'a') as md:
+                md.seek(0, 0)
+                md.write("# Endpoints")
+                md.write("\n")
+                md.write("| Name | ISE ID |")
+                md.write("\n")
+                md.write("| ---- | ------ |")
+                md.close()
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.html",'a') as html:
+                html.seek(0, 0)
+                html.write("<html><body><h1>Endpoints</h1><table style=\"width:100%\">")
+                html.write("\n")
+                html.write("<tr><th>Name</th><th>ISE ID</th></tr>")
+                html.close() 
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.csv",'a') as csv:
+                csv.seek(0, 0)
+                csv.write("Name,MAC Address,Group ID,ISE ID,Identity Store,Identity Store ID,Portal User,Profile ID,Static Group,Static Profile")
+                csv.close()  
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.md",'a') as md:
+                md.seek(0, 0)
+                md.write("# Endpoint Details")
+                md.write("\n")
+                md.write("| Name | MAC Address | Group ID | ISE ID | Identity Store | Identity Store ID | Portal User | Profile ID | Static Group | Static Profile |")
+                md.write("\n")
+                md.write("| ---  | ----------- | -------- | ------ | -------------- | ----------------- | ----------- | ---------- | ------------ | -------------- |")
+                md.close()
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.html",'a') as html:
+                html.seek(0, 0)
+                html.write("<html><body><h1>Endpoint Details</h1><table style=\"width:100%\">")
+                html.write("\n")
+                html.write("<tr><th>Name</th><th>MAC Address</th><th>Group ID</th><th>ISE ID</th><th>Identity Store</th><th>Identity Store ID</th><th>Portal User</th><th>Profile ID</th><th>Static Group</th><th>Static Profile</th></tr>")
+                html.close()
+
+            # Get Parent Endpoints
+            for page in range(1,math.ceil(pagecount/100+1)):
+                with steps.start('Requesting Master List of Endpoints Information',continue_=True) as step:
+                    try:
+                        self.raw_endpoint_details = requests.get("https://%s:9060/ers/config/endpoint?size=100&page=%i" % (device_ip,page), auth=(api_username, api_password), headers=json_headers, verify=False,)
+                        print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                    except Exception as e:
+                        step.failed('There was a problem with the API\n{e}'.format(e=e))
+
+                # ---------------------------------------
+                # Generate CSV / MD / HTML / Mind Maps
+                # ---------------------------------------
+
+                # Parent Endpoints
+                with steps.start('Store data',continue_=True) as step:
+                    print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.json", "a") as fid:
+                        json.dump(self.raw_endpoint_details.json(), fid, indent=4, sort_keys=True)
+                        fid.write('\n')
+                                
+                    with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.yaml", "a") as yml:
+                        yaml.dump(self.raw_endpoint_details.json(), yml, allow_unicode=True)
+
+                    for filetype in filetype_loop:
+                        parsed_endpoint_details = endpoints_template.render(to_parse_endpoint_details=self.raw_endpoint_details.json(),filetype_loop_jinja2=filetype)
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.%s" % filetype, "a") as fh:
+                            fh.write(parsed_endpoint_details)
+                            fh.close()
+
+                    # ----------------
+                    # Store Devices in Device Table in Database
+                    # ----------------
+
+                    table.insert(self.raw_endpoint_details.json())
+
+                # Get Child Network Devices
+
+                for device in self.raw_endpoints.json()['SearchResult']['resources']:
+                    with steps.start('Requesting Individual Endpoint Information',continue_=True) as step:
+                        try:
+                            self.raw_endpoint_details = requests.get(device['link']['href'], auth=(api_username, api_password), headers=json_headers, verify=False,)
+                            print(Panel.fit(Text.from_markup(CLOUD, justify="center")))
+                        except Exception as e:
+                            step.failed('There was a problem with the API\n{e}'.format(e=e))
+                
+                    with steps.start('Store data',continue_=True) as step:
+                        print(Panel.fit(Text.from_markup(WRITING, justify="center")))       
+
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.json", "a") as fid:
+                            json.dump(self.raw_endpoint_details.json(), fid, indent=4, sort_keys=True)
+                            fid.write('\n')
+                                
+                        with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.yaml", "a") as yml:
+                            yaml.dump(self.raw_endpoint_details.json(), yml, allow_unicode=True)
+                    
+                        for filetype in filetype_loop:
+                            parsed_endpoint_details = endpoint_details_template.render(to_parse_endpoint_details=self.raw_endpoint_details.json(),filetype_loop_jinja2=filetype)
+
+                            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.%s" % filetype, "a") as fh:
+                                fh.write(parsed_endpoint_details)
+                                fh.close()
+
+                        # ----------------
+                        # Store Devices in Device Table in Database
+                        # ----------------
+
+                        table.insert(self.raw_endpoint_details.json())
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                            
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoints_mind_map.html")
+
+            fid.close()
+            yml.close()
+
+            with open("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.html", "a") as html:
+                html.write("</table></body></html>")
+                html.close() 
+                                
+            if os.path.exists("Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.md"):
+                os.system("markmap --no-open Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details.md --output Cave_of_Wonders/Cisco/DevNet_Sandbox/ISE/Endpoints/endpoint_details_mind_map.html")
+            fid.close()
+            yml.close()
+
+
             # Get Active Session Totals
             with steps.start('Requesting Active Session Totals Count',continue_=True) as step:
                 try:

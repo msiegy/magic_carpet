@@ -278,7 +278,6 @@ class Collect_Information(aetest.Testcase):
                                     time.sleep(5)
                                     with steps.start('Calling API',continue_=True) as step:
                                         try:    
-                                            recommended_release_raw = requests.get("https://api.cisco.com/software/suggestion/v2/suggestions/software/productIds/WS-C4500X-32SFP+", headers=oauth_headers)
                                             serial_2_info_raw = requests.get("https://api.cisco.com/sn2info/v2/coverage/summary/serial_numbers/%s" % value03['sn'], headers=oauth_headers)
                                             serial_2_info_json = serial_2_info_raw.json()
                                             with open("Cave_of_Wonders/Cisco/APIs/Serial_2_Info/%s_serial_2_info.json" % device.alias, "a") as fid:

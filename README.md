@@ -26,6 +26,10 @@ Also
 
 ![TinyDB](/images/TinyDB_logo.png)
 
+And for your Asset Management needs - introducting - Serial Sultan
+
+![Seria Sultan](/images/Serial_Sultan.png)
+
 Welcome!
 
 Magic Carpet is an infrastructure as code and network automation tool that transforms CLI command and REST API data, using the Cisco Genie parsers, the Cisco pyATS Python library, and Python to automatically generate, at scale, better documentation from the output; send #chatbots; #voicebots; even #phonebots!
@@ -60,6 +64,13 @@ Phone calls to any phone number in the world
 
 Instantly. With the push of a button.
 
+## Serial Sultan
+
+![Serial Sultan](/images/Serial_Sultan.PNG)
+
+If you are here for the Serial Sultan utility please follow this guide
+
+[Serial Sultan - Automated Asset Management](docs/06_serial_sultan.md)
 ## Genie and pyATS
 
 The main Genie documentation guide:

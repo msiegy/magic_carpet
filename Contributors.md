@@ -184,6 +184,8 @@ John Capobianco
 
     TinyDB Integration
 
+    Serial Sultan - Automated Asset Management 
+
 Sam Johnson
 
     show ntp associations 

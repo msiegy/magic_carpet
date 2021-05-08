@@ -63,16 +63,19 @@ class Collect_Information(aetest.Testcase):
         # ---------------------------------------
         for device in testbed:
             # ---------------------------------------
-            # Genie learn('config').info for pre-change file
+            # Genie learn('config').info for pre-change state 
             # ---------------------------------------
             print(Panel.fit(Text.from_markup(LEARN, justify="center")))
 
-            # Config
             self.learned_config = ParseLearnFunction.parse_learn(steps, device, "config")
             print(self.learned_config)
 
+            #----------------------------------------
+            # Write Pre-Change File
+            #----------------------------------------
+
             # ---------------------------------------
-            # Create Intent from Template 
+            # Create Intent from Template and Data Models
             # ---------------------------------------
             print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
 
@@ -81,8 +84,16 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------         
             
             # ---------------------------------------
+            # Re-capture state
+            # ---------------------------------------
+
+            # ---------------------------------------
+            # Write post-change state
+            # ---------------------------------------
+
+            # ---------------------------------------
             # Show the differential 
-            # ---------------------------------------                     
-        db.close()
+            # ---------------------------------------
+
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))    

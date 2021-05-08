@@ -11,7 +11,7 @@ devices:
       connections:        
         cli:
           protocol: ssh
-          ip: 10.10.20.48
+          ip: 10.10.20.20
           port: 22
           arguments:
             connection_timeout: 360            

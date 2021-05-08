@@ -1,7 +1,7 @@
 '''
 To run the job:
 
-$ pyats run job DevNet_Sandbox_CSR_iago_job.py --testbed-file testbed/testbed_ios_xe.yaml
+$ pyats run job DevNet_Sandbox_CSR_iago_job.py --testbed-file testbed/testbed_DevNet_CSR1000v_Sandbox.yaml
 
 '''
 
@@ -16,7 +16,7 @@ def main(runtime):
     if not runtime.testbed:
         # If no testbed is provided, load the default one.
         # Load default location of Testbed
-        testbedfile = os.path.join('testbed/testbed_ios_xe.yaml')
+        testbedfile = os.path.join('testbed/testbed_DevNet_CSR1000v_Sandbox.yaml')
         testbed = load(testbedfile)
     else:
         # Use the one provided

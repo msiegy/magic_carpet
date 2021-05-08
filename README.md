@@ -28,7 +28,7 @@ Also
 
 And for your Asset Management needs - introducting - Serial Sultan
 
-![Seria Sultan](/images/Serial_Sultan.png)
+![Serial Sultan](/images/Serial_Sultan.png)
 
 Welcome!
 
@@ -66,7 +66,7 @@ Instantly. With the push of a button.
 
 ## Serial Sultan
 
-![Serial Sultan](/images/Serial_Sultan.PNG)
+![Serial Sultan](/images/Serial_Sultan.png)
 
 If you are here for the Serial Sultan utility please follow this guide
 

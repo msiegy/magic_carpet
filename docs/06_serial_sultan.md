@@ -1,6 +1,6 @@
 # Serial Sultan - Automated Asset Management
 
-![Serial Sultan](images/Serial_Sultan.PNG)
+![Serial Sultan](images/Serial_Sultan.png)
 
 ## Prerequisites
 

@@ -26,7 +26,7 @@ from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction, ParseConfigFunction
 from datetime import datetime
-
+from contextlib import redirect_stdout
 
 log = logging.getLogger(__name__)
 template_dir = 'templates/cisco/nxos'
@@ -126,7 +126,12 @@ class Collect_Information(aetest.Testcase):
 
             config_diff = Diff(original_learned_config, new_learned_config)
             config_diff.findDiff()
+            
             print(config_diff)
+
+            with open('Iago/Changes/Changes.txt', 'w') as f:
+                with redirect_stdout(f):
+                    print(config_diff)
 
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))    

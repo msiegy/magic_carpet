@@ -21,22 +21,20 @@ from rich.text import Text
 from pyats import aetest
 from pyats import topology
 from pyats.log.utils import banner
+from genie.utils.diff import Diff
 from jinja2 import Environment, FileSystemLoader
 from ascii_art import GREETING, LEARN, RUNNING, WRITING, FINISHED
-from general_functionalities import ParseShowCommandFunction, ParseLearnFunction
+from general_functionalities import ParseShowCommandFunction, ParseLearnFunction, ParseConfigFunction
+from datetime import datetime
 
-# ----------------
-# Get logger for script
-# ----------------
 
 log = logging.getLogger(__name__)
-
-# ----------------
-# Template Directory
-# ----------------
-
-template_dir = 'templates/cisco/ios_xe'
+template_dir = 'templates/cisco/nxos'
 env = Environment(loader=FileSystemLoader(template_dir))
+timestr = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+with open("data_models/DevNet_Sandbox_Nexus9k.yaml") as stream:
+    data_model = yaml.safe_load(stream)
 
 # ----------------
 # AE Test Setup
@@ -67,33 +65,68 @@ class Collect_Information(aetest.Testcase):
             # ---------------------------------------
             print(Panel.fit(Text.from_markup(LEARN, justify="center")))
 
-            self.learned_config = ParseLearnFunction.parse_learn(steps, device, "config")
-            print(self.learned_config)
+            self.learned_config = ParseConfigFunction.parse_learn(steps, device, "config")
+            original_learned_config = self.learned_config
 
             #----------------------------------------
             # Write Pre-Change File
             #----------------------------------------
+            with steps.start('Store Original Golden Image',continue_=True) as step:
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
+                
+                original_config_filename = "%s_Golden_Image_%s.json" % (device.alias,timestr)
+                # Write Original Learned Config as JSON
+                if hasattr(self, 'learned_config'):
+                    with open("Iago/Golden_Image/%s" % original_config_filename, "w") as fid:
+                        json.dump(self.learned_config, fid, indent=4, sort_keys=True)
 
             # ---------------------------------------
             # Create Intent from Template and Data Models
             # ---------------------------------------
-            print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
+            with steps.start('Generating Intent From Data Model and Template',continue_=True) as step:
+                print(Panel.fit(Text.from_markup(RUNNING, justify="center")))
+                intended_config_template = env.get_template('intended_config.j2')
+                rendered_intended_config = intended_config_template.render(host_data_model=data_model)
 
+                with open("Iago/Intended_Configs/Intended_Config.txt", "w") as fid:
+                    fid.write(rendered_intended_config)
+                
             # ---------------------------------------
             # Push Intent to Device 
             # ---------------------------------------         
-            
+            with steps.start('Push Intent',continue_=True) as step:
+                print("IAGO ASCII GOES HERE")
+                device.configure(rendered_intended_config)
+
             # ---------------------------------------
             # Re-capture state
             # ---------------------------------------
+            print(Panel.fit(Text.from_markup(LEARN, justify="center")))
+
+            self.learned_config = ParseConfigFunction.parse_learn(steps, device, "config")
+            new_learned_config = self.learned_config
 
             # ---------------------------------------
             # Write post-change state
             # ---------------------------------------
+            with steps.start('Store New Golden Image',continue_=True) as step:
+                print(Panel.fit(Text.from_markup(WRITING, justify="center")))
+                
+                new_config_filename = "%s_Golden_Image_%s.json" % (device.alias,timestr)
+                # Write Original Learned Config as JSON
+                if hasattr(self, 'learned_config'):
+                    with open("Iago/Golden_Image/%s" % new_config_filename, "w") as fid:
+                        json.dump(self.learned_config, fid, indent=4, sort_keys=True)
 
             # ---------------------------------------
             # Show the differential 
             # ---------------------------------------
+            with steps.start('Show Differential',continue_=True) as step:
+                print("Another IAGO ASCII")
+
+            config_diff = Diff(original_learned_config, new_learned_config)
+            config_diff.findDiff()
+            print(config_diff)
 
         # Goodbye Banner
         print(Panel.fit(Text.from_markup(FINISHED, justify="center")))    

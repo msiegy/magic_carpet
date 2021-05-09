@@ -1,0 +1,7 @@
+host_vlans:
+  10:
+    name: BLUE
+  20:
+    name: RED
+  30:
+    name: GREEN

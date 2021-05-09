@@ -74,7 +74,7 @@ class Collect_Information(aetest.Testcase):
             with steps.start('Store Original Golden Image',continue_=True) as step:
                 print(Panel.fit(Text.from_markup(WRITING, justify="center")))
                 
-                original_config_filename = "%s_Golden_Image_%s.json" % (device.alias,timestr)
+                original_config_filename = "%s_Original_Golden_Image_%s.json" % (device.alias,timestr)
                 # Write Original Learned Config as JSON
                 if hasattr(self, 'learned_config'):
                     with open("Iago/Golden_Image/%s" % original_config_filename, "w") as fid:

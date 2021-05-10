@@ -189,6 +189,120 @@ SERIALS = '''The only way to impress the Princess' Father - [red]Sulyellow Seria
 Your Inventory and Contract repors can be found in the Inventory folder and in SharePoint document library if enabled
 
 '''
+
+PUSH_INTENT = ''' [bright_blue]IAGO[/bright_blue] is [red]configuring your device[/red] from your [yellow]Intended Config[/yellow]
+
+                  [bright_red]::'         :i!!`
+                  .!'        :i!!
+                 i!        :!!!'
+               :!!        i!!
+               !!        :!'
+    :!        !!'       !!
+   i!         !!         !!  .. .
+   !'         !!       ::.::i!i ;!i
+   !          `!i   :!!!!!!!!!! ;![/bright_red]                     [bright_yellow].,xnx,.[/bright_yellow]
+   [bright_red]!           `!i: !!!!!!!'` '[/bright_red]                    [bright_yellow]..nMMMMMMMMMMn,[/bright_yellow]
+   [bright_red]!!            ' :!!!!'  ....[/bright_red]                 [bright_yellow].dMMMMMMMMMMMMMMMMMk[/bright_yellow]
+    [bright_red]`!i.          !;!!'   """??$b[/bright_red]            [bright_yellow],nMMMMMMMMMMMMMMMMMMMMMM.[/bright_yellow]
+     [bright_red]``!!;;;;;;; f; ![/bright_red]          [bright_red]"?b[/bright_red]        [bright_yellow],-'"""MMMMMMMMMMMMMMMMMMMMMM.[/bright_yellow]
+          [bright_red]```  \!;[/bright_red]          [bright_blue]@@[/bright_blue]   [bright_red]`?$.[/bright_red]   [bright_yellow]xP   nMMMMMMMMMMMMMMMMMMMMMMMM>[/bright_yellow]
+               [bright_red]L!;[/bright_red]    [bright_blue]@@    @@[/bright_blue]     [bright_red]`3F[/bright_red] [bright_yellow].MhnnnMMMMMMMMMMMMMMMMMMMMMMMMM>[/bright_yellow]
+              [bright_red];!!![/bright_red]    [bright_blue]@@[/bright_blue]            [bright_red]4[/bright_red]  [bright_yellow]MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM>[/bright_yellow]
+              [bright_red];!!!i[/bright_red]                   [bright_yellow]HMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[/bright_yellow]
+              [bright_red];!!!!i;[/bright_red]            [bright_red]...[/bright_red] [bright_yellow]JMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMP[/bright_yellow]
+               [bright_red]!!!!!!!:      ,;i!!!'[/bright_red]  [bright_yellow]4MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM[/bright_yellow]
+               [bright_red];!!!!!'`  .,i!!!!!'[/bright_red]  [bright_yellow].nMMMMMMMMMMMF??""???MMMMMMMMMMM[/bright_yellow]
+               [bright_red]:!!!'  ,i!!!!!!!'[/bright_red]    [bright_yellow]`MMMMMMP?""`          "MMMMMMMM"[/bright_yellow]
+             [bright_red].:!!' ,i!!!!!!!!'[/bright_red]                  [bright_white].,eec[/bright_white]      [bright_yellow]MMMMMMM'[/bright_yellow]
+           [bright_red].:!!',i!!!!!!!!!'[/bright_red]   [bright_white],$;  $$; ,e$$$; 4$P"`[/bright_white]       [bright_yellow]MMMMMf[/bright_yellow]
+         [bright_red].!!!!!!!!!!!!!!!'[/bright_red]     [bright_white]$$; $$$; J$$$$; F"[/bright_white]          [bright_yellow]MMMP'[/bright_yellow]
+       [bright_red]:!!!!!!!!!!!!!!!!   d[/bright_red]  [bright_white];$$'.$$$; $F""`[/bright_white]             [bright_yellow]xM"'[/bright_yellow]
+     [bright_red]''`` '!!!!!!!!!!!' ,, F[/bright_red]      '"""`      [bright_yellow].            "[/bright_yellow]
+          [bright_red]i!!!!!!!!!' .i![/bright_red]                   [bright_yellow](
+        [bright_red]i!'!!!!!!!! .i!!'[/bright_red] [bright_yellow]>               [bright_yellow].MM[/bright_yellow]
+       [bright_red]!'  !!!!!!!.i!!!'[/bright_red] [bright_yellow]:                [bright_yellow]4M>[/bright_yellow][bright_green]    BWAK![/bright_green]
+      [bright_red]/   '!!!!!!!!!!!'[/bright_red]  [bright_yellow]f[/bright_yellow]   [hot_pink]...:..[/hot_pink]       [bright_yellow]MM[/bright_yellow][bright_green]  I'M PUSHING[/bright_green] 
+     [bright_red]'    '!!!!'``!!!'[/bright_red]  [bright_yellow]M>[/bright_yellow]  [hot_pink].!!!!!~~[/hot_pink]      [bright_yellow]MM[/bright_yellow][bright_green]     THE[/bright_green]
+          [bright_red]`!!!'  :!!![/bright_red]  [bright_yellow]4M[/bright_yellow]   [hot_pink])!~`[/hot_pink]         [bright_yellow]4Mf[/bright_yellow][bright_green]  INTENDED CONFIG[/bright_green]
+           [bright_red]'!'  <!!!'[/bright_red]  [bright_yellow]Mf[/bright_yellow]  [hot_pink]'[/hot_pink]             [bright_yellow]4MP[/bright_yellow][bright_green]     BWAK![/bright_green]
+               [bright_red]:!!!![/bright_red]   [bright_yellow]M                 [bright_yellow]4MM[/bright_yellow]
+             [bright_red].!!!!!![/bright_red]  [bright_yellow]4M                 [bright_yellow]4MM[/bright_yellow]
+            [bright_red];!!!!!!'[/bright_red]  [bright_yellow]dM.                [bright_yellow]'MML[/bright_yellow]
+          [bright_red].!!!!!!!![/bright_red]   [bright_yellow]MML                 [bright_yellow]MMM.[/bright_yellow]
+        [bright_red].!!!!!!!!!![/bright_red]   [bright_yellow]MMM.                 [bright_yellow]?P"[/bright_yellow]
+      [bright_red];!!!!!!!!!!!![/bright_red]   [bright_yellow]MMMM                    .xnMf[/bright_yellow]
+    [bright_red];!!!!!!!!!!!!!![/bright_red]   [bright_yellow]MMMMM.              ..nMMMMf[/bright_yellow]
+ [bright_red];!!!!!!!!!!!!!!!!!i[/bright_red]  [bright_yellow]?MMMMMMMn......xnnMMMMMMMMf[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!i[/bright_red]  [bright_yellow]MMMMMMMMMMMMMMMMMMMMMMMM"[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!i[/bright_red]  [bright_yellow]?MMMMMMMMMMMMMMMMMMMF"[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!i[/bright_red]   [bright_yellow]"?MMMMMMMMMMMMMF"[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!;[/bright_red]   [bright_yellow]`??MMMMMMP""[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!![/bright_red]       [bright_yellow]`""`[/bright_yellow]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!!i[/bright_red]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!!![/bright_red]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!!!![/bright_red]
+[bright_red]!!!!!!!!!!!!!!!!!!!!!!!!!!!i[/bright_red]
+
+'''
+
+DIFF = '''
+  ````    ````    ````    -/-`    ````    ````    ````    ````    ````     ```     ```     ```     `
+  ````    ````    ````    ``/+`  `````    ````    ````     ```    ````     ```     ```     ```     `
+``    ````    ````    ````   -o``.+   ````    ````    ````    ````    ````    ````     ```     ```  
+                              o. .s                                                                 
+  ````    ````    ````    `.::/+.o.```    ``/.    ````    ````    ````    ````     ```     ```     `
+``    ````    ````    ```` :NNNNm/`..`````./: ````    ````    ````  `  ```     ```     ```     ```  
+``    ````    ````    ```` sMMMMMNNNNmy/:/-`` ````    ```` `.:/osoydo:/:-.`    ```     ```     ```  
+  ````    ````    ```` ``-//dmmmmNMMMMmd` `/h+    `````.:+syyyyyyhhyyyyyyhho-`     ```     ```     `
+                    `:/s+.` `````.hMNdhs//syhy:.-/ohyoyyyyyyyyyyyyyyyyyyyyyyyys+:.                  
+``    .----.  ```:+sdy+s:://+     sdyyyyyyhhddhyyhdhyyyyyyyyyhhhhhhhhhhhhyyyyyyyyys/.  ```     ```  
+  `-/oooooooo++/+ysddhdh:..:y   `:dhyyyyyyyyhdhyyyyyyyyyyyyhhhyyyyyyyyyyyhhhhyyyyyyyyo-`   ```     `
+ `oso++++++++++oosso++NM:./o::osyyyyyyyyyyyhhhmyyyyyyyyyyyydyyyyyyyyyyyyyyyyyhhhyyyyyyys-  ```     `
+`oo++++++++++++++oy+++yhosdyyhyyhs+odydyyyyyhdhyyyyyyyyyyyhdyyyyyyyyyyyyyyyyyyyhhhyyyyyyyo`    ```  
+`h++++++++++++++++++++++++oooosho`  yohhyyyyyyyyyyyyyyyyyyydhyyyyyyyyyyyyyyyyyyyyyhyyyyyyys`   ```  
+`h++++++++++++++++++++++++++++y--+-/yohhyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyyyyho``     `
+`h+++++++++++++++++++++++++++ss.:oyo+ooohyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyyyym.       
+`:y++++++++++++++++++++++++++hsoo+++++++shyyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyymo  ```  
+  :so+++++++++++++++++++++++oh+++++++++ohyyyyyyyyyyyyyyyyyyyyyyyhhhyyyyyyyyyyyyyyyyyyyyyyyydh`     `
+  `.oso++++++++++++++oooossyysooooo+ooo+ooooosdhyyyyyyyyyyyyyyyyyyhhyyyyyyyyyhhyyyyyyyymhydyd`     `
+``   -ooo+++++++++++y/:-.::::///::--. ````    /hyyddhhhyyyyyyyyyyyyydhyyyyyyyyddyyyyyyhddyssd  ```  
+       -oso+++++++++h`                       `-dhmdhhyyyyyyyyyyyyyyyyhhyyyyyyydddhhyyhhydsssd`      
+  ````   ./+ooo+++++s+    ````    ````    ``:yhyhyyyyyyyyyyyyyyyyyyyyyhdyyyyydysdssyyssydsssd`     `
+``    ````   `-:::::-.````    ````    `````ohyyyyyyyyyyyyyyyyyyyyyyyyyyydhhhhysshhsssssydsssy  ```  
+``    ````    ````    ````    ````    ````shyyyyyyyyyyyyyyyyyyyyyhhhyyyyydysssssydssssshhssh/  ```  
+  ````    ````    ````    ````    ````   /hyyyyyyyhyyyyyyyyyyyyydhhhhhyyyydysssssmsssssdysyh``     `
+                                         hyyyyyyyyydyyyyyyyyyyydhdhyyyyyyyydsssssdssssydssd-        
+``    ````    ````    ````    ````    ```dyyyyyyyyyyddyyyyyyyyymdyyyyyyyyyyydssssdysssdysdd:   ```  
+  ````    ````    ````    ````    ````   +hyyhhooshymhyyyyyyyyymyyyyyyyyyyyyydsssdysshhydhd-``     `
+  ````    ````    ````    ````    ````    yyyh++++sddyyyyyyyyyymhhhhhyyyyyyyyhdssdssydhdyhm.``     `
+``    ````    ````    ````    ````    ```+shmo++++smyyyyyyyyyyhyo++oyysosyhhyyhhydyddhyyyyd-   ```  
+``    ```     ````     ```     ```  .----h++ho+++++dyyyyyyyyydo+++yy++++ooosysshdddhyyyyyyh+   ```  
+  ````    ````    ````    ````    `````  so+oh+++++y:```````.h+++ys++++y/`````````+hyyyyyyyh``     `
+`     ```     ````     ```     ```     ```+sosysoshd-  ```  `h++sy++++y-``     ````ohyyyhdhs   ```  
+``    ````    ````    ````    ````    ```` `.://:-oh` ````   shydo+++s+```    ````  :dhhmyyh`  ```  
+  ````    ````    ````    ````    ````    ````    ````    ```+ydddsoo/`    ```     ``hyyhhsy+`     `
+  ````    ````    ````    ````    ````    ````    ````     ````:s/.```     ```     ``+yssdssd`     `
+``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   -dsshhsh/ ```  
+                                                                                     `dsssdssh`     
+  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     ```dssshhsh+    `
+``    ````    ````    ````    ````    ````    ````    ````    ````     ```     ```    dssssdssh```  
+``    ````    ````    ````    ````    ````    ````    ````    ````     ```     ```    dsssshhsd-``  
+  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     ```dsssssdyy+   `
+                                                                                     `dsssssydyo    
+``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   `dssssssdh/``  
+  ````    ````    ````    ````    ````    ````    ````     ```     ```     ```     ``-dssssssdd`   `
+  ````    ````    ````    ````    ````    ````    ````    ````    ````     ```     ``+yssssssdo    `
+``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   ysssssssd-```  
+`     ```     ````     ```     ```     ```     ```     ```     ```     ```     ```  `dsssssssd.```  
+  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     `-dsssssssy     `
+``    ```      ```     ```     ```     ```     ```     ```     ```     ```     ```  +yssssssh: ```  
+``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````  yssssssyy  ```  
+  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     `dsssssyh.`     `
+  ````    ````    ````    ````    ````    ````    ````     ```     ```     ```     `dssssyh.``     `
+``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````  dssyyo`    ```  
+                                                                                    -//-`           
+
+'''
 FINISHED = '''You've made it out of the [bold orange]Cave of Wonders[/bold orange] on your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink]!
 
 [green]What treasures did you get?[/green]
@@ -201,9 +315,6 @@ FINISHED = '''You've made it out of the [bold orange]Cave of Wonders[/bold orang
 |  [bold green]D A T A[/bold green]  |
 \          /
 `=========`
-
-
-
 
 Your Network Data can be found in the [bold cyan]Cave of Wonders[/bold cyan]
 

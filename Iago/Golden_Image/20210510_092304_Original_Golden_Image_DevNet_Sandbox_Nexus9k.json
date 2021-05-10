@@ -200,10 +200,7 @@
         "limit-resource vrf minimum 2 maximum 4096": {}
     },
     "version 9.3(5) Bios:version": {},
-    "vlan 1,10,20,30,100-105": {},
-    "vlan 10": {
-        "name BLUE": {}
-    },
+    "vlan 1,100-105": {},
     "vlan 100": {
         "name mgmt": {}
     },
@@ -221,12 +218,6 @@
     },
     "vlan 105": {
         "name iot": {}
-    },
-    "vlan 20": {
-        "name RED": {}
-    },
-    "vlan 30": {
-        "name GREEN": {}
     },
     "vrf context management": {
         "ip domain-name sj.ivt.net": {},

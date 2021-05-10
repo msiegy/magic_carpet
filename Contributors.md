@@ -233,3 +233,7 @@ Oren Brigg
     Improve Python Code Structure.
 
     Add function calls on Python code.
+
+## Special Thank You
+Christopher Johnson's ASCII Art Collection
+https://asciiart.website/index.php?art=movies/aladdin

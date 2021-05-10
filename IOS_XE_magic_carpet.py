@@ -1423,7 +1423,7 @@ class Collect_Information(aetest.Testcase):
                     table.insert(self.parsed_show_ip_route)
 
                 # Show ISSU State Details
-                if self.parsed_show_issu_state is not None:
+                if hasattr(self, parsed_show_issu_state):
                     sh_issu_state_template = env.get_template('show_issu_state.j2')
                     directory_names = "Show_ISSU_State"
                     file_names = "show_issu_state"                    

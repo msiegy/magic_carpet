@@ -605,8 +605,8 @@ class Collect_Information(aetest.Testcase):
                     directory_names = "Learned_Routing"
                     file_names = "learned_routing" 
 
-                    self.save_to_json_file(device, directory_names, file_names, self.learned_acl)
-                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_acl)                
+                    self.save_to_json_file(device, directory_names, file_names, self.learned_routing)
+                    self.save_to_yaml_file(device, directory_names, file_names, self.learned_routing)                
 
                     for filetype in filetype_loop:
                         parsed_output_type = learned_routing_template.render(to_parse_routing=self.learned_routing['vrf'],filetype_loop_jinja2=filetype)

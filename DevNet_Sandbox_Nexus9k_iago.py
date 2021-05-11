@@ -23,7 +23,7 @@ from pyats import topology
 from pyats.log.utils import banner
 from genie.utils.diff import Diff
 from jinja2 import Environment, FileSystemLoader
-from ascii_art import GREETING, LEARN, RUNNING, WRITING, PUSH_INTENT, FINISHED
+from ascii_art import GREETING, LEARN, RUNNING, WRITING, PUSH_INTENT, DIFF, FINISHED
 from general_functionalities import ParseShowCommandFunction, ParseLearnFunction, ParseConfigFunction
 from datetime import datetime
 from contextlib import redirect_stdout

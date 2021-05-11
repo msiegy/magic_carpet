@@ -5,7 +5,6 @@ global_config:
       description: "DO NOT TOUCH CONFIG ON THIS INTERFACE"
       vrf: management
       ip_address: 10.10.20.58/24
-  boot: "nxos.9.3.5.bin sup-1"
   features:
     - nxapi
     -  bash-shell
@@ -104,6 +103,8 @@ host_vlans:
     name: security
   105:
     name: iot
+  10:
+    name: this_Should_triggeR_diff
 
 host_vrfs:
   management:

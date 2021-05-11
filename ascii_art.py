@@ -246,61 +246,122 @@ PUSH_INTENT = ''' [bright_blue]IAGO[/bright_blue] is [red]configuring your devic
 '''
 
 DIFF = '''
-  ````    ````    ````    -/-`    ````    ````    ````    ````    ````     ```     ```     ```     `
-  ````    ````    ````    ``/+`  `````    ````    ````     ```    ````     ```     ```     ```     `
-``    ````    ````    ````   -o``.+   ````    ````    ````    ````    ````    ````     ```     ```  
+                          [bright_black]-/-                                                                       
+                            /+                                                                      
+                             -o  .+                                                                 
                               o. .s                                                                 
-  ````    ````    ````    `.::/+.o.```    ``/.    ````    ````    ````    ````     ```     ```     `
-``    ````    ````    ```` :NNNNm/`..`````./: ````    ````    ````  `  ```     ```     ```     ```  
-``    ````    ````    ```` sMMMMMNNNNmy/:/-`` ````    ```` `.:/osoydo:/:-.`    ```     ```     ```  
-  ````    ````    ```` ``-//dmmmmNMMMMmd` `/h+    `````.:+syyyyyyhhyyyyyyhho-`     ```     ```     `
-                    `:/s+.` `````.hMNdhs//syhy:.-/ohyoyyyyyyyyyyyyyyyyyyyyyyyys+:.                  
-``    .----.  ```:+sdy+s:://+     sdyyyyyyhhddhyyhdhyyyyyyyyyhhhhhhhhhhhhyyyyyyyyys/.  ```     ```  
-  `-/oooooooo++/+ysddhdh:..:y   `:dhyyyyyyyyhdhyyyyyyyyyyyyhhhyyyyyyyyyyyhhhhyyyyyyyyo-`   ```     `
- `oso++++++++++oosso++NM:./o::osyyyyyyyyyyyhhhmyyyyyyyyyyyydyyyyyyyyyyyyyyyyyhhhyyyyyyys-  ```     `
-`oo++++++++++++++oy+++yhosdyyhyyhs+odydyyyyyhdhyyyyyyyyyyyhdyyyyyyyyyyyyyyyyyyyhhhyyyyyyyo`    ```  
-`h++++++++++++++++++++++++oooosho`  yohhyyyyyyyyyyyyyyyyyyydhyyyyyyyyyyyyyyyyyyyyyhyyyyyyys`   ```  
-`h++++++++++++++++++++++++++++y--+-/yohhyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyyyyho``     `
-`h+++++++++++++++++++++++++++ss.:oyo+ooohyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyyyym.       
-`:y++++++++++++++++++++++++++hsoo+++++++shyyyyyyyyyyyyyyyyyyyyyhhyyyyyyyyyyyyyyyyyyyyyyyyyymo  ```  
-  :so+++++++++++++++++++++++oh+++++++++ohyyyyyyyyyyyyyyyyyyyyyyyhhhyyyyyyyyyyyyyyyyyyyyyyyydh`     `
-  `.oso++++++++++++++oooossyysooooo+ooo+ooooosdhyyyyyyyyyyyyyyyyyyhhyyyyyyyyyhhyyyyyyyymhydyd`     `
-``   -ooo+++++++++++y/:-.::::///::--. ````    /hyyddhhhyyyyyyyyyyyyydhyyyyyyyyddyyyyyyhddyssd  ```  
-       -oso+++++++++h`                       `-dhmdhhyyyyyyyyyyyyyyyyhhyyyyyyydddhhyyhhydsssd`      
-  ````   ./+ooo+++++s+    ````    ````    ``:yhyhyyyyyyyyyyyyyyyyyyyyyhdyyyyydysdssyyssydsssd`     `
-``    ````   `-:::::-.````    ````    `````ohyyyyyyyyyyyyyyyyyyyyyyyyyyydhhhhysshhsssssydsssy  ```  
-``    ````    ````    ````    ````    ````shyyyyyyyyyyyyyyyyyyyyyhhhyyyyydysssssydssssshhssh/  ```  
-  ````    ````    ````    ````    ````   /hyyyyyyyhyyyyyyyyyyyyydhhhhhyyyydysssssmsssssdysyh``     `
-                                         hyyyyyyyyydyyyyyyyyyyydhdhyyyyyyyydsssssdssssydssd-        
-``    ````    ````    ````    ````    ```dyyyyyyyyyyddyyyyyyyyymdyyyyyyyyyyydssssdysssdysdd:   ```  
-  ````    ````    ````    ````    ````   +hyyhhooshymhyyyyyyyyymyyyyyyyyyyyyydsssdysshhydhd-``     `
-  ````    ````    ````    ````    ````    yyyh++++sddyyyyyyyyyymhhhhhyyyyyyyyhdssdssydhdyhm.``     `
-``    ````    ````    ````    ````    ```+shmo++++smyyyyyyyyyyhyo++oyysosyhhyyhhydyddhyyyyd-   ```  
-``    ```     ````     ```     ```  .----h++ho+++++dyyyyyyyyydo+++yy++++ooosysshdddhyyyyyyh+   ```  
-  ````    ````    ````    ````    `````  so+oh+++++y:```````.h+++ys++++y/`````````+hyyyyyyyh``     `
-`     ```     ````     ```     ```     ```+sosysoshd-  ```  `h++sy++++y-``     ````ohyyyhdhs   ```  
-``    ````    ````    ````    ````    ```` `.://:-oh` ````   shydo+++s+```    ````  :dhhmyyh`  ```  
-  ````    ````    ````    ````    ````    ````    ````    ```+ydddsoo/`    ```     ``hyyhhsy+`     `
-  ````    ````    ````    ````    ````    ````    ````     ````:s/.```     ```     ``+yssdssd`     `
-``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   -dsshhsh/ ```  
-                                                                                     `dsssdssh`     
-  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     ```dssshhsh+    `
-``    ````    ````    ````    ````    ````    ````    ````    ````     ```     ```    dssssdssh```  
-``    ````    ````    ````    ````    ````    ````    ````    ````     ```     ```    dsssshhsd-``  
-  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     ```dsssssdyy+   `
-                                                                                     `dsssssydyo    
-``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   `dssssssdh/``  
-  ````    ````    ````    ````    ````    ````    ````     ```     ```     ```     ``-dssssssdd`   `
-  ````    ````    ````    ````    ````    ````    ````    ````    ````     ```     ``+yssssssdo    `
-``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````   ysssssssd-```  
-`     ```     ````     ```     ```     ```     ```     ```     ```     ```     ```  `dsssssssd.```  
-  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     `-dsssssssy     `
-``    ```      ```     ```     ```     ```     ```     ```     ```     ```     ```  +yssssssh: ```  
-``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````  yssssssyy  ```  
-  ````    ````    ````    ````    ````    ````    ````    ````    ````    ````     `dsssssyh.`     `
-  ````    ````    ````    ````    ````    ````    ````     ```     ```     ```     `dssssyh.``     `
-``    ````    ````    ````    ````    ````    ````    ````    ````    ````    ````  dssyyo`    ```  
-                                                                                    -//-`           
+                           .::/+.o.        /.                                                      
+                           :NNNNm/ ..     ./:                                                       
+                           sMMMMMNNNNmy/:/-[/bright_black]                 [bright_red].:/osoydo:/:-.[/bright_red]                          
+                         [bright_black]-//dmmmmNMMMMmd  /h+[/bright_black]         [bright_red].:+syyyyyyhhyyyyyyhho-[/bright_red]                       
+                     [bright_yellow]:/s+[/bright_yellow][bright_black].       .hMNdhs//[/bright_black][bright_red]syhy:.-/ohyoyyyyyyyyyyyyyyyyyyyyyyyys+:.[/bright_red]                  
+      [bright_yellow].----.-----:+sdy+s[/bright_yellow]  [bright_blue]@@[/bright_blue]  [bright_blue]@@[/bright_blue]  [bright_black]sd[/bright_black][bright_red]yyyyyyhhddhyyhdhyyyyyyyyy[/bright_red][bright_magenta]hhhhhhhhhhhh[/bright_magenta][bright_red]yyyyyyyyys/.[/bright_red]               
+   [bright_yellow]-/oooooooo++/+ysddhdh:[/bright_yellow]        [bright_black]:[/bright_black][bright_red]dhyyyyyyyyhdhyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyyyyy[/bright_red][bright_magenta]hhhh[/bright_magenta][bright_red]yyyyyyyyo-[/bright_red]            
+  [bright_yellow]oso++++++++++oosso++NM[/bright_yellow][bright_black]:./o::os[/bright_black][bright_red]yyyyyyyyyyyhhhmyyyyyyyyyyyy[/bright_red][bright_magenta]d[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyys-[/bright_red]           
+ [bright_yellow]oo++++++++++++++oy+++y[/bright_yellow][bright_red]hosdyyhyyhs+odydyyyyyhdhyyyyyyyyyyy[/bright_red][bright_magenta]hd[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyo[/bright_red]         
+ [bright_yellow]h++++++++++++++++++++++++[/bright_yellow]oooosho[bright_black]`[/bright_black][bright_white]##[/bright_white][bright_red]yohhyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]h[/bright_magenta][bright_red]yyyyyyys[/bright_red]        
+ [bright_yellow]h++++++++++++++++++++++++++++[/bright_yellow][bright_black]y[/bright_black][bright_white]####[/bright_white][bright_black]/[/bright_black][bright_red]yohhyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]ho[/purple4]      
+ [bright_yellow]h+++++++++++++++++++++++++++[/bright_yellow][bright_white]####[/bright_white][bright_red]oyo+ooohyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]m.[/purple4]       
+ [bright_yellow]:y++++++++++++++++++++++++++[/bright_yellow][bright_red][bright_white]hsoo[/bright_white]       shyyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]mo[/purple4]       
+  [bright_yellow]:so+++++++++++++++++++++++[/bright_yellow][bright_red][bright_white]oh[/bright_white]         ohyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]dh[/purple4]      
+   [bright_yellow].oso++++++++++++++[/bright_yellow]                          [bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]mhydyd[/purple4]     
+     [bright_yellow]-ooo+++++++++++y/[/bright_yellow]                        [bright_magenta]/hyyddhhh[/bright_magenta][bright_red]yyyyyyyyyyyyy[/bright_red][bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][bright_magenta]dd[/bright_magenta][bright_red]yyyyyy[/bright_red][purple4]hddyssd[/purple4]       
+       [bright_yellow]-oso+++++++++h[/bright_yellow]                        [bright_magenta]-dhmdhh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyy[/bright_red][purple4]dddhhyyhhydsssd[/purple4]      
+         [bright_yellow]./+ooo+++++s+[/bright_yellow]                      [bright_magenta]:yhyh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hd[/bright_magenta][bright_red]yyyyy[/bright_red][purple4]dysdssyyssydsssd[/purple4]     
+              [bright_yellow]-:::::-.[/bright_yellow]                     [bright_magenta]oh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]dhhhhysshhsssssydsssy[/purple4]       
+               [bright_yellow]\####/[/bright_yellow]                     [bright_magenta]sh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyy[/bright_red][purple4]dysssssydssssshhssh/[/purple4]       
+                [bright_yellow]\##/[/bright_yellow]                       [bright_red]hyyyyyyyhyyyyyyyyyyyyy[/bright_red][bright_magenta]dhhhhh[/bright_magenta][bright_red]yyyy[/bright_red][purple4]dysssssmsssssdysyh[/purple4]
+                 [bright_yellow]\/[/bright_yellow]                       [bright_red]hyyyyyyyyydyyyyyyyyyyy[/bright_red][bright_magenta]dhdh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]dsssssdssssydssd-[/purple4]        
+                                         [bright_red]dyyyyyyyyyy[/bright_red][purple4]dd[/purple4][bright_red]yyyyyyyyy[/bright_red][bright_magenta]md[/bright_magenta][bright_red]yyyyyyyyyyy[/bright_red][purple4]dssssdysssdysdd:[/purple4]        
+                                         [purple4]+hyyhhooshymh[/purple4][bright_red]yyyyyyyyy[/bright_red][bright_magenta]m[/bright_magenta][bright_red]yyyyyyyyyyyyy[/bright_red][purple4]dsssdysshhydhd-[/purple4]
+                                          [purple4]yyyh    sdd[/purple4][bright_red]yyyyyyyyyy[/bright_red][bright_magenta]mhhhhh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]hdssdssydhdyhm.[/purple4]
+                                         [purple4]+shmo    sm[/purple4][bright_red]yyyyyyyyyy[/bright_red][bright_magenta]hyo[/bright_magenta]  [purple4]oyysosyhhyyhhydyddh[/purple4][bright_red]yyyy[/bright_red][purple4]d-[/purple4]        
+                                         [bright_black]h++ho     d[/bright_black][bright_red]yyyyyyyyy[/bright_red][bright_black]do[/bright_black]   [bright_black]yy[/bright_black]    [purple4]ooosysshdddh[/purple4][bright_red]yyyyyy[/bright_red][purple4]h+[/purple4]        
+                                         [bright_black]so+oh     y:       .h   ys    y/[/bright_black]         [bright_red]+hyyyyyyyh[/bright_red]
+                                          [bright_black]+sosysoshd-        h  sy    y-[/bright_black]           [bright_red]ohyyyhdhs[/bright_red]        
+                                              [bright_black]//  oh         shydo   s[/bright_black]              [bright_red]:dhhmyyh[/bright_red]
+                                                              [bright_black]ydddsoo/[/bright_black]             [bright_red]``hyyhhsy+[/bright_red]
+                                                                [bright_black]s/.[/bright_black]                [bright_red]``+yssdssd[/bright_red]
+                                                                                     [purple4]-dsshhsh/[/purple4]      
+                                                                                     [purple4]`dsssdssh[/purple4]     
+                                                                                      [purple4]dssshhsh+[/purple4]
+                                                                                      [purple4]dssssdssh[/purple4]     
+                                                                                      [purple4]dsssshhsd-[/purple4]
+                                                                                      [purple4]dsssssdyy+[/purple4]
+                                                                                      [purple4]dsssssydyo[/purple4]    
+                                                                                      [purple4]dssssssdh/[/purple4]
+                                                                                     [purple4]-dssssssdd[/purple4]
+                                                                                     [purple4]+yssssssdo[/purple4] 
+                                                                                     [purple4]ysssssssd-[/purple4]     
+                                                                                     [purple4]dsssssssd.[/purple4]     
+                                                                                    [purple4]-dsssssssy[/purple4]  
+                                                                                    [purple4]+yssssssh:[/purple4]      
+                                                                                    [purple4]yssssssyy[/purple4]       
+                                                                                    [purple4]dsssssyh.[/purple4]
+[blink][bright_yellow]#####################################################################               [purple4]dssssyh.[/purple4]
+##[/blink][/bright_yellow] [bright_blue]          YOU HAVE PUSHED CHANGES TO YOUR DEVICE[/bright_blue][blink][bright_yellow]                ##               [purple4]dssyyo[/purple4]         
+##[/blink][/bright_yellow] [bright_blue]          CHECK THE DIFFERENTIAL BELOW[/bright_blue][blink][bright_yellow]                          ##               [purple4]-//-[/purple4]           
+#####################################################################[/blink][/bright_yellow]                [purple4]/[/purple4]
+[blink][bright_yellow]VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[/blink][/bright_yellow]
+'''
+NO_DIFF = '''
+                          [bright_black]-/-                                                                       
+                            /+                                                                      
+                             -o  .+                                                                 
+                              o. .s                                                                 
+                           .::/+.o.        /.                                                      
+                           :NNNNm/ ..     ./:                                                       
+                           sMMMMMNNNNmy/:/-[/bright_black]                 [bright_red].:/osoydo:/:-.[/bright_red]                          
+                         [bright_black]-//dmmmmNMMMMmd  /h+[/bright_black]         [bright_red].:+syyyyyyhhyyyyyyhho-[/bright_red]                       
+                     [bright_yellow]:/s+[/bright_yellow][bright_black].       .hMNdhs//[/bright_black][bright_red]syhy:.-/ohyoyyyyyyyyyyyyyyyyyyyyyyyys+:.[/bright_red]                  
+      [bright_yellow].----.-----:+sdy+s[/bright_yellow]  [bright_blue]@@[/bright_blue]  [bright_blue]@@[/bright_blue]  [bright_black]sd[/bright_black][bright_red]yyyyyyhhddhyyhdhyyyyyyyyy[/bright_red][bright_magenta]hhhhhhhhhhhh[/bright_magenta][bright_red]yyyyyyyyys/.[/bright_red]               
+   [bright_yellow]-/oooooooo++/+ysddhdh:[/bright_yellow]        [bright_black]:[/bright_black][bright_red]dhyyyyyyyyhdhyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyyyyy[/bright_red][bright_magenta]hhhh[/bright_magenta][bright_red]yyyyyyyyo-[/bright_red]            
+  [bright_yellow]oso++++++++++oosso++NM[/bright_yellow][bright_black]:./o::os[/bright_black][bright_red]yyyyyyyyyyyhhhmyyyyyyyyyyyy[/bright_red][bright_magenta]d[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyys-[/bright_red]           
+ [bright_yellow]oo++++++++++++++oy+++y[/bright_yellow][bright_red]hosdyyhyyhs+odydyyyyyhdhyyyyyyyyyyy[/bright_red][bright_magenta]hd[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyo[/bright_red]         
+ [bright_yellow]h++++++++++++++++++++++++[/bright_yellow]oooosho[bright_black]`[/bright_black][bright_white]##[/bright_white][bright_red]yohhyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]h[/bright_magenta][bright_red]yyyyyyys[/bright_red]        
+ [bright_yellow]h++++++++++++++++++++++++++++[/bright_yellow][bright_black]y[/bright_black][bright_white]####[/bright_white][bright_black]/[/bright_black][bright_red]yohhyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]ho[/purple4]      
+ [bright_yellow]h+++++++++++++++++++++++++++[/bright_yellow][bright_white]####[/bright_white][bright_red]oyo+ooohyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]m.[/purple4]       
+ [bright_yellow]:y++++++++++++++++++++++++++[/bright_yellow][bright_red][bright_white]hsoo[/bright_white]       shyyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]mo[/purple4]       
+  [bright_yellow]:so+++++++++++++++++++++++[/bright_yellow][bright_red][bright_white]oh[/bright_white]         ohyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]dh[/purple4]      
+   [bright_yellow].oso++++++++++++++[/bright_yellow]                          [bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]mhydyd[/purple4]     
+     [bright_yellow]-ooo+++++++++++y/[/bright_yellow]                        [bright_magenta]/hyyddhhh[/bright_magenta][bright_red]yyyyyyyyyyyyy[/bright_red][bright_magenta]dh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][bright_magenta]dd[/bright_magenta][bright_red]yyyyyy[/bright_red][purple4]hddyssd[/purple4]       
+       [bright_yellow]-oso+++++++++h[/bright_yellow]                        [bright_magenta]-dhmdhh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hh[/bright_magenta][bright_red]yyyyyyy[/bright_red][purple4]dddhhyyhhydsssd[/purple4]      
+         [bright_yellow]./+ooo+++++s+[/bright_yellow]                      [bright_magenta]:yhyh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hd[/bright_magenta][bright_red]yyyyy[/bright_red][purple4]dysdssyyssydsssd[/purple4]     
+              [bright_yellow]-:::::-.[/bright_yellow]                     [bright_magenta]oh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyyyyyyyy[/bright_red][purple4]dhhhhysshhsssssydsssy[/purple4]       
+               [bright_yellow]\####/[/bright_yellow]                     [bright_magenta]sh[/bright_magenta][bright_red]yyyyyyyyyyyyyyyyyyyyy[/bright_red][bright_magenta]hhh[/bright_magenta][bright_red]yyyyy[/bright_red][purple4]dysssssydssssshhssh/[/purple4]       
+                [bright_yellow]\##/[/bright_yellow]                       [bright_red]hyyyyyyyhyyyyyyyyyyyyy[/bright_red][bright_magenta]dhhhhh[/bright_magenta][bright_red]yyyy[/bright_red][purple4]dysssssmsssssdysyh[/purple4]
+                 [bright_yellow]\/[/bright_yellow]                       [bright_red]hyyyyyyyyydyyyyyyyyyyy[/bright_red][bright_magenta]dhdh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]dsssssdssssydssd-[/purple4]        
+                                         [bright_red]dyyyyyyyyyy[/bright_red][purple4]dd[/purple4][bright_red]yyyyyyyyy[/bright_red][bright_magenta]md[/bright_magenta][bright_red]yyyyyyyyyyy[/bright_red][purple4]dssssdysssdysdd:[/purple4]        
+                                         [purple4]+hyyhhooshymh[/purple4][bright_red]yyyyyyyyy[/bright_red][bright_magenta]m[/bright_magenta][bright_red]yyyyyyyyyyyyy[/bright_red][purple4]dsssdysshhydhd-[/purple4]
+                                          [purple4]yyyh    sdd[/purple4][bright_red]yyyyyyyyyy[/bright_red][bright_magenta]mhhhhh[/bright_magenta][bright_red]yyyyyyyy[/bright_red][purple4]hdssdssydhdyhm.[/purple4]
+                                         [purple4]+shmo    sm[/purple4][bright_red]yyyyyyyyyy[/bright_red][bright_magenta]hyo[/bright_magenta]  [purple4]oyysosyhhyyhhydyddh[/purple4][bright_red]yyyy[/bright_red][purple4]d-[/purple4]        
+                                         [bright_black]h++ho     d[/bright_black][bright_red]yyyyyyyyy[/bright_red][bright_black]do[/bright_black]   [bright_black]yy[/bright_black]    [purple4]ooosysshdddh[/purple4][bright_red]yyyyyy[/bright_red][purple4]h+[/purple4]        
+                                         [bright_black]so+oh     y:       .h   ys    y/[/bright_black]         [bright_red]+hyyyyyyyh[/bright_red]
+                                          [bright_black]+sosysoshd-        h  sy    y-[/bright_black]           [bright_red]ohyyyhdhs[/bright_red]        
+                                              [bright_black]//  oh         shydo   s[/bright_black]              [bright_red]:dhhmyyh[/bright_red]
+                                                              [bright_black]ydddsoo/[/bright_black]             [bright_red]``hyyhhsy+[/bright_red]
+                                                                [bright_black]s/.[/bright_black]                [bright_red]``+yssdssd[/bright_red]
+                                                                                     [purple4]-dsshhsh/[/purple4]      
+                                                                                     [purple4]`dsssdssh[/purple4]     
+                                                                                      [purple4]dssshhsh+[/purple4]
+                                                                                      [purple4]dssssdssh[/purple4]     
+                                                                                      [purple4]dsssshhsd-[/purple4]
+                                                                                      [purple4]dsssssdyy+[/purple4]
+                                                                                      [purple4]dsssssydyo[/purple4]    
+                                                                                      [purple4]dssssssdh/[/purple4]
+                                                                                     [purple4]-dssssssdd[/purple4]
+                                                                                     [purple4]+yssssssdo[/purple4] 
+                                                                                     [purple4]ysssssssd-[/purple4]     
+                                                                                     [purple4]dsssssssd.[/purple4]     
+                                                                                    [purple4]-dsssssssy[/purple4]  
+                                                                                    [purple4]+yssssssh:[/purple4]      
+                                                                                    [purple4]yssssssyy[/purple4]       
+                                                                                    [purple4]dsssssyh.[/purple4]
+[blink][bright_yellow]#####################################################################               [purple4]dssssyh.[/purple4]
+##[/blink][/bright_yellow] [bright_blue]          You have achieved [bright_blue]idempotency[/bright_blue][blink][bright_yellow]                          ##      [purple4]dssyyo[/purple4]         
+##[/blink][/bright_yellow] [bright_blue]          between your [bright_green]INTENT[/bright_green] and [bright_red]RUNNING[/bright_red] configurations[blink][bright_yellow]                                    ##      [purple4]-//-[/purple4]           
+#####################################################################[/blink][/bright_yellow]       [purple4]/[/purple4]
+[blink][bright_yellow]VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV[/blink][/bright_yellow]
 
 '''
 FINISHED = '''You've made it out of the [bold orange]Cave of Wonders[/bold orange] on your [blink][bold blue]Magic[/bold blue][/blink] [blink][bold yellow]Carpet[/][/blink]!

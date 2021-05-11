@@ -1423,27 +1423,28 @@ class Collect_Information(aetest.Testcase):
                     table.insert(self.parsed_show_ip_route)
 
                 # Show ISSU State Details
-                if hasattr(self, parsed_show_issu_state):
-                    sh_issu_state_template = env.get_template('show_issu_state.j2')
-                    directory_names = "Show_ISSU_State"
-                    file_names = "show_issu_state"                    
+                if device.platform == "cat4500":
+                    if self.parsed_show_issu_state is not None:
+                        sh_issu_state_template = env.get_template('show_issu_state.j2')
+                        directory_names = "Show_ISSU_State"
+                        file_names = "show_issu_state"                    
                     
-                    self.save_to_json_file(device, directory_names, file_names, self.parsed_show_issu_state)
-                    self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_issu_state)                   
+                        self.save_to_json_file(device, directory_names, file_names, self.parsed_show_issu_state)
+                        self.save_to_yaml_file(device, directory_names, file_names, self.parsed_show_issu_state)                   
                     
-                    for filetype in filetype_loop:
-                        parsed_output_type = sh_issu_state_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'],filetype_loop_jinja2=filetype)
+                        for filetype in filetype_loop:
+                            parsed_output_type = sh_issu_state_template.render(to_parse_issu_state=self.parsed_show_issu_state['slot'],filetype_loop_jinja2=filetype)
 
-                        self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
+                            self.save_to_specified_file_type(device, directory_names, file_names, parsed_output_type, filetype)
 
-                    if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md" % device.alias):
-                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
+                        if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md" % device.alias):
+                            os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_ISSU_State/%s_show_issu_state_mind_map.html" % (device.alias,device.alias))
 
-                    # ----------------
-                    # Store ISSU State Details in Device Table in Database
-                    # ----------------
+                        # ----------------
+                        # Store ISSU State Details in Device Table in Database
+                        # ----------------
 
-                    table.insert(self.parsed_show_issu_state)
+                        table.insert(self.parsed_show_issu_state)
 
                 # Show mac address-table
                 if self.parsed_show_mac_address_table is not None:

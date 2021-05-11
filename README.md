@@ -1,4 +1,4 @@
-# Magic Carpet
+# Magic Carpet: collect, transform, and configure network state information
 
 ## Simply a better way; a magical way; to collect and transform network state information
 

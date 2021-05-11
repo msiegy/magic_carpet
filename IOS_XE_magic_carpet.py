@@ -1606,7 +1606,6 @@ class Collect_Information(aetest.Testcase):
                     # For Each VRF
                     for vrf in self.parsed_show_vrf['vrf']:
                       
-                        # Show IP ARP VRF <VRF>
                         # Show IP ARP VRF <VRF> 
                         with steps.start('Parsing ip arp vrf',continue_=True) as step:
                             try:
@@ -1647,31 +1646,32 @@ class Collect_Information(aetest.Testcase):
                             except Exception as e:
                                 step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                        with steps.start('Store data',continue_=True) as step:
+                        if self.parsed_show_ip_route_vrf:
+                            with steps.start('Store data',continue_=True) as step:
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                                json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
-                                fid.close()
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                    json.dump(self.parsed_show_ip_route_vrf, fid, indent=4, sort_keys=True)
+                                    fid.close()
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                                yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
-                                yml.close()
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                    yaml.dump(self.parsed_show_ip_route_vrf, yml, allow_unicode=True)
+                                    yml.close()
                          
-                            for filetype in filetype_loop:
-                                parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
+                                for filetype in filetype_loop:
+                                    parsed_output_type = sh_ip_route_template.render(to_parse_ip_route=self.parsed_show_ip_route_vrf['vrf'],filetype_loop_jinja2=filetype)
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                    fh.write(parsed_output_type)
-                                    fh.close()
+                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                        fh.write(parsed_output_type)
+                                        fh.close()
 
-                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
-                                    os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+                                if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md" % (device.alias,vrf)):
+                                        os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
-                            # ----------------
-                            # Store IP Route VRF in Device Table in Database
-                            # ----------------
+                                # ----------------
+                                # Store IP Route VRF in Device Table in Database
+                                # ----------------
 
-                            table.insert(self.parsed_show_ip_route_vrf)
+                                table.insert(self.parsed_show_ip_route_vrf)
 
         db.close()
         # Goodbye Banner

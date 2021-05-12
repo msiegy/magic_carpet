@@ -19,3 +19,13 @@ class ParseLearnFunction:
                 except Exception as e:
                     step.failed('Could not learn it correctly\n{e}'.format(e=e))
                     return None
+
+class ParseConfigFunction:
+    @staticmethod
+    def parse_learn(steps, device, function_name: str):
+            with steps.start(f'Learning {function_name}',continue_=True) as step:
+                try:
+                    return device.learn(function_name)
+                except Exception as e:
+                    step.failed('Could not learn it correctly\n{e}'.format(e=e))
+                    return None                    

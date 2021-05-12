@@ -1612,32 +1612,32 @@ class Collect_Information(aetest.Testcase):
                                 self.parsed_show_ip_arp_vrf = device.parse("show ip arp vrf %s" % vrf)
                             except Exception as e:
                                 step.failed('Could not parse it correctly\n{e}'.format(e=e))
+                        if hasattr(Collect_Information, 'self.parsed_show_ip_arp_vrf'):
+                            with steps.start('Store data',continue_=True) as step:
 
-                        with steps.start('Store data',continue_=True) as step:
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
+                                    json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
+                                    fid.close()
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.json" % (device.alias,vrf), "w") as fid:
-                                json.dump(self.parsed_show_ip_arp_vrf, fid, indent=4, sort_keys=True)
-                                fid.close()
+                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
+                                    yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
+                                    yml.close()
 
-                            with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.yaml" % (device.alias,vrf), "w") as yml:
-                                yaml.dump(self.parsed_show_ip_arp_vrf, yml, allow_unicode=True)
-                                yml.close()
+                                for filetype in filetype_loop:
+                                    parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
 
-                            for filetype in filetype_loop:
-                                parsed_output_type = sh_ip_arp_vrf_template.render(to_parse_ip_arp=self.parsed_show_ip_arp_vrf['interfaces'],filetype_loop_jinja2=filetype)
+                                    with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
+                                        fh.write(parsed_output_type)
+                                        fh.close()
 
-                                with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.%s" % (device.alias,vrf,filetype), "w") as fh:
-                                    fh.write(parsed_output_type)
-                                    fh.close()
-        
-                            if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
-                                os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
+                                if os.path.exists("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md" % (device.alias,vrf)):
+                                    os.system("markmap --no-open Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s.md --output Cave_of_Wonders/Cisco/IOS_XE/Show_IP_ARP_VRF/%s_show_ip_arp_vrf_%s_mind_map.html" % (device.alias,vrf,device.alias,vrf))
 
-                            # ----------------
-                            # Store IP ARP VRF in Device Table in Database
-                            # ----------------
+                                # ----------------
+                                # Store IP ARP VRF in Device Table in Database
+                                # ----------------
 
-                            table.insert(self.parsed_show_ip_arp_vrf)
+                                table.insert(self.parsed_show_ip_arp_vrf)
 
                         # Show IP ROUTE VRF <VRF>
                         with steps.start('Parsing ip route vrf',continue_=True) as step:
@@ -1646,7 +1646,7 @@ class Collect_Information(aetest.Testcase):
                             except Exception as e:
                                 step.failed('Could not parse it correctly\n{e}'.format(e=e))
 
-                        if self.parsed_show_ip_route_vrf:
+                        if hasattr(Collect_Information, 'self.parsed_show_ip_route_vrf'):
                             with steps.start('Store data',continue_=True) as step:
 
                                 with open("Cave_of_Wonders/Cisco/IOS_XE/Show_IP_Route_VRF/%s_show_ip_route_vrf_%s.json" % (device.alias,vrf), "w") as fid:

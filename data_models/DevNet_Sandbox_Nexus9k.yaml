@@ -103,8 +103,6 @@ host_vlans:
     name: security
   105:
     name: iot
-  10:
-    name: this_Should_triggeR_diff
 
 host_vrfs:
   management:
